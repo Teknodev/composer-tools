@@ -259,7 +259,7 @@ class Feature20 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-           {(this.castToString(title) || subtitleExist || this.castToString(description) || hasValidButtons) && <div className={this.decorateCSS("header")}>
+           {(this.castToString(title) || subtitleExist || this.castToString(description) || hasValidButtons) && <Base.VerticalContent className={this.decorateCSS("header")}>
             {subtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
@@ -289,7 +289,7 @@ class Feature20 extends BaseFeature {
                   })}
                 </div>
               )}
-            </div>}
+            </Base.VerticalContent>}
 
             {items.map((item: Item, i: number) => {
               const itemButtons = item.item_buttons || [];

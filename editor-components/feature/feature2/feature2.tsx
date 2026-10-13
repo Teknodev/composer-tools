@@ -10,7 +10,7 @@ type Box = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   icon: TypeMediaInputValue;
-  button: Button;
+  item_buttons: Button[];
 };
 
 type Button = {
@@ -93,7 +93,14 @@ class Feature2 extends BaseFeature {
                 name: "FaGlobe",
               },
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -131,7 +138,14 @@ class Feature2 extends BaseFeature {
                 name: "SiAltiumdesigner",
               },
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -169,7 +183,14 @@ class Feature2 extends BaseFeature {
                 name: "CgIfDesign",
               },
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -207,7 +228,14 @@ class Feature2 extends BaseFeature {
                 name: "FaRegNewspaper",
               },
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -327,9 +355,11 @@ class Feature2 extends BaseFeature {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
               const iconExist = !!(item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url));
-              const btnText = item.button ? this.castToString(item.button.text) : "";
-              const btnIconExist = item.button?.icon && (item.button.icon.type === "icon" ? item.button.icon.name : item.button.icon.url);
-              const hasItemButton = !!(btnText || btnIconExist);
+              const itemButtons = item.item_buttons || [];
+              const hasItemButton = itemButtons.some((btn: Button) => {
+                const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                return this.castToString(btn.text) || btnIconExist;
+              });
               const shouldRender = subtitleExist || titleExist || descExist || iconExist;
 
               if (!shouldRender) return null;
@@ -377,16 +407,25 @@ class Feature2 extends BaseFeature {
                       </Base.P>
                     )}
                     {hasItemButton && (
-                      <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("item-button")}>
-                          {btnText && (
-                            <Base.P className={this.decorateCSS("item-button-text")}>{item.button.text}</Base.P>
-                          )}
-                          {btnIconExist && (
-                            <Base.Media className={this.decorateCSS("item-button-icon")} value={item.button.icon!} />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
+                      <div className={this.decorateCSS("item-button-container")}>
+                        {itemButtons.map((btn: Button, btnIndex: number) => {
+                          const btnText = this.castToString(btn.text);
+                          const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                          if (!btnText && !btnIconExist) return null;
+                          return (
+                            <ComposerLink key={btnIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("item-button")}>
+                                {btnText && (
+                                  <Base.P className={this.decorateCSS("item-button-text")}>{btn.text}</Base.P>
+                                )}
+                                {btnIconExist && (
+                                  <Base.Media className={this.decorateCSS("item-button-icon")} value={btn.icon!} />
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>
                     )}
                   </Base.VerticalContent>
                 </div>

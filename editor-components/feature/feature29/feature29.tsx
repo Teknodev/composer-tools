@@ -219,6 +219,7 @@ class Feature29 extends BaseFeature {
     const subheading = this.getPropValue("subheading");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text) || item.icon);
     const alignment = Base.getContentAlignment();
     const headingExist = this.castToString(heading);
     const subheadingExist = this.castToString(subheading);
@@ -311,29 +312,31 @@ class Feature29 extends BaseFeature {
             </Base.ListGrid>
           )}
 
-          {buttons.map((item: INPUTS.CastedButton, index: number) => {
-            const buttonTitleExist = this.castToString(item.text);
-            const iconExist = item.icon;
-            const buttonExist = buttonTitleExist || iconExist;
-            return (
-              buttonExist && (
-                <div key={index} className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={item.url}>
-                    <Base.Button
-                      buttonType={item.type}
-                      className={this.decorateCSS("button")}
-                    >
-                      {buttonTitleExist && (
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {item.text}
-                        </Base.P>
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )
-            );
-          })}
+          {hasButtons && (
+            <div className={this.decorateCSS("button-container")}>
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                const buttonTitleExist = this.castToString(item.text);
+                const iconExist = item.icon;
+                const buttonExist = buttonTitleExist || iconExist;
+                return (
+                  buttonExist && (
+                    <ComposerLink key={index} path={item.url}>
+                      <Base.Button
+                        buttonType={item.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        {buttonTitleExist && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

@@ -15,7 +15,7 @@ type Card = {
     card_subtitle: React.JSX.Element;
     card_title: React.JSX.Element;
     card_description: React.JSX.Element;
-    button: ButtonTypeObj;
+    card_buttons: ButtonTypeObj[];
 };
 
 class Feature35 extends BaseFeature {
@@ -71,7 +71,14 @@ class Feature35 extends BaseFeature {
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
-                        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -97,7 +104,14 @@ class Feature35 extends BaseFeature {
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
-                        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -123,7 +137,14 @@ class Feature35 extends BaseFeature {
                             displayer: "Description",
                             value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
                         },
-                        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link"),
+                            ],
+                        },
                     ]
                 },
             ],
@@ -175,14 +196,25 @@ class Feature35 extends BaseFeature {
                                         const cardSubtitleExist = this.castToString(card.card_subtitle);
                                         const titleExist = this.castToString(card.card_title);
                                         const descExist = this.castToString(card.card_description);
-                                        const btnTextExist = this.castToString(card.button.text);
+                                        const cardButtons = (card.card_buttons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
+                                        const btnTextExist = cardButtons.length > 0;
                                         const cardExist = cardSubtitleExist || titleExist || descExist || btnTextExist;
                                         return cardExist && (
                                             <Base.Card className={this.decorateCSS("card")}>
                                                 {cardSubtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>)}
                                                 {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
-                                                {btnTextExist && (<ComposerLink path={card.button.url}><Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")} ><Base.P className={this.decorateCSS("button-text")}> {card.button.text} </Base.P></Base.Button></ComposerLink>)}
+                                                {btnTextExist && (
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                                                            <ComposerLink key={btnIndex} path={btn.url}>
+                                                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                    <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </Base.Card>
                                         );
                                     })}

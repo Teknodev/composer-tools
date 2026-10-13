@@ -86,13 +86,13 @@ class Feature49 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Strategy Planning",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. \n\nDistinctively exploit optimal alignments for intuitive bandwidth. Quickly coordinate e-business applications through revolutionary catalysts.",
                         },
@@ -130,13 +130,13 @@ class Feature49 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Technology Consluting",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },
@@ -174,13 +174,13 @@ class Feature49 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Design & Development",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },
@@ -218,13 +218,13 @@ class Feature49 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Performance Audit",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },

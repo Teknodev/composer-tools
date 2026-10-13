@@ -19,7 +19,7 @@ interface ListItem {
   text1: React.JSX.Element;
   text2: React.JSX.Element;
   media: TypeMediaInputValue;
-  button: ButtonTypeObj;
+  cardButtons: ButtonTypeObj[];
 }
 
 class Feature42 extends BaseFeature {
@@ -96,7 +96,14 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -143,7 +150,14 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -190,7 +204,14 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -297,6 +318,7 @@ class Feature42 extends BaseFeature {
               const cardTitleExist = this.castToString(item.cardTitle);
               const text1Exist = this.castToString(item.text1);
               const text2Exist = this.castToString(item.text2);
+              const cardButtons = (item.cardButtons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
               return (
                 <div
                   key={index}
@@ -327,12 +349,16 @@ class Feature42 extends BaseFeature {
                       {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
                       {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
                       {text2Exist && (<Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>)}
-                      {item.button && this.castToString(item.button.text) && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
-                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
+                      {cardButtons.length > 0 && (
+                        <div className={this.decorateCSS("card-button-container")}>
+                          {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                            <ComposerLink key={btnIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          ))}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   )}

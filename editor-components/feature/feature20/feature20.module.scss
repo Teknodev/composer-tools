@@ -26,11 +26,8 @@
     }
 
     .header {
-      display: flex;
       text-align: center;
       align-items: center;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
       .title, .description {
         text-align: center;
       }
@@ -196,14 +193,6 @@
         .text {
           flex: 1 1 50%;
           padding: 0 1rem;
-
-          .section-heading {
-            margin-bottom: 1rem;
-          }
-
-          .desc {
-            margin-bottom: 2rem;
-          }
           
           .button-container {
             display: flex;
@@ -227,7 +216,6 @@
       .header {
         text-align: center;
         align-items: center;
-        flex-direction: column;
         .title, .description {
           text-align: center;
         }

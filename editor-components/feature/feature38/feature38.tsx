@@ -265,7 +265,7 @@ class Feature38 extends BaseFeature {
         this.addProp({
             type: "boolean",
             key: "divider",
-            displayer: "Divider",
+            displayer: "Line",
             value: true,
         });
     }

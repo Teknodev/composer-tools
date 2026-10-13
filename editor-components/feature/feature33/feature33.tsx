@@ -72,19 +72,19 @@ class Feature33 extends BaseFeature {
                         {
                             type: "string",
                             key: "feature_subtitle",
-                            displayer: "Feature Subtitle",
+                            displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
                             key: "feature_title",
-                            displayer: "Feature Title",
+                            displayer: "Title",
                             value: "Performance"
                         },
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Feature Text",
+                            displayer: "Description",
                             value: "On the web, every second counts, I pay particular attention to the performance of your project by respecting the best practices."
                         }
                     ]
@@ -97,19 +97,19 @@ class Feature33 extends BaseFeature {
                         {
                             type: "string",
                             key: "feature_subtitle",
-                            displayer: "Feature Subtitle",
+                            displayer: "Subtitle",
                             value: ""
                         },
                         {
                             type: "string",
                             key: "feature_title",
-                            displayer: "Feature Title",
+                            displayer: "Title",
                             value: "Interaction"
                         },
                         {
                             type: "string",
                             key: "text",
-                            displayer: "Feature Text",
+                            displayer: "Description",
                             value: "A pleasant experience for your users goes through the animations and interactions of your project, I spend time to imagine and design them."
                         }
                     ]

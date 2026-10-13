@@ -16,6 +16,7 @@ type Tabs={
     tabText: React.JSX.Element;
     lottie_container: {
         lottie: TypeMediaInputValue;
+        overlay: boolean;
     }
 }
 
@@ -61,6 +62,12 @@ class Feature22 extends BaseFeature{
                                         autoplay: false
                                     }
                                 } as TypeMediaInputValue,
+                            },
+                            {
+                                type: "boolean",
+                                key: "overlay",
+                                displayer: "Overlay",
+                                value: false,
                             },
                         ],
                     },
@@ -270,6 +277,7 @@ class Feature22 extends BaseFeature{
                                                                     value={lottieValue}
                                                                     className={this.decorateCSS("lottie")}
                                                                 />
+                                                                {tab.lottie_container.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                             </div>
                                                         )}
                                                     </div>

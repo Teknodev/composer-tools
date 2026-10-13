@@ -9,11 +9,11 @@ interface Card {
   icon: TypeMediaInputValue;
   content: string;
   card_description: string;
-  button?: {
-    text: string;
+  card_buttons?: {
+    text: React.JSX.Element;
     url: string;
     type: TypeButton;
-  };
+  }[];
 }
 
 class Feature46 extends BaseFeature {
@@ -77,7 +77,14 @@ class Feature46 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -111,7 +118,14 @@ class Feature46 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -145,7 +159,14 @@ class Feature46 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -250,20 +271,24 @@ class Feature46 extends BaseFeature {
                         {card.card_description}
                       </Base.P>
                     )}
-                    {card.button && this.castToString(card.button.text) && (
+                    {(card.card_buttons || []).some((btn) => this.castToString(btn.text)) && (
                       <div className={this.decorateCSS("card-button-wrap")}>
-                        <ComposerLink path={card.button.url}>
-                          <Base.Button
-                            className={this.decorateCSS("card-button")}
-                            buttonType={card.button.type}
-                          >
-                            <Base.P
-                              className={this.decorateCSS("card-button-text")}
-                            >
-                              {card.button.text}
-                            </Base.P>
-                          </Base.Button>
-                        </ComposerLink>
+                        {(card.card_buttons || []).map((btn, btnIndex: number) =>
+                          this.castToString(btn.text) && (
+                            <ComposerLink key={btnIndex} path={btn.url}>
+                              <Base.Button
+                                className={this.decorateCSS("card-button")}
+                                buttonType={btn.type}
+                              >
+                                <Base.P
+                                  className={this.decorateCSS("card-button-text")}
+                                >
+                                  {btn.text}
+                                </Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          )
+                        )}
                       </div>
                     )}
                   </Base.VerticalContent>

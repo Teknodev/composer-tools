@@ -17,7 +17,7 @@ type Card = {
   card_subtitle: React.JSX.Element;
   card_title: React.JSX.Element;
   card_description: React.JSX.Element;
-  button: Button;
+  card_buttons: Button[];
 };
 
 class Feature11 extends BaseFeature {
@@ -95,7 +95,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "To add an element just drag component from the Assets panel and drop it to the work area."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -133,7 +140,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "You can easily change an instance setting depending on your goals."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -171,7 +185,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "You can use the default color scheme and font or change them to create your own design."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -209,7 +230,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "A large variety of ready-made blocks for your project."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -247,7 +275,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "You will find everything to create your design in one Figma file."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -285,7 +320,14 @@ class Feature11 extends BaseFeature {
               displayer: "Description",
               value: "Use them for any websites, dashboards, and even in your TED Talks."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
       ]
@@ -378,9 +420,8 @@ class Feature11 extends BaseFeature {
                   const titleExist = !!this.castToString(card.card_title);
                   const descExist = !!this.castToString(card.card_description);
                   const iconExist = !!(card.icon && (card.icon.type === "icon" ? card.icon.name : card.icon.url));
-                  const btnText = card.button ? this.castToString(card.button.text) : "";
-                  const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
-                  const hasCardButton = !!(btnText || btnIconExist);
+                  const cardButtons = card.card_buttons || [];
+                  const hasCardButton = cardButtons.some((btn: Button) => this.castToString(btn.text) || (btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url)));
 
                   if (!subtitleExist && !titleExist && !descExist && !iconExist) return null;
 
@@ -407,16 +448,21 @@ class Feature11 extends BaseFeature {
                           </Base.P>
                         )}
                         {hasCardButton && (
-                          <ComposerLink path={card.button.url}>
-                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                              {btnText && (
-                                <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                              )}
-                              {btnIconExist && (
-                                <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
-                              )}
-                            </Base.Button>
-                          </ComposerLink>
+                          <div className={this.decorateCSS("card-button-container")}>
+                            {cardButtons.map((btn: Button, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={btnIndex} path={btn.url}>
+                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
                         )}
                       </Base.VerticalContent>
                     </div>

@@ -12,7 +12,7 @@ type Card = {
   media: TypeMediaInputValue;
   overlay: boolean;
   link: string;
-  button: INPUTS.CastedButton;
+  card_buttons: INPUTS.CastedButton[];
 };
 
 class Feature6 extends BaseFeature {
@@ -93,7 +93,14 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+              ],
+            },
           ],
         },
         {
@@ -137,7 +144,14 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+              ],
+            },
           ],
         },
         {
@@ -181,7 +195,14 @@ class Feature6 extends BaseFeature {
               displayer: "Navigate To",
               value: "",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link"),
+              ],
+            },
           ],
         },
       ],
@@ -252,7 +273,8 @@ class Feature6 extends BaseFeature {
                   const subtitleExist = !!this.castToString(card.card_subtitle);
                   const descriptionExist = !!this.castToString(card.card_description);
                   const imageExist = !!card.media;
-                  const buttonTextExist = card.button && !!this.castToString(card.button.text);
+                  const cardButtons = (card.card_buttons || []).filter((btn: INPUTS.CastedButton) => this.castToString(btn.text));
+                  const buttonTextExist = cardButtons.length > 0;
 
                   const shouldRender = titleExist || subtitleExist || descriptionExist || imageExist || buttonTextExist;
 
@@ -294,11 +316,13 @@ class Feature6 extends BaseFeature {
                             )}
                             {buttonTextExist && (
                               <div className={this.decorateCSS("card-button-container")}>
-                                <ComposerLink path={card.button.url}>
-                                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                                    {card.button.text}
-                                  </Base.Button>
-                                </ComposerLink>
+                                {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => (
+                                  <ComposerLink key={btnIndex} path={btn.url}>
+                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                      {btn.text}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                ))}
                               </div>
                             )}
                           </Base.VerticalContent>

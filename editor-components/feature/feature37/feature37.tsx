@@ -17,7 +17,7 @@ type Card = {
     hoverSubtitle: React.JSX.Element;
     hoverTitle: React.JSX.Element;
     hoverDescription: React.JSX.Element;
-    Button: INPUTS.CastedButton;
+    hoverButtons: INPUTS.CastedButton[];
 };
 
 class Feature37 extends BaseFeature {
@@ -91,7 +91,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -135,7 +142,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -179,7 +193,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -223,7 +244,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -267,7 +295,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -311,7 +346,14 @@ class Feature37 extends BaseFeature {
                             displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
-                        INPUTS.BUTTON("Button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "hoverButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
             ],
@@ -401,8 +443,8 @@ class Feature37 extends BaseFeature {
                                         const hoverDescExist = this.castToString(card.hoverDescription);
                                         const iconExist = card.icon;
                                         const isImage = card.icon?.type === "image";
-                                        const hoverBtnText = this.castToString(card.Button?.text);
-                                        const hoverBtnExist = !!hoverBtnText;
+                                        const hoverButtons = (card.hoverButtons || []).filter((btn: INPUTS.CastedButton) => this.castToString(btn.text));
+                                        const hoverBtnExist = hoverButtons.length > 0;
                                         const cardHasContent = cardTitleExist || hoverSubtitleExist || hoverTitleExist || hoverDescExist || iconExist || hoverBtnExist;
                                         if (!cardHasContent) return null;
                                         return (
@@ -417,11 +459,15 @@ class Feature37 extends BaseFeature {
                                                         {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}
                                                         {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
                                                         {hoverBtnExist && (
-                                                            <ComposerLink path={card.Button?.url || ""}>
-                                                                <Base.Button buttonType={card.Button?.type || "Primary"} className={this.decorateCSS("card-hover-button")}>
-                                                                    <Base.P className={this.decorateCSS("card-hover-button-text")}>{card.Button.text}</Base.P>
-                                                                </Base.Button>
-                                                            </ComposerLink>
+                                                            <div className={this.decorateCSS("card-hover-button-container")}>
+                                                                {hoverButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => (
+                                                                    <ComposerLink key={btnIndex} path={btn.url}>
+                                                                        <Base.Button buttonType={btn.type || "Primary"} className={this.decorateCSS("card-hover-button")}>
+                                                                            <Base.P className={this.decorateCSS("card-hover-button-text")}>{btn.text}</Base.P>
+                                                                        </Base.Button>
+                                                                    </ComposerLink>
+                                                                ))}
+                                                            </div>
                                                         )}
                                                     </Base.VerticalContent>
                                                 </div>

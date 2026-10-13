@@ -17,7 +17,7 @@ type Card = {
     card_subtitle: React.JSX.Element;
     card_title: React.JSX.Element;
     card_description: React.JSX.Element;
-    button: INPUTS.CastedButton;
+    card_buttons: ButtonTypeObj[];
 };
 
 class Feature40 extends BaseFeature {
@@ -85,7 +85,14 @@ class Feature40 extends BaseFeature {
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+                            ],
+                        }
                     ]
                 },
                 {
@@ -123,7 +130,14 @@ class Feature40 extends BaseFeature {
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+                            ],
+                        }
                     ]
                 },
                 {
@@ -161,7 +175,14 @@ class Feature40 extends BaseFeature {
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+                            ],
+                        }
                     ]
                 },
             ]
@@ -220,9 +241,8 @@ class Feature40 extends BaseFeature {
                                     const itemCount = this.getPropValue("itemCount") || 3;
                                     const isLastInRow = (index + 1) % itemCount === 0;
 
-                                    const buttonTitleExist = this.castToString(card.button?.text);
-                                    const iconExist = card.button?.icon && (card.button.icon)?.name ;
-                                    const buttonExist = buttonTitleExist || iconExist;
+                                    const cardButtons = card.card_buttons || [];
+                                    const buttonExist = cardButtons.some((btn: ButtonTypeObj) => this.castToString(btn.text) || (btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url)));
 
                                     return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
                                         <Base.Card
@@ -237,14 +257,22 @@ class Feature40 extends BaseFeature {
                                                 {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>}
                                                 {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
                                                 {buttonExist && (
-                                                        <ComposerLink path={card.button?.url || ""}>
-                                                            <Base.Button buttonType={card.button?.type || "Primary"} className={this.decorateCSS("card-button")}>
-                                                                {buttonTitleExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                                {iconExist && <Base.Media value={card.button.icon} className={this.decorateCSS("card-button-icon")} />}
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    )
-                                                }
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => {
+                                                            const buttonTitleExist = this.castToString(btn.text);
+                                                            const iconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                                            if (!buttonTitleExist && !iconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url || ""}>
+                                                                    <Base.Button buttonType={btn.type || "Primary"} className={this.decorateCSS("card-button")}>
+                                                                        {buttonTitleExist && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                        {iconExist && <Base.Media value={btn.icon} className={this.decorateCSS("card-button-icon")} />}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                )}
                                             </Base.VerticalContent>
                                         </Base.Card>
                                     );

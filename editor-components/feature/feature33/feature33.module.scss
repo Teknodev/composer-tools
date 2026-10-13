@@ -78,6 +78,8 @@
 
             .features-grid {
                 .feature-item {
+                    border-radius: var(--composer-border-radius-sm);
+
                     .feature-subtitle {
                         color: var(--composer-font-color-primary);
                     }

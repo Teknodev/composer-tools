@@ -18,7 +18,7 @@ interface Card {
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
     description: React.JSX.Element;
-    button: Button;
+    card_buttons: Button[];
 }
 class Feature15 extends BaseFeature {
     constructor(props?: any) {
@@ -154,7 +154,14 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -193,7 +200,14 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -232,7 +246,14 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -271,7 +292,14 @@ class Feature15 extends BaseFeature {
                             value:
                                 "Nostra netus porttitor cursus Imperdiet proin. Vestibulum malesuada faucibus. Quam vivamus eu consectetuer praesent phasellus sapien dis natoque dignissim imperdiet morbi.",
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                        {
+                            type: "array",
+                            key: "card_buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
             ],
@@ -358,9 +386,8 @@ class Feature15 extends BaseFeature {
                         >
                             {this.castToObject<Card[]>("cards").map(
                                 (card: Card, index: number) => {
-                                    const btnText = card.button ? this.castToString(card.button.text) : "";
-                                    const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
-                                    const hasCardButton = !!(btnText || btnIconExist);
+                                    const cardButtons = card.card_buttons || [];
+                                    const hasCardButton = cardButtons.some((btn: Button) => this.castToString(btn.text) || (btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url)));
                                     return (
                                         <Base.Card key={index} className={this.decorateCSS("card")}>
                                             {card.icon && (
@@ -388,12 +415,21 @@ class Feature15 extends BaseFeature {
                                                     </Base.P>
                                                 )}
                                                 {hasCardButton && (
-                                                    <ComposerLink path={card.button.url}>
-                                                        <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                                                            {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                            {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />}
-                                                        </Base.Button>
-                                                    </ComposerLink>
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: Button, btnIndex: number) => {
+                                                            const btnText = this.castToString(btn.text);
+                                                            const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                                                            if (!btnText && !btnIconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url}>
+                                                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 )}
                                             </Base.VerticalContent>
                                         </Base.Card>

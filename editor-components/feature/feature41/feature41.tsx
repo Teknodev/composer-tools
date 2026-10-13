@@ -18,7 +18,7 @@ type CardTypeObj = {
     cardSubtitle: React.JSX.Element;
     cardTitle: React.JSX.Element;
     cardDescription: React.JSX.Element;
-    button: ButtonTypeObj;
+    cardButtons: ButtonTypeObj[];
     rowReverse: boolean;
 }
 
@@ -98,7 +98,14 @@ class Feature41 extends BaseFeature {
                             displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "cardButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                         {
                             type: "boolean",
                             key: "rowReverse",
@@ -146,7 +153,14 @@ class Feature41 extends BaseFeature {
                             displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "cardButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                         {
                             type: "boolean",
                             key: "rowReverse",
@@ -194,7 +208,14 @@ class Feature41 extends BaseFeature {
                             displayer: "Description",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "array",
+                            key: "cardButtons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                         {
                             type: "boolean",
                             key: "rowReverse",
@@ -250,8 +271,8 @@ class Feature41 extends BaseFeature {
                                 const cardTitleExist = this.castToString(card.cardTitle);
                                 const cardDescriptionExist = this.castToString(card.cardDescription);
                                 const hasMedia = !!(card.media && 'url' in card.media && card.media.url);
-                                const buttonTextExist = this.castToString(card.button?.text);
-                                const hasButton = buttonTextExist;
+                                const cardButtons = (card.cardButtons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
+                                const hasButton = cardButtons.length > 0;
 
                                 return (
                                     <div
@@ -282,11 +303,13 @@ class Feature41 extends BaseFeature {
                                                 )}
                                                 {hasButton && (
                                                     <div className={this.decorateCSS("card-button-container")}>
-                                                        <ComposerLink path={card.button?.url || ""}>
-                                                            <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
-                                                                {buttonTextExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                            </Base.Button>
-                                                        </ComposerLink>
+                                                        {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                                                            <ComposerLink key={btnIndex} path={btn.url || ""}>
+                                                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                    <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        ))}
                                                     </div>
                                                 )}
                                             </Base.VerticalContent>

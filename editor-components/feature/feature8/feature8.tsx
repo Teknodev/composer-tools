@@ -10,7 +10,7 @@ type Card = {
   card_subtitle: React.JSX.Element;
   card_title: React.JSX.Element;
   card_description: React.JSX.Element;
-  button: Button;
+  card_buttons: Button[];
 };
 
 type Button = {
@@ -105,7 +105,14 @@ class Feature8 extends BaseFeature {
               displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -143,7 +150,14 @@ class Feature8 extends BaseFeature {
               displayer: "Description",
               value: "It's too basic to sort your collections by 'New In' or 'Best Sellers'.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
@@ -181,7 +195,14 @@ class Feature8 extends BaseFeature {
               displayer: "Description",
               value: "You need 5 tabs open to take data-driven decisions from excel sheets.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
       ],
@@ -445,9 +466,8 @@ class Feature8 extends BaseFeature {
                 const subtitleExist = this.castToString(card.card_subtitle);
                 const titleExist = this.castToString(card.card_title);
                 const descExist = this.castToString(card.card_description);
-                const btnText = card.button ? this.castToString(card.button.text) : "";
-                const btnIconExist = card.button?.icon && (card.button.icon.type === "icon" ? card.button.icon.name : card.button.icon.url);
-                const hasCardButton = !!(btnText || btnIconExist);
+                const cardButtons = card.card_buttons || [];
+                const hasCardButton = cardButtons.some((btn: Button) => this.castToString(btn.text) || (btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url)));
 
                 const cardExist = subtitleExist || titleExist || descExist || card.icon;
 
@@ -476,16 +496,21 @@ class Feature8 extends BaseFeature {
                         </Base.P>
                       )}
                       {hasCardButton && (
-                        <ComposerLink path={card.button.url}>
-                          <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                            {btnText && (
-                              <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                            )}
-                            {btnIconExist && (
-                              <Base.Media className={this.decorateCSS("card-button-icon")} value={card.button.icon!} />
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
+                        <div className={this.decorateCSS("card-button-container")}>
+                          {cardButtons.map((btn: Button, btnIndex: number) => {
+                            const btnText = this.castToString(btn.text);
+                            const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                            if (!btnText && !btnIconExist) return null;
+                            return (
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                  {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                  {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   </Base.Card>

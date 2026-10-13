@@ -10,7 +10,7 @@ type Card = {
     icon: TypeMediaInputValue;
     card_subtitle: React.JSX.Element;
     card_description: string;
-    button?: ButtonTypeObj
+    card_buttons?: ButtonTypeObj[]
 }
 type ButtonTypeObj = {
     text: string;
@@ -78,7 +78,14 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
@@ -116,7 +123,14 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
@@ -154,7 +168,14 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
@@ -192,7 +213,14 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             }
             ],
@@ -267,7 +295,8 @@ class Feature47 extends BaseFeature {
                                 const descExist = !!this.castToString(card.card_description);
                                 const iconExist = !!card.icon;
                                 const iconBackground = this.getPropValue("iconBackground");
-                                const buttonExist = card.button && this.castToString(card.button.text);
+                                const cardButtons = (card.card_buttons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
+                                const buttonExist = cardButtons.length > 0;
                                 const onlyButton = !iconExist && !cardSubtitleExist && !titleExist && !descExist && buttonExist;
                                 return (iconExist || cardSubtitleExist || titleExist || descExist || buttonExist) && (
                                     <Base.Card key={index} className={this.decorateCSS("card-shell")}>
@@ -292,12 +321,16 @@ class Feature47 extends BaseFeature {
                                                     {card.card_description}
                                                 </Base.P>
                                             )}
-                                        {card.button && this.castToString(card.button.text) && (
-                                            <ComposerLink path={card.button.url}>
-                                                <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                                                    <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
+                                        {buttonExist && (
+                                            <div className={this.decorateCSS("card-button-container")}>
+                                                {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                                                    <ComposerLink key={btnIndex} path={btn.url}>
+                                                        <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                            <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                ))}
+                                            </div>
                                         )}
                                     </Base.VerticalContent>
                                     </Base.Card>

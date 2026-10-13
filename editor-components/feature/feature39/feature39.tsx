@@ -25,12 +25,12 @@ class Feature39 extends BaseFeature {
         this.addProp({
             type: "object",
             key: "media",
-            displayer: "Media",
+            displayer: "Background Media",
             value: [
                 {
                     type: "media",
                     key: "componentBackground",
-                    displayer: "Media",
+                    displayer: "Background Media",
                     value: {
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
                         type: "image",
