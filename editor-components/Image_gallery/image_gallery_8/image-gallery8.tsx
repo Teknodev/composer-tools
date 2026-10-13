@@ -548,7 +548,7 @@ class ImageGallery8 extends BaseImageGallery {
                   </Base.VerticalContent>
                 )}
                 <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
+                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}
                         className={this.decorateCSS("image-container")}
                     >
                         {this.castToObject<Card[]>("cards").map(
