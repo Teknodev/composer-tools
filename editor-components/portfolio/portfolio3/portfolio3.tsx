@@ -6,11 +6,25 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Item = {
+type ItemMedia = {
   media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type Item = {
+  itemMedia: ItemMedia;
+  item_subtitle: React.JSX.Element;
   item_title: React.JSX.Element;
-  item_category: React.JSX.Element;
+  item_description: React.JSX.Element;
+  item_buttons: TypeUsableComponentProps[];
   url: string;
+};
+
+type ButtonData = {
+  text: React.JSX.Element;
+  type: INPUTS.CastedButton["type"];
+  url: string;
+  icon: TypeMediaInputValue;
 };
 
 type Arrows = {
@@ -85,8 +99,8 @@ class Portfolio3 extends BasePortfolio {
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
+      key: "gradientOverlay",
+      displayer: "Gradient Overlay",
       value: true,
     });
 
@@ -153,23 +167,42 @@ class Portfolio3 extends BasePortfolio {
     return "Portfolio 3";
   }
 
-  private createItem(title: string, category: string, image: string): TypeUsableComponentProps {
+  private createItem(title: string, description: string, image: string): TypeUsableComponentProps {
     return {
       type: "object",
       key: "item",
       displayer: "Item",
       value: [
         {
-          type: "media",
-          key: "media",
+          type: "object",
+          key: "itemMedia",
           displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: image,
-          },
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: image,
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+          ],
+        },
+        {
+          type: "string",
+          key: "item_subtitle",
+          displayer: "Subtitle",
+          value: "",
         },
         {
           type: "string",
@@ -179,9 +212,15 @@ class Portfolio3 extends BasePortfolio {
         },
         {
           type: "string",
-          key: "item_category",
-          displayer: "Category",
-          value: category,
+          key: "item_description",
+          displayer: "Description",
+          value: description,
+        },
+        {
+          type: "array",
+          key: "item_buttons",
+          displayer: "Buttons",
+          value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
         },
         {
           type: "page",
@@ -207,21 +246,53 @@ class Portfolio3 extends BasePortfolio {
     return !!(media && ((media as any).url || (media as any).name));
   }
 
+  private getItemButtons(buttonsArray?: TypeUsableComponentProps[]) {
+    if (!Array.isArray(buttonsArray)) return [];
+
+    return buttonsArray.map((button: any) => {
+      const parent = button?.value ?? button;
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+        icon: this.getPropValue("icon", { parent_object: parent }) as TypeMediaInputValue,
+      };
+    });
+  }
+
+  private renderButtons(buttons: ButtonData[], className: string) {
+    return (
+      <div className={this.decorateCSS(className)}>
+        {buttons.map((button: ButtonData, index: number) => (
+          <ComposerLink key={`button-${index}`} path={button.url}>
+            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+              {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+              {this.hasMedia(button.icon) && <Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />}
+            </Base.Button>
+          </ComposerLink>
+        ))}
+      </div>
+    );
+  }
+
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-    const visibleButtons = buttons.filter(
-      (button: INPUTS.CastedButton) => this.castToString(button.text) || this.hasMedia(button.icon as unknown as TypeMediaInputValue)
+    const visibleButtons = this.getItemButtons(this.getPropValue("buttons")).filter(
+      (button: ButtonData) => this.castToString(button.text) || this.hasMedia(button.icon)
     );
     const hasHeaderText = subtitleExist || titleExist || descriptionExist;
     const hasHeader = hasHeaderText || visibleButtons.length > 0;
 
     const items = this.castToObject<Item[]>("items").filter(
-      (item: Item) => this.hasMedia(item.media) || this.castToString(item.item_title) || this.castToString(item.item_category)
+      (item: Item) =>
+        this.hasMedia(item.itemMedia?.media) ||
+        this.castToString(item.item_subtitle) ||
+        this.castToString(item.item_title) ||
+        this.castToString(item.item_description)
     );
-    const overlay = this.getPropValue("overlay");
+    const gradientOverlay = this.getPropValue("gradientOverlay");
     const hoverAnimation = (this.getPropValue("hoverAnimation") || []).join(" ");
 
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
@@ -240,7 +311,7 @@ class Portfolio3 extends BasePortfolio {
       customPaging: () => <div className={this.decorateCSS("dot")} />,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 640,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -262,51 +333,47 @@ class Portfolio3 extends BasePortfolio {
                   {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 </Base.VerticalContent>
               )}
-              {visibleButtons.length > 0 && (
-                <div className={this.decorateCSS("button-container")}>
-                  {visibleButtons.map((button: INPUTS.CastedButton, index: number) => {
-                    const icon = button.icon as unknown as TypeMediaInputValue;
-                    return (
-                      <ComposerLink key={`button-${index}`} path={button.url}>
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                          {this.hasMedia(icon) && <Base.Media value={icon} className={this.decorateCSS("button-icon")} />}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              )}
+              {visibleButtons.length > 0 && this.renderButtons(visibleButtons, "button-container")}
             </div>
           )}
           {items.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("carousel")}>
                 {items.map((item: Item, index: number) => {
+                  const media = item.itemMedia?.media;
+                  const mediaExist = this.hasMedia(media);
+                  const itemSubtitleExist = this.castToString(item.item_subtitle);
                   const itemTitleExist = this.castToString(item.item_title);
-                  const itemCategoryExist = this.castToString(item.item_category);
-                  const mediaExist = this.hasMedia(item.media);
+                  const itemDescriptionExist = this.castToString(item.item_description);
+                  const itemButtons = this.getItemButtons(item.item_buttons).filter(
+                    (button: ButtonData) => this.castToString(button.text) || this.hasMedia(button.icon)
+                  );
+                  const hasContent = itemSubtitleExist || itemTitleExist || itemDescriptionExist || itemButtons.length > 0;
 
                   return (
                     <div className={this.decorateCSS("slide")} key={`item-${index}`}>
-                      <ComposerLink path={item.url}>
-                        <div className={`${this.decorateCSS("item")} ${mediaExist ? this.decorateCSS("has-media") : ""}`} data-animation={hoverAnimation}>
-                          {mediaExist && (
-                            <div className={this.decorateCSS("media-wrapper")}>
-                              <Base.Media value={item.media} className={this.decorateCSS("media")} />
-                            </div>
-                          )}
-                          {mediaExist && <div className={this.decorateCSS("hover-overlay")} />}
-                          {(itemTitleExist || itemCategoryExist) && (
-                            <div className={`${this.decorateCSS("content")} ${overlay && mediaExist ? this.decorateCSS("media-overlay") : ""}`}>
-                              <Base.VerticalContent className={this.decorateCSS("content-inner")}>
-                                {itemTitleExist && <Base.H6 className={this.decorateCSS("item-title")}>{item.item_title}</Base.H6>}
-                                {itemCategoryExist && <Base.P className={this.decorateCSS("item-category")}>{item.item_category}</Base.P>}
-                              </Base.VerticalContent>
-                            </div>
-                          )}
-                        </div>
-                      </ComposerLink>
+                      <div className={`${this.decorateCSS("item")} ${mediaExist ? this.decorateCSS("has-media") : ""}`} data-animation={hoverAnimation}>
+                        {mediaExist && (
+                          <div className={this.decorateCSS("media-wrapper")}>
+                            <Base.Media value={media} className={this.decorateCSS("media")} />
+                          </div>
+                        )}
+                        {mediaExist && item.itemMedia?.overlay && <div className={this.decorateCSS("base-overlay")} />}
+                        {mediaExist && <div className={this.decorateCSS("hover-overlay")} />}
+                        <ComposerLink path={item.url}>
+                          <div className={this.decorateCSS("item-link")} />
+                        </ComposerLink>
+                        {hasContent && (
+                          <div className={`${this.decorateCSS("content")} ${gradientOverlay && mediaExist ? this.decorateCSS("media-overlay") : ""}`}>
+                            <Base.VerticalContent className={this.decorateCSS("content-inner")}>
+                              {itemSubtitleExist && <Base.P className={this.decorateCSS("item-subtitle")}>{item.item_subtitle}</Base.P>}
+                              {itemTitleExist && <Base.H5 className={this.decorateCSS("item-title")}>{item.item_title}</Base.H5>}
+                              {itemDescriptionExist && <Base.H6 className={this.decorateCSS("item-description")}>{item.item_description}</Base.H6>}
+                              {itemButtons.length > 0 && this.renderButtons(itemButtons, "item-button-container")}
+                            </Base.VerticalContent>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })}
