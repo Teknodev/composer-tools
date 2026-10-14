@@ -80,6 +80,8 @@
                 .tab {
                     grid-area: 1 / 1;
                     pointer-events: none;
+                    // Tabs are stacked in one cell; Vertical Content's item margin would only add space below the section.
+                    margin-bottom: 0;
 
                     .tab-header {
                         display: none;
@@ -261,7 +263,7 @@
                             width: 100%;
                             padding: var(--composer-gap-md) 0;
                             cursor: pointer;
-                            color: var(--composer-html-background);
+                            color: var(--composer-font-color-primary);
 
                             .tab-header-title {
                                 flex: 1;

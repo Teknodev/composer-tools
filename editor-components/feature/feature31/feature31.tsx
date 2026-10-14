@@ -177,8 +177,9 @@ class Feature31 extends BaseFeature {
         const description = this.getPropValue("description");
         const descriptionExist = this.castToString(description);
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasVisibleButton = buttonItem.some((buttonObj: INPUTS.CastedButton) => this.castToString(buttonObj.text));
         const enableIconBackground = this.getPropValue("iconBackground");
-        const hasContent = subtitleExist || titleExist || descriptionExist || (buttonItem && buttonItem.length > 0);
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasVisibleButton;
         const cards = this.castToObject<Card[]>("cards");
 
         return (
@@ -221,7 +222,7 @@ class Feature31 extends BaseFeature {
                                 })}
                             </Base.ListGrid>
                         )}
-                        {buttonItem.length > 0 && (
+                        {hasVisibleButton && (
                             <Base.Row className={this.decorateCSS("button-container")}>
                                 {buttonItem.map(
                                     (buttonObj, index: number) => {

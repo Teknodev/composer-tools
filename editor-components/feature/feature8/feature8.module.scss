@@ -30,7 +30,6 @@
         }
 
         .cards-container {
-            padding-bottom: var(--composer-gap-xl);
             align-items: stretch;
             justify-items: stretch;
 
@@ -129,8 +128,6 @@
     .container {
         .max-content {
             .cards-container {
-                padding-bottom: 0;
-
                 .card {
                     content: "";
                 }

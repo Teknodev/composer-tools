@@ -66,6 +66,15 @@
       margin-bottom: var(--composer-gap-lg);
       margin-top: var(--composer-gap-lg);
 
+      // No extra space on top of or below the section padding.
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       &:hover {
         .button-container {
           opacity: 1;

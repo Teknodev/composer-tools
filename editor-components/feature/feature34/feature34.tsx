@@ -371,6 +371,10 @@ class Feature34 extends BaseFeature {
     const features = this.castToObject<FeatureItem[]>("features") || [];
     const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasVisibleButton = buttons.some((btn) => {
+      const iconData = btn.icon as { type?: string; name?: string; url?: string } | undefined;
+      return this.castToString(btn.text) || !!(iconData && iconData.type && (iconData.name || iconData.url));
+    });
     const showHeader = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
     const showFeatures = features.length > 0;
 
@@ -439,7 +443,7 @@ class Feature34 extends BaseFeature {
               })}
             </Base.ListGrid>
           )}
-          {buttons.length > 0 && (
+          {hasVisibleButton && (
           <Base.Row className={this.decorateCSS("button-wrapper")}>
             {buttons.map((btn, idx) => {
               const iconData = btn.icon as { type?: string; name?: string; url?: string } | undefined;

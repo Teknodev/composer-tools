@@ -52,10 +52,14 @@
     }
 
     .box {
-      background: var(--composer-primary-color);
       border-radius: var(--composer-border-radius-lg);
       align-items: center;
       overflow: hidden;
+
+      // Primary-colored area behind the media, toggled by the Colored Background prop.
+      &.colored {
+        background: var(--composer-primary-color);
+      }
       
       .tab-buttons {
         display: flex;
@@ -132,8 +136,16 @@
                 transition: opacity 0.3s ease;
                 
                 .lottie {
+                  display: block;
                   width: 100%;
                   height: 100%;
+                  object-fit: cover;
+
+                  // Image and video keep the same ratio as the default Lottie area.
+                  &.media-fill {
+                    height: auto;
+                    aspect-ratio: 11 / 6;
+                  }
                 }
 
                 .media-overlay {

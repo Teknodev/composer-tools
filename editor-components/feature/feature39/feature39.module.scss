@@ -26,8 +26,10 @@
             }
 
             .card-container {
+                // Transparent cards over the background media: no padding, so the card text lines up with the header.
                 .card-wrapper {
                     background: transparent;
+                    padding: 0;
 
                     .card-content {
 
@@ -94,8 +96,6 @@
         .card-container {
 
             .card-wrapper {
-                padding: 0;
-
                 .card-content {
                     align-items: flex-start;
 

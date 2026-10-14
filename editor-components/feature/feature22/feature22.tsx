@@ -50,9 +50,9 @@ class Feature22 extends BaseFeature{
                             {
                                 type: "media",
                                 key: "lottie",
-                                displayer: "Lottie",
+                                displayer: "Media",
                                 additionalParams: {
-                                    availableTypes: ["lottie"],
+                                    availableTypes: ["lottie", "image", "video"],
                                 },
                                 value: {
                                     type: "lottie",
@@ -107,6 +107,13 @@ class Feature22 extends BaseFeature{
                     "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/Inventory_LOTTIE_v3.json",
                 ),
             ],
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "coloredBackground",
+            displayer: "Colored Background",
+            value: true,
         });
 
         this.addProp({
@@ -185,6 +192,7 @@ class Feature22 extends BaseFeature{
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const alignmentValue = Base.getContentAlignment();
+        const coloredBackground = this.getPropValue("coloredBackground");
         const buttons = this.castToObject<Button[]>("buttons");
         const hasValidButtons = buttons && buttons.some((btn: Button) => {
             const buttonText = this.castToString(btn.text);
@@ -211,7 +219,7 @@ class Feature22 extends BaseFeature{
                             </Base.SectionDescription>
                         )}
 
-                       {tabs.length > 0 && <Base.VerticalContent className={this.decorateCSS("box")}>
+                       {tabs.length > 0 && <Base.VerticalContent className={`${this.decorateCSS("box")} ${coloredBackground ? this.decorateCSS("colored") : ""}`}>
                             <div className={this.decorateCSS("tab-buttons")}>
                                 {tabs.map(
                                     (tab: Tabs, index: number) => {
@@ -251,16 +259,12 @@ class Feature22 extends BaseFeature{
                                 >
                                     {tabs.map(
                                         (tab: Tabs, index: number) => {
-                                            const lottieValue: TypeMediaInputValue = {
-                                                type: "lottie",
-                                                url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
-                                                    ? tab.lottie_container.lottie.url 
-                                                    : '',
-                                                settings: {
-                                                    loop: true,
-                                                    autoplay: activeTab === index
-                                                }
-                                            };
+                                            const media = tab.lottie_container.lottie;
+                                            const mediaExist = media && (media.type === "icon" ? media.name : media.url);
+                                            // Lottie plays only on the active tab; image and video are used as they are.
+                                            const mediaValue: TypeMediaInputValue | undefined = media?.type === "lottie"
+                                                ? { ...media, settings: { loop: true, autoplay: activeTab === index } }
+                                                : media;
 
                                             return (
                                                 <div 
@@ -271,11 +275,11 @@ class Feature22 extends BaseFeature{
                                                     }}
                                                 >
                                                     <div className={this.decorateCSS("content")}>
-                                                        {lottieValue.url && (
+                                                        {mediaExist && (
                                                             <div className={this.decorateCSS("media-container")}>
                                                                 <Base.Media 
-                                                                    value={lottieValue}
-                                                                    className={this.decorateCSS("lottie")}
+                                                                    value={mediaValue}
+                                                                    className={`${this.decorateCSS("lottie")} ${media?.type !== "lottie" ? this.decorateCSS("media-fill") : ""}`}
                                                                 />
                                                                 {tab.lottie_container.overlay && <div className={this.decorateCSS("media-overlay")} />}
                                                             </div>

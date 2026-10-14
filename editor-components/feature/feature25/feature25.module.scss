@@ -19,7 +19,8 @@
     .tabs-wrapper {
       display: flex;
       gap: var(--composer-gap-xl);
-      height: 600px;
+      // Scroll area height: tallest tab content (~455px incl. padding) plus a little room.
+      height: 500px;
       align-items: center;
 
       .tabs {
@@ -72,13 +73,14 @@
           scroll-snap-stop: always;
           scroll-snap-align: start;
           padding: var(--composer-gap-md);
+          box-sizing: border-box;
 
           &.no-text {
             .image-wrapper {
               width: 100% !important;
 
               .image {
-                height: 600px !important;
+                height: 500px !important;
                 width: 100% !important;
                 object-fit: cover;
               }
@@ -101,6 +103,7 @@
 
           .text-content {
             flex: 1;
+            min-width: 0;
             align-items: flex-start;
 
             .subtitle {
@@ -163,6 +166,7 @@
     .max-content {
       .tabs-wrapper {
         gap: 0 !important;
+        height: 600px;
 
         .tab-content {
           flex-direction: column-reverse;

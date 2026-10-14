@@ -7,20 +7,20 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ServiceCard = {
     media: TypeMediaInputValue;
-    service_subtitle: Element;
-    service_title: Element;
-    service_description: Element;
+    service_subtitle: React.JSX.Element;
+    service_title: React.JSX.Element;
+    service_description: React.JSX.Element;
     overlay: boolean;
     service_buttons: {
         type: TypeButton;
-        text: Element;
+        text: React.JSX.Element;
         url: string;
     }[];
 };
 
 type PrimaryButton = {
     type: TypeButton;
-    text: Element;
+    text: React.JSX.Element;
     url: string;
 }[];
 
@@ -303,7 +303,7 @@ class Feature44 extends BaseFeature {
                                     </Base.P>
                                 )}
 
-                                {service.service_buttons && service.service_buttons.length > 0 && (
+                                {service.service_buttons && service.service_buttons.some((button) => this.castToString(button.text)) && (
                                     <div className={this.decorateCSS("card-buttons")}>
                                         {service.service_buttons.map((button, btnIndex) => (
                                             this.castToString(button.text) && (

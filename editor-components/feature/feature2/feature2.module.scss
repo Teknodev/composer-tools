@@ -17,8 +17,12 @@
             }
         }
 
-        .wrapper {
+        // Space above the items only when the top content exists, so nothing is added on top of the section padding.
+        .top-content + .wrapper {
             margin-top: var(--composer-gap-xl);
+        }
+
+        .wrapper {
             gap: var(--composer-gap-xl);
 
             .item {

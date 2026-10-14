@@ -125,12 +125,13 @@
             width: 100%;
             flex: none;
             height: auto;
-            min-height: 300px;
+            min-height: 0;
 
+            // The image keeps its own ratio on phone so it is shown whole, not cropped.
             .image {
+                position: static;
                 width: 100%;
                 height: auto;
-                object-fit: contain;
             }
         }
 

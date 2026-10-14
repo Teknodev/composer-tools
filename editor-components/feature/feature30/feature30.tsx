@@ -245,6 +245,7 @@ class Feature30 extends BaseFeature {
         const enableIconBackground = this.getPropValue("iconBackground");
         const itemsPerRow = this.getPropValue("itemsPerRow") || 5;
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasVisibleButton = buttonItem.some((buttonObj: INPUTS.CastedButton) => this.castToString(buttonObj.text));
         const hasHeader = titleExist || descriptionExist || subtitleExist;
 
         const alignment = Base.getContentAlignment();
@@ -328,7 +329,7 @@ class Feature30 extends BaseFeature {
                             })}
                         </Base.ListGrid>
                     )}
-                    {buttonItem.length > 0 && (
+                    {hasVisibleButton && (
                         <Base.Row className={this.decorateCSS("button-container")}>
                             {buttonItem.map(
                                 (buttonObj, index: number) => {
