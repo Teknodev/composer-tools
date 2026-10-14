@@ -228,10 +228,12 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                // The Badge subtitle type is not used here; the vertical subtitle always stays plain text.
-                background: transparent !important;
-                padding: 0 !important;
-                border-radius: 0 !important;
+                // Over the background media the vertical subtitle stays plain text; the Badge look only applies without it.
+                &:not(.dark) {
+                  background: transparent !important;
+                  padding: 0 !important;
+                  border-radius: 0 !important;
+                }
 
                 &.dark {
                   color: var(--composer-font-color-primary);

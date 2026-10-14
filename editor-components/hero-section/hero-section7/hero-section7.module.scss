@@ -145,3 +145,10 @@
 .subtitle::before {
   background-color: currentColor !important;
 }
+
+// Over the background media the subtitle is plain text; the Badge look only applies without media.
+.content:not(.without-image) .header .subtitle {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}

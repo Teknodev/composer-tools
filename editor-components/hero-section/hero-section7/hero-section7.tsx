@@ -262,8 +262,10 @@ class HeroSection7 extends BaseHeroSection {
       this.setComponentState("active_image", image);
     };
 
+    // The hovered image is kept in state; fall back to the first page image so a deleted image does not stay on screen.
+    const pageImages = this.castToObject<ISliderData[]>("pages").map((item: ISliderData) => item.image as any).filter((media: any) => media?.url);
     const activeImage = this.getComponentState("active_image");
-    const image = activeImage?.url ? activeImage : null;
+    const image = pageImages.find((media: any) => media.url === activeImage?.url) || pageImages[0] || null;
     const logo = this.getPropValue("logo");
     const hasLogo = !!(logo?.url || logo?.name);
     const subtitle = this.getPropValue("subtitle");
