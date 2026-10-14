@@ -332,11 +332,24 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+// Tablet keeps the desktop layout and styling: images on the left, text on the right.
+// Base.ContainerGrid stacks its cells at tablet width, so the row is restored here (phone still stacks).
+@container (width > #{$composer-phone-width}) and (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .page {
-        // Like the original tablet view: text on top, images below
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        // Phone: text on top, images below
         flex-direction: column-reverse;
         gap: calc(var(--composer-gap-xl) * 2);
 

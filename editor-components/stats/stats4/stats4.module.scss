@@ -248,12 +248,15 @@
             }
           }
 
+          // The FAQ stays left-aligned on mobile even when the alignment is Center.
           .faq {
-            .faq-item-title {
-              text-align: center !important;
-            }
+            align-items: stretch !important;
+
+            .faq-item-title,
             .faq-text {
-              text-align: center !important;
+              text-align: left !important;
+              margin-left: 0 !important;
+              margin-right: auto !important;
             }
           }
 

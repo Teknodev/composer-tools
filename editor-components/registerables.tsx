@@ -253,16 +253,16 @@ import StatsComponent21 from "./stats/stats21/stats21";
 import StatsComponent22 from "./stats/stats22/stats22";
 import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
+import StatsComponent25 from "./stats/stats25/stats25";
+import StatsComponent26 from "./stats/stats26/stats26";
+import StatsComponent27 from "./stats/stats27/stats27";
+import StatsComponent28 from "./stats/stats28/stats28";
 import StatsComponent29 from "./stats/stats29/stats29";
 import StatsComponent30 from "./stats/stats30/stats30";
 import StatsComponent31 from "./stats/stats31/stats31";
 import StatsComponent32 from "./stats/stats32/stats32";
 import StatsComponent33 from "./stats/stats33/stats33";
 import StatsComponent34 from "./stats/stats34/stats34";
-import StatsComponent35 from "./stats/stats35/stats35";
-import StatsComponent36 from "./stats/stats36/stats36";
-import StatsComponent37 from "./stats/stats37/stats37";
-import StatsComponent38 from "./stats/stats38/stats38";
 import Steps1 from "./steps/steps1/steps1";
 import Steps2 from "./steps/steps2/steps2";
 import Steps3 from "./steps/steps3/steps3";
@@ -677,16 +677,16 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent22,
     StatsComponent23,
     StatsComponent24,
+    StatsComponent25,
+    StatsComponent26,
+    StatsComponent27,
+    StatsComponent28,
     StatsComponent29,
     StatsComponent30,
     StatsComponent31,
     StatsComponent32,
     StatsComponent33,
     StatsComponent34,
-    StatsComponent35,
-    StatsComponent36,
-    StatsComponent37,
-    StatsComponent38,
     Steps1,
     Steps2,
     Steps3,

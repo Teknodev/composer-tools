@@ -195,11 +195,49 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+// Tablet keeps the desktop layout and styling: text on the left, image with the overlapping stats card on the right.
+// Base.ContainerGrid stacks its cells at tablet width, so the row is restored here (phone still stacks).
+@container (width > #{$composer-phone-width}) and (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .page {
-        // Like the original tablet view: text on top, full-width image below, stats card overlapping its bottom edge.
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+
+        // The narrower card keeps its three stats on one line: full-width card, smaller icon and value, no wrapping.
+        .right-container .card-container {
+          width: 100%;
+        }
+
+        .right-container .card-container .card .content {
+
+          .icon {
+            width: calc(1.5 * var(--composer-font-size-md));
+            height: calc(1.5 * var(--composer-font-size-md));
+            min-width: calc(1.5 * var(--composer-font-size-md));
+            font-size: calc(1.5 * var(--composer-font-size-md));
+          }
+
+          .number {
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+          }
+
+          .right-text {
+            font-size: calc(0.85 * var(--composer-font-size-md)) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        // Phone: text on top, full-width image below, stats card overlapping its bottom edge.
         .right-container {
           flex: auto;
           align-items: stretch;

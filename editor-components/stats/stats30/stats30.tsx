@@ -1,9 +1,9 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats30.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "../../../custom-hooks/input-templates";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -12,24 +12,15 @@ type StatItem = {
     numberElement: JSX.Element;
     suffix: string;
     suffixElement: JSX.Element;
-    subtitle: string;
-    subtitleElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
     description: string;
     descriptionElement: JSX.Element;
 };
 
-type RawStatItem = {
-    prefix?: JSX.Element;
-    value?: JSX.Element;
-    suffix?: JSX.Element;
-    stat_title?: JSX.Element;
-    stat_subtitle?: JSX.Element;
-    stat_description?: JSX.Element;
-};
-
-export class Stats30 extends BaseStats {
+class Stats30 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
 
@@ -44,56 +35,14 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "We Help You Elevate Your Supporters Into Investors",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
-        });
-
-        this.addProp({
-            type: "array",
-            key: "cards",
-            displayer: "Cards",
-            value: [
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "value", displayer: "Value", value: "56" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Teamwork" },
-                        { type: "string", key: "stat_title", displayer: "Title", value: "Experienced team members" },
-                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "value", displayer: "Value", value: "87" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Process" },
-                        { type: "string", key: "stat_title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
-                    ],
-                },
-
-            ],
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 2,
+            value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs",
         });
 
         this.addProp({
@@ -101,8 +50,102 @@ export class Stats30 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Who we are", "", null, null, "White"),
             ],
+        });
+
+        this.addProp({
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    key: "value",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
+        });
+
+        this.addProp({
+            type: "array",
+            key: "stats",
+            displayer: "Stats",
+            value: [
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
+                        { type: "string", key: "value", displayer: "Value", value: "8" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Invested this month" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "3000" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Community Investors" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "29" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Projects financed" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "12" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Countries we operate" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
+                    ],
+                },
+            ],
+        });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
+            max: 4,
         });
 
         this.addProp({
@@ -124,56 +167,45 @@ export class Stats30 extends BaseStats {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-        const hasValidButtons = buttons.some((btn) => {
-            const buttonText = this.castToString(btn.text);
-            const iconExist = btn.icon && btn.icon.name;
-            return buttonText || iconExist;
-        });
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const alignment = Base.getContentAlignment();
-        const hasTopSection = subtitleExist || titleExist || descriptionExist;
 
-        const settings = this.castToObject<any>("settings");
-        const shouldAnimate = settings?.shouldAnimate ?? true;
-        const animationDuration = (settings?.animationDuration ?? 2000) as number;
-        const itemCount = this.getPropValue("itemCount") ?? 2;
+        const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
+        const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
+        const itemCount = this.getPropValue("itemCount") ?? 1;
 
-        const rawCards = this.castToObject<(RawStatItem & { card?: RawStatItem })[]>("cards") || [];
-        const cards: StatItem[] = rawCards.map((item) => {
-            const cardData = item?.card || item || {};
-            return {
-                prefix: this.castToString(cardData.prefix) || "",
-                numberElement: cardData.value, prefixElement: cardData.prefix,
-                value: this.castToString(cardData.value) || "",
-                suffix: this.castToString(cardData.suffix) || "",
-                suffixElement: cardData.suffix,
-                subtitle: this.castToString(cardData.stat_subtitle) || "",
-                subtitleElement: cardData.stat_subtitle,
-                title: this.castToString(cardData.stat_title) || "",
-                titleElement: cardData.stat_title,
-                description: this.castToString(cardData.stat_description) || "",
-                descriptionElement: cardData.stat_description,
-            };
+        const statsItems = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
+        const stats: StatItem[] = statsItems.map((item) => {
+            const prefix = this.castToString(item.prefix) || "";
+            const number = this.castToString(item.value) || "";
+            const suffix = this.castToString(item.suffix) || "";
+            const title = this.castToString(item.stat_title) || "";
+            const subtitle = this.castToString(item.stat_subtitle) || "";
+            const description = this.castToString(item.stat_description) || "";
+            return { prefix, numberElement: item.value, prefixElement: item.prefix, value: number, suffix, suffixElement: item.suffix, title, titleElement: item.stat_title, subtitle, subtitleElement: item.stat_subtitle, description, descriptionElement: item.stat_description };
         });
 
-        const hasCardContent = (stat: StatItem) => !!(stat.subtitle || stat.title || stat.description || stat.value || stat.suffix || stat.prefix);
+        const mediaSection = this.castToObject<{ value?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
+        const media = (mediaSection?.value ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
+        const overlay = !!(mediaSection?.overlay ?? this.getPropValue("mediaOverlay"));
 
-        const AnimatedCard = ({ stat }: { stat: StatItem }) => {
+        const hasContent = subtitleExist || titleExist || descriptionExist;
+        const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
+        const visibleStats = stats.filter((s) => s.prefix || s.value || s.suffix || s.title || s.subtitle || s.description);
+
+        const AnimatedStat = ({ stat }: { stat: StatItem }) => {
             const ref = React.useRef<HTMLSpanElement>(null);
             const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
 
             const rawNumber = (this.castToString(stat.value) as string) || "";
-            const prefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
-            const suffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
-            const core = rawNumber.slice(prefix.length, rawNumber.length - suffix.length);
-            const isNumeric = /\d/.test(core);
-            const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
-            const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
-            const useGrouping = /,/.test(core);
+            const isNumeric = /\d/.test(rawNumber);
+            const target = isNumeric ? parseFloat(rawNumber.replace(/,/g, "")) : NaN;
+            const decimals = rawNumber.includes(".") ? rawNumber.split(".")[1]?.length ?? 0 : 0;
+            const useGrouping = /,/.test(rawNumber);
             const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
             const animatable = shouldAnimate && isNumeric && !reduceMotion;
 
-            const format = (n: number) => prefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + suffix;
+            const format = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping });
 
             const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
 
@@ -231,51 +263,48 @@ export class Stats30 extends BaseStats {
                 };
             }, [rawNumber, animatable, animationDuration, target]);
 
-            const titleExist = !!this.castToString(stat.title);
-            const subtitleExist = !!this.castToString(stat.subtitle);
-            const descriptionExist = !!this.castToString(stat.description);
-            const valueExist = !!rawNumber;
-            const suffixExist = !!this.castToString(stat.suffix);
+            const prefixExist = this.castToString(stat.prefix);
+            const suffixExist = this.castToString(stat.suffix);
+            const titleExist = stat.title && stat.title !== "";
+            const subtitleExist = stat.subtitle && stat.subtitle !== "";
+            const descriptionExist = stat.description && stat.description !== "";
+            const valueExist = rawNumber && rawNumber !== "";
 
-            const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
-            const hasAnyContent = subtitleExist || titleExist || descriptionExist || hasValueGroup;
-            if (!hasAnyContent) return null;
+            if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
             return (
                 <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                    {subtitleExist && (
-                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                            {stat.subtitleElement}
-                        </Base.H6>
-                    )}
-                    {titleExist && (
-                        <Base.H2 className={this.decorateCSS("stat-title")}>
-                            {stat.titleElement}
-                        </Base.H2>
-                    )}
-                    {descriptionExist && (
-                        <Base.P className={this.decorateCSS("stat-description")}>
-                            {stat.descriptionElement}
-                        </Base.P>
-                    )}
-                    {hasValueGroup && (
-                        <span className={this.decorateCSS("stat-value-container")}>
-                            {stat.prefix && (
+                    {(prefixExist || valueExist || suffixExist) && (
+                        <span ref={ref} className={this.decorateCSS("stat-value")}>
+                            {prefixExist && (
                                 <span className={this.decorateCSS("stat-prefix")}>
                                     {stat.prefixElement}
                                 </span>
                             )}
-                            {valueExist && (
-                                <span ref={ref} className={this.decorateCSS("stat-value")}>
-                                    {animatable ? display : stat.numberElement}
-                                </span>
-                            )}
+                            <span className={this.decorateCSS("stat-number")}>
+                                {animatable ? display : stat.numberElement}
+                            </span>
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>
                                     {stat.suffixElement}
                                 </span>
                             )}
                         </span>
+                    )}
+                    {subtitleExist && (
+                        <Base.H5 className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitleElement}
+                        </Base.H5>
+                    )}
+                    {titleExist && (
+                        <Base.H4 className={this.decorateCSS("stat-title")}>
+                            {stat.titleElement}
+                        </Base.H4>
+                    )}
+                    {descriptionExist && (
+                        <Base.H6 className={this.decorateCSS("stat-description")}>
+                            {stat.descriptionElement}
+                        </Base.H6>
                     )}
                 </Base.VerticalContent>
             );
@@ -284,11 +313,9 @@ export class Stats30 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${this.decorateCSS(`alignment-${alignment}`)}`}>
-                        {hasTopSection && (
-                            <Base.VerticalContent
-                                className={this.decorateCSS("header-container")}
-                            >
+                    <div className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                        {(hasContent || visibleButtons.length > 0) && (
+                            <Base.VerticalContent className={this.decorateCSS("content")}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
@@ -304,51 +331,49 @@ export class Stats30 extends BaseStats {
                                         {this.getPropValue("description")}
                                     </Base.SectionDescription>
                                 )}
-                            </Base.VerticalContent>
-                        )}
-
-                        {cards.some(hasCardContent) && (
-                            <Base.ListGrid
-                                gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
-                                className={this.decorateCSS("stats-container")}
-                            >
-                                {cards.map((stat: StatItem, index: number) => hasCardContent(stat) && (
-                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                                        <AnimatedCard stat={stat} />
-                                    </Base.Card>
-                                ))}
-                            </Base.ListGrid>
-                        )}
-
-                        {hasValidButtons && (
-                            <div className={this.decorateCSS("button-container")}>
-                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                    const buttonText = this.castToString(item.text);
-                                    const iconExist = item.icon && item.icon.name;
-                                    if (!buttonText && !iconExist) return null;
-                                    return (
-                                        <ComposerLink key={index} path={item.url}>
-                                            <Base.Button
-                                                buttonType={item.type}
-                                                className={this.decorateCSS("button")}
-                                            >
-                                                {buttonText && (
+                                {visibleButtons.length > 0 && (
+                                    <div className={this.decorateCSS("buttons-wrapper")}>
+                                        {visibleButtons.map((item: INPUTS.CastedButton, index: number) => this.castToString(item.text) && (
+                                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                                <Base.Button
+                                                    buttonType={item.type}
+                                                    className={this.decorateCSS("button")}
+                                                >
                                                     <Base.P className={this.decorateCSS("button-text")}>
                                                         {item.text}
                                                     </Base.P>
-                                                )}
-                                                {iconExist && (
-                                                    <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />
-                                                )}
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    );
-                                })}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        ))}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
+                        )}
+
+                        {media && ("url" in media ? media.url : media.name) && (
+                            <div className={this.decorateCSS("media-wrapper")}>
+                                <div className={`${this.decorateCSS("media-container")} ${!hasContent && visibleButtons.length === 0 && visibleStats.length === 0 ? this.decorateCSS("no-content") : ""}`}>
+                                    <Base.Media
+                                        value={media}
+                                        className={this.decorateCSS("media")}
+                                    />
+                                    {overlay && (
+                                        <div className={this.decorateCSS("media-overlay")} />
+                                    )}
+                                </div>
                             </div>
                         )}
-                    </Base.VerticalContent>
+
+                        {visibleStats.length > 0 && (
+                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                {visibleStats.map((stat: StatItem, index: number) => (
+                                    <AnimatedStat key={`stat30-${index}`} stat={stat} />
+                                ))}
+                            </Base.ListGrid>
+                        )}
+                    </div>
                 </Base.MaxContent>
-            </Base.Container >
+            </Base.Container>
         );
     }
 }

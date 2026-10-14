@@ -1,172 +1,77 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
-
     .max-content {
-        .content-wrapper {
+        .grid-wrapper {
             display: flex;
             flex-direction: row;
-            
-            gap: var(--composer-gap-xl);
-            align-items: flex-start;
+            flex-wrap: nowrap;
+            width: 100%;
 
-            .left-column {
+            .media-cell {
+                position: relative;
+                min-height: 450px;
                 flex: 1;
+                width: calc(50% - (var(--composer-gap-xl) / 2));
+                max-width: calc(50% - (var(--composer-gap-xl) / 2));
+                overflow: hidden;
 
-                .title,
-                .subtitle,
-                .description {
-                    text-align: left;
-                }
-
-                .subtitle {
-                    margin-left: 0;
-                    padding: 0;
-                    background: transparent;
-
-                    // The Line subtitle type's line follows the subtitle text color
-                    &::before {
-                        background-color: currentColor;
-                    }
-                }
-
-
-
-                .button-container {
-                    margin: 0;
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: flex-start;
-                    gap: var(--composer-gap-sm);
-                    width: 100%;
-
-                    .button {
-                      content: "";
-                        .button-text {
-                            content: "";
-                        }
-                    }
-                }
-            }
-
-            .right-column {
-                flex: 1.5;
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-lg);
-
-                .stat-item {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0;
-
-                    .stat-row {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: flex-end;
-                        justify-content: space-between;
-                        gap: var(--composer-gap-lg);
-
-                        .stat-info {
-                            align-items: flex-start;
-                            justify-content: flex-end;
-                            flex: 1;
-
-                            .stat-title,
-                            .stat-subtitle,
-                            .stat-description {
-                                text-align: left;
-                                color: var(--composer-font-color-primary);
-                            }
-                            .stat-description {
-                                color: var(--composer-font-color-primary);
-                            }
-                            .stat-title {
-                                color: var(--composer-font-color-primary);
-                            }
-                            .stat-subtitle {
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-
-                        .stat-value {
-                            color: var(--composer-font-color-primary);
-                            opacity: 0.7;
-                            display: flex;
-                            align-items: flex-end;
-                            font-size: 6.75rem;
-                            line-height: 1;
-
-
-                            .stat-prefix,
-                            .stat-number,
-                            .stat-suffix {
-                                color: inherit;
-                                font-size: inherit;
-                              }
-                        }
-                    }
-
-                    .divider {
-                        width: 100%;
-                        height: 5px;
-                        background-color: var(--composer-font-color-primary);
-                        margin-top: var(--composer-gap-sm);
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        padding: calc(var(--composer-gap-lg) *2) var(--composer-gap-lg);
-
-        .max-content {
-            .content-wrapper {
-                .right-column {
-                    .stat-item {
-                        .stat-row {
-                            .stat-value {
-                                font-size: 5rem;
-                              }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
-
-        .max-content {
-            .content-wrapper {
-                flex-direction: column;
-                gap: var(--composer-gap-lg);
-
-                .left-column,
-                .right-column {
+                &.full-width {
+                    width: 100% !important;
+                    max-width: 100% !important;
                     flex: auto;
                 }
 
-                .left-column {
-                    &.alignment-center {
+                .media-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: var(--composer-overlay-color);
+                    border-radius: var(--composer-border-radius-sm);
+                    z-index: 1;
+                    pointer-events: none;
+                }
+
+                .media {
+                    border-radius: var(--composer-border-radius-sm);
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .content-cell {
+                flex: 1;
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: var(--composer-gap-lg);
+
+                &:not(.full-width) {
+                    width: calc(50% - (var(--composer-gap-xl) / 2));
+                    max-width: calc(50% - (var(--composer-gap-xl) / 2));
+                    align-items: flex-start;
+                }
+
+                &.full-width {
+                    align-items: center;
+
+                    .content-header.center {
                         align-items: center;
+                        text-align: center;
 
-                        .title,
-                        .subtitle,
-                        .description {
+                        .section-subtitle {
                             text-align: center;
-                        }
-
-                        .subtitle {
                             margin-left: auto;
                             margin-right: auto;
+                        }
+
+                        .section-title,
+                        .section-description {
+                            text-align: center;
                         }
 
                         .button-container {
@@ -175,12 +80,157 @@
                     }
                 }
 
-                .right-column {
-                    .stat-item {
-                        .stat-row {
-                            .stat-value {
-                                font-size: 4rem;
-                              }
+                .content-header {
+                    width: 100% !important;
+                    align-items: flex-start;
+                    text-align: left;
+
+                    .section-subtitle {
+                        width: fit-content;
+                        text-align: left;
+                        margin-left: 0;
+                    }
+
+                    .section-title,
+                    .section-description {
+                        text-align: left;
+                    }
+
+                    .button-container {
+                        justify-content: flex-start;
+                        width: 100%;
+                    }
+                }
+
+                .content-stats {
+                    width: 100%;
+
+                    .stats-grid {
+
+                        .stat-item {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            align-items: flex-start;
+
+                            .stat-header {
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: flex-end;
+                                // Small gap between the value and the progress bar.
+                                margin-bottom: var(--composer-gap-xs);
+
+                                .stat-info {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 2px;
+                                    flex: 1;
+                                    align-items: flex-start;
+
+                                    .stat-subtitle,
+                                    .stat-title {
+                                        text-align: left;
+                                        color: var(--composer-font-color-primary);
+                                    }
+                                }
+
+                                .stat-value-container {
+                                    display: flex;
+                                    align-items: baseline;
+                                    color: var(--composer-font-color-primary);
+
+                                    .stat-value,
+                                    .stat-prefix,
+                                    .stat-suffix {
+                                        font-size: 1.5rem;
+                                        line-height: 1;
+                                        font-weight: 800;
+                                      }
+                                }
+                            }
+
+                            .progress-bar-container {
+                                width: 100%;
+                                height: 10px;
+                                background-color: var(--composer-border-color, rgba(0, 0, 0, 0.1));
+                                border-radius: var(--composer-border-radius-sm);
+                                overflow: hidden;
+
+                                .progress-bar-fill {
+                                    height: 100%;
+                                    background-color: var(--composer-primary-color);
+                                    // No transition: the width is set every frame by the counter, a transition would make it lag in steps.
+                                    border-radius: var(--composer-border-radius-sm);
+                                }
+                            }
+
+                            .stat-description {
+                                text-align: left;
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+                    }
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        content: "";
+
+                        .button-text {
+                          content: "";
+                            content: ""
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .grid-wrapper {
+        flex-direction: row !important;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .grid-wrapper {
+                flex-direction: column-reverse !important;
+                gap: var(--composer-gap-lg);
+
+                .media-cell {
+                    min-height: 300px;
+                    width: 100%;
+                    max-width: 100%;
+                    flex: auto;
+                }
+
+                .content-cell {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    align-items: flex-start;
+
+                    .content-header.center {
+                        align-items: center !important;
+                        text-align: center !important;
+
+                        .section-subtitle,
+                        .section-title,
+                        .section-description {
+                            text-align: center !important;
+                            margin-inline: auto !important;
+                        }
+
+                        .button-container {
+                            justify-content: center !important;
                         }
                     }
                 }
