@@ -5,7 +5,7 @@
 }
 
 .container {
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  // No background here: Base.Container's html-background applies, and a background set from the design tab wins over it.
   position: relative;
 
   .max-content {
@@ -137,7 +137,8 @@
             left: 0;
             height: fit-content;
             width: 45%;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            // Transparent: the ring around the card is cut out of the image (.has-notch), so the container's own background shows in it.
+            background-color: transparent;
             padding: 15px 15px 0 0;
             border-top-right-radius: var(--composer-border-radius-lg);
 
@@ -146,7 +147,7 @@
               width: 100%;
               bottom: 0;
               left: 0;
-              background-color: var(--composer-html-background);
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               border-radius: var(--composer-border-radius-lg);
               padding: calc(1.5 * var(--composer-gap-md));
               display: flex;
@@ -313,7 +314,7 @@
           gap: 0;
           border-radius: var(--composer-border-width-lg);
           padding: 30px;
-          background-color: var(--composer-html-background);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
           .content-wrapper {
             width: 100%;
@@ -774,5 +775,20 @@
       max-width: 350px;
       height: 300px;
     }
+  }
+}
+
+// The bottom-left box and its ring are cut out of the image and its overlay, so the ring always shows the
+// container's real background (theme, design-tab color, image or video). --notch-width/--notch-height are
+// the box size measured in the component; the top-right corner of the cut-out keeps the lg radius.
+.main-image-container.has-notch {
+  .main-image,
+  .media-overlay {
+    $radius: var(--composer-border-radius-lg);
+    $mask: linear-gradient(#000 0 0) left top / 100% calc(100% - var(--notch-height, 0px)) no-repeat,
+      linear-gradient(#000 0 0) right bottom / calc(100% - var(--notch-width, 0px)) var(--notch-height, 0px) no-repeat,
+      radial-gradient(circle at 0 100%, #0000 calc(#{$radius} - 0.5px), #000 #{$radius}) left calc(var(--notch-width, 0px) - #{$radius}) bottom calc(var(--notch-height, 0px) - #{$radius}) / #{$radius} #{$radius} no-repeat;
+    -webkit-mask: $mask;
+    mask: $mask;
   }
 }

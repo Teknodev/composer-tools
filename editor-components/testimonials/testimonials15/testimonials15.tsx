@@ -23,6 +23,30 @@ type Button = {
 };
 
 class Testimonials15Page extends Testimonials {
+  boxObserver: ResizeObserver | null = null;
+
+  // The ring around the bottom-left box is cut out of the image (see .has-notch) instead of painted,
+  // so whatever background the container has shows through it. The cut-out follows the box size.
+  setBoxRef = (el: HTMLDivElement | null) => {
+    this.boxObserver?.disconnect();
+    this.boxObserver = null;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => {
+      const holder = el.parentElement;
+      if (!holder) return;
+      holder.style.setProperty("--notch-width", `${el.offsetWidth}px`);
+      holder.style.setProperty("--notch-height", `${el.offsetHeight}px`);
+    };
+    this.boxObserver = new ResizeObserver(update);
+    this.boxObserver.observe(el);
+    update();
+  };
+
+  componentWillUnmount() {
+    this.boxObserver?.disconnect();
+    this.boxObserver = null;
+  }
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -376,7 +400,7 @@ class Testimonials15Page extends Testimonials {
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
               <div className={this.decorateCSS("left-section")}>
-                <div className={`${this.decorateCSS("main-image-container")} ${!isImageExist ? this.decorateCSS("box-alone") : ""}`}>
+                <div className={`${this.decorateCSS("main-image-container")} ${!isImageExist ? this.decorateCSS("box-alone") : ""} ${isImageExist && bottomLeftBox.visibility ? this.decorateCSS("has-notch") : ""}`}>
                   {isImageExist && (
                     <Base.Media
                       value={mediaProp}
@@ -385,7 +409,7 @@ class Testimonials15Page extends Testimonials {
                   )}
                   {isImageExist && mainMedia?.overlay && <div className={this.decorateCSS("media-overlay")} />}
                   {bottomLeftBox.visibility && (
-                    <div className={this.decorateCSS("box-area")}>
+                    <div className={this.decorateCSS("box-area")} ref={this.setBoxRef}>
                       <div className={this.decorateCSS("experience-card")}>
                         <div className={this.decorateCSS("experience-header")}>
                           <div className={this.decorateCSS("experience-title")}>
