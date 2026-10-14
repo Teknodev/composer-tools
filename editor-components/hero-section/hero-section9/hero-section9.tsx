@@ -201,6 +201,19 @@ class HeroSection9 extends BaseHeroSection {
       : media;
   }
 
+  // The root is not Base.Container, so Base's Badge look never reaches the subtitle; it is added here.
+  // The subtitle never sits over background media in this component, so Badge is always available.
+  subtitleBadgeClass() {
+    if (Base.getSectionSubTitleType() !== "badge") return "";
+    return `${this.decorateCSS("subtitle-badge")} ${Base.getViewType() === "monochrome" ? this.decorateCSS("subtitle-badge-monochrome") : ""}`;
+  }
+
+  // Base's Line subtitle does not reach the subtitle either (no Base.Container root); it is drawn here for left alignment.
+  subtitleLineClass() {
+    if (Base.getSectionSubTitleType() !== "line" || Base.getContentAlignment() !== "left") return "";
+    return this.decorateCSS("subtitle-line");
+  }
+
   render() {
     const logo = this.getPropValue("logo");
     const subtitle = this.getPropValue("subtitle");
@@ -254,7 +267,7 @@ class HeroSection9 extends BaseHeroSection {
                 className={`${this.decorateCSS("tab-buttons")} ${noTabs ? this.decorateCSS("no-tabs") : ""}`}
               >
                 {hasLogo && <Base.Media value={logo} className={this.decorateCSS("logo")} />}
-                {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {isSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass()} ${this.subtitleLineClass()}`}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {isDescriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
