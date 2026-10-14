@@ -25,8 +25,9 @@
                     padding: 0;
                     background: transparent;
 
+                    // The Line subtitle type's line follows the subtitle text color
                     &::before {
-                        background-color: var(--composer-font-color-secondary);
+                        background-color: currentColor;
                     }
                 }
 
@@ -41,6 +42,7 @@
                     width: 100%;
 
                     .button {
+                      content: "";
                         .button-text {
                             content: "";
                         }
@@ -89,11 +91,11 @@
                         }
 
                         .stat-value {
-                            color: var(--composer-font-color-secondary);
+                            color: var(--composer-font-color-primary);
                             opacity: 0.7;
                             display: flex;
                             align-items: flex-end;
-                            font-size: 7rem;
+                            font-size: 6.75rem;
                             line-height: 1;
 
 
@@ -102,14 +104,14 @@
                             .stat-suffix {
                                 color: inherit;
                                 font-size: inherit;
-                            }
+                              }
                         }
                     }
 
                     .divider {
                         width: 100%;
                         height: 5px;
-                        background-color: var(--composer-font-color-secondary);
+                        background-color: var(--composer-font-color-primary);
                         margin-top: var(--composer-gap-sm);
                     }
                 }
@@ -129,7 +131,7 @@
                         .stat-row {
                             .stat-value {
                                 font-size: 5rem;
-                            }
+                              }
                         }
                     }
                 }
@@ -145,11 +147,32 @@
         .max-content {
             .content-wrapper {
                 flex-direction: column;
-                gap: var(--composer-gap-xl);
+                gap: var(--composer-gap-lg);
 
                 .left-column,
                 .right-column {
                     flex: auto;
+                }
+
+                .left-column {
+                    &.alignment-center {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
                 }
 
                 .right-column {
@@ -157,7 +180,7 @@
                         .stat-row {
                             .stat-value {
                                 font-size: 4rem;
-                            }
+                              }
                         }
                     }
                 }

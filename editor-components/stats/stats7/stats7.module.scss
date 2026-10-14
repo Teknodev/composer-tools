@@ -9,6 +9,13 @@
     text-transform: uppercase;
   }
 
+  .title,
+  .description {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+  }
+
   .title {
     width: 100%;
   }
@@ -16,6 +23,21 @@
   .description {
     width: 100%;
     margin: 0;
+    color: var(--composer-font-color-primary);
+  }
+
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-sm);
+    margin-top: var(--composer-gap-sm);
+
+    .button {
+      .button-text,
+      .button-icon {
+        content: "";
+      }
+    }
   }
 }
 
@@ -24,7 +46,6 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: auto;
 
   .item {
     transition: 0.3s;
@@ -40,17 +61,46 @@
       align-items: center;
     }
 
+    .progress-title-text {
+      display: flex;
+      flex-direction: column;
+
+      .progress-subtitle {
+        font-size: 0.9rem;
+        color: var(--composer-font-color-primary);
+      }
+
+      .progress-heading {
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+    }
+
     .progress-percent {
       display: flex;
       margin-bottom: var(--composer-gap-xs);
-      color: (--composer-font-color-primary);
+      color: var(--composer-font-color-primary);
       align-items: end;
       text-align: end;
       max-width: 50%;
 
       .progress-text {
         width: max-content;
+        display: flex;
+        align-items: baseline;
+        gap: 0.1em;
+
+        .progress-prefix,
+        .progress-suffix {
+          font-size: 0.85em;
+        }
       }
+    }
+
+    .progress-description {
+      font-size: 0.9rem;
+      color: var(--composer-tertiary-color);
+      margin-top: var(--composer-gap-xs);
     }
   }
 
@@ -58,19 +108,10 @@
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
     .progress-passive {
-      animation: fillProgress 2s ease-in-out forwards;
       height: 3px;
-      background-color: var(--composer-secondary-color);
-    }
-
-    @keyframes fillProgress {
-      from {
-        width: 0%;
-      }
-
-      to {
-        width: progress;
-      }
+      background-color: var(--composer-font-color-primary);
+      transition-property: width;
+      transition-timing-function: ease;
     }
   }
 }
@@ -83,6 +124,44 @@
 
     .title-child {
       @include title-child;
+
+      &.force-left {
+        align-items: flex-start !important;
+        text-align: left !important;
+
+        .title,
+        .description {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
+        }
+
+        .subtitle {
+          text-align: left !important;
+          margin-right: auto !important;
+        }
+
+        .button-container {
+          justify-content: flex-start !important;
+        }
+      }
+
+      &.alignment-center {
+        align-items: center !important;
+        text-align: center !important;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .button-container {
+          justify-content: center !important;
+        }
+      }
     }
 
     .progress-container {

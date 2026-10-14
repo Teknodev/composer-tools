@@ -91,10 +91,6 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .max-content {
-        gap: var(--composer-gap-md) !important;
-    }
-
     .card-value {
         font-size: 3rem !important;
     }

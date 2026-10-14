@@ -7,9 +7,9 @@ type StatItem = {
     prefix: React.JSX.Element;
     value: React.JSX.Element;
     suffix: React.JSX.Element;
-    cardSubtitle: React.JSX.Element;
-    cardTitle: React.JSX.Element;
-    cardDescription: React.JSX.Element;
+    stat_subtitle: React.JSX.Element;
+    stat_title: React.JSX.Element;
+    stat_description: React.JSX.Element;
 };
 
 class Stats37 extends BaseStats {
@@ -50,9 +50,9 @@ class Stats37 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "15" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
-                        { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "cardTitle", displayer: "Title", value: "Covered <br /> Injuries" },
-                        { type: "string", key: "cardDescription", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition." },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Covered <br /> Injuries" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition." },
                     ],
                 },
                 {
@@ -63,9 +63,9 @@ class Stats37 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "100" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "cardTitle", displayer: "Title", value: "Guaranteed <br /> Issue" },
-                        { type: "string", key: "cardDescription", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination." },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "Guaranteed <br /> Issue" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination." },
                     ],
                 },
                 {
@@ -76,9 +76,9 @@ class Stats37 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "value", displayer: "Value", value: "5" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
-                        { type: "string", key: "cardSubtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "cardTitle", displayer: "Title", value: "More covered <br /> conditions" },
-                        { type: "string", key: "cardDescription", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.User generated content in real-time will have multiple touchpoints for offshoring" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "More covered <br /> conditions" },
+                        { type: "string", key: "stat_description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.User generated content in real-time will have multiple touchpoints for offshoring" },
                     ],
                 },
             ],
@@ -132,16 +132,15 @@ class Stats37 extends BaseStats {
                                 const prefixExist = this.castToString(item.prefix);
                                 const valueExist = this.castToString(item.value);
                                 const suffixExist = this.castToString(item.suffix);
-                                const statSubTitleExist = this.castToString(item.cardSubtitle);
-                                const statTitleExist = this.castToString(item.cardTitle);
-                                const statDescriptionExist = this.castToString(item.cardDescription);
+                                const statSubTitleExist = this.castToString(item.stat_subtitle);
+                                const statTitleExist = this.castToString(item.stat_title);
+                                const statDescriptionExist = this.castToString(item.stat_description);
                                 const hasValueSection = prefixExist || valueExist || suffixExist;
 
                                 if (!hasValueSection && !statSubTitleExist && !statTitleExist && !statDescriptionExist) return null;
 
                                 return (
-                                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                                    <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                                    <Base.VerticalContent key={index} className={this.decorateCSS("stat-item")}>
                                         {(hasValueSection || statSubTitleExist || statTitleExist) && (
                                             <div className={this.decorateCSS("stat-value-row")}>
                                                 {hasValueSection && (
@@ -161,12 +160,12 @@ class Stats37 extends BaseStats {
                                                     <Base.VerticalContent className={this.decorateCSS("stat-info")}>
                                                         {statSubTitleExist && (
                                                             <Base.P className={this.decorateCSS("stat-subtitle")}>
-                                                                {item.cardSubtitle}
+                                                                {item.stat_subtitle}
                                                             </Base.P>
                                                         )}
                                                         {statTitleExist && (
                                                             <Base.H6 className={this.decorateCSS("stat-title")}>
-                                                                {item.cardTitle}
+                                                                {item.stat_title}
                                                             </Base.H6>
                                                         )}
                                                     </Base.VerticalContent>
@@ -175,11 +174,10 @@ class Stats37 extends BaseStats {
                                         )}
                                         {statDescriptionExist && (
                                             <Base.P className={this.decorateCSS("stat-description")}>
-                                                {item.cardDescription}
+                                                {item.stat_description}
                                             </Base.P>
                                         )}
                                     </Base.VerticalContent>
-                                    </Base.Card>
                                 );
                             })}
                         </Base.ListGrid>

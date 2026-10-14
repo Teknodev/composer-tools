@@ -12,27 +12,27 @@
         height: auto;
         width: 100%;
         flex: 1;
-        gap: var(--composer-gap-sm);
-        padding-top: var(--composer-gap-xl);
+        align-items: flex-start !important;
+        justify-content: center;
 
         &.left-page-without-image {
           padding-top: 0;
         }
 
-        .title {
-          content: "";
-        }
-        .subTitle {
-          content: "";
-        }
+        .title,
+        .subtitle,
         .description {
-          content: "";
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
         }
 
         .button-container {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: flex-start !important;
 
           .button {
             content: "";
@@ -49,97 +49,144 @@
 
         &.right-container-without-image {
           height: 100%;
+          min-height: auto;
+          justify-content: center;
         }
 
-        .image {
-          border-radius: var(--composer-border-radius-xl);
-          width: 85%;
-          object-fit: cover;
-          display: flex;
-          max-height: 700px;
-        }
-
-        .card-container {
-          width: 100%;
-          height: 100%;
+        .image-container {
           position: relative;
-          min-height: 150px;
-          margin-top: calc(-1 * var(--composer-gap-xl));
+          width: 90%;
+
+          .image {
+            border-radius: var(--composer-border-radius-sm);
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            max-height: 700px;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: var(--composer-border-radius-sm);
+            background-color: var(--composer-overlay-color);
+          }
+        }
+
+        // The frame around the card is a padded wrapper (outer md radius) so the card keeps its own sm radius (§8).
+        .card-container {
+          width: 92%;
+          align-self: flex-start;
+          position: relative;
+          z-index: 2;
+          margin-top: calc(-1 * (var(--composer-gap-xl) + var(--composer-gap-md)));
+          padding: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-md);
+          background-color: var(--composer-html-background);
 
           &.card-container-without-image {
+            width: 100%;
             margin-top: 0;
-            height: 100%;
-            align-items: center;
-            display: flex;
-
-            .card {
-              bottom: auto;
-              width: 100%;
-            }
+            padding: 0;
           }
 
           .card {
-            position: absolute;
-            bottom: 0;
-            width: 90%;
-            display: flex;
-            border-radius: var(--composer-border-radius-xl);
-            border: 8px solid var(--composer-html-background);
-            padding: var(--composer-gap-lg);
+            position: relative;
+            width: 100%;
             max-width: 100%;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            display: flex;
+            flex-direction: row;
+            align-items: stretch !important;
+            border-radius: var(--composer-border-radius-sm);
+            padding: var(--composer-gap-md) 0;
+            background-color: var(--composer-primary-color);
 
+            // Icon on the left, value and description stacked on its right.
             .content {
               flex: 1;
-              display: flex;
-              color: var(--composer-font-color-primary);
-              flex-direction: row;
-              position: relative;
+              display: grid;
+              grid-template-columns: auto auto;
               justify-content: center;
-              align-items: flex-start;
-              padding: var(--composer-gap-sm);
-              border-right: 1px solid var(--composer-font-color-primary);
-            }
+              align-content: center;
+              column-gap: var(--composer-gap-sm);
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
+              color: var(--composer-font-color-secondary);
+              border-right: 1px solid var(--composer-font-color-secondary);
 
-            .content:last-child {
-              border-right: none;
-            }
+              &:last-child {
+                border-right: none;
+              }
 
-            .content .inner-content {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: center;
-            }
+              .icon {
+                grid-column: 1;
+                grid-row: 1 / span 4;
+                align-self: center;
+                width: calc(2.1875 * var(--composer-font-size-md));
+                height: calc(2.1875 * var(--composer-font-size-md));
+                min-width: calc(2.1875 * var(--composer-font-size-md));
+                font-size: calc(2.1875 * var(--composer-font-size-md));
+                color: var(--composer-font-color-secondary);
+              }
 
-            .content .inner-content .text-container .first-container {
-              display: flex;
-              gap: var(--composer-gap-md);
-            }
+              .number,
+              .stat-subtitle,
+              .stat-title,
+              .right-text {
+                grid-column: 2;
+                max-width: 300px;
+                color: var(--composer-font-color-secondary);
+                text-align: left !important;
+                margin-left: 0 !important;
+                margin-right: auto !important;
+              }
 
-            .content .inner-content .text-container .first-container .icon {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
-              min-width: var(--composer-gap-lg);
-              color: var(--composer-font-color-primary);
-            }
+              .number {
+                font-weight: 800;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                justify-content: flex-start;
 
-            .content .inner-content .text-container .first-container .text .number {
-              max-width: 300px;
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
-            }
+                .prefix,
+                .suffix {
+                  font-size: 0.6em;
+                }
+              }
 
-            .content .inner-content .text-container .first-container .text .number > blinkpage > p,
-            .content .inner-content .text-container .first-container .text .right-text > blinkpage > p {
-              flex-wrap: wrap;
-              word-break: break-word;
-            }
+              .stat-subtitle {
+                font-size: 0.9rem;
+              }
 
-            .content .inner-content .text-container .first-container .text .right-text {
-              max-width: 300px;
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
+              .stat-title {
+                font-size: 1.4rem;
+                font-weight: 800;
+              }
+
+              .number > blinkpage > p,
+              .right-text > blinkpage > p {
+                flex-wrap: wrap;
+                word-break: break-word;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Stats sit in a row above phone width; the Vertical Content item spacing only applies once they stack.
+@container (width > #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        .right-container {
+          .card-container {
+            .card {
+              .content {
+                margin-bottom: 0;
+              }
             }
           }
         }
@@ -152,68 +199,34 @@
   .container {
     .max-content {
       .page {
-        flex-direction: column;
-        flex-wrap: nowrap;
-
-        .left-page {
-          flex: auto;
-          padding-top: 0;
-
-          .button-container {
-            display: flex;
-            flex-direction: row !important;
-          }
-        }
-
+        // Like the original tablet view: text on top, full-width image below, stats card overlapping its bottom edge.
         .right-container {
           flex: auto;
-          gap: var(--composer-gap-sm);
+          align-items: stretch;
 
-          &.right-container-without-image {
-            min-height: fit-content;
-          }
-
-          .image {
+          .image-container {
             width: 100%;
           }
 
           .card-container {
-            margin-top: 0;
-            position: static;
-
-            &.card-container-without-image {
-              .card {
-                bottom: 0;
-              }
-            }
+            width: 100%;
 
             .card {
-              width: 100%;
-              position: static;
-              border: none;
-              flex-direction: row !important;
-
               .content {
-                .inner-content {
-                  .text-container {
-                    .first-container {
-                      flex-direction: column;
-                      .icon {
-                        width: var(--composer-gap-md);
-                        height: var(--composer-gap-md);
-                      }
+                .icon {
+                  width: calc(1.75 * var(--composer-font-size-md));
+                  height: calc(1.75 * var(--composer-font-size-md));
+                  min-width: calc(1.75 * var(--composer-font-size-md));
+                  font-size: calc(1.75 * var(--composer-font-size-md));
+                }
 
-                      .text {
-                        .number {
-                          font-size: 1rem !important;
-                        }
+                .number {
+                  flex-wrap: nowrap;
+                  white-space: nowrap;
+                }
 
-                        .right-text {
-                          font-size: 1rem !important;
-                        }
-                      }
-                    }
-                  }
+                .right-text {
+                  font-size: var(--composer-font-size-md) !important;
                 }
               }
             }
@@ -228,73 +241,117 @@
   .container {
     .max-content {
       .page {
+        flex-direction: column !important;
+        flex-wrap: nowrap;
+
+        &.alignment-center {
+          .left-page {
+            align-items: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .button-container {
+              justify-content: center !important;
+            }
+          }
+        }
+
         .left-page {
+          flex: auto;
           height: fit-content;
+          padding-top: 0;
 
           .button-container {
-            flex-direction: column !important;
+            display: flex;
+            flex-direction: row !important;
+            flex-wrap: wrap;
           }
         }
 
         .right-container {
-          gap: var(--composer-gap-md);
+          flex: auto;
+          align-items: stretch;
 
-          .image {
-            margin: 0px;
+          &.right-container-without-image {
+            min-height: fit-content;
+          }
+
+          .image-container {
+            width: 100%;
           }
 
           .card-container {
+            width: 100%;
+            margin-top: 0;
+            padding: 0;
+            position: static;
+
             .card {
               position: relative;
               flex-direction: column !important;
-              max-width: 100%;
-              gap: var(--composer-gap-md);
+              padding: var(--composer-gap-md);
 
+              // Each stat is its own block, stacked with the Vertical Content spacing between them.
               .content {
+                display: flex;
                 flex-direction: column;
                 width: 100%;
+                align-items: center !important;
                 border: 0;
+                padding: calc(var(--composer-gap-md) + var(--composer-gap-xs)) 0;
 
-                .inner-content {
-                  flex-direction: column;
-                  width: 100%;
-                  align-items: center;
-
-                  .text-container {
-                    width: 100%;
-                    align-items: center;
-                    display: flex;
-                    flex-direction: column;
-                    margin: 0;
-
-                    .first-container {
-                      display: flex;
-                      flex-direction: column;
-                      width: 100%;
-                      height: 100%;
-                      align-items: center;
-                      gap: var(--composer-gap-sm);
-
-                      .text {
-                        height: 100%;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
-
-                        .right-text {
-                          font-size: 1.5rem;
-                          margin-right: 0;
-                        }
-                      }
-                    }
-                  }
+                .icon {
+                  align-self: center;
+                  width: calc(2.1875 * var(--composer-font-size-md));
+                  height: calc(2.1875 * var(--composer-font-size-md));
+                  min-width: calc(2.1875 * var(--composer-font-size-md));
+                  font-size: calc(2.1875 * var(--composer-font-size-md));
                 }
 
-                &::after {
-                  display: none;
+                .number,
+                .stat-subtitle,
+                .stat-title,
+                .right-text {
+                  text-align: center !important;
+                  justify-content: center;
+                  margin-left: auto !important;
+                  margin-right: auto !important;
+                }
+
+                .stat-title {
+                  font-size: 1.2rem !important;
+                }
+
+                .stat-subtitle {
+                  font-size: 0.85rem !important;
+                }
+
+                .right-text {
+                  font-size: var(--composer-font-size-md) !important;
                 }
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// The editor gives every third section an alternate color-mix background (utils/bg-audit.ts, blinkpage-alt-section-bg).
+// The frame around the card is painted with the section background, so it follows that color too.
+.container:global(.blinkpage-alt-section-bg) {
+  .max-content {
+    .page {
+      .right-container {
+        .card-container {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
         }
       }
     }

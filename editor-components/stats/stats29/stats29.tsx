@@ -8,15 +8,15 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type StatItem = {
   prefix: string;
   prefixElement: JSX.Element;
-  number: string;
+  value: string;
   numberElement: JSX.Element;
   suffix: string;
   suffixElement: JSX.Element;
-  stat_subtitle: string;
+  subtitle: string;
   subtitleElement: JSX.Element;
-  stat_title: string;
+  title: string;
   titleElement: JSX.Element;
-  stat_description: string;
+  description: string;
   descriptionElement: JSX.Element;
 };
 
@@ -67,7 +67,7 @@ class Stats29 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "50" },
+            { type: "string", key: "value", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
@@ -85,7 +85,7 @@ class Stats29 extends BaseStats {
           displayer: "Stat",
           value: [
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "85" },
+            { type: "string", key: "value", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "stat_title", displayer: "Title", value: "OF BUYERS" },
@@ -104,7 +104,7 @@ class Stats29 extends BaseStats {
 
     this.addProp({
       type: "number",
-      key: "itemCountInRow",
+      key: "itemCount",
       displayer: "Item Count in a Row",
       value: 2,
       max: 9,
@@ -112,11 +112,21 @@ class Stats29 extends BaseStats {
 
     this.addProp({
       type: "object",
-      key: "animation",
-      displayer: "Animation",
+      key: "settings",
+      displayer: "Settings",
       value: [
-        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-        { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
+        {
+          type: "boolean",
+          key: "shouldAnimate",
+          displayer: "Animate Numbers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "animationDuration",
+          displayer: "Animation Duration (ms)",
+          value: 2000,
+        },
       ],
     });
   }
@@ -124,99 +134,6 @@ class Stats29 extends BaseStats {
   static getName(): string {
     return "Stats 29";
   }
-
-  private hasStatContent(stat: any): boolean {
-    const valueExist = !!this.castToString(stat.number);
-    const subtitleExist = !!this.castToString(stat.subtitle);
-    const titleExist = !!this.castToString(stat.title);
-    const descriptionExist = !!this.castToString(stat.description);
-    return valueExist || !!stat.suffix || !!stat.prefix || subtitleExist || titleExist || descriptionExist;
-  }
-
-  private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
-    const originalString = stat.number;
-    const targetNumber = parseFloat(originalString) || 0;
-
-    const formatNumber = (num: number): string => {
-      const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-      return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
-    };
-
-    const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
-    const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
-    React.useEffect(() => {
-      if (!statsAnimation) {
-        setAnimatedNumber(targetNumber);
-        return;
-      }
-
-      const steps = animationDuration / 30;
-      let currentNumber = 0;
-      const increment = targetNumber / steps;
-
-      intervalRef.current = setInterval(() => {
-        currentNumber += increment;
-        if (currentNumber >= targetNumber) {
-          currentNumber = targetNumber;
-          clearInterval(intervalRef.current!);
-        }
-        setAnimatedNumber(currentNumber);
-      }, 30);
-
-      return () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }, [targetNumber, statsAnimation, animationDuration, originalString]);
-
-    const subtitleExist = this.castToString(stat.stat_subtitle);
-    const titleExist = this.castToString(stat.stat_title);
-    const descriptionExist = this.castToString(stat.stat_description);
-    const valueExist = this.castToString(originalString);
-
-    if (!this.hasStatContent(stat)) return null;
-
-    return (
-      <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-        {(valueExist || this.castToString(stat.prefixElement) || this.castToString(stat.suffixElement)) && (
-          <span className={this.decorateCSS("stat-value")}>
-            {this.castToString(stat.prefixElement) && (
-              <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefixElement}
-              </span>
-            )}
-            {valueExist && (
-              <span className={this.decorateCSS("stat-number")}>
-                {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-              </span>
-            )}
-            {this.castToString(stat.suffixElement) && (
-              <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffixElement}
-              </span>
-            )}
-          </span>
-        )}
-        {subtitleExist && (
-          <Base.H4 className={this.decorateCSS("stat-subtitle")}>
-            {stat.subtitleElement}
-          </Base.H4>
-        )}
-        {titleExist && (
-          <Base.H3 className={this.decorateCSS("stat-title")}>
-            {stat.titleElement}
-          </Base.H3>
-        )}
-        {descriptionExist && (
-          <Base.P className={this.decorateCSS("stat-description")}>
-            {stat.descriptionElement}
-          </Base.P>
-        )}
-      </Base.VerticalContent>
-    );
-  };
 
   render() {
     const subtitle = this.getPropValue("subtitle");
@@ -233,20 +150,142 @@ class Stats29 extends BaseStats {
     const statsItems = this.castToObject<StatItem[]>("stats");
     const stats: StatItem[] = statsItems.map((item: any) => {
       const prefix = this.castToString(item.prefix) || "";
-      const number = this.castToString(item.number) || "";
+      const number = this.castToString(item.value) || "";
       const suffix = this.castToString(item.suffix) || "";
-      const subtitle = this.castToString(item.subtitle) || "";
-      const title = this.castToString(item.title) || "";
-      const description = this.castToString(item.description) || "";
-      return { prefix, prefixElement: item.prefix, number, numberElement: item.number, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
+      const subtitle = this.castToString(item.stat_subtitle) || "";
+      const title = this.castToString(item.stat_title) || "";
+      const description = this.castToString(item.stat_description) || "";
+      return { prefix, prefixElement: item.prefix, value: number, numberElement: item.value, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.stat_subtitle, title, titleElement: item.stat_title, description, descriptionElement: item.stat_description };
     });
 
-    const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
-    const statsAnimation = !!animationProps?.statsAnimation;
-    const animationDuration = animationProps?.animationDuration || 2000;
-    const itemCountInRow = this.getPropValue("itemCountInRow");
+    const settings = this.castToObject<any>("settings");
+    const shouldAnimate = settings?.shouldAnimate ?? true;
+    const animationDuration = (settings?.animationDuration ?? 2000) as number;
+    const itemCountInRow = this.getPropValue("itemCount") ?? 2;
 
     const alignment = Base.getContentAlignment();
+
+    const AnimatedStat = ({ stat }: { stat: StatItem }) => {
+      const ref = React.useRef<HTMLSpanElement>(null);
+      const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
+
+      const rawNumber = (this.castToString(stat.value) as string) || "";
+      const innerPrefix = rawNumber.match(/^[^\d]*/)?.[0] ?? "";
+      const innerSuffix = rawNumber.match(/[^\d]*$/)?.[0] ?? "";
+      const core = rawNumber.slice(innerPrefix.length, rawNumber.length - innerSuffix.length);
+      const isNumeric = /\d/.test(core);
+      const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+      const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+      const useGrouping = /,/.test(core);
+      const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+      const format = (n: number) => innerPrefix + n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping }) + innerSuffix;
+
+      const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+
+      React.useEffect(() => {
+        if (!rawNumber) {
+          setDisplay("");
+          return;
+        }
+        if (!animatable) {
+          setDisplay(rawNumber);
+          return;
+        }
+        const node = ref.current;
+        if (!node || typeof IntersectionObserver === "undefined") {
+          setDisplay(rawNumber);
+          return;
+        }
+        const clear = () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        };
+        const run = () => {
+          clear();
+          setDisplay(format(0));
+          const steps = Math.max(1, Math.round(animationDuration / 30));
+          const increment = target / steps;
+          let current = 0;
+          intervalRef.current = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              clear();
+              setDisplay(rawNumber);
+              return;
+            }
+            setDisplay(format(current));
+          }, 30);
+        };
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                run();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(node);
+        return () => {
+          observer.disconnect();
+          clear();
+        };
+      }, [rawNumber, animatable, animationDuration, target]);
+
+      const subtitleExist = this.castToString(stat.subtitle);
+      const titleExist = this.castToString(stat.title);
+      const descriptionExist = this.castToString(stat.description);
+      const valueExist = this.castToString(stat.value);
+      const prefixExist = this.castToString(stat.prefixElement);
+      const suffixExist = this.castToString(stat.suffixElement);
+
+      if (!valueExist && !suffixExist && !prefixExist && !subtitleExist && !titleExist && !descriptionExist) return null;
+
+      return (
+        <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+          {(valueExist || prefixExist || suffixExist) && (
+            <span ref={ref} className={this.decorateCSS("stat-value")}>
+              {prefixExist && (
+                <span className={this.decorateCSS("stat-prefix")}>
+                  {stat.prefixElement}
+                </span>
+              )}
+              {valueExist && (
+                <span className={this.decorateCSS("stat-number")}>
+                  {animatable ? display : stat.numberElement}
+                </span>
+              )}
+              {suffixExist && (
+                <span className={this.decorateCSS("stat-suffix")}>
+                  {stat.suffixElement}
+                </span>
+              )}
+            </span>
+          )}
+          {subtitleExist && (
+            <Base.H4 className={this.decorateCSS("stat-subtitle")}>
+              {stat.subtitleElement}
+            </Base.H4>
+          )}
+          {titleExist && (
+            <Base.H3 className={this.decorateCSS("stat-title")}>
+              {stat.titleElement}
+            </Base.H3>
+          )}
+          {descriptionExist && (
+            <Base.P className={this.decorateCSS("stat-description")}>
+              {stat.descriptionElement}
+            </Base.P>
+          )}
+        </Base.VerticalContent>
+      );
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -297,14 +336,8 @@ class Stats29 extends BaseStats {
                   gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
                   className={this.decorateCSS("stats-grid")}
                 >
-                  {stats.map((stat: StatItem, index: number) => this.hasStatContent(stat) && (
-                    <Base.Card key={index} className={this.decorateCSS("card-shell")}>
-                      <this.AnimatedStat
-                        stat={stat}
-                        animationDuration={animationDuration}
-                        statsAnimation={statsAnimation}
-                      />
-                    </Base.Card>
+                  {stats.map((stat: StatItem, index: number) => (
+                    <AnimatedStat key={index} stat={stat} />
                   ))}
                 </Base.ListGrid>
               )}

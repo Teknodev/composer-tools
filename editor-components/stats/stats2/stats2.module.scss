@@ -7,6 +7,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-xl);
 
     .header-wrapper {
       width: 60%;
@@ -15,7 +16,16 @@
         min-width: 100%;
       }
 
-      .header {
+      .subtitle {
+        text-align: left !important;
+        align-self: flex-start !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        width: fit-content;
+        margin-bottom: var(--composer-gap-sm);
+      }
+
+      .title {
         word-break: break-word;
         text-align: left;
       }
@@ -24,7 +34,7 @@
     .bottom-content {
       flex-wrap: unset;
 
-      .subHeader {
+      .description-column {
         flex: 1;
         position: sticky;
         top: calc(var(--composer-gap-lg) * 2);
@@ -47,12 +57,23 @@
         }
 
         .button-content {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
           > div {
             width: 100% !important;
 
             .contact-button {
+              gap: var(--composer-gap-xs);
+
               &.button-full-width {
                 max-width: 30%;
+              }
+
+              .button-text,
+              .button-icon {
+                content: "";
               }
             }
           }
@@ -71,8 +92,32 @@
           display: flex;
           flex-direction: column;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding: var(--composer-gap-lg) var(--composer-gap-lg) calc(var(--composer-gap-md) + var(--composer-gap-sm));
           gap: var(--composer-gap-xl);
+
+          .card-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            flex: 1;
+          }
+
+          .card-subtitle {
+            width: 85%;
+            text-align: left;
+            font-size: 1.1rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .card-title {
+            width: 85%;
+            text-align: left;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
 
           .card-text {
             color: var(--composer-font-color-primary);
@@ -90,20 +135,15 @@
 
           .card-amount-container {
             display: flex;
-            align-items: flex-start;
-
-            .card-icon {
-              font-size: 2.5rem;
-              color: var(--composer-font-color-primary);
-              flex-shrink: 0;
-            }
+            align-items: baseline;
+            gap: var(--composer-gap-xs);
+            font-size: 4rem;
+            font-weight: 800;
 
             .card-amount {
               position: relative;
               flex-shrink: 0;
               text-align: left;
-              font-size: 4rem;
-              font-weight: bold;
               color: var(--composer-font-color-primary);
               margin: 0;
               max-width: 85%;
@@ -112,11 +152,17 @@
               text-overflow: ellipsis;
             }
 
-            .card-icon-after {
+            .card-prefix,
+            .card-suffix {
+              flex-shrink: 0;
               color: var(--composer-font-color-primary);
-              font-size: 2rem;
-              margin-top: auto;
-              margin-bottom: auto;
+              margin: 0;
+            }
+
+            .suffix-icon {
+              align-self: flex-start;
+              font-size: 2.5rem;
+              color: var(--composer-font-color-primary);
               flex-shrink: 0;
             }
           }
@@ -129,6 +175,12 @@
             border-bottom: none;
           }
         }
+
+        &.no-line {
+          .listed {
+            border: none;
+          }
+        }
       }
     }
   }
@@ -137,6 +189,37 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      .bottom-content {
+        flex-direction: row !important;
+
+        .description-column {
+          min-width: 0;
+        }
+
+        .cards-container {
+          flex: 2;
+          min-width: 0;
+
+          .listed {
+            min-width: 0;
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm)) var(--composer-gap-sm);
+
+            .card-amount-container {
+              flex-wrap: wrap;
+              font-size: clamp(2rem, calc(8cqi - 1.5rem), 3.5rem);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: 0 !important;
+
       .header-wrapper {
         width: 100%;
 
@@ -146,9 +229,9 @@
       }
 
       .bottom-content {
-        flex-direction: column;
+        flex-direction: column !important;
 
-        .subHeader {
+        .description-column {
           width: 100%;
           margin-right: 0;
           position: static;
@@ -185,17 +268,14 @@
             max-width: 100%;
 
             .card-amount-container {
+              font-size: 3.5rem;
+
               .card-amount {
                 max-width: 80%;
-                font-size: 3.5rem;
               }
 
-              .card-icon {
+              .suffix-icon {
                 font-size: 2rem;
-              }
-
-              .card-amoun::after {
-                font-size: 1.5rem;
               }
             }
           }
@@ -209,7 +289,7 @@
   .container {
     .max-content {
       .bottom-content {
-        .subHeader {
+        .description-column {
           .button-content {
             .contact-button {
               &.button-full-width {
@@ -221,20 +301,21 @@
 
         .cards-container {
           .listed {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm)) var(--composer-gap-lg);
+
+            .card-text {
+              font-size: 1.25rem !important;
+            }
 
             .card-amount-container {
-              .card-icon {
-                font-size: 1.5rem;
-              }
+              font-size: 3rem;
 
               .card-amount {
-                font-size: 3rem;
                 max-width: 70%;
               }
 
-              .card-icon-after {
-                font-size: 1.5rem;
+              .suffix-icon {
+                font-size: 2rem;
               }
             }
           }
