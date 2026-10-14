@@ -276,6 +276,12 @@ class HeroSection23 extends BaseHeroSection {
     return "Hero Section 23";
   }
 
+  // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
+  subtitleBadgeClass(hasBackgroundMedia: boolean) {
+    if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
+    return `${this.decorateCSS("subtitle-badge")} ${Base.getViewType() === "monochrome" ? this.decorateCSS("subtitle-badge-monochrome") : ""}`;
+  }
+
   hasMedia(media?: unknown) {
     return !!(media && ((media as any).url || (media as any).name));
   }
@@ -422,7 +428,7 @@ class HeroSection23 extends BaseHeroSection {
                           <Base.VerticalContent className={`${this.decorateCSS("upper-content")} ${animateClass(isActive)}`}>
                             {logoExist && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
                             {subtitleExist && (
-                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(this.hasMedia(backgrounds.background1) || this.hasMedia(backgrounds.background2) || this.hasMedia(backgrounds.background3) || this.hasMedia(item.topMedia))}`}>{item.subtitle}</Base.SectionSubTitle>
                             )}
                             {titleExist && <Base.SectionTitle className={this.decorateCSS("upper-text")}>{item.title}</Base.SectionTitle>}
                           </Base.VerticalContent>

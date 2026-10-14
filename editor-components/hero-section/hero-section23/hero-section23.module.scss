@@ -594,3 +594,17 @@
     }
   }
 }
+
+// Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.
+.subtitle-badge {
+  width: fit-content;
+  padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
+  border-radius: var(--composer-border-radius-xl);
+  background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%);
+  color: var(--composer-primary-color) !important;
+
+  &.subtitle-badge-monochrome {
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+    color: var(--composer-font-color-primary) !important;
+  }
+}

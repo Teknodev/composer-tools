@@ -203,6 +203,12 @@ class HeroSection12 extends BaseHeroSection {
     return "Hero Section 12";
   }
 
+  // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
+  subtitleBadgeClass(hasBackgroundMedia: boolean) {
+    if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
+    return `${this.decorateCSS("subtitle-badge")} ${Base.getViewType() === "monochrome" ? this.decorateCSS("subtitle-badge-monochrome") : ""}`;
+  }
+
   hasMedia(media?: TypeMediaInputValue) {
     return !!(media && ((media as any).url || (media as any).name));
   }
@@ -238,7 +244,7 @@ class HeroSection12 extends BaseHeroSection {
               />
             )}
             {isSubtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("slider-item-subtitle")}>{item.subtitle}</Base.SectionSubTitle>
+              <Base.SectionSubTitle className={`${this.decorateCSS("slider-item-subtitle")} ${this.subtitleBadgeClass(hasImage)}`}>{item.subtitle}</Base.SectionSubTitle>
             )}
             {isTitleExist && (
               <ComposerLink path={item.url}>

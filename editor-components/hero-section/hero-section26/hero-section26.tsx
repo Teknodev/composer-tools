@@ -150,6 +150,12 @@ class HeroSection26 extends BaseHeroSection {
     return "Hero Section 26";
   }
 
+  // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
+  subtitleBadgeClass(hasBackgroundMedia: boolean) {
+    if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
+    return `${this.decorateCSS("subtitle-badge")} ${Base.getViewType() === "monochrome" ? this.decorateCSS("subtitle-badge-monochrome") : ""}`;
+  }
+
   hasMedia(media?: TypeMediaInputValue) {
     return !!(media && ((media as any).url || (media as any).name));
   }
@@ -240,7 +246,7 @@ class HeroSection26 extends BaseHeroSection {
                               />
                             )}
                              {subtitleExist && (
-                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(false)}`}>
                                 {item.subtitle}
                               </Base.SectionSubTitle>
                             )}
