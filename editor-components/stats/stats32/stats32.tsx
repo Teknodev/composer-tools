@@ -1,20 +1,28 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats32.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
+
 type StatItem = {
     prefix: string;
-    number: string;
+    prefixElement: React.JSX.Element;
+    value: string;
+    numberElement: JSX.Element;
     suffix: string;
+    suffixElement: React.JSX.Element;
     title: string;
-    titleElement: JSX.Element;
+    titleElement: React.JSX.Element;
     subtitle: string;
-    subtitleElement: JSX.Element;
+    subtitleElement: React.JSX.Element;
     description: string;
-    descriptionElement: JSX.Element;
+    descriptionElement: React.JSX.Element;
 };
 
 class Stats32 extends BaseStats {
@@ -22,24 +30,59 @@ class Stats32 extends BaseStats {
         super(props, styles);
 
         this.addProp({
+            type: "object",
+            key: "mediaGroup",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: ""
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Number of Completed Projects",
+            value: "Emerging converge with urban",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.",
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
 
         this.addProp({
@@ -53,10 +96,10 @@ class Stats32 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "500" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "stat_title", displayer: "Title", value: "Clip Editing" },
+                        { type: "string", key: "value", displayer: "Value", value: "90" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Work Progress" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
                         { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
@@ -66,23 +109,10 @@ class Stats32 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "75" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "stat_title", displayer: "Title", value: "Camera Work" },
-                        { type: "string", key: "stat_description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "980" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "stat_title", displayer: "Title", value: "Commercial Projects" },
+                        { type: "string", key: "value", displayer: "Value", value: "97" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+                        { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "Projects Done" },
+                        { type: "string", key: "stat_title", displayer: "Title", value: "" },
                         { type: "string", key: "stat_description", displayer: "Description", value: "" },
                     ],
                 },
@@ -90,177 +120,242 @@ class Stats32 extends BaseStats {
         });
 
         this.addProp({
-            type: "boolean",
-            key: "line",
-            displayer: "Line",
-            value: true,
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
+            max: 4,
         });
 
         this.addProp({
             type: "object",
-            key: "animation",
-            displayer: "Animation",
+            key: "settings",
+            displayer: "Settings",
             value: [
-                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                { type: "boolean", key: "shouldAnimate", displayer: "Animate Numbers", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
-            ],
-        });
     }
 
-    static getName(): string {
-        return "Stats 32";
-    }
-
-    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation, showDivider }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean; showDivider: boolean }) => {
-        const originalString = stat.number;
-        const targetNumber = parseFloat(originalString) || 0;
-
-        const formatNumber = (num: number): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
-        };
-
-        const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
-        const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
-
-        React.useEffect(() => {
-            if (!statsAnimation) {
-                setAnimatedNumber(targetNumber);
-                return;
-            }
-
-            const steps = animationDuration / 30;
-            let currentNumber = 0;
-            const increment = targetNumber / steps;
-
-            intervalRef.current = setInterval(() => {
-                currentNumber += increment;
-                if (currentNumber >= targetNumber) {
-                    currentNumber = targetNumber;
-                    clearInterval(intervalRef.current!);
-                }
-                setAnimatedNumber(currentNumber);
-            }, 30);
-
-            return () => {
-                if (intervalRef.current) {
-                    clearInterval(intervalRef.current);
-                }
-            };
-        }, [targetNumber, statsAnimation, animationDuration, originalString]);
-
-        const titleExist = this.castToString(stat.title);
-        const subtitleExist = this.castToString(stat.subtitle);
-        const descriptionExist = this.castToString(stat.description);
-        const valueExist = this.castToString(originalString);
-
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
-
-        return (
-            <div className={this.decorateCSS("stat-item")}>
-                <div className={this.decorateCSS("stat-row")}>
-                    <Base.VerticalContent className={this.decorateCSS("stat-info")}>
-                        {subtitleExist && (
-                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                                {stat.subtitleElement}
-                            </Base.H6>
-                        )}
-                        {titleExist && (
-                            <Base.H4 className={this.decorateCSS("stat-title")}>
-                                {stat.titleElement}
-                            </Base.H4>
-                        )}
-                        {descriptionExist && (
-                            <Base.P className={this.decorateCSS("stat-description")}>
-                                {stat.descriptionElement}
-                            </Base.P>
-                        )}
-                    </Base.VerticalContent>
-                    {(valueExist || stat.prefix || stat.suffix) && (
-                        <span className={this.decorateCSS("stat-value")}>
-                            {stat.prefix && (
-                                <span className={this.decorateCSS("stat-prefix")}>
-                                    {stat.prefix}
-                                </span>
-                            )}
-                            {valueExist && (
-                                <span className={this.decorateCSS("stat-number")}>
-                                    {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-                                </span>
-                            )}
-                            {stat.suffix && (
-                                <span className={this.decorateCSS("stat-suffix")}>
-                                    {stat.suffix}
-                                </span>
-                            )}
-                        </span>
-                    )}
-                </div>
-                {showDivider && <div className={this.decorateCSS("divider")} />}
-            </div>
-        );
-    };
+    static getName(): string { return "Stats 32"; }
 
     render() {
-        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-        const titleExist = this.castToString(this.getPropValue("title"));
-        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const title = this.castToString(this.getPropValue("title"));
+        const subtitle = this.castToString(this.getPropValue("subtitle"));
+        const description = this.castToString(this.getPropValue("description"));
+        const mediaGroup = this.castToObject<MediaGroup>("mediaGroup");
+        const media = mediaGroup.media;
+        const showOverlay = mediaGroup.overlay;
+        const statsRaw = this.castToObject<{ prefix: React.JSX.Element; value: React.JSX.Element; suffix: React.JSX.Element; stat_title: React.JSX.Element; stat_subtitle: React.JSX.Element; stat_description: React.JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
-        const showDivider = this.getPropValue("line") !== false;
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
+        const itemCount = this.getPropValue("itemCount") ?? 1;
+        const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; stat_title: JSX.Element; stat_subtitle: JSX.Element; stat_description: JSX.Element }[]>("stats");
-        const stats: StatItem[] = statsItems.map((item) => {
+        const statsItems: StatItem[] = statsRaw.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number);
+            const number = this.castToString(item.value) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.stat_title) || "";
             const subtitle = this.castToString(item.stat_subtitle) || "";
             const description = this.castToString(item.stat_description) || "";
-            return { prefix, number, suffix, title, titleElement: item.stat_title, subtitle, subtitleElement: item.stat_subtitle, description, descriptionElement: item.stat_description };
+
+            return {
+                prefix,
+                numberElement: item.value, prefixElement: item.prefix,
+                value: number,
+                suffix,
+                suffixElement: item.suffix,
+                title,
+                titleElement: item.stat_title,
+                subtitle,
+                subtitleElement: item.stat_subtitle,
+                description,
+                descriptionElement: item.stat_description,
+            };
+        }).filter(item => {
+            return item.value !== "" || item.title !== "" || item.subtitle !== "" || item.description !== "";
         });
 
-        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
-        const statsAnimation = !!animationProps?.statsAnimation;
-        const animationDuration = animationProps?.animationDuration || 2000;
+        const shouldAnimate = this.castToObject<any>("settings")?.shouldAnimate ?? true;
+        const animationDuration = (this.castToObject<any>("settings")?.animationDuration ?? 2000) as number;
+
+        const AnimatedStat = ({ stat }: { stat: StatItem }) => {
+            const ref = React.useRef<HTMLDivElement>(null);
+            const frameRef = React.useRef<number | null>(null);
+
+            const rawNumber = (this.castToString(stat.value) as string) || "";
+            const core = rawNumber;
+            const isNumeric = /\d/.test(core);
+            const target = isNumeric ? parseFloat(core.replace(/,/g, "")) : NaN;
+            const decimals = core.includes(".") ? core.split(".")[1]?.length ?? 0 : 0;
+            const useGrouping = /,/.test(core);
+            const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+            const animatable = shouldAnimate && isNumeric && !reduceMotion;
+
+            const format = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping });
+
+            const [display, setDisplay] = React.useState<string>(() => (rawNumber ? (animatable ? format(0) : rawNumber) : ""));
+            // Unrounded counter value; the progress bar follows it so it fills continuously instead of in rounded steps.
+            const [fill, setFill] = React.useState<number>(() => (animatable ? 0 : target));
+
+            React.useEffect(() => {
+                if (!rawNumber) {
+                    setDisplay("");
+                    setFill(0);
+                    return;
+                }
+                if (!animatable) {
+                    setDisplay(rawNumber);
+                    setFill(target);
+                    return;
+                }
+                const node = ref.current;
+                if (!node || typeof IntersectionObserver === "undefined") {
+                    setDisplay(rawNumber);
+                    setFill(target);
+                    return;
+                }
+                const clear = () => {
+                    if (frameRef.current !== null) {
+                        cancelAnimationFrame(frameRef.current);
+                        frameRef.current = null;
+                    }
+                };
+                const run = () => {
+                    clear();
+                    setDisplay(format(0));
+                    setFill(0);
+                    const start = performance.now();
+                    const tick = (now: number) => {
+                        const progress = Math.min(1, (now - start) / Math.max(1, animationDuration));
+                        if (progress >= 1) {
+                            frameRef.current = null;
+                            setDisplay(rawNumber);
+                            setFill(target);
+                            return;
+                        }
+                        const current = target * progress;
+                        setDisplay(format(current));
+                        setFill(current);
+                        frameRef.current = requestAnimationFrame(tick);
+                    };
+                    frameRef.current = requestAnimationFrame(tick);
+                };
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                run();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.4 }
+                );
+                observer.observe(node);
+                return () => {
+                    observer.disconnect();
+                    clear();
+                };
+            }, [rawNumber, animatable, animationDuration, target]);
+
+            const valueExist = rawNumber !== "";
+            const subtitleExist = this.castToString(stat.subtitle);
+            const titleExist = this.castToString(stat.title);
+            const descriptionExist = this.castToString(stat.description);
+
+            if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+
+            const progressWidth = isNumeric ? Math.min(100, Math.max(0, fill || 0)) : 0;
+
+            return (
+                <div ref={ref} className={this.decorateCSS("stat-item")}>
+                    <div className={this.decorateCSS("stat-header")}>
+                        <div className={this.decorateCSS("stat-info")}>
+                            {subtitleExist && (
+                                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                    {stat.subtitleElement}
+                                </Base.H6>
+                            )}
+                            {titleExist && (
+                                <Base.H5 className={this.decorateCSS("stat-title")}>
+                                    {stat.titleElement}
+                                </Base.H5>
+                            )}
+                        </div>
+                        {valueExist && (
+                            <div className={this.decorateCSS("stat-value-container")}>
+                                {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefixElement}</span>}
+                                <span className={this.decorateCSS("stat-value")}>{animatable ? display : stat.numberElement}</span>
+                                {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffixElement}</span>}
+                            </div>
+                        )}
+                    </div>
+                    {valueExist && (
+                        <div className={this.decorateCSS("progress-bar-container")}>
+                            <div
+                                className={this.decorateCSS("progress-bar-fill")}
+                                style={{ width: `${progressWidth}%` }}
+                            />
+                        </div>
+                    )}
+                    {descriptionExist && (
+                        <Base.P className={this.decorateCSS("stat-description")}>
+                            {stat.descriptionElement}
+                        </Base.P>
+                    )}
+                </div>
+            );
+        };
+
+        const titleExist = this.castToString(title);
+        const subtitleExist = this.castToString(subtitle);
+        const descriptionExist = this.castToString(description);
+        const mediaExist = !!media?.url;
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasValidButtons || statsItems.length > 0;
+        const fullWidth = !mediaExist;
+        const mediaFullWidth = mediaExist && !hasContent;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
-                        {hasLeftSection && (
-                            <Base.VerticalContent className={this.decorateCSS("left-column")}>
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
-                                {hasValidButtons && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.map(
-                                            (item: INPUTS.CastedButton, index: number) => {
+                    <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
+                        {!fullWidth && (
+                            <Base.GridCell className={`${this.decorateCSS("media-cell")} ${mediaFullWidth ? this.decorateCSS("full-width") : ""}`}>
+                                {showOverlay && <div className={this.decorateCSS("media-overlay")} />}
+                                <Base.Media value={media} className={this.decorateCSS("media")} />
+                            </Base.GridCell>
+                        )}
+                        {(!fullWidth || (fullWidth && hasContent)) && (
+                            <Base.GridCell
+                                className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""} ${alignment === "center" ? this.decorateCSS("center") : ""}`}
+                            >
+                                <Base.VerticalContent
+                                    className={`${this.decorateCSS("content-header")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}
+                                >
+                                    {subtitleExist && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                                            {this.getPropValue("subtitle")}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleExist && (
+                                        <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                                            {this.getPropValue("title")}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionExist && (
+                                        <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                                            {this.getPropValue("description")}
+                                        </Base.SectionDescription>
+                                    )}
+                                    {hasValidButtons && (
+                                        <div className={this.decorateCSS("button-container")}>
+                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                                 const buttonText = this.castToString(item.text);
-                                                if (!buttonText) return null;
+                                                const iconExist = item.icon && item.icon.name;
+                                                if (!buttonText && !iconExist) return null;
 
                                                 return (
                                                     <ComposerLink key={index} path={item.url}>
@@ -268,32 +363,27 @@ class Stats32 extends BaseStats {
                                                             buttonType={item.type}
                                                             className={this.decorateCSS("button")}
                                                         >
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {item.text}
-                                                            </Base.P>
+                                                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                                            {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={item.icon!} />}
                                                         </Base.Button>
                                                     </ComposerLink>
                                                 );
-                                            }
-                                        )}
+                                            })}
+                                        </div>
+                                    )}
+                                </Base.VerticalContent>
+                                {statsItems.length > 0 && (
+                                    <div className={this.decorateCSS("content-stats")}>
+                                        <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                            {statsItems.map((item, index) => (
+                                                <AnimatedStat key={index} stat={item} />
+                                            ))}
+                                        </Base.ListGrid>
                                     </div>
                                 )}
-                            </Base.VerticalContent>
+                            </Base.GridCell>
                         )}
-                        {stats.length > 0 && (
-                            <div className={this.decorateCSS("right-column")}>
-                                {stats.map((stat: StatItem, index: number) => (
-                                    <this.AnimatedStat
-                                        key={`stat32-${index}`}
-                                        stat={stat}
-                                        animationDuration={animationDuration}
-                                        statsAnimation={statsAnimation}
-                                        showDivider={showDivider}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    </Base.ContainerGrid>
                 </Base.MaxContent>
             </Base.Container>
         );

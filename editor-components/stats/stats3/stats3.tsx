@@ -1,18 +1,29 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Stat = {
+  icon?: TypeMediaInputValue | string;
+  prefix: React.JSX.Element;
+  value: React.JSX.Element;
+  suffix: React.JSX.Element;
+  stat_subtitle: React.JSX.Element;
+  stat_title: React.JSX.Element;
+  stat_description: React.JSX.Element;
+};
+
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
-      key: "subTitle",
-      displayer: "subTitle",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "ABOUT PERSONA",
     });
     this.addProp({
@@ -28,6 +39,7 @@ class Stats3Page extends BaseStats {
       value:
         "Nullam fermentum ullamcorper, diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.",
     });
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -37,123 +49,143 @@ class Stats3Page extends BaseStats {
       },
       value: [INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
     });
+
     this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Card Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "source",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
+
     this.addProp({
       type: "array",
-      key: "card-content",
-      displayer: "Card Content",
-      additionalParams: {
-        maxElementCount: 3,
-      },
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "FaMedal",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FaMedal" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "12 th",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Years Experience",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "12 th" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Years Experience" },
           ],
         },
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "GoPeople",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "FiUser" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "800 +",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Happy Clients",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "800 +" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Happy Clients" },
           ],
         },
         {
           type: "object",
-          key: "cards",
-          displayer: "Cards",
+          key: "stat",
+          displayer: "Stat",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "icon",
-              value: "BsHeartPulse",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["image", "icon"] },
+              value: { type: "icon", name: "BsHeartPulse" },
             },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "100 +",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Psycologist",
-            },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "value", displayer: "Value", value: "100 +" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+            { type: "string", key: "stat_subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "stat_title", displayer: "Title", value: "" },
+            { type: "string", key: "stat_description", displayer: "Description", value: "Psycologist" },
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "boolean",
-      key: "is_box_visible",
-      displayer: "is box visible",
-      value: true,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "isBoxVisible",
+          displayer: "Show Stats Box",
+          value: true,
+        },
+      ],
     });
   }
+
   static getName(): string {
     return "Stats 3";
   }
+
   render() {
-    const subtitle = this.castToString(this.getPropValue("subTitle"));
+    const alignment = Base.getContentAlignment();
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+
     const buttons = this.getPropValue("buttons");
-    const image = this.getPropValue("backgroundImage");
-    const cardContent = this.getPropValue("card-content");
-    const isBoxVisible = this.getPropValue("is_box_visible");
+    const media = this.castToObject<any>("media");
+    const image = (media?.source ?? null) as TypeMediaInputValue | null;
+    const imageExist = image?.url;
+    const showOverlay = media?.overlay;
+    const cardContent = this.getPropValue("stats") || [];
+
+    const settings = this.castToObject<any>("settings");
+    const isBoxVisible = settings?.isBoxVisible ?? true;
+
+    const mediaExists = (m?: TypeMediaInputValue | string) => (typeof m === "object" ? m?.name || m?.url : m);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("page")}>
+          <Base.ContainerGrid className={`${this.decorateCSS("page")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!image && this.decorateCSS("left-page-without-image")}`}>
-                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
+              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!imageExist ? this.decorateCSS("left-page-without-image") : ""}`}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
@@ -174,30 +206,44 @@ class Stats3Page extends BaseStats {
                 )}
               </Base.VerticalContent>
             )}
-            {(image || (cardContent.length > 0 && isBoxVisible)) && (
-              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!image && this.decorateCSS("right-container-without-image")}`}>
-                {image && <img src={this.getPropValue("backgroundImage")} alt="" className={this.decorateCSS("image")} />}
+            {(imageExist || (cardContent.length > 0 && isBoxVisible)) && (
+              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!imageExist ? this.decorateCSS("right-container-without-image") : ""}`}>
+                {imageExist && (
+                  <div className={this.decorateCSS("image-container")}>
+                    <Base.Media value={image} className={this.decorateCSS("image")} />
+                    {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
+                )}
                 {isBoxVisible && cardContent.length > 0 && (
-                  <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("card-container-without-image")}`}>
-                    <div className={this.decorateCSS("card")}>
-                      {this.castToObject<any>("card-content").map((item: any, index: number) => {
+                  <div className={`${this.decorateCSS("card-container")} ${!imageExist ? this.decorateCSS("card-container-without-image") : ""}`}>
+                    <Base.VerticalContent className={this.decorateCSS("card")}>
+                      {this.castToObject<Stat[]>("stats").map((item: Stat, index: number) => {
+                        const iconExist = mediaExists(item.icon);
+                        const prefixExist = this.castToString(item.prefix);
+                        const numberExist = this.castToString(item.value);
+                        const suffixExist = this.castToString(item.suffix);
+                        const subtitleExist = this.castToString(item.stat_subtitle);
+                        const titleExist = this.castToString(item.stat_title);
+                        const descriptionExist = this.castToString(item.stat_description);
+                        const hasValue = prefixExist || numberExist || suffixExist;
+                        if (!(iconExist || hasValue || subtitleExist || titleExist || descriptionExist)) return null;
                         return (
-                          <div className={this.decorateCSS("content")}>
-                            <div className={this.decorateCSS("inner-content")}>
-                              <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                <div className={this.decorateCSS("first-container")}>
-                                  <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                                  <Base.VerticalContent className={this.decorateCSS("text")}>
-                                    {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
-                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>}
-                                  </Base.VerticalContent>
-                                </div>
-                              </Base.VerticalContent>
-                            </div>
-                          </div>
+                          <Base.VerticalContent key={index} className={this.decorateCSS("content")}>
+                            {iconExist && <Base.Media value={typeof item.icon === "object" ? item.icon : { type: "icon", name: item.icon }} className={this.decorateCSS("icon")} />}
+                            {hasValue && (
+                              <Base.H4 className={this.decorateCSS("number")}>
+                                {prefixExist && <span className={this.decorateCSS("prefix")}>{item.prefix}</span>}
+                                {numberExist && <span className={this.decorateCSS("value")}>{item.value}</span>}
+                                {suffixExist && <span className={this.decorateCSS("suffix")}>{item.suffix}</span>}
+                              </Base.H4>
+                            )}
+                            {subtitleExist && <Base.P className={this.decorateCSS("stat-subtitle")}>{item.stat_subtitle}</Base.P>}
+                            {titleExist && <Base.H6 className={this.decorateCSS("stat-title")}>{item.stat_title}</Base.H6>}
+                            {descriptionExist && <Base.P className={this.decorateCSS("right-text")}>{item.stat_description}</Base.P>}
+                          </Base.VerticalContent>
                         );
                       })}
-                    </div>
+                    </Base.VerticalContent>
                   </div>
                 )}
               </Base.VerticalContent>

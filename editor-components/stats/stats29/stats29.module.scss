@@ -1,208 +1,180 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  .max-content {
-    .card {
-      .card-content {
+    .max-content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
 
-        .header-container {
-          .header-content {
-            flex: 1;
+        .header {
 
             .subtitle,
-            .title {
-              content: "";
+            .title,
+            .description {
+                content: "";
             }
 
             .button-container {
-              display: flex;
-              flex-wrap: wrap;
-              gap: var(--composer-gap-sm);
-
-              .button {
-                .button-text {
-                  content: "";
-                }
-              }
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                align-items: center;
             }
-          }
         }
 
-        &.center-alignment .header-container .header-content {
-          align-items: center;
-
-          .subtitle,
-          .title,
-          .description {
-            text-align: center;
-          }
-        }
-
-        .stats-grid {
-          gap: var(--composer-gap-lg);
-
-          .card-shell {
+        .content {
             display: flex;
             flex-direction: column;
+            gap: var(--composer-gap-lg);
 
-            > * {
-              flex: 1 1 auto;
-            }
-          }
+            .row {
+                gap: calc(var(--composer-gap-xl) * 2);
+                align-items: stretch;
 
-          .stat-item {
-            align-items: flex-start;
+                &.row-reverse {
+                    flex-direction: row-reverse;
+                }
 
-            .stat-value {
-              display: flex;
-              color: var(--composer-primary-color);
-              font-size: 12rem;
-              text-align: left;
+                .text-content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    flex: 1;
 
-              .stat-prefix,
-              .stat-number,
-              .stat-suffix {
-                color: inherit;
-                font-size: 12rem;
-              }
-            }
+                    .stat-value {
+                        font-size: 10rem;
+                        display: flex;
+                        align-items: baseline;
+                        color: var(--composer-font-color-primary);
 
-            .stat-subtitle,
-            .stat-title,
-            .stat-description {
-              text-align: left;
-            }
-            .stat-subtitle,
-            .stat-title {
-              color: var(--composer-font-color-primary);
-            }
-            .stat-title {
-              color: var(--composer-font-color-primary);
-            }
-            .stat-subtitle {
-              color: var(--composer-font-color-primary);
-            }
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
+                            font-weight: 800;
+                          }
+                    }
 
-            .stat-description {
-              color: var(--composer-font-color-primary) !important;
-            }
-          }
+                    .text-inner {
+                        align-items: flex-start;
+                        justify-content: center;
 
-          .card-shell:nth-child(even) > .stat-item {
-            .stat-value {
-              color: var(--composer-secondary-color);
-            }
+                        .stats-title,
+                        .stats-description,
+                        .stats-subtitle {
+                            text-align: left !important;
+                            margin-left: 0 !important;
+                            color: var(--composer-font-color-primary);
+                        }
 
-            .stat-subtitle,
-            .stat-title {
-              color: var(--composer-font-color-primary);
+                        .button-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--composer-gap-sm);
+                            width: 100%;
+                            align-items: center;
+
+                            .button {
+                              content: "";
+                                .button-text {
+                                    content: "";
+                                }
+
+                                .button-icon {
+                                    display: flex;
+                                    align-items: center;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .media-wrapper {
+                    position: relative;
+                    width: 100%;
+                    min-height: 400px;
+                    overflow: hidden;
+                    border-radius: var(--composer-border-radius-sm);
+
+                    .image {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    .media-overlay {
+                        position: absolute;
+                        inset: 0;
+                        background: var(--composer-overlay-color);
+                    }
+                }
             }
-            .stat-title {
-              color: var(--composer-font-color-primary);
-            }
-            .stat-subtitle {
-              color: var(--composer-font-color-primary);
-            }
-          }
         }
-      }
     }
-  }
+
+
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .card {
-        .card-content {
-          .header-container {
-            flex-direction: column;
-          }
+    .container .max-content .content {
+        .row {
+            flex-direction: row !important;
+            gap: var(--composer-gap-lg);
 
-          .stats-grid {
-            .stat-item {
-              .stat-value {
-                font-size: 9rem;
-
-                .stat-number,
-                .stat-prefix,
-                .stat-suffix {
-                  font-size: 9rem;
-                }
-              }
+            &.row-reverse {
+                flex-direction: row-reverse !important;
             }
-          }
+
+            .text-content,
+            .media-wrapper {
+                width: auto !important;
+            }
+
+            .text-content {
+                .stat-value {
+                    font-size: 8rem;
+                    font-weight: 800;
+                  }
+            }
+
+            .media-wrapper {
+                min-height: 300px;
+            }
         }
-      }
     }
-  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .card {
-        .card-content {
-          gap: var(--composer-gap-md);
+    .container .max-content .content {
+        gap: var(--composer-gap-lg);
 
-          .header-container {
-            flex-direction: column;
-
-            .header-content {
-              .description {
-                max-width: 100%;
-              }
-            }
-          }
-
-          .stats-grid {
+        .row {
+            flex-direction: column !important;
             gap: var(--composer-gap-md);
-            margin-top: var(--composer-gap-md);
 
-            .stat-item {
-              .stat-value {
-                font-size: 7rem;
+            &.row-reverse {
+                flex-direction: column !important;
+            }
 
-                .stat-number,
-                .stat-prefix,
-                .stat-suffix {
-                  font-size: 7rem;
+            .text-content {
+                .stat-value {
+                    font-size: 6rem;
+                    font-weight: 800;
+                  }
+
+                .text-inner {
+                    .stats-description {
+                        max-width: 100%;
+                    }
                 }
-              }
-
-              .stat-title {
-                font-size: 2rem !important;
-              }
-
-              .stat-description {
-                font-size: 1rem;
-              }
-            }
-          }
-
-          &.center-alignment .header-container .header-content .button-container {
-            justify-content: center;
-          }
-
-          &.center-alignment .stats-grid .stat-item {
-            align-items: center;
-
-            .stat-value {
-              text-align: center;
             }
 
-            .stat-subtitle,
-            .stat-title,
-            .stat-description {
-              text-align: center;
+            .media-wrapper {
+                content: "";
             }
-          }
         }
-      }
     }
-  }
 }

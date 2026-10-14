@@ -26,30 +26,52 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
-        .title-section {
+        .header {
+          width: 100%;
+          align-items: flex-start;
+
+          // Base centers the inline-block subtitle with auto margins; it stays left in every alignment.
+          .subtitle {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
+
           .main-title {
             font-size: 3rem;
             text-transform: uppercase;
-            margin: 0;
             text-align: left;
-            }
           }
         }
+      }
 
         .content-section {
           display: flex;
           gap: var(--composer-gap-lg);
 
           .image-container {
-            width: 270px;
-            height:350px;
+            position: relative;
+            width: 245px;
+            height: auto;
+            align-self: flex-start;
             flex-shrink: 0;
 
             .content-image {
-              aspect-ratio: 10/11;
-              border-radius: var(--composer-border-radius-lg);
+              display: block;
+              width: 100%;
+              height: auto;
+              aspect-ratio: 245/260;
+              border-radius: var(--composer-border-radius-sm);
               overflow: hidden;
               object-fit: cover;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              z-index: 1;
+              border-radius: var(--composer-border-radius-sm);
+              background-color: var(--composer-overlay-color);
             }
           }
 
@@ -66,24 +88,17 @@
               text-align: left;
             }
 
-            .button-wrapper {
-              .more-button {
-                padding: var(--composer-gap-sm) 0;
-                display: inline-flex;
-                align-items: center;
-                gap: var(--composer-gap-xs);
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
 
+              .button {
                 .button-text {
-                  font-size: 1rem;
-                  text-transform: uppercase;
+                  content: "";
                 }
 
                 .button-icon {
-                  font-size: 1.5rem;
-                  color: var(--composer-font-color-primary);
-                }
-
-                &:hover {
                   color: var(--composer-primary-color);
                 }
               }
@@ -108,7 +123,7 @@
             line-height: 0.8;
 
             .stat-number {
-              font-size: 10rem;
+              font-size: 8.5rem;
               font-weight: 800;
               margin: 0;
               color: var(--composer-html-background);
@@ -118,8 +133,18 @@
                 stroke:var(--composer-primary-color);
             }
 
+            .stat-prefix {
+              font-size: 7rem;
+              font-weight: 800;
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
+            }
+
             .stat-suffix {
-              font-size: 8rem;
+              font-size: 7rem;
               font-weight: 800;
               color: var(--composer-html-background);
                 -webkit-text-stroke-width: 2px;
@@ -129,14 +154,34 @@
             }
           }
 
+          .stat-subtitle,
+          .stat-title,
           .stat-description {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin: 0;
-            margin-top:-1.5rem;
             background-color: var(--composer-html-background);
-            padding-top: var(--composer-gap-sm);
             text-align: left;
+          }
+
+          .stat-number-container + .stat-subtitle,
+          .stat-number-container + .stat-title,
+          .stat-number-container + .stat-description {
+            margin-top: -1.5rem;
+            padding-top: var(--composer-gap-sm);
+          }
+
+          .stat-subtitle {
+            font-size: 1.1rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          .stat-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+          }
+
+          .stat-description {
+            font-size: 1.25rem;
           }
         }
       }
@@ -153,18 +198,20 @@
           .stat-item {
             .stat-number-container {
               .stat-number {
-                font-size: 7rem;
+                font-size: 6rem;
               }
+              .stat-prefix,
               .stat-suffix {
-                font-size: 5rem;
+                font-size: 4.5rem;
               }
             }
           }
         }
         .main-content {
           gap: var(--composer-gap-xl);
+          align-items: center;
           .left-content {
-            .title-section {
+            .header {
               .main-title {
                 font-size: 2.25rem;
               }
@@ -174,20 +221,10 @@
               gap: var(--composer-gap-md);
               .image-container {
                 width: 200px;
-                height: auto;
-                .content-image {
-                  width: 200px;
-                  height: auto;
-                }
               }
               .text-content {
                 .description {
                   margin: 0 0 var(--composer-gap-md) 0;
-                }
-                .button-wrapper {
-                  .more-button {
-                    padding: var(--composer-gap-sm);
-                  }
                 }
               }
             }
@@ -214,7 +251,7 @@
         }
         .left-content {
           gap: var(--composer-gap-lg);
-          .title-section {
+          .header {
             .main-title {
               font-size: 2.5rem;
               line-height: 0.9;
@@ -225,8 +262,8 @@
             flex-direction: column;
 
             .image-container {
-              height: auto;
-              width: auto;
+              width: 245px;
+              max-width: 100%;
             }
 
             .text-content {
@@ -235,16 +272,8 @@
                 margin-bottom: 0;
               }
 
-              .button-wrapper {
-                .more-button {
-                  font-size: 1rem;
-                  padding: 0;
-                  margin-top: var(--composer-gap-md);
-
-                  .button-icon {
-                    font-size: 1rem;
-                  }
-                }
+              .button-container {
+                margin-top: var(--composer-gap-md);
               }
             }
           }
@@ -261,18 +290,45 @@
               justify-content: flex-start;
 
               .stat-number {
-                font-size: 6rem;
+                font-size: 5rem;
                 -webkit-text-stroke-width: 2px;
               }
 
+              .stat-prefix,
               .stat-suffix {
-                font-size: 4rem;
+                font-size: 3.5rem;
                 -webkit-text-stroke-width: 2px;
               }
             }
             .stat-description{
               font-size: 1rem !important;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+// The editor gives every third section an alternate color-mix background (utils/bg-audit.ts, blinkpage-alt-section-bg).
+// The outlined numbers are filled and the texts cover them with the section background, so both follow that color too.
+.container:global(.blinkpage-alt-section-bg) {
+  .max-content {
+    .main-content {
+      .stats-section {
+        .stat-item {
+          .stat-number-container {
+            .stat-number,
+            .stat-prefix,
+            .stat-suffix {
+              color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
+            }
+          }
+
+          .stat-subtitle,
+          .stat-title,
+          .stat-description {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 8%);
           }
         }
       }
