@@ -376,3 +376,20 @@
     color: var(--composer-font-color-primary) !important;
   }
 }
+
+// Same values as Base's Line subtitle (base.module.scss), drawn in the subtitle's own text color.
+.subtitle-line {
+  position: relative;
+  transform: translateX(3rem);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2px;
+    background-color: currentColor;
+  }
+}

@@ -103,8 +103,10 @@
             border-radius: var(--composer-border-radius-md);
           }
 
+          // Card items stay left-aligned in every alignment (center theme would center the Vertical Content items).
           .card-content {
             width: 100%;
+            align-items: flex-start !important;
           }
 
           .logo {
@@ -131,6 +133,9 @@
           }
           .subtitle {
             max-width: 100%;
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
           }
           .title {
             max-width: 100%;

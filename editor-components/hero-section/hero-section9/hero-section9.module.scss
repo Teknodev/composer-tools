@@ -91,6 +91,11 @@
         display: flex;
         justify-content: center;
 
+        .subtitle,
+        .title {
+          color: var(--composer-font-color-primary);
+        }
+
         .tabText {
           color: var(--composer-font-color-primary);
           font-size: 2.5rem;
@@ -285,6 +290,23 @@
             padding: 0;
             max-height: unset !important;
             width: 100%;
+
+            // Header texts are always centered on phone; the Line subtitle's line is not drawn there.
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .subtitle {
+              transform: none !important;
+
+              &::before {
+                display: none !important;
+              }
+            }
 
             .tabText {
               font-size: 1.5rem !important;

@@ -6,6 +6,17 @@
 
 .wrapper.type-3 {
   .text-container {
+    // Slide type 3 is laid out centered, so its subtitle is centered too and the Line subtitle's line is not drawn.
+    .subtitle {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+      transform: none !important;
+
+      &::before {
+        display: none !important;
+      }
+    }
     .description-with-line {
       flex-direction: column !important;
       width: 100% !important;
@@ -730,14 +741,20 @@
               color: #fff;
             }
 
+            // Everything is centered on phone, so the Line subtitle's line is not drawn.
             .subtitle {
               position: relative !important;
               top: 0 !important;
               opacity: 1 !important;
               text-align: center;
               color: #fff;
-              margin-left: 0 !important;
-            
+              margin-left: auto !important;
+              margin-right: auto !important;
+              transform: none !important;
+
+              &::before {
+                display: none !important;
+              }
             }
 
             .description {

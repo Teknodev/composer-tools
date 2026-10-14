@@ -166,6 +166,12 @@ class HeroSection28 extends BaseHeroSection {
     return "Hero Section 28";
   }
 
+  // The root is not a Base.Container, so Base's Line subtitle look never reaches the subtitle; apply it here for left alignment.
+  subtitleLineClass() {
+    if (Base.getSectionSubTitleType() !== "line" || Base.getContentAlignment() !== "left") return "";
+    return this.decorateCSS("subtitle-line");
+  }
+
   // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
   subtitleBadgeClass(hasBackgroundMedia: boolean) {
     if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
@@ -278,7 +284,7 @@ class HeroSection28 extends BaseHeroSection {
                     )}
                     {isSubtitleExist && (
                       <Base.SectionSubTitle
-                        className={`${this.decorateCSS("tag")} ${imageClass} ${isLineActive ? this.decorateCSS("hasLine") : ""} ${this.subtitleBadgeClass(hasImage)}`}
+                        className={`${this.decorateCSS("tag")} ${imageClass} ${isLineActive ? this.decorateCSS("hasLine") : ""} ${this.subtitleBadgeClass(hasImage)} ${this.subtitleLineClass()}`}
                       >
                         {item.subtitle}
                       </Base.SectionSubTitle>

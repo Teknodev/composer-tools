@@ -109,7 +109,7 @@ class HeroSection9 extends BaseHeroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Selected Works",
+      value: "",
     });
     this.addProp({
       type: "string",
