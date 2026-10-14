@@ -2622,14 +2622,14 @@ class Navbar3 extends BaseNavigator {
             )}
             <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
+              <div className={this.decorateCSS("menuToggle")} onClick={() => this.handleCloseMenu()}>
                 <Base.Media
                   value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("closeIcon")}
                 />
               </div>
             ) : (
-              <div onClick={() => this.handleOpenMenu()}>
+              <div className={this.decorateCSS("menuToggle")} onClick={() => this.handleOpenMenu()}>
                 <Base.Media
                   value={navigationIcons?.hamburgerIcon}
                   className={this.decorateCSS("hamburgerIcon")}

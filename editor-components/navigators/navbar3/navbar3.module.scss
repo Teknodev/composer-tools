@@ -139,6 +139,13 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-md);
+
+      // Flex wrapper so the menu/close icon is centered on the same line as the social icons.
+      .menuToggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     .mobileIcons {
@@ -152,7 +159,11 @@
         justify-content: center;
         font-size: calc(1.125 * var(--composer-font-size-md));
 
+        // Flex so the glyph is centered in its box instead of sitting on the text baseline (it lined up higher than the menu icon).
         .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           color: var(--composer-tertiary-color);
         }
       }
@@ -381,15 +392,6 @@
             }
           }
 
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--composer-primary-color);
-            transition: all 0.3s ease;
-          }
           &:hover{
             .subdropdown {
               opacity: 1;
@@ -397,12 +399,9 @@
               transform: translateX(0);
             }
           }
-          &.animation2{
-            &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
-              }
-            }  
+          // The hover underline sits under the title text only (see .dropdownItemTitle::after), not across the row.
+          &.animation2:hover > .dropdownItem .dropdownItemTitle::after {
+            width: 100%;
           }
           .rightIcon {
             font-size: calc(1.5 * var(--composer-font-size-md));
@@ -440,21 +439,18 @@
                   font-weight: bold;
                 }
               }
-              &.animation2{
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
-                  }
-                }  
+              &.animation2:hover .dropdownItemTitle::after {
+                width: 100%;
               }
-              &::after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                width: 0;
-                height: 1px;
-                background-color: var(--composer-primary-color);
-                transition: all 0.3s ease;
+
+              // Same size as the first-level items (the shared title class is otherwise only sized inside .dropdownItem).
+              .dropdownItemTitle {
+                margin: 0;
+                width: auto;
+                white-space: nowrap;
+                font-size: calc(0.75 * var(--composer-font-size-md));
+                font-weight: inherit;
+                color: var(--composer-font-color-primary);
               }
             }
           }
@@ -720,12 +716,12 @@
 
   .smallDeviceNavbarContainer {
     .maxContent {
-      // The menu glyph fills about 75% of its box, so its box is larger to look as big as the social icons.
+      // The menu glyph fills about 75% of its box and is thin, so its box is larger to look as big as the social icons.
       .hamburgerIcon,
       .closeIcon {
-        font-size: calc(1.5 * var(--composer-font-size-md));
-        width: 24px;
-        height: 24px;
+        font-size: calc(1.625 * var(--composer-font-size-md));
+        width: 26px;
+        height: 26px;
       }
     }
   }
@@ -761,9 +757,9 @@
     .maxContent {
       .hamburgerIcon,
       .closeIcon {
-        font-size: calc(1.3125 * var(--composer-font-size-md));
-        width: 21px;
-        height: 21px;
+        font-size: calc(1.4375 * var(--composer-font-size-md));
+        width: 23px;
+        height: 23px;
       }
     }
   }
@@ -776,15 +772,34 @@
   gap: var(--composer-gap-xs);
 }
 
+// Hover underline of dropdown items: only as wide as the title text, like the original.
+.dropdown .dropdownItemTitle {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: var(--composer-primary-color);
+    transition: width 0.3s ease;
+  }
+}
+
 .badge {
   margin: 0;
   width: fit-content;
   flex: none;
-  padding: 1px var(--composer-gap-xs) !important;
+  // Original size: 11px label on a 14px line with 1px of top padding (about 33x15).
+  padding: 1px calc(var(--composer-gap-xs) - 1px) 0 !important;
   border-radius: var(--composer-border-radius-sm);
   background-color: var(--composer-primary-color);
   color: var(--composer-font-color-secondary);
   font-size: calc(0.6875 * var(--composer-font-size-md)) !important;
+  font-weight: 500;
+  line-height: 14px !important;
   text-transform: uppercase;
   white-space: nowrap;
 
