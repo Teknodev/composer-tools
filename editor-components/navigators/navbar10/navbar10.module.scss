@@ -60,11 +60,7 @@
           border-bottom: 3px solid transparent;
           transition: border-color 0.3s ease;
           min-height: 70px;
-          
-          &:hover {
-            border-bottom-color: var(--composer-primary-color);
-          }
-          
+
           &.active {
             border-bottom-color: var(--composer-primary-color);
           }
@@ -74,6 +70,7 @@
           font-weight: normal;
           transition: all 0.4s ease;
           font-weight: 500;
+          font-size: calc(0.875 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           &.animation1 {
             &:hover {
@@ -95,17 +92,19 @@
           }
         }
 
+        // The panel spans the whole navbar width (100cqw of the navbar container), centered on it.
         .dropdown {
           position: absolute;
           top: 100%;
-          width: 100%;
+          width: 100cqw;
           margin: auto;
-          right: 0px;
-          left: 0px;
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           justify-content: space-evenly;
           background-color: var(--composer-html-background);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: 0;
           z-index: 100;
           overflow: hidden;
           max-height: 0;
@@ -124,13 +123,14 @@
           .dropdownGrid {
             margin: auto;
           }
+            // Content starts where the navbar content starts (navbar padding or centered content width).
             .dropdownContentContainer {
               display: flex;
               align-items: stretch;
               width: 100%;
-              padding: 0px 0px 0px var(--composer-gap-lg);
+              padding: 0 0 0 max(var(--composer-gap-xl), calc((100cqw - var(--composer-content-width)) / 2));
               margin: auto;
-              gap: var(--composer-gap-sm);
+              gap: 0px;
               opacity: 0;
               transition: opacity 0.5s ease;
             }
@@ -142,22 +142,31 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs)) 0px var(--composer-gap-md) 0px;
           }
 
             .dropdownRightColumn {
               display: flex;
               flex-direction: column;
               width: 430px;
-              gap: var(--composer-gap-sm);
+              gap: var(--composer-gap-xs);
+              padding: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs)) 0px var(--composer-gap-md) 0px;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               min-height: 100%;
               border-radius: var(--composer-border-radius-sm);
               align-self: stretch;
+            
+              .dropdownItem {
+                padding: 0px var(--composer-gap-xl);
+                .DropdownSectionItemContainer {
+                  margin-bottom: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
+                }
+              }
             }
 
           .dropdownItem {
-            padding: var(--composer-gap-sm) var(--composer-gap-lg) var(--composer-gap-sm) var(--composer-gap-lg);
+            padding: 0px var(--composer-gap-md) 0px 0px;
             transition: all 0.4s ease;
             border-radius: var(--composer-border-radius-sm);
             position: relative;
@@ -167,8 +176,10 @@
               justify-content: space-between;
               color: var(--composer-tertiary-color);
               text-transform: capitalize;
-              margin-bottom: var(--composer-gap-sm);
-              margin-top: var(--composer-gap-sm);
+              font-size: calc(0.75 * var(--composer-font-size-md));
+              min-height: 1lh;
+              margin-bottom: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
+              margin-top: 0px;
               transition: all 0.4s ease;
               padding: 0 var(--composer-gap-xs);
               &.animation1 {
@@ -208,6 +219,7 @@
             }
             .DropdownSectionItemDescription {
               color: var(--composer-tertiary-color);
+              font-size: calc(0.875 * var(--composer-font-size-md));
               transition: all 0.4s ease;
               &.animation1 {
                 &:hover {
@@ -269,7 +281,7 @@
               &:hover{
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
                 transition: 0.4s;
-                padding-left: 10px;
+                padding-left: calc(var(--composer-gap-xs) + var(--composer-gap-sm));
                 border-radius: var(--composer-border-radius-sm);
                 
                 .DropdownSectionItemTitle {
@@ -474,8 +486,9 @@
               overflow-y: hidden;
               transition: all 0.3s ease;
 
+              // Large enough for the longest submenu (Platform with its image), so nothing is cut off.
               &.active {
-                max-height: 1000px;
+                max-height: 5000px;
                 transition: all 1s ease;
               }
 
@@ -762,9 +775,13 @@
       z-index: 101;
         .leftSection {
          .pcNavbar {
-           display: flex;
-           gap: var(--composer-gap-sm);
-           
+           display: none;
+           gap: var(--composer-gap-md);
+
+           .menuItemTitle {
+             white-space: nowrap;
+           }
+
            .menuItemContainer {
              .dropdown {
                .dropdownRightColumn {
@@ -786,15 +803,23 @@
         }
         .buttons {
           display: flex !important;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           gap: var(--composer-gap-xs);
-          max-width: 300px;
           justify-content: flex-end;
           margin: var(--composer-gap-sm) 0;
+
+          .button {
+            white-space: nowrap;
+          }
+
+          // As in the original, only the main call-to-action stays next to the menu button on tablet.
+          > *:not(:last-child) {
+            display: none;
+          }
         }
         .hamburgerIcon,
         .closeIcon {
-          display: none !important;
+          display: flex !important;
         }
       }
 
@@ -805,9 +830,49 @@
       }
     }
 
+    // As in the original: the opened menu fills the screen below the navbar, buttons at the bottom,
+    // and the header call-to-action steps aside while it is open.
     .hamburgerNav {
-      display: none;
+      display: flex;
+      flex-direction: column;
       background-color: var(--composer-html-background);
+      height: calc(100vh - 100%);
+
+      &.active {
+        max-height: calc(100vh - 100%);
+      }
+
+      .hamburgerNavContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .hamburgerNavMaxContent {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          .hamburgerButtons {
+            margin-top: auto;
+          }
+        }
+      }
+
+      .hamburgerMenuItemHeader {
+        padding: var(--composer-gap-sm) 0;
+      }
+
+      .hamburgerMenu .hamburgerMenuItem {
+        margin-bottom: var(--composer-gap-sm);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &.hamburgerActive .rightSide .buttons {
+      display: none !important;
     }
 
     &.filledBackground {
@@ -820,21 +885,33 @@
       font-size: 1.5rem;
       font-weight: bold;
     }
+    .hamburgerMenuItemHeader > .hamburgerMenuItemTitle {
+      font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+    }
+    .hamburgerSubmenu.active {
+      padding-top: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+    }
     .hamburgerCategoryTitle {
       display: flex;
       justify-content: space-between;
       color: var(--composer-tertiary-color);
+      font-size: calc(0.75 * var(--composer-font-size-md)) !important;
+      margin: 0 0 var(--composer-gap-sm) 0;
     }
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
-      margin-bottom: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-lg);
       font-weight: bold;
+    }
+    .hamburgerCategoryItems {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
     }
       .hamburgerCategoryItemTitle {
        color: var(--composer-font-color-primary);
        font-weight: bold;
-       font-size: 1rem;
+       font-size: var(--composer-font-size-md) !important;
        display: flex;
        justify-content: space-between;
        align-items: center;
@@ -919,7 +996,7 @@
           padding: var(--composer-gap-sm) 0;
           cursor: pointer;
           position: relative;
-          margin-bottom: var(--composer-gap-sm);
+          margin-bottom: 0;
         }
       }
     }
@@ -929,25 +1006,9 @@
       font-weight: bold;
     }
     .hamburgerCategoryTitle {
-      display: flex;
-      justify-content: space-between;
       cursor: pointer;
-      margin: 0;
-      font-size: 1rem;
-    }
-    .hamburgerCategorySection {
-      color: var(--composer-font-color-primary);
-      font-size: 1rem;
-      margin-bottom: calc(var(--composer-gap-sm) * 3);
-      font-weight: bold;
     }
     .hamburgerCategoryItemTitle {
-      color: var(--composer-font-color-primary);
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1rem;
       cursor: pointer;
     }
     .DropdownSectionItemIcon {
@@ -960,6 +1021,46 @@
         width: 100%;
         height: auto;
       }
+    }
+  }
+}
+
+.dropdownCategoryImage {
+  position: relative;
+}
+
+.categoryImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--composer-overlay-color);
+  pointer-events: none;
+}
+
+// Mobile, like the original: the main call-to-action (last button) stays next to the menu button as a compact
+// button, also while the menu is open, and the opened menu itself holds no buttons.
+@container (max-width: #{$composer-phone-width}) {
+  .navbarContainer {
+    .maxContent .rightSide .buttons,
+    &.hamburgerActive .rightSide .buttons {
+      display: flex !important;
+      margin: 0;
+
+      .button {
+        min-height: 0;
+        padding: var(--composer-gap-xs) var(--composer-gap-sm);
+
+        .buttonText {
+          font-size: calc(0.8125 * var(--composer-font-size-md)) !important;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .hamburgerNav .hamburgerButtons {
+      display: none !important;
     }
   }
 }

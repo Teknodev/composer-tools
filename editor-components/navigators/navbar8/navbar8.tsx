@@ -133,8 +133,8 @@ class Navbar8 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
-          value: true,
+          displayer: "Language",
+          value: false,
         },
         {
           type: "boolean",
@@ -173,7 +173,7 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "itemList",
-      displayer: "Item List",
+      displayer: "Menu",
       value: [
         {
           type: "object",
@@ -286,7 +286,7 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "array",
       key: "socialMediaLinks",
-      displayer: "Social Media Items",
+      displayer: "Social Media",
       value: [
         {
           type: "object",
@@ -442,13 +442,10 @@ class Navbar8 extends BaseNavigator {
 
     const isScrolled = this.getComponentState("isScrolled");
     const isStickyTransparent = position === "Sticky Transparent";
-    const isStickyColorful = position === "Sticky Colorful"
-    const isDefault = position === "Default"
     const isAbsolute = position === "Absolute";
     const transparentBackground = isAbsolute || (isStickyTransparent && !isScrolled);
-    const colorfullBackground = isStickyColorful || isDefault;
     const currentLogo =
-      ((colorfullBackground && backgroundChange) || (transparentBackground && !backgroundChange))
+      transparentBackground && !backgroundChange
         ? { image: absoluteLogo.absoluteLogo_image, navigateTo: absoluteLogo.absoluteLogo_navigateTo }
         : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
@@ -615,10 +612,10 @@ class Navbar8 extends BaseNavigator {
                             key={index}
                             onClick={() => this.setComponentState("isMenuOpen", false)}
                           >
-                            <ComposerLink path={item.url}>
+                            <ComposerLink path={item.item_url}>
                               <div className={`${this.decorateCSS("socialMediaIconContainer")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
                               <Base.Media
-                                value={item.icon}
+                                value={item.item_icon}
                                 className={this.decorateCSS("socialMediaIcon")}
                               />
                               </div>
