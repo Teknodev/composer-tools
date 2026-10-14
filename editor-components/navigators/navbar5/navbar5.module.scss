@@ -171,8 +171,9 @@
       min-width: 0;
 
       // Scales with the panel width and the screen height, so the title stays inside its own area above the line.
+      // Upper limit; the component shrinks it further when the text would not fit its area (fitMenuTexts).
       .title {
-        overflow-wrap: anywhere;
+        overflow-wrap: normal;
         font-size: min(12.5rem, 11cqw, calc((100vh - 330px) / 3.6));
         color: var(--composer-tertiary-color);
         line-height: normal;
@@ -193,8 +194,9 @@
         flex-direction: column;
         align-items: flex-start;
 
+        // Kept on one line (no mid-word breaks); the component shrinks the size when an item would not fit.
         .item-title {
-          overflow-wrap: anywhere;
+          white-space: nowrap;
           color: var(--composer-font-color-primary);
           opacity: 0;
           transform: translateY(-100px);

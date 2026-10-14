@@ -29,6 +29,62 @@ interface Bottom {
 }
 
 class Navbar5 extends BaseNavigator {
+  upObserver: ResizeObserver | null = null;
+  upElement: HTMLDivElement | null = null;
+
+  // The menu panel's upper area changes with the screen size and the texts are editable, so fixed font sizes
+  // made the title overflow its area and broke menu items mid-word. Each is shrunk (never enlarged) until it fits.
+  setUpRef = (el: HTMLDivElement | null) => {
+    this.upObserver?.disconnect();
+    this.upObserver = null;
+    this.upElement = el;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    this.upObserver = new ResizeObserver(() => this.fitMenuTexts());
+    this.upObserver.observe(el);
+    Array.from(el.children).forEach((child) => this.upObserver?.observe(child));
+    this.fitMenuTexts();
+  };
+
+  fitFontSize(elements: HTMLElement[], fits: () => boolean) {
+    if (elements.length === 0) return;
+    // "important" so the fitted size also wins over the !important tablet/phone sizes.
+    const apply = (size: string) => elements.forEach((element) => element.style.setProperty("font-size", size, size ? "important" : ""));
+    apply("");
+    if (fits()) return;
+    const max = parseFloat(getComputedStyle(elements[0]).fontSize);
+    let low = 12;
+    let high = max;
+    for (let step = 0; step < 12; step++) {
+      const middle = (low + high) / 2;
+      apply(`${middle}px`);
+      if (fits()) low = middle;
+      else high = middle;
+    }
+    apply(`${low}px`);
+  }
+
+  fitMenuTexts() {
+    const up = this.upElement;
+    if (!up || up.clientHeight === 0) return;
+    const first = (name: string) => this.decorateCSS(name).split(" ")[0];
+    const leftPage = up.querySelector<HTMLElement>(`.${first("leftPage")}`);
+    const title = leftPage?.querySelector<HTMLElement>(`.${first("title")}`);
+    if (leftPage && title && leftPage.clientWidth > 0) {
+      this.fitFontSize([title], () => title.scrollWidth <= title.clientWidth + 1 && title.getBoundingClientRect().height <= up.clientHeight);
+    }
+    const rightPage = up.querySelector<HTMLElement>(`.${first("rightPage")}`);
+    const items = rightPage?.querySelector<HTMLElement>(`.${first("items")}`);
+    const itemTitles = items ? Array.from(items.querySelectorAll<HTMLElement>(`.${first("item-title")}`)) : [];
+    if (rightPage && items && itemTitles.length > 0 && rightPage.clientWidth > 0) {
+      this.fitFontSize(itemTitles, () => itemTitles.every((item) => item.scrollWidth <= rightPage.clientWidth + 1) && items.getBoundingClientRect().height <= up.clientHeight);
+    }
+  }
+
+  componentWillUnmount() {
+    this.upObserver?.disconnect();
+    this.upObserver = null;
+  }
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -604,7 +660,7 @@ class Navbar5 extends BaseNavigator {
 
         <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
           {upExist && (
-            <div className={this.decorateCSS("up")}>
+            <div className={this.decorateCSS("up")} ref={this.setUpRef}>
               {titleExist && (
                 <div className={this.decorateCSS("leftPage")}>
                   <Base.H1 className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>{this.getPropValue("title")}</Base.H1>

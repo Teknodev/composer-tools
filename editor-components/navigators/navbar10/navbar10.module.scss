@@ -1039,8 +1039,28 @@
   pointer-events: none;
 }
 
+// Mobile, like the original: the main call-to-action (last button) stays next to the menu button as a compact
+// button, also while the menu is open, and the opened menu itself holds no buttons.
 @container (max-width: #{$composer-phone-width}) {
-  .navbarContainer .maxContent .rightSide .buttons {
-    display: none !important;
+  .navbarContainer {
+    .maxContent .rightSide .buttons,
+    &.hamburgerActive .rightSide .buttons {
+      display: flex !important;
+      margin: 0;
+
+      .button {
+        min-height: 0;
+        padding: var(--composer-gap-xs) var(--composer-gap-sm);
+
+        .buttonText {
+          font-size: calc(0.8125 * var(--composer-font-size-md)) !important;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .hamburgerNav .hamburgerButtons {
+      display: none !important;
+    }
   }
 }

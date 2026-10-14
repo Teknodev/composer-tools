@@ -75,24 +75,21 @@
           transition: all 0.3s ease;
           object-fit: cover;
         }
-        &.animation3{
-          &:hover{
-            .menuItemTitle{
-              color: var(--composer-primary-color);
-              &::after{
-                width: 100%;
-              }  
+        // Like the original: on hover (or keyboard focus) the title turns Primary with a Primary underline under
+        // the text, the arrow turns Primary too and stays in place (no rotation).
+        &:hover,
+        &:focus-within {
+          .menuItemTitle {
+            color: var(--composer-primary-color);
+            &::after {
+              width: 100%;
             }
-            .dropdownIcon {
+          }
+          .dropdownIcon {
             color: var(--composer-primary-color);
           }
         }
-      }
         &:hover {
-          .dropdownIcon {
-            transform: rotate(180deg);
-          }
-
           .dropdown,
           .megaMenu {
             opacity: 1;
@@ -556,14 +553,13 @@
         flex-direction: column;
 
         .hamburgerMenuItem {
-          &.animation3 {
-            &.active {
-              .hamburgerMenuItemTitle {
-                color: var(--composer-primary-color);
-              }
-              .dropdownIcon {
-                color: var(--composer-primary-color);
-              }
+          // An opened (clicked) menu title is shown in Primary, as on desktop hover.
+          &.active > .hamburgerMenuItemHeader {
+            .hamburgerMenuItemTitle {
+              color: var(--composer-primary-color);
+            }
+            .dropdownIcon {
+              color: var(--composer-primary-color);
             }
           }
           .hamburgerMenuItemHeader {
