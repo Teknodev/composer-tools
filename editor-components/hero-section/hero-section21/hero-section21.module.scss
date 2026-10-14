@@ -244,6 +244,8 @@
           align-self: stretch;
           max-width: 100%;
           min-height: 300px;
+          // Original mobile block proportion (360x465); it still grows with longer card text.
+          aspect-ratio: 360 / 465;
           margin-top: 0;
           .button {
             position: absolute;
