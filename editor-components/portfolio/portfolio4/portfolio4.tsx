@@ -333,7 +333,7 @@ class Portfolio4 extends BasePortfolio {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: Math.min(slidesToShow, 2),
+            slidesToShow: Math.min(slidesToShow, 3),
           },
         },
         {
