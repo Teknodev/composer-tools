@@ -269,8 +269,16 @@
             width: 320px;
             max-width: 100%;
 
+            // Close icon: same size and corner spacing as the other gallery lightboxes on phones
             .close-button {
-              right: 0;
+              top: calc(var(--composer-gap-sm) * 1.5);
+              right: calc(var(--composer-gap-sm) * 1.5);
+
+              .close-icon {
+                width: 1.25rem;
+                height: 1.25rem;
+                font-size: 1.25rem;
+              }
             }
           }
         }

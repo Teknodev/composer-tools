@@ -135,7 +135,10 @@
                                 align-items: center;
                                 justify-content: center;
 
+                                // Shrinks to the letters (line box trimmed to cap height) so the badge's flex centering puts them in the middle.
                                 .badge-text {
+                                    width: auto;
+                                    text-box: trim-both cap alphabetic;
                                     writing-mode: vertical-rl;
                                     transform: rotate(180deg);
                                     height: 100%;
