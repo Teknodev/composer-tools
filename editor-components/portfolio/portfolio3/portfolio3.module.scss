@@ -146,12 +146,21 @@
               pointer-events: none;
 
               .content-inner {
-                content: "";
+                width: 100%;
+                min-width: 0;
+                align-items: flex-start;
               }
 
               .item-subtitle,
               .item-title,
               .item-description {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: left;
+                justify-content: flex-start;
+                align-self: flex-start;
+                overflow-wrap: anywhere;
                 color: var(--composer-font-color-primary);
               }
 
@@ -159,10 +168,15 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
+                justify-content: flex-start;
+                align-self: flex-start;
+                width: 100%;
                 gap: var(--composer-gap-sm);
                 pointer-events: auto;
 
                 .button {
+                  max-width: 100%;
+
                   .button-text {
                     content: "";
                   }
