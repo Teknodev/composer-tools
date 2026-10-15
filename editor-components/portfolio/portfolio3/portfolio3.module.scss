@@ -6,24 +6,34 @@
     flex-direction: column;
     gap: var(--composer-gap-xl);
 
+    // Container is full width for the slider; the header keeps Base.Container's side padding (60/50/30px)
+    // and the theme content width, so it lines up with non-full components.
+    // Buttons sit on the bottom line of the text block (title, or description when there is one).
     .header {
+      --header-side-padding: 60px;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
       gap: var(--composer-gap-md);
       width: 100%;
-      padding: 0 5%;
+      max-width: calc(var(--composer-content-width) + 2 * var(--header-side-padding));
+      margin: 0 auto;
+      padding: 0 var(--header-side-padding);
       box-sizing: border-box;
 
+      // Header stays left-aligned for every content alignment
       .header-content {
         flex: 1 1 0;
         min-width: 0;
+        align-items: flex-start;
 
         .subtitle,
         .title,
         .description {
-          content: "";
+          margin-left: 0;
+          margin-right: 0;
+          text-align: left;
         }
       }
 
@@ -44,22 +54,6 @@
             height: 1.25rem;
             object-fit: contain;
           }
-        }
-      }
-    }
-
-    &.center {
-      .header {
-        flex-direction: column;
-        justify-content: center;
-
-        .header-content {
-          flex: none;
-          width: 100%;
-        }
-
-        .button-container {
-          justify-content: center;
         }
       }
     }
@@ -291,12 +285,20 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content {
     gap: var(--composer-gap-lg);
+
+    .header {
+      --header-side-padding: 50px;
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
     gap: calc(var(--composer-gap-md) * 1.25);
+
+    .header {
+      --header-side-padding: 30px;
+    }
 
     .slider-wrapper {
       .carousel {
