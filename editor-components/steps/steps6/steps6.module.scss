@@ -1,0 +1,292 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .header {
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      // Buttons sit right below the description
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-top: var(--composer-gap-sm);
+      }
+    }
+
+    .button {
+      max-width: 100%;
+
+      .button-text,
+      .button-icon {
+        content: "";
+      }
+    }
+
+    // Horizontal tabs above the active step's card.
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
+      width: 100%;
+
+      .tab-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: var(--composer-gap-xs);
+
+        .tab {
+          padding: calc(var(--composer-gap-sm) * 1.35) var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-sm);
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          .tab-title {
+            width: auto;
+            margin: 0 !important;
+            white-space: nowrap;
+            color: var(--composer-tertiary-color);
+            transition: color 0.3s ease;
+          }
+
+          &:hover .tab-title {
+            color: var(--composer-font-color-primary);
+          }
+
+          &.active {
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.05);
+
+            .tab-title {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+
+      .sections {
+        width: 100%;
+
+        .section {
+          display: none;
+
+          &.active {
+            display: block;
+          }
+
+          // The accordion header only shows on phones.
+          .section-header {
+            display: none;
+          }
+        }
+      }
+
+      // The card keeps its content left-aligned whatever the theme alignment is.
+      .card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: calc(var(--composer-gap-xl) * 1.2) calc(var(--composer-gap-xl) * 1.9);
+        border-radius: var(--composer-border-radius-md);
+        background-color: rgba(var(--composer-font-color-primary-rgb), 0.05);
+
+        .card-content {
+          width: 80%;
+          min-width: 0;
+          align-items: flex-start;
+
+          .step-subtitle,
+          .step-title,
+          .step-description,
+          .step-bottom-description,
+          .list-text {
+            width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+            align-self: flex-start;
+            overflow-wrap: anywhere;
+          }
+
+          .step-subtitle {
+            color: var(--composer-tertiary-color);
+          }
+
+          .step-title {
+            color: var(--composer-font-color-primary);
+          }
+
+          .step-description,
+          .step-bottom-description {
+            color: var(--composer-font-color-primary);
+          }
+
+          .list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+            padding-left: var(--composer-gap-md);
+            box-sizing: border-box;
+
+            .list-item {
+              display: flex;
+              align-items: flex-start;
+              gap: var(--composer-gap-sm);
+
+              // Icons and images share the same small bullet size, centred on the first text line.
+              .list-icon {
+                flex-shrink: 0;
+                margin-top: 0.65em;
+                width: 0.75rem;
+                height: 0.75rem;
+                font-size: 0.75rem;
+                object-fit: contain;
+                color: var(--composer-font-color-primary);
+              }
+
+              .list-text {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+
+          .card-button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-self: flex-start;
+            width: 100%;
+            gap: var(--composer-gap-sm);
+
+            .button {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.center {
+      .steps .tab-list {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .steps {
+        gap: var(--composer-gap-lg);
+
+        .tab-list .tab .tab-title,
+        .card .card-content .step-description,
+        .card .card-content .step-bottom-description,
+        .card .card-content .list-text {
+          font-size: var(--composer-font-size-md) !important;
+        }
+
+        .card {
+          padding: var(--composer-gap-xl) var(--composer-gap-lg);
+
+          .card-content {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Phone: the tabs turn into an accordion, every step opens under its own header.
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .steps {
+        .tab-list {
+          display: none;
+        }
+
+        .sections {
+          border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+          .section {
+            display: block;
+            border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+            .section-header {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: var(--composer-gap-sm);
+              padding: calc(var(--composer-gap-md) * 0.85) 0;
+              cursor: pointer;
+
+              .section-title {
+                width: auto;
+                margin: 0 !important;
+                font-size: var(--composer-font-size-md) !important;
+                color: var(--composer-font-color-primary);
+              }
+
+              // Icons and images share the standard icon size.
+              .accordion-icon {
+                flex-shrink: 0;
+                width: 1.25rem;
+                height: 1.25rem;
+                font-size: 1.25rem;
+                object-fit: contain;
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .card {
+              display: none;
+              margin-bottom: var(--composer-gap-md);
+              padding: var(--composer-gap-lg) var(--composer-gap-md);
+            }
+
+            &.open {
+              .section-header {
+                .section-title,
+                .accordion-icon {
+                  color: var(--composer-primary-color);
+                }
+              }
+
+              .card {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+
+      &.center .steps .sections .section .section-header {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .steps.no-mobile-line .sections {
+    border-bottom: none;
+
+    .section {
+      border-top: none;
+    }
+  }
+}
