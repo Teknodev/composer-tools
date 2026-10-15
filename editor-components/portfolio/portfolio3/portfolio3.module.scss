@@ -1,0 +1,332 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    // Container is full width for the slider; the header keeps Base.Container's side padding (60/50/30px)
+    // and the theme content width, so it lines up with non-full components.
+    // Buttons sit on the bottom line of the text block (title, or description when there is one).
+    .header {
+      --header-side-padding: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--composer-gap-md);
+      width: 100%;
+      max-width: calc(var(--composer-content-width) + 2 * var(--header-side-padding));
+      margin: 0 auto;
+      padding: 0 var(--header-side-padding);
+      box-sizing: border-box;
+
+      // Header stays left-aligned for every content alignment
+      .header-content {
+        flex: 1 1 0;
+        min-width: 0;
+        align-items: flex-start;
+
+        .subtitle,
+        .title,
+        .description {
+          margin-left: 0;
+          margin-right: 0;
+          text-align: left;
+        }
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
+
+          .button-icon {
+            font-size: 1.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+
+      .carousel {
+        width: 100%;
+
+        :global(.slick-track) {
+          display: flex;
+        }
+
+        :global(.slick-slide) {
+          height: auto;
+
+          > div {
+            height: 100%;
+          }
+        }
+
+        .slide {
+          height: 100%;
+          padding: 0 calc(var(--composer-gap-sm) * 1.25);
+          box-sizing: border-box;
+
+          .item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-sm);
+
+            &.has-media {
+              aspect-ratio: 1 / 1;
+            }
+
+            .media-wrapper {
+              position: absolute;
+              inset: 0;
+
+              .media {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.35s ease;
+              }
+            }
+
+            .base-overlay {
+              position: absolute;
+              inset: 0;
+              background-color: var(--composer-overlay-color);
+              pointer-events: none;
+            }
+
+            .hover-overlay {
+              position: absolute;
+              inset: 0;
+              background-color: var(--composer-overlay-color);
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity 0.35s ease;
+            }
+
+            .item-link {
+              position: absolute;
+              inset: 0;
+              z-index: 1;
+            }
+
+            .content {
+              position: relative;
+              z-index: 2;
+              width: 100%;
+              box-sizing: border-box;
+              padding: var(--composer-gap-md) 0;
+              pointer-events: none;
+
+              .content-inner {
+                width: 100%;
+                min-width: 0;
+                align-items: flex-start;
+              }
+
+              .item-subtitle,
+              .item-title,
+              .item-description {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: left;
+                justify-content: flex-start;
+                align-self: flex-start;
+                overflow-wrap: anywhere;
+                color: var(--composer-font-color-primary);
+              }
+
+              .item-button-container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                align-self: flex-start;
+                width: 100%;
+                gap: var(--composer-gap-sm);
+                pointer-events: auto;
+
+                .button {
+                  max-width: 100%;
+
+                  .button-text {
+                    content: "";
+                  }
+
+                  .button-icon {
+                    font-size: 1.25rem;
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    object-fit: contain;
+                  }
+                }
+              }
+            }
+
+            &.has-media .content {
+              padding: calc(var(--composer-gap-xl) * 1.25) calc(var(--composer-gap-md) * 1.5) calc(var(--composer-gap-md) * 1.25);
+
+              .item-subtitle,
+              .item-title,
+              .item-description {
+                color: white;
+              }
+
+              &.media-overlay {
+                background: linear-gradient(transparent, var(--composer-overlay-color));
+              }
+            }
+
+            &[data-animation~="animate1"]:hover .media-wrapper .media {
+              transform: scale(1.1);
+            }
+
+            &[data-animation~="animate2"]:hover .hover-overlay {
+              opacity: 1;
+            }
+          }
+        }
+
+        .dots {
+          display: flex !important;
+          justify-content: center;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          list-style: none;
+          margin: calc(var(--composer-gap-md) * 1.5) 0 0;
+          padding: 0;
+
+          li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            height: auto;
+            margin: 0;
+            cursor: pointer;
+
+            .dot {
+              width: 0.5rem;
+              height: 0.5rem;
+              border-radius: var(--composer-border-radius-full);
+              background-color: var(--composer-font-color-primary);
+              border: var(--composer-border-width-sm) solid transparent;
+              opacity: 0.3;
+              box-sizing: content-box;
+              transition: opacity var(--composer-transition-duration-fast) ease;
+            }
+
+            &:global(.slick-active) .dot {
+              background-color: transparent;
+              border-color: var(--composer-primary-color);
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: var(--composer-border-radius-full);
+        background-color: var(--composer-html-background);
+        color: var(--composer-font-color-primary);
+        box-shadow: var(--composer-box-shadow-sm);
+        transform: translateY(-50%);
+        cursor: pointer;
+
+        &.prev-arrow {
+          left: var(--composer-gap-md);
+        }
+
+        &.next-arrow {
+          right: var(--composer-gap-md);
+        }
+
+        .arrow-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content {
+    gap: var(--composer-gap-lg);
+
+    .header {
+      --header-side-padding: 50px;
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content {
+    gap: calc(var(--composer-gap-md) * 1.25);
+
+    .header {
+      --header-side-padding: 30px;
+    }
+
+    .slider-wrapper {
+      .carousel {
+        .slide {
+          padding: 0;
+
+          .item {
+            border-radius: 0;
+          }
+        }
+
+        .dots {
+          margin-top: calc(var(--composer-gap-md) * 1.25);
+        }
+      }
+
+      .arrow {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        &.prev-arrow {
+          left: var(--composer-gap-sm);
+        }
+
+        &.next-arrow {
+          right: var(--composer-gap-sm);
+        }
+      }
+    }
+  }
+}
