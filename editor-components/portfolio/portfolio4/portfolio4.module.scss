@@ -1,15 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-// Like the original, the section ends right after the images: no bottom padding,
-// and no top padding either when the header is empty. Repeated class to outrank Base.Container's full-width padding.
-.container.container.container {
-  padding-bottom: 0 !important;
-
-  &.no-header {
-    padding-top: 0 !important;
-  }
-}
-
 .container {
   .max-content {
     display: flex;
@@ -18,16 +8,15 @@
 
     .header {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
       gap: var(--composer-gap-md);
       width: 100%;
       padding: 0 5%;
       box-sizing: border-box;
 
       .header-content {
-        flex: 1 1 0;
+        width: 100%;
         min-width: 0;
 
         .subtitle,
@@ -60,13 +49,7 @@
 
     &.center {
       .header {
-        flex-direction: column;
-        justify-content: center;
-
-        .header-content {
-          flex: none;
-          width: 100%;
-        }
+        align-items: center;
 
         .button-container {
           justify-content: center;
@@ -77,8 +60,6 @@
     .slider-wrapper {
       position: relative;
       width: 100%;
-      padding: calc(var(--composer-gap-xs) * 1.2);
-      box-sizing: border-box;
 
       .carousel {
         width: 100%;
@@ -158,12 +139,21 @@
               pointer-events: none;
 
               .content-inner {
-                content: "";
+                width: 100%;
+                min-width: 0;
+                align-items: flex-start;
               }
 
               .item-subtitle,
               .item-title,
               .item-description {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: left;
+                justify-content: flex-start;
+                align-self: flex-start;
+                overflow-wrap: anywhere;
                 color: var(--composer-font-color-primary);
               }
 
@@ -171,10 +161,16 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
+                justify-content: flex-start;
+                align-self: flex-start;
+                width: 100%;
                 gap: var(--composer-gap-sm);
                 pointer-events: auto;
 
                 .button {
+                  max-width: 100%;
+                  margin-top: 0;
+
                   .button-text {
                     content: "";
                   }

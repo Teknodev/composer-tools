@@ -347,7 +347,7 @@ class Portfolio4 extends BasePortfolio {
     };
 
     return (
-      <Base.Container isFull={true} className={`${this.decorateCSS("container")} ${!hasHeader ? this.decorateCSS("no-header") : ""}`}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
           {hasHeader && (
             <div className={this.decorateCSS("header")}>
