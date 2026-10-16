@@ -95,10 +95,10 @@
                   width: 60%;
                   transition-delay: 0.2s;
                   text-align: center;
-                  color: #93646a;
 
-                  &.title-no-image {
-                    color: var(--composer-font-color-primary);
+                  // Without a background image the title color comes from Base (View Type).
+                  &:not(.title-no-image) {
+                    color: #93646a;
                   }
 
                   &.active {

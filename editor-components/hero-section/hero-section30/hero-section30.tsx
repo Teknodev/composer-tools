@@ -147,7 +147,7 @@ class HeroSection30 extends BaseHeroSection {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!hasBackground ? this.decorateCSS("withoutVideoContainer") : ""}`}
+        className={`${this.decorateCSS("container")} ${!hasBackground ? this.decorateCSS("withoutVideoContainer") : ""} ${!hasBackground && Base.getViewType() === "colorful" ? this.decorateCSS("colorful-text") : ""}`}
       >
         {hasBackground && (
           <>

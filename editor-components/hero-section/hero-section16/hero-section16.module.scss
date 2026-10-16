@@ -120,16 +120,15 @@
           }
         }
 
+        // Without a background image the subtitle and title colors are left to Base, so the View Type
+        // (Colorful: primary, Monochrome: font color) applies; white is only for text over the image.
         .subtitle {
           font-size: 1.5rem !important;
-          color: white;
           text-align: center;
           width: fit-content;
-          &.subtitle-no-image {
-            color: var(--composer-font-color-primary);
-          }
           // Over the background image the subtitle is plain text; the Badge look only applies without an image.
           &:not(.subtitle-no-image) {
+            color: white;
             background: transparent !important;
             padding: 0 !important;
             border-radius: 0 !important;
@@ -138,11 +137,10 @@
 
         .title {
           font-size: 4rem !important;
-          color: white;
           text-align: center;
           width: fit-content;
-          &.title-no-image {
-            color: var(--composer-font-color-primary);
+          &:not(.title-no-image) {
+            color: white;
           }
         }
 

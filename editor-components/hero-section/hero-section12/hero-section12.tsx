@@ -203,6 +203,12 @@ class HeroSection12 extends BaseHeroSection {
     return "Hero Section 12";
   }
 
+  // The root is not Base.Container, so Base's Colorful View Type (primary title/subtitle) never reaches this component;
+  // on a plain background it is applied here. Over background media the text keeps its own color.
+  colorfulTextClass(overMedia: boolean) {
+    return !overMedia && Base.getViewType() === "colorful" ? this.decorateCSS("colorful-text") : "";
+  }
+
   // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
   subtitleBadgeClass(hasBackgroundMedia: boolean) {
     if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
@@ -244,11 +250,11 @@ class HeroSection12 extends BaseHeroSection {
               />
             )}
             {isSubtitleExist && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("slider-item-subtitle")} ${this.subtitleBadgeClass(hasImage)}`}>{item.subtitle}</Base.SectionSubTitle>
+              <Base.SectionSubTitle className={`${this.decorateCSS("slider-item-subtitle")} ${this.subtitleBadgeClass(hasImage)} ${this.colorfulTextClass(hasImage)}`}>{item.subtitle}</Base.SectionSubTitle>
             )}
             {isTitleExist && (
               <ComposerLink path={item.url}>
-                <Base.SectionTitle className={this.decorateCSS("slider-item-text")}>{item.title}</Base.SectionTitle>
+                <Base.SectionTitle className={`${this.decorateCSS("slider-item-text")} ${this.colorfulTextClass(hasImage)}`}>{item.title}</Base.SectionTitle>
               </ComposerLink>
             )}
             {isDescriptionExist && (

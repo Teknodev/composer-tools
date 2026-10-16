@@ -201,6 +201,12 @@ class HeroSection9 extends BaseHeroSection {
       : media;
   }
 
+  // The root is not Base.Container, so Base's Colorful View Type (primary title/subtitle) never reaches this component;
+  // on a plain background it is applied here. Over background media the text keeps its own color.
+  colorfulTextClass(overMedia: boolean) {
+    return !overMedia && Base.getViewType() === "colorful" ? this.decorateCSS("colorful-text") : "";
+  }
+
   // The root is not Base.Container, so Base's Badge look never reaches the subtitle; it is added here.
   // The subtitle never sits over background media in this component, so Badge is always available.
   subtitleBadgeClass() {
@@ -267,8 +273,8 @@ class HeroSection9 extends BaseHeroSection {
                 className={`${this.decorateCSS("tab-buttons")} ${noTabs ? this.decorateCSS("no-tabs") : ""}`}
               >
                 {hasLogo && <Base.Media value={logo} className={this.decorateCSS("logo")} />}
-                {isSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass()} ${this.subtitleLineClass()}`}>{subtitle}</Base.SectionSubTitle>}
-                {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {isSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass()} ${this.subtitleLineClass()} ${this.colorfulTextClass(false)}`}>{subtitle}</Base.SectionSubTitle>}
+                {isTitleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.colorfulTextClass(false)}`}>{title}</Base.SectionTitle>}
                 {isDescriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
                 )}

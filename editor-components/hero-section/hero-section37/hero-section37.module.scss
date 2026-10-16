@@ -93,9 +93,13 @@
 
         .subtitle,
         .description {
-          color: var(--color-white);
           text-align: left;
           margin: 0;
+        }
+
+        .description,
+        .subtitle.on-media {
+          color: white;
         }
 
         .description {
@@ -255,11 +259,14 @@
             width: max-content;
             font-size: 6rem;
             margin: 0;
-            color: inherit;
             text-transform: inherit;
 
-            &.active {
-              color: var(--color-white);
+            &:not(.active) {
+              color: inherit;
+            }
+
+            &.active.on-media {
+              color: white;
             }
           }
         }

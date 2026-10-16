@@ -131,8 +131,14 @@
         }
       }
       .tag, .title, .description {
-        color: white;
         text-align: left;
+      }
+
+      // White only over a background image; without one the subtitle and title colors come from the View Type (Base).
+      &:not(.no-image) {
+        .tag, .title, .description {
+          color: white;
+        }
       }
 
       // The subtitle stays left in every alignment (Base centers the inline-block with auto margins).
@@ -149,9 +155,8 @@
       }
 
       &.no-image {
-        .tag, .title, .description {
+        .description {
           color: var(--composer-font-color-primary);
-          text-align: left;
         }
       }
     

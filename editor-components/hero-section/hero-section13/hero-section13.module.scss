@@ -69,10 +69,20 @@
         .subtitle,
         .title,
         .description {
-          color: white;
           text-align: left !important;
           margin-left: 0 !important;
           margin-right: auto !important;
+        }
+        .description {
+          color: white;
+        }
+      }
+
+      // White only over the slide image; without it the subtitle and title colors come from the View Type (Base).
+      .content:not(.imageless) .header {
+        .subtitle,
+        .title {
+          color: white;
         }
       }
 
@@ -116,8 +126,6 @@
       .imageless {
         .header {
           .logo,
-          .subtitle,
-          .title,
           .description {
             color: var(--composer-font-color-primary);
           }

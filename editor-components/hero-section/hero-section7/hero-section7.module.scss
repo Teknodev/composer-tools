@@ -60,8 +60,7 @@
             font-size: 3rem;
             color: var(--composer-font-color-primary);
           }
-          .subtitle,
-          .title,
+          // Subtitle and title colors come from the View Type (Base: Colorful primary, Monochrome font color).
           .description {
             color: var(--composer-font-color-primary);
           }

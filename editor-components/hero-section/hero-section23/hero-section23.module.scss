@@ -595,6 +595,20 @@
   }
 }
 
+// Plain background (see plainTextClass); the Badge rule below keeps its own colors.
+.plain-text {
+  color: var(--composer-font-color-primary) !important;
+
+  &.colorful-text {
+    color: var(--composer-primary-color) !important;
+  }
+}
+
+// Plain background: Base's description color instead of the white used over media.
+.plain-description {
+  color: var(--composer-tertiary-color) !important;
+}
+
 // Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.
 .subtitle-badge {
   width: fit-content;

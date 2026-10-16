@@ -191,6 +191,24 @@
 }
 }
 
+// With an image (as in Feature 7): the image runs to the right edge, while the text starts where the
+// content of a normal section starts (Base.Container side padding, or the Content Width gutter when wider)
+// and takes a third of the content width. 100cqw is this container's full width, as it has no padding.
+.container:not(.no-background-image) {
+  .box {
+    flex: 0 0 calc(max(60px, (100cqw - var(--composer-content-width)) / 2) + (100cqw - 2 * max(60px, (100cqw - var(--composer-content-width)) / 2)) / 3);
+    min-width: 0;
+
+    .max-content .content {
+      padding-left: max(60px, calc((100cqw - var(--composer-content-width)) / 2));
+    }
+  }
+
+  .right {
+    flex: 1;
+  }
+}
+
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     flex-direction: row;
@@ -213,7 +231,6 @@
     }
 
     .right{
-      flex: 2;
       position: relative;
       overflow: visible;
       .icon-box {
@@ -228,6 +245,31 @@
           height: 25px;
           object-fit: contain;
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container:not(.no-background-image) {
+    .box {
+      flex-basis: calc(50px + (100cqw - 100px) / 3);
+
+      .max-content .content {
+        padding-left: 50px;
+      }
+    }
+  }
+}
+
+// Phone stacks the image above the text, so the column width above no longer applies.
+@container (max-width: #{$composer-phone-width}) {
+  .container:not(.no-background-image) {
+    .box {
+      flex: 1;
+
+      .max-content .content {
+        padding-left: var(--composer-gap-md);
       }
     }
   }

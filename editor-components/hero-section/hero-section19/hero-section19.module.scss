@@ -43,12 +43,6 @@
               content: "";
             }
           }
-
-          &.no-bg-img {
-            .title {
-              color: var(--composer-font-color-primary);
-            }
-          }
         }
       }
     }
@@ -78,12 +72,6 @@
           .background-image {
             border-radius: var(--composer-border-radius-md);
           }
-
-          .no-bg-img {
-            .title {
-              color: var(--composer-font-color-primary);
-            }
-          }
         }
       }
 
@@ -101,12 +89,6 @@
 
           .background-image {
             border-radius: var(--composer-border-radius-md);
-          }
-
-          .no-bg-img {
-            .title {
-              color: var(--composer-font-color-primary);
-            }
           }
         }
       }
@@ -185,25 +167,27 @@
           font-size: 2rem;
           color: var(--composer-font-color-primary);
         }
-        // Same color as the card title: black over the media, Font Color Primary without it.
+        // Black over the media; without it the subtitle and title colors come from Base (View Type).
         .subtitle {
           margin-left: 0;
           font-size: 1rem;
-          color: black;
           overflow: hidden;
         }
 
         .title {
           font-size: 2rem;
           overflow: hidden;
-          color: black;
         }
         .description {
           color: black;
         }
-        &.no-bg-img {
+        &:not(.no-bg-img) {
           .subtitle,
-          .title,
+          .title {
+            color: black;
+          }
+        }
+        &.no-bg-img {
           .description {
             color: var(--composer-font-color-primary);
           }

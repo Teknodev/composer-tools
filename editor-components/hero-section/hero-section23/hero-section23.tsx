@@ -276,6 +276,13 @@ class HeroSection23 extends BaseHeroSection {
     return "Hero Section 23";
   }
 
+  // The subtitle and title are white only over background media; on a plain background they take the font color,
+  // or primary with the Colorful View Type (Base's rule cannot reach them, the root is not Base.Container).
+  plainTextClass(overMedia: boolean) {
+    if (overMedia) return "";
+    return `${this.decorateCSS("plain-text")} ${Base.getViewType() === "colorful" ? this.decorateCSS("colorful-text") : ""}`;
+  }
+
   // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
   subtitleBadgeClass(hasBackgroundMedia: boolean) {
     if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
@@ -369,6 +376,7 @@ class HeroSection23 extends BaseHeroSection {
                     : "rgba(186, 226, 255, 0.8)";
                 const colors = this.getColorVariations(baseColor);
                 const backgrounds = item.backgrounds || ({} as Backgrounds);
+                const textOverMedia = this.hasMedia(backgrounds.background1) || this.hasMedia(backgrounds.background2) || this.hasMedia(backgrounds.background3) || this.hasMedia(item.topMedia);
                 const logoExist = this.hasMedia(item.logo);
                 const subtitleExist = this.castToString(item.subtitle);
                 const titleExist = this.castToString(item.title);
@@ -428,9 +436,9 @@ class HeroSection23 extends BaseHeroSection {
                           <Base.VerticalContent className={`${this.decorateCSS("upper-content")} ${animateClass(isActive)}`}>
                             {logoExist && <Base.Media value={item.logo} className={this.decorateCSS("logo")} />}
                             {subtitleExist && (
-                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(this.hasMedia(backgrounds.background1) || this.hasMedia(backgrounds.background2) || this.hasMedia(backgrounds.background3) || this.hasMedia(item.topMedia))}`}>{item.subtitle}</Base.SectionSubTitle>
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(textOverMedia)} ${this.plainTextClass(textOverMedia)}`}>{item.subtitle}</Base.SectionSubTitle>
                             )}
-                            {titleExist && <Base.SectionTitle className={this.decorateCSS("upper-text")}>{item.title}</Base.SectionTitle>}
+                            {titleExist && <Base.SectionTitle className={`${this.decorateCSS("upper-text")} ${this.plainTextClass(textOverMedia)}`}>{item.title}</Base.SectionTitle>}
                           </Base.VerticalContent>
                         </div>
                       )}
@@ -438,9 +446,9 @@ class HeroSection23 extends BaseHeroSection {
                       {(secondaryTitleExist || descriptionExist) && (
                         <div className={this.decorateCSS("header23-wrapper-lowerText")}>
                           <Base.VerticalContent className={`${this.decorateCSS("lower-content")} ${animateClass(isActive)}`}>
-                            {secondaryTitleExist && <Base.H1 className={this.decorateCSS("lower-text")}>{item.secondaryTitle}</Base.H1>}
+                            {secondaryTitleExist && <Base.H1 className={`${this.decorateCSS("lower-text")} ${this.plainTextClass(textOverMedia)}`}>{item.secondaryTitle}</Base.H1>}
                             {descriptionExist && (
-                              <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
+                              <Base.SectionDescription className={`${this.decorateCSS("description")} ${!textOverMedia ? this.decorateCSS("plain-description") : ""}`}>{item.description}</Base.SectionDescription>
                             )}
                           </Base.VerticalContent>
                         </div>

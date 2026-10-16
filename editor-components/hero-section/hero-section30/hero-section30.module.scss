@@ -6,12 +6,24 @@
   overflow: hidden;
   color: white;
 
+  // The first title (Section Title) takes the white only over the background media.
+  &:not(.withoutVideoContainer) .first-title {
+    color: inherit;
+  }
+
   &.withoutVideoContainer {
     color: var(--composer-font-color-primary);
 
     .second-title {
       -webkit-text-stroke-color: var(--composer-font-color-primary) !important;
       stroke: var(--composer-font-color-primary) !important;
+    }
+
+    // Second Title takes the View Type color on both its fill and stroke, like Section Title.
+    &.colorful-text .second-title {
+      color: var(--composer-primary-color) !important;
+      -webkit-text-stroke-color: var(--composer-primary-color) !important;
+      stroke: var(--composer-primary-color) !important;
     }
   }
 
@@ -76,11 +88,12 @@
           }
         }
 
+        // White only over the background media; without it the View Type (Base) colors the subtitle and first title.
         .subtitle {
-          color: white;
           width: fit-content;
         }
         .subtitle-transparent {
+          color: white;
           background: transparent !important;
           padding: 0;
         }
@@ -91,7 +104,10 @@
       .titles {
         font-size: 12.5rem;
         margin: 0;
-        color: inherit;
+
+        &:not(.first-title) {
+          color: inherit;
+        }
       }
 
       .first-title {

@@ -224,19 +224,16 @@
                 width: fit-content !important;
                 max-height: 100%;
                 margin: 0px;
-                color: white;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                // Over the background media the vertical subtitle stays plain text; the Badge look only applies without it.
+                // Over the background media the vertical subtitle stays plain white text; the Badge look only applies without it.
+                // Without the background media its color comes from the View Type (Base).
                 &:not(.dark) {
+                  color: white;
                   background: transparent !important;
                   padding: 0 !important;
                   border-radius: 0 !important;
-                }
-
-                &.dark {
-                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -310,7 +307,6 @@
               .title {
                 margin: 0;
                 font-size: calc(8rem + 3vh);
-                color: white;
                 width: 100%;
                 text-align: right;
                 @include textEllipsis(3);
@@ -321,8 +317,12 @@
                 text-align: right;
               }
 
+              // Without the background media the title color comes from the View Type (Base).
+              &:not(.dark) .title {
+                color: white;
+              }
+
               &.dark {
-                .title,
                 .description {
                   color: var(--composer-font-color-primary);
                 }

@@ -236,7 +236,7 @@
                         text-align: left;
                         width: fit-content;
                         margin-left: 0;
-                        transform: none;
+                        // Line type: Base shifts the text right and draws the line where the title starts, as in other components.
                         &.subtitle-transparent {
                             background: transparent !important;
                             padding: 0 !important;
@@ -460,11 +460,6 @@
                     .slider-inner {
                         width: unset;
                         padding: 20px;
-
-                        .subtitle::before {
-                            left: calc(-1 * var(--composer-gap-md));
-                            width: var(--composer-gap-sm);
-                        }
 
                         .title {
                             font-size: 3rem !important;

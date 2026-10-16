@@ -140,11 +140,19 @@
               transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
             }
 
+            // Plain background: the font color, or primary with the Colorful View Type (.colorful-text on the wrapper).
             &.imageless-title {
               .title-stroke,
               .title-solid {
-                color: black !important;
+                color: var(--composer-font-color-primary) !important;
                 -webkit-text-stroke: none !important;
+              }
+
+              &.colorful-text {
+                .title-stroke,
+                .title-solid {
+                  color: var(--composer-primary-color) !important;
+                }
               }
             }
           }
@@ -522,6 +530,11 @@
   .bottom-row .comment-and-icon-text-container .icon-text-container * {
     transition: none !important;
   }
+}
+
+// Colorful View Type on a plain background (see colorfulTextClass); the Badge rule below keeps its own colors.
+.colorful-text {
+  color: var(--composer-primary-color) !important;
 }
 
 // Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.

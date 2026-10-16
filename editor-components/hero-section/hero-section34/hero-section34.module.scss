@@ -317,7 +317,8 @@
         .content {
           padding: var(--composer-gap-md);
 
-          .title, .description, .logo {
+          // The title is left to Base so the View Type decides its color.
+          .description, .logo {
             color: var(--composer-font-color-primary);
           }
         }

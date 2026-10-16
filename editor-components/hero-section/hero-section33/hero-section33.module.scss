@@ -206,8 +206,8 @@
             }
           }
 
+          // Black over the slide media; otherwise the View Type (Base) colors the title.
           .content-title {
-            color: var(--composer-font-color-primary);
             text-align: left;
             font-size: 6rem;
             width: calc(100% - var(--composer-gap-lg));

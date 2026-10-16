@@ -82,11 +82,11 @@
             .subtitle {
               margin-left: 0;
             }
+            // The card is a plain surface, so the title color comes from the View Type (Base).
             .title {
               font-size: 4rem;
               height: fit-content;
               margin: 0;
-              color: var(--composer-tertiary-color);
               text-align: left;
             }
             .description {
@@ -207,9 +207,9 @@
                 font-size: 2.75rem !important;
               }
             }
+            // The reference hides the button on phones.
             .button {
-              right: var(--composer-gap-sm);
-              bottom: var(--composer-gap-sm);
+              display: none;
             }
           }
         }

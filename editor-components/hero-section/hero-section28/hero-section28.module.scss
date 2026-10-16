@@ -200,9 +200,12 @@
           width: 100%;
         }
 
+        // Title and subtitle are display-size text, so they keep the original's px values (title 100 · subtitle 55;
+        // tablet 100/30; phone 45/25) in md units: the editor's root font is 14px, so rem would come out 12.5% smaller.
+        // The tag and the small description use Base's own sizes.
         .title {
           color: white;
-          font-size: 6.25rem;
+          font-size: calc(6.25 * var(--composer-font-size-md));
           margin: 0;
         }
 
@@ -219,13 +222,12 @@
         }
 
         .sub_title {
-          font-size: 3.4375rem;
+          font-size: calc(3.4375 * var(--composer-font-size-md));
           color: var(--composer-tertiary-color);
           margin: 0;
         }
 
         .description {
-          font-size: 1.3125rem;
           text-transform: uppercase;
           color: var(--composer-tertiary-color);
           margin: 0;
@@ -233,7 +235,6 @@
 
         .tag {
           color: white;
-          font-size: 1.0625rem;
           display: inline-block;
           width: fit-content;
 
@@ -292,19 +293,11 @@
         .slide-content {
           padding: var(--composer-gap-md) var(--composer-gap-xl);
           .title {
-            font-size: 6.25rem !important;
+            font-size: calc(6.25 * var(--composer-font-size-md)) !important;
           }
 
           .sub_title {
-            font-size: 1.875rem !important;
-          }
-
-          .description {
-            font-size: 1rem !important;
-          }
-
-          .tag {
-            font-size: 1rem !important;
+            font-size: calc(1.875 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -330,19 +323,11 @@
 
         .slide-content {
           .title {
-            font-size: 2.8125rem !important;
+            font-size: calc(2.8125 * var(--composer-font-size-md)) !important;
           }
 
           .sub_title {
-            font-size: 1.5625rem !important;
-          }
-
-          .description {
-            font-size: 0.875rem !important;
-          }
-
-          .tag {
-            font-size: 0.8125rem !important;
+            font-size: calc(1.5625 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -361,6 +346,11 @@
       }
     }
   }
+}
+
+// Colorful View Type on a plain background (see colorfulTextClass); the Badge rule below keeps its own colors.
+.colorful-text {
+  color: var(--composer-primary-color) !important;
 }
 
 // Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.

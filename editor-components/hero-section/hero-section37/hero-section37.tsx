@@ -573,6 +573,8 @@ class HeroSection37 extends BaseHeroSection {
     const isTextSubtitleExist = this.castToString(textItem?.subtitle);
     const isTextDescriptionExist = this.castToString(textItem?.description);
     const textButtons = (textItem?.buttons || []).filter((button: INPUTS.CastedButton) => this.castToString(button.text));
+    // Text over the slide media is white; without media the View Type (Base) colors the subtitle and title.
+    const onMedia = slider.some((slide) => hasMedia(slide.media)) ? this.decorateCSS("on-media") : "";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -595,7 +597,7 @@ class HeroSection37 extends BaseHeroSection {
               <div className={this.decorateCSS("decorator-line")}></div>
               <Base.VerticalContent className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") ? this.decorateCSS("visible") : ""}`}>
                 {hasTextLogo && <Base.Media value={textItem.logo} className={this.decorateCSS("logo")} />}
-                {isTextSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{textItem.subtitle}</Base.SectionSubTitle>}
+                {isTextSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${onMedia}`}>{textItem.subtitle}</Base.SectionSubTitle>}
                 {isTextDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{textItem.description}</Base.SectionDescription>}
                 {textButtons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
@@ -635,7 +637,7 @@ class HeroSection37 extends BaseHeroSection {
                         <ComposerLink key={indexSlider} path={item.url}>
                           <div className={this.decorateCSS("link-wrapper")}>
                             {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
-                            {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title-text")} ${isActive ? this.decorateCSS("active") : ""}`}>{item.title}</Base.SectionTitle>}
+                            {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title-text")} ${isActive ? this.decorateCSS("active") : ""} ${onMedia}`}>{item.title}</Base.SectionTitle>}
                           </div>
                         </ComposerLink>
                       </div>

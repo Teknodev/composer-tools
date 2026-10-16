@@ -503,6 +503,11 @@
   }
 }
 
+// Colorful View Type on a plain background (see colorfulTextClass); the Badge rule below keeps its own colors.
+.colorful-text {
+  color: var(--composer-primary-color) !important;
+}
+
 // Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.
 .subtitle-badge {
   width: fit-content;

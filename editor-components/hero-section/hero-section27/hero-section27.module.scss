@@ -144,9 +144,9 @@
                 align-items: center;
                 max-width: 80%;
 
+                // No color here: on plain background the View Type (Base) decides; over the image it is black (above).
                 .upTitle {
                   font-size: 13vw;
-                  color: var(--composer-font-color-primary);
                   margin: 0;
                   padding: 0;
                   overflow: hidden;

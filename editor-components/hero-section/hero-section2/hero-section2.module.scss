@@ -137,10 +137,10 @@
             margin-left: 0 !important;
             margin-right: auto !important;
           }
+          // The title color comes from the View Type (Base: Colorful primary, Monochrome font color).
           .title {
             max-width: 100%;
             font-size: calc(1.5 * var(--composer-font-size-md));
-            color: var(--composer-font-color-primary);
             @include textEllipsis(3);
             text-align: left;
           }

@@ -228,9 +228,11 @@
             margin-bottom: calc(var(--composer-gap-xl) * 3);
           }
           .card-box {
-            padding: var(--composer-gap-md);
+            padding: var(--composer-gap-lg);
             position: relative;
             max-width: 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
 
             .buttons {
               flex-direction: column;

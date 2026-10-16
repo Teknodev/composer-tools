@@ -98,7 +98,7 @@ class HeroSection18 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Description Title",
+              displayer: "Card Title",
               key: "description_title",
               value: "Definition",
             },
@@ -161,7 +161,7 @@ class HeroSection18 extends BaseHeroSection {
 
             {
               type: "string",
-              displayer: "Description Title",
+              displayer: "Card Title",
               key: "description_title",
               value: "Definition",
             },
@@ -223,7 +223,7 @@ class HeroSection18 extends BaseHeroSection {
 
             {
               type: "string",
-              displayer: "Description Title",
+              displayer: "Card Title",
               key: "description_title",
               value: "Definition",
             },
@@ -285,7 +285,7 @@ class HeroSection18 extends BaseHeroSection {
 
             {
               type: "string",
-              displayer: "Description Title",
+              displayer: "Card Title",
               key: "description_title",
               value: "Definition",
             },
@@ -347,7 +347,7 @@ class HeroSection18 extends BaseHeroSection {
 
             {
               type: "string",
-              displayer: "Description Title",
+              displayer: "Card Title",
               key: "description_title",
               value: "Definition",
             },
@@ -635,7 +635,7 @@ class HeroSection18 extends BaseHeroSection {
                         {this.castToString(item.text) && (
                           <Base.H6 className={`${this.decorateCSS("name")} ${!cover ? this.decorateCSS("name-no-image") : ""}`}>{item.text}</Base.H6>
                         )}
-                        {this.hasMedia(item.icon) && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")} />}
+                        {this.hasMedia(item.icon) && <Base.Media value={item.icon} className={`${this.decorateCSS("social-icon")} ${!cover ? this.decorateCSS("social-icon-no-image") : ""}`} />}
                       </div>
                     </ComposerLink>
                   ))}

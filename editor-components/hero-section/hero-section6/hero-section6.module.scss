@@ -100,10 +100,10 @@
         }
       }
       .title-container {
+        // The title color comes from the View Type (Base: Colorful primary, Monochrome font color).
         .title {
           @include textEllipsis(2);
           font-size: 8rem;
-          color: var(--composer-font-color-primary);
           opacity: 0;
           animation: fade-in 1s ease-in-out 0.7s forwards;
           text-align: left;

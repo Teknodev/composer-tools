@@ -260,6 +260,12 @@ class HeroSection20 extends BaseHeroSection {
     return "Hero Section 20";
   }
 
+  // The root is not Base.Container, so Base's Colorful View Type (primary title/subtitle) never reaches this component;
+  // on a plain background it is applied here. Over background media the text keeps its own color.
+  colorfulTextClass(overMedia: boolean) {
+    return !overMedia && Base.getViewType() === "colorful" ? this.decorateCSS("colorful-text") : "";
+  }
+
   // The root is not a Base.Container, so Base's Badge look never reaches the subtitle; apply it here when there is no background media.
   subtitleBadgeClass(hasBackgroundMedia: boolean) {
     if (Base.getSectionSubTitleType() !== "badge" || hasBackgroundMedia) return "";
@@ -412,7 +418,7 @@ class HeroSection20 extends BaseHeroSection {
                     {slider.map((item: SliderItem, index: number) => {
                       const isCurrent = index === currentSlide;
                       const isImageless = !this.hasMedia(item.media);
-                      const wrapperClass = `${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""} ${isCurrent && isImageless ? this.decorateCSS("imageless-title") : ""}`;
+                      const wrapperClass = `${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""} ${isCurrent && isImageless ? `${this.decorateCSS("imageless-title")} ${this.colorfulTextClass(false)}` : ""}`;
                       return (
                         <div key={`title-${index}`} className={this.decorateCSS("title-slide")}>
                           {item.url && isCurrent ? (
@@ -455,7 +461,7 @@ class HeroSection20 extends BaseHeroSection {
                         <Base.VerticalContent className={this.decorateCSS("comment")}>
                           {activeLogoExist && <Base.Media value={activeItem.logo} className={this.decorateCSS("logo")} />}
                           {activeSubtitleExist && (
-                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(!imageless)}`}>{activeItem.subtitle}</Base.SectionSubTitle>
+                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.subtitleBadgeClass(!imageless)} ${this.colorfulTextClass(!imageless)}`}>{activeItem.subtitle}</Base.SectionSubTitle>
                           )}
                           {activeDescriptionExist && (
                             <Base.SectionDescription className={this.decorateCSS("description")}>{activeItem.description}</Base.SectionDescription>

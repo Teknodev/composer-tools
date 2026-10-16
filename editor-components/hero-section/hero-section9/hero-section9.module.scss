@@ -349,6 +349,11 @@
   }
 }
 
+// Colorful View Type on a plain background (see colorfulTextClass); the Badge rule below keeps its own colors.
+.colorful-text {
+  color: var(--composer-primary-color) !important;
+}
+
 // Badge subtitle type: same values as Base's badge (the root is not Base.Container).
 .subtitle-badge {
   width: fit-content;

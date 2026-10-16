@@ -50,10 +50,15 @@
             object-fit: cover;
             max-width: 150px;
           }
+          // The subtitle stays left-aligned in every alignment (center would center it in the Vertical Content).
+          // Subtitle and title colors come from the View Type (Base); the text never sits on the image.
           .subtitleTop {
             font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
             margin: 0;
+            align-self: flex-start;
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
           }
           
           .left-container {
@@ -73,7 +78,6 @@
             
             .title {
               font-size: 5.5rem;
-              color: var(--composer-font-color-primary);
               margin: 0px;
               flex: 0 0 calc((100% - var(--composer-gap-md)) / 2.5);
               min-width: min-content;
@@ -263,10 +267,12 @@
             z-index: 2;
             padding: var(--composer-gap-lg) 0px;
             gap: var(--composer-gap-md);
+            // The CTA text stays left-aligned in every alignment.
             .rightSubtitle {
               font-size: 1.5rem;
               color: var(--composer-font-color-primary);
               margin: 0;
+              text-align: left !important;
             }
 
             .description1 {
@@ -399,9 +405,11 @@
             }
           }
 
+          // Keeps the CTA off the image; on desktop the 90% content width leaves this gap.
           .right {
             height: auto;
             justify-content: flex-end;
+            padding-left: var(--composer-gap-lg);
             .background-icon-wrapper {
               display: none;
             }
