@@ -89,9 +89,17 @@
                 width: 100%;
                 object-fit: cover;
                 background: transparent;
+                border-radius: var(--composer-border-radius-sm);
               }
               .left-animation {
                 animation: scaleUpDown 1s ease-in-out;
+              }
+              .overlay {
+                position: absolute;
+                inset: 0;
+                border-radius: var(--composer-border-radius-sm);
+                background-color: var(--composer-overlay-color);
+                pointer-events: none;
               }
             }
             .middle-content {
@@ -133,19 +141,12 @@
                   height: 2px;
                 }
 
-                .logo-wrapper {
-                  width: 100%;
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-
-                  .logo {
-                    max-width: 150px;
-                    aspect-ratio: 3 / 1;
-                    object-fit: cover;
-                    font-size: 2rem;
-                    color: var(--composer-font-color-primary);
-                  }
+                .logo {
+                  max-width: 150px;
+                  aspect-ratio: 3 / 1;
+                  object-fit: cover;
+                  font-size: 2rem;
+                  color: var(--composer-font-color-primary);
                 }
 
               
@@ -174,6 +175,10 @@
                   text-align: left;
                 }
 
+                .description {
+                  text-align: left;
+                }
+
               }
             }
 
@@ -186,11 +191,25 @@
               .mid-right-animation {
                 animation: rightToLeft 2s ease;
               }
-              .right-image {
+              // The wrapper carries the 80% size so the overlay covers exactly the image.
+              .right-media {
+                position: relative;
                 height: 80%;
                 width: 80%;
-                object-fit: cover;
-                background: transparent;
+                .right-image {
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  background: transparent;
+                  border-radius: var(--composer-border-radius-sm);
+                }
+                .overlay {
+                  position: absolute;
+                  inset: 0;
+                  border-radius: var(--composer-border-radius-sm);
+                  background-color: var(--composer-overlay-color);
+                  pointer-events: none;
+                }
               }
             }
           }
@@ -205,6 +224,8 @@
       gap: var(--composer-gap-md);
       z-index: 1;
       .nav-buttons {
+        cursor: pointer;
+        display: flex;
         background-color: transparent;
         border: none;
         padding: 0px;
@@ -311,7 +332,7 @@
                 }
 
                 .right-content {
-                  .right-image {
+                  .right-media {
                     height: 60%;
                   }
                 }

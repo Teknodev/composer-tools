@@ -196,15 +196,20 @@
         z-index: 2;
         margin-top: var(--composer-gap-xl);
 
+        .text-content {
+          width: 100%;
+        }
+
+        // Title and subtitle are display-size text, so they keep the original's px values (title 100 · subtitle 55;
+        // tablet 100/30; phone 45/25) in md units: the editor's root font is 14px, so rem would come out 12.5% smaller.
+        // The tag and the small description use Base's own sizes.
         .title {
           color: white;
-          font-size: 6.5rem;
-          margin: 0 0 var(--composer-gap-sm) 0;
-          line-height: normal;
+          font-size: calc(6.25 * var(--composer-font-size-md));
+          margin: 0;
         }
 
         .logo {
-          margin-bottom: var(--composer-gap-sm);
           font-size: 2rem;
           aspect-ratio: 3 / 1;
           object-fit: cover;
@@ -217,32 +222,24 @@
         }
 
         .sub_title {
-          font-size: 4rem;
+          font-size: calc(3.4375 * var(--composer-font-size-md));
           color: var(--composer-tertiary-color);
-          margin: 0 0 var(--composer-gap-md) 0;
-          line-height: normal;
+          margin: 0;
         }
 
         .description {
-          font-size: 1.5rem;
           text-transform: uppercase;
-          font-weight: 400;
           color: var(--composer-tertiary-color);
-          margin: 0 0 var(--composer-gap-md) 0;
-          line-height: normal;
+          margin: 0;
         }
 
         .tag {
           color: white;
-          font-size: 1.5rem;
-          font-weight: 700;
           display: inline-block;
-          line-height: normal;
           width: fit-content;
 
           &.hasLine {
             border-bottom: 3px solid var(--composer-primary-color);
-            margin-bottom: var(--composer-gap-sm);
           }
         }
 
@@ -296,19 +293,11 @@
         .slide-content {
           padding: var(--composer-gap-md) var(--composer-gap-xl);
           .title {
-            font-size: 3.5rem;
+            font-size: calc(6.25 * var(--composer-font-size-md)) !important;
           }
 
           .sub_title {
-            font-size: 2rem;
-          }
-
-          .description {
-            font-size: 1.5rem;
-          }
-
-          .tag {
-            font-size: 1.5rem;
+            font-size: calc(1.875 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -334,19 +323,11 @@
 
         .slide-content {
           .title {
-            font-size: 3rem;
+            font-size: calc(2.8125 * var(--composer-font-size-md)) !important;
           }
 
           .sub_title {
-            font-size: 1.5rem;
-          }
-
-          .description {
-            font-size: 1rem;
-          }
-
-          .tag {
-            font-size: 1rem;
+            font-size: calc(1.5625 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -364,5 +345,41 @@
         left: 3px;
       }
     }
+  }
+}
+
+// Colorful View Type on a plain background (see colorfulTextClass); the Badge rule below keeps its own colors.
+.colorful-text {
+  color: var(--composer-primary-color) !important;
+}
+
+// Same values as Base's Badge subtitle (base.module.scss), which needs a Base.Container ancestor.
+.subtitle-badge {
+  width: fit-content;
+  padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
+  border-radius: var(--composer-border-radius-xl);
+  background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%);
+  color: var(--composer-primary-color) !important;
+
+  &.subtitle-badge-monochrome {
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+    color: var(--composer-font-color-primary) !important;
+  }
+}
+
+// Same values as Base's Line subtitle (base.module.scss), drawn in the subtitle's own text color.
+.subtitle-line {
+  position: relative;
+  transform: translateX(3rem);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2px;
+    background-color: currentColor;
   }
 }

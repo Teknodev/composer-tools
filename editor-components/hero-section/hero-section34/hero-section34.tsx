@@ -1,460 +1,325 @@
 import * as React from "react";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section34.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Slider {
-  logo?: TypeMediaInputValue;
-  image: string;
-  subtitle?: React.JSX.Element;
+  logo: TypeMediaInputValue;
+  media: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
-  description?: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  description: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
   overlay?: boolean;
 }
 
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+};
+
+const slide = (mediaUrl: string, title: string, buttonText: string): TypeUsableComponentProps => ({
+  type: "object",
+  key: "slide",
+  displayer: "Slide",
+  value: [
+    {
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    },
+    {
+      type: "media",
+      key: "media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: { type: "image", url: mediaUrl },
+    },
+    {
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    },
+    {
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    },
+    {
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: title,
+    },
+    {
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    },
+    {
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", buttonText, "", null, null, "White")],
+    },
+  ],
+});
+
 class HeroSection34 extends BaseHeroSection {
-    autoplayInterval?: ReturnType<typeof setInterval>;
+  transitionTimeouts: ReturnType<typeof setTimeout>[] = [];
 
-    componentDidMount() {
-      this.setComponentState("slideStatus", "idle");
-      this.setupAutoplay();
-    }
-
-    componentDidUpdate() {
-      this.setupAutoplay();
-    }
-
-    componentWillUnmount() {
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-      }
-    }
-
-    setupAutoplay() {
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-      }
-      if (this.getPropValue("autoplay")) {
-        this.autoplayInterval = setInterval(() => {
-          if (this.getComponentState("slideStatus") === "idle") {
-            this.handleNextAutoplay();
-          }
-        }, 2000);
-      }
-    }
-
-    async handleNextAutoplay() {
-      const slides = this.castToObject<Slider[]>("slider");
-      const activeIndex = this.getComponentState("active-index");
-      const overlayActiveIndex = this.getComponentState("overlay-active-index");
-      const slideStatus = this.getComponentState("slideStatus");
-      if (slideStatus === "sliding") return;
-      this.setComponentState("contentAnimationClass", "animate__fadeOut");
-      await new Promise((r) => setTimeout(r, 500));
-      this.setComponentState("overlay-active-index", (overlayActiveIndex + 1) % slides.length);
-      this.setComponentState("slide-direction", "right");
-      await new Promise((r) => setTimeout(r, 10));
-      this.setComponentState("slideStatus", "sliding");
-      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
-      await new Promise((r) => setTimeout(r, 800));
-      this.setComponentState("active-index", (activeIndex + 1) % slides.length);
-      this.setComponentState("slideStatus", "ended");
-      await new Promise((r) => setTimeout(r, 1000));
-      this.setComponentState("slideStatus", "idle");
-    }
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
-      key: "prev_icon",
-      displayer: "Prev Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: { type: "icon", name: "GrFormPrevious" },  
-    });
-    this.addProp({
-      type: "media",
-      key: "next_icon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: { type: "icon", name: "GrFormNext" },  
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: { type: "icon", name: "GrFormPrevious" },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: { type: "icon", name: "GrFormNext" },
+        },
+      ],
     });
 
-     this.addProp({
+    this.addProp({
       type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
+      key: "animation",
+      displayer: "Animation",
       value: true,
     });
 
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "Sliders",
       value: [
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: { type: "image", url:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Premium Quality Design",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "White"),
-          ],
-        },
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: { type: "image", url:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Premium Quality Jobs",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "White"),
-          ],
-        },
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "logo",
-              displayer: "Logo",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "" },
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: { type: "image", url:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Premium Quality Clothes",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "White"),
-          ],
-        },
+        slide(
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
+          "Premium Quality Design",
+          "PURCHASE INTACT"
+        ),
+        slide(
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
+          "Premium Quality Jobs",
+          "CONTACT US"
+        ),
+        slide(
+          "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
+          "Premium Quality Clothes",
+          "BUY"
+        ),
       ],
     });
 
-    this.setComponentState("animation-active", false);
-    this.setComponentState("display-none", true);
-    this.setComponentState("animation-text", false);
-    this.setComponentState("display", true);
-    this.setComponentState("active-index", 0);
-    this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("slider-ref-text", React.createRef());
-    this.setComponentState("isTransitioning", false);
-    this.setComponentState("slideStatus", "");
-    this.setComponentState("slide-direction", "left");
-    this.setComponentState("overlay-active-index", 0);
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 800,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
+    this.setComponentState("active-index", 0);
+    this.setComponentState("overlay-active-index", 0);
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("slideStatus", "idle");
+    this.setComponentState("slide-direction", "left");
     this.setComponentState("contentAnimationClass", "animate__fadeInUp");
   }
+
   static getName(): string {
     return "Hero Section 34";
   }
 
+  componentWillUnmount() {
+    this.transitionTimeouts.forEach((timeout) => clearTimeout(timeout));
+  }
+
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  later(callback: () => void, ms: number) {
+    this.transitionTimeouts.push(setTimeout(callback, ms));
+  }
+
+  handleBeforeChange(current: number, next: number, slideCount: number, speed: number) {
+    if (current === next) return;
+    const animation = this.getPropValue("animation");
+    this.transitionTimeouts.forEach((timeout) => clearTimeout(timeout));
+    this.transitionTimeouts = [];
+
+    if (!animation) {
+      this.setComponentState("overlay-active-index", next);
+      this.setComponentState("active-index", next);
+      this.setComponentState("slideStatus", "idle");
+      return;
+    }
+
+    const isForward = next === (current + 1) % slideCount || (next > current && !(current === 0 && next === slideCount - 1));
+    this.setComponentState("contentAnimationClass", "animate__fadeOut");
+    this.setComponentState("overlay-active-index", next);
+    this.setComponentState("slide-direction", isForward ? "right" : "left");
+    this.later(() => {
+      this.setComponentState("slideStatus", "sliding");
+      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+    }, 10);
+    this.later(() => {
+      this.setComponentState("active-index", next);
+      this.setComponentState("slideStatus", "ended");
+    }, speed);
+    this.later(() => {
+      this.setComponentState("slideStatus", "idle");
+    }, speed + 1000);
+  }
+
   render() {
     const slides = this.castToObject<Slider[]>("slider");
-
+    const animation = this.getPropValue("animation");
     const activeIndex = this.getComponentState("active-index");
-    const activeSlide = slides[activeIndex] || { image: "", overlay: false };
+    const overlayActiveIndex = this.getComponentState("overlay-active-index");
+    const activeSlide = slides[activeIndex];
+    const overlaySlide = slides[overlayActiveIndex];
     const slideStatus = this.getComponentState("slideStatus");
     const slideDirection = this.getComponentState("slide-direction");
-    const overlayActiveIndex = this.getComponentState("overlay-active-index");
+    const sliderRef = this.getComponentState("slider-ref");
+    const arrows = this.castToObject<Arrows>("arrows");
+    const hasPrevIcon = this.hasMedia(arrows?.prevIcon);
+    const hasNextIcon = this.hasMedia(arrows?.nextIcon);
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    const speed = sliderSettings.speed ?? 800;
 
-    const handleNext = async (): Promise<void> => {
-      if (slideStatus === "sliding") return;
-      this.setComponentState("contentAnimationClass", "animate__fadeOut");
-      await delay(500);
-      this.setComponentState(
-        "overlay-active-index",
-        (overlayActiveIndex + 1) % slides.length
-      );
-      this.setComponentState("slide-direction", "right");
-      await delay(10);
-      this.setComponentState("slideStatus", "sliding");
-      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
-      await delay(800);
-      this.setComponentState("active-index", (activeIndex + 1) % slides.length);
-      this.setComponentState("slideStatus", "ended");
-      await delay(1000);
-      this.setComponentState("slideStatus", "idle");
+    const settings = {
+      ...sliderSettings,
+      arrows: false,
+      fade: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dotsClass: this.decorateCSS("dots"),
+      customPaging: () => <div className={this.decorateCSS("dot")} />,
+      beforeChange: (current: number, next: number) => this.handleBeforeChange(current, next, slides.length, speed),
     };
 
-    const handlePrev = async (): Promise<void> => {
-      if (slideStatus === "sliding") return;
-      this.setComponentState("contentAnimationClass", "animate__fadeOut");
-      await delay(500);
-      this.setComponentState(
-        "overlay-active-index",
-        (overlayActiveIndex - 1 + slides.length) % slides.length
-      );
-      this.setComponentState("slide-direction", "left");
-      await delay(10);
-      this.setComponentState("slideStatus", "sliding");
-      await delay(10);
-      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
-      await delay(800);
-      this.setComponentState(
-        "active-index",
-        (activeIndex - 1 + slides.length) % slides.length
-      );
-      this.setComponentState("slideStatus", "ended");
-      await delay(1000);
-      this.setComponentState("slideStatus", "idle");
-    };
-
-    const delay = (ms: number): Promise<void> => {
-      return new Promise((resolve) => setTimeout(resolve, ms));
-    };
+    const statusClass =
+      slideStatus === "sliding"
+        ? this.decorateCSS("active")
+        : slideStatus === "ended"
+        ? this.decorateCSS("close")
+        : this.decorateCSS("idle");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
-        <div
-          className={`${this.decorateCSS("max-content")} ${activeSlide.overlay ? this.decorateCSS("overlay-active") : ""}`}
-        >
+      <Base.Container className={`${this.decorateCSS("container")} ${!this.hasMedia(activeSlide?.media) ? this.decorateCSS("no-image") : ""}`}>
+        <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
-            <div
-              className={`${this.decorateCSS("overlay")} ${this.decorateCSS(`overlay-${slideDirection}`)} ${slideStatus === "sliding"
-                ? this.decorateCSS("active")
-                : slideStatus === "ended"
-                  ? this.decorateCSS("close")
-                  : slideStatus === "idle"
-                    ? this.decorateCSS("idle")
-                    : ""
-                }`}
-            >
-              <div className={this.decorateCSS("overlay-image")}>
-                {slides[overlayActiveIndex].image && <Base.Media className={this.decorateCSS("image")} value={slides[overlayActiveIndex].image} />}
+            {animation && (
+              <div className={`${this.decorateCSS("overlay")} ${this.decorateCSS(`overlay-${slideDirection}`)} ${statusClass}`}>
+                <div className={this.decorateCSS("overlay-image")}>
+                  {this.hasMedia(overlaySlide?.media) && <Base.Media className={this.decorateCSS("image")} value={overlaySlide.media} />}
+                </div>
               </div>
+            )}
+
+            {slides.length > 0 && (
+              <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
+                {slides.map((item: Slider, idx: number) => (
+                  <div key={idx} className={this.decorateCSS("slide")}>
+                    {this.hasMedia(item.media) && <Base.Media value={item.media} className={this.decorateCSS("image")} />}
+                    {this.hasMedia(item.media) && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
+                  </div>
+                ))}
+              </ComposerSlider>
+            )}
+          </div>
+
+          <div className={`${this.decorateCSS("contentContainer")} ${animation ? `animate__animated ${this.getComponentState("contentAnimationClass")}` : ""}`}>
+            {slides.map((item: Slider, idx: number) => {
+              const hasItemMedia = this.hasMedia(item.media);
+              const hasLogo = this.hasMedia(item.logo);
+              const buttons = (item.buttons || []).filter((button) => this.castToString(button.text));
+              const hasContent =
+                hasLogo ||
+                this.castToString(item.subtitle) ||
+                this.castToString(item.title) ||
+                this.castToString(item.description) ||
+                buttons.length > 0;
+              if (!hasContent) return null;
+              return (
+                <Base.MaxContent key={idx} className={this.decorateCSS("content")} style={{ display: overlayActiveIndex === idx ? "block" : "none" }}>
+                  <Base.VerticalContent data-has-image={hasItemMedia ? "true" : "false"} className={this.decorateCSS("text-content")}>
+                    {hasLogo && <Base.Media data-has-image={hasItemMedia ? "true" : "false"} value={item.logo} className={this.decorateCSS("logo")} />}
+                    {this.castToString(item.subtitle) && (
+                      <Base.SectionSubTitle data-has-image={hasItemMedia ? "true" : "false"} className={this.decorateCSS("subtitle")}>
+                        {item.subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {this.castToString(item.title) && (
+                      <Base.SectionTitle data-has-image={hasItemMedia ? "true" : "false"} className={this.decorateCSS("title")}>
+                        {item.title}
+                      </Base.SectionTitle>
+                    )}
+                    {this.castToString(item.description) && (
+                      <Base.SectionDescription data-has-image={hasItemMedia ? "true" : "false"} className={this.decorateCSS("description")}>
+                        {item.description}
+                      </Base.SectionDescription>
+                    )}
+                    {buttons.length > 0 && (
+                      <div className={this.decorateCSS("button-container")}>
+                        {buttons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                          <ComposerLink key={buttonIndex} path={button.url}>
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        ))}
+                      </div>
+                    )}
+                  </Base.VerticalContent>
+                </Base.MaxContent>
+              );
+            })}
+          </div>
+
+          {slides.length > 1 && hasPrevIcon && (
+            <div className={`${this.decorateCSS("arrow")} ${this.decorateCSS("prev")}`} onClick={() => sliderRef.current?.slickPrev()}>
+              <Base.Media className={this.decorateCSS("prev-icon")} value={arrows.prevIcon} />
             </div>
-
-            <div className={this.decorateCSS("slider")}> 
-              {slides.map((slide, idx) => (
-                slide.image && (
-                  <Base.Media
-                    key={idx}
-                    value={slide.image}
-                    className={`${this.decorateCSS("image")} ${idx === activeIndex && this.decorateCSS("active")}`}
-                  />
-                )
-              ))}
+          )}
+          {slides.length > 1 && hasNextIcon && (
+            <div className={`${this.decorateCSS("arrow")} ${this.decorateCSS("next")}`} onClick={() => sliderRef.current?.slickNext()}>
+              <Base.Media className={this.decorateCSS("next-icon")} value={arrows.nextIcon} />
             </div>
-          </div>
-          <div
-            className={`${this.decorateCSS("contentContainer")} animate__animated ${this.getComponentState("contentAnimationClass")}`}
-          >
-            {slides.map((slide, idx) => (
-              <Base.MaxContent key={idx} className={this.decorateCSS("content")} style={{ display: overlayActiveIndex === idx ? "block" : "none" }}> 
-                <Base.VerticalContent data-has-image={slide.image ? "true" : "false"} className={this.decorateCSS("text-content")}> 
-                  {slide.logo && (
-                    <Base.Media
-                      data-has-image={slide.image ? "true" : "false"}
-                      value={slide.logo}
-                      className={this.decorateCSS("logo")}
-                    />
-                  )}
-                  {this.castToString(slide.subtitle) && (
-                    <Base.SectionSubTitle
-                      data-has-image={slide.image ? "true" : "false"}
-                      className={`${this.decorateCSS("subtitle")} ${slide.image && this.decorateCSS("subtitle-with-image")}`}> 
-                      {slide.subtitle}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(slide.title) && (
-                    <Base.SectionTitle
-                      data-has-image={slide.image ? "true" : "false"}
-                      className={`${this.decorateCSS("title")} ${slide.image && this.decorateCSS("title-with-image")}`}> 
-                      {slide.title}
-                    </Base.SectionTitle>
-                  )}
-                  {this.castToString(slide.description) && (
-                    <Base.SectionDescription
-                      data-has-image={slide.image ? "true" : "false"}
-                      className={`${this.decorateCSS("description")} ${slide.image && this.decorateCSS("description-with-image")}`}> 
-                      {slide.description}
-                    </Base.SectionDescription>
-                  )}
-                  {this.castToString(slide.button.text) && (
-                    <div className={this.decorateCSS("button-container")}> 
-                      <ComposerLink path={slide.button.url}> 
-                        <Base.Button className={this.decorateCSS("button")} buttonType={slide.button.type}> 
-                          <Base.P className={this.decorateCSS("button-text")}>{slide.button.text}</Base.P> 
-                        </Base.Button> 
-                      </ComposerLink> 
-                    </div> 
-                  )}
-                </Base.VerticalContent> 
-              </Base.MaxContent>
-            ))}
-          </div>
-
-          <div
-            className={`${this.decorateCSS("arrow")} ${this.decorateCSS(
-              "prev"
-            )}`}
-            onClick={handlePrev}
-          >
-            <Base.Media className={this.decorateCSS("prev-icon")} value={this.getPropValue("prev_icon")} />
-          </div>
-
-          <div
-            className={`${this.decorateCSS("arrow")} ${this.decorateCSS(
-              "next"
-            )}`}
-            onClick={handleNext}
-          >
-            <Base.Media className={this.decorateCSS("next-icon")} value={this.getPropValue("next_icon")} />
-          </div>
-
-          <div className={this.decorateCSS("dots")}>
-            {slides.map((_: any, index: number) => (
-              <div
-                key={index}
-                className={`${this.decorateCSS("dot")} ${index === activeIndex ? this.decorateCSS("active") : ""
-                  }`}
-                onClick={async () => {
-                  if (slideStatus === "sliding") return;
-
-                  const direction = index > activeIndex ? "right" : "left";
-                  this.setComponentState(
-                    "contentAnimationClass",
-                    "animate__fadeOut"
-                  );
-                  await delay(10);
-                  this.setComponentState("overlay-active-index", index);
-                  this.setComponentState("slide-direction", direction);
-                  await delay(10);
-                  this.setComponentState(
-                    "contentAnimationClass",
-                    "animate__fadeInUp"
-                  );
-                  this.setComponentState("slideStatus", "sliding");
-                  await delay(800);
-                  this.setComponentState("active-index", index);
-                  this.setComponentState("slideStatus", "ended");
-                  await delay(1000);
-                  this.setComponentState("slideStatus", "idle");
-                }}
-              />
-            ))}
-          </div>
+          )}
         </div>
       </Base.Container>
     );
@@ -462,4 +327,3 @@ class HeroSection34 extends BaseHeroSection {
 }
 
 export default HeroSection34;
-

@@ -59,6 +59,7 @@
               width: 100%;
               height: 100%;
               object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .slide-overlay {
@@ -69,6 +70,7 @@
               height: 100%;
               background-color: var(--composer-overlay-color);
               pointer-events: none;
+              border-radius: var(--composer-border-radius-sm);
             }
           }
 
@@ -85,32 +87,49 @@
               flex-direction: column;
               gap: var(--composer-gap-md);
 
+              .heading {
+                align-items: flex-start;
+              }
+
+              .logo {
+                max-width: 200px;
+                height: auto;
+                object-fit: contain;
+                font-size: 2rem;
+                color: black;
+                &.logo-no-image {
+                  color: var(--composer-font-color-primary);
+                }
+              }
+
+              // Without a background image the subtitle and title colors come from Base (View Type).
               .subtitle {
                 margin: 0;
                 font-size: 1rem;
-                color: black;
                 z-index: 10;
                 text-align: left;
 
-                &.subtitle-no-image {
-                  color: var(--composer-font-color-primary);
+                // Over the background image the subtitle is plain text; the Badge look only applies without an image.
+                &:not(.subtitle-no-image) {
+                  color: black;
+                  background: transparent !important;
+                  padding: 0 !important;
+                  border-radius: 0 !important;
                 }
               }
 
               .title {
                 margin: 0;
                 font-size: 5rem;
-                color: black;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
-                line-height: normal;
                 z-index: 10;
 
-                &.title-no-image {
-                  color: var(--composer-font-color-primary);
+                &:not(.title-no-image) {
+                  color: black;
                 }
               }
             }
@@ -165,6 +184,7 @@
             gap: var(--composer-gap-xs);
             background: black;
             color: white;
+            border-radius: var(--composer-border-radius-sm);
             width: 350px;
             padding: var(--composer-gap-md);
             position: absolute;
@@ -228,16 +248,23 @@
         .name, .social-icon {
           color: black;
 
-          &.name-no-image {
+          &.name-no-image,
+          &.social-icon-no-image {
             color: var(--composer-font-color-primary);
           }
         }
 
+        // Trims the text box to the cap height, so the icon is centered on the letters in every theme font.
+        .name {
+          text-box: trim-both cap alphabetic;
+        }
+
         .social-icon {
-          width: 16px;
-          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 1.25rem;
-          object-fit: covers;
+          object-fit: cover;
         }
       }
 
@@ -304,8 +331,9 @@
               .text-content {
                 gap: var(--composer-gap-md);
 
+                // !important: Base's tablet/phone section title sizes are !important and would otherwise win.
                 .title {
-                  font-size: 4rem;
+                  font-size: 4rem !important;
                   text-align: left;
                 }
               }
@@ -372,7 +400,7 @@
                 }
 
                 .title {
-                  font-size: 2.5rem;
+                  font-size: 2.5rem !important;
 
                   -webkit-line-clamp: 7;
                   line-clamp: 7;
@@ -400,4 +428,9 @@
       }
     }
   }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
 }

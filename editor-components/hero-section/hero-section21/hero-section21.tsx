@@ -6,55 +6,54 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type CardState = {
-  logo: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
+type Button = INPUTS.CastedButton;
+
+type VideoPlayer = {
+  icon: TypeMediaInputValue;
+  video: TypeMediaInputValue;
+};
+
+type InfoBox = {
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
-
-type Button = INPUTS.CastedButton;
 
 class HeroSection21 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "media",
-          key: "logo",
-          displayer: "Logo",
-          additionalParams: {
-            availableTypes: ["image", "icon"],
-          },
-          value: {
-            type: "icon",
-            name: "",
-          },
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Quick parcel delivery, from.",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Get used to better entertaining",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Holiday shopping with 3% back in rewards. Offer expires 12/31/2024",
-        },
-      ],
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Quick parcel delivery, from.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header_title",
+      displayer: "Title",
+      value: "Get used to better entertaining",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "header_description",
+      displayer: "Description",
+      value: "Holiday shopping with 3% back in rewards. Offer expires 12/31/2024",
     });
 
     this.addProp({
@@ -65,21 +64,34 @@ class HeroSection21 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Thumbnail",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
-      },
+      type: "object",
+      key: "mainMedia",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
       type: "object",
-      key: "video_player",
+      key: "videoPlayer",
       displayer: "Video Player",
       value: [
         {
@@ -111,19 +123,19 @@ class HeroSection21 extends BaseHeroSection {
 
     this.addProp({
       type: "object",
-      key: "right-box",
-      displayer: "Right Box",
+      key: "infoBox",
+      displayer: "Info Box",
       value: [
         {
           type: "string",
-          key: "card_text",
-          displayer: "Card Text",
+          key: "title",
+          displayer: "Title",
           value: "STÖLKEN",
         },
         {
           type: "string",
-          key: "card_description",
-          displayer: "Card Descirption",
+          key: "description",
+          displayer: "Description",
           value: "Chair with armrests from $65",
         },
       ],
@@ -142,58 +154,83 @@ class HeroSection21 extends BaseHeroSection {
       },
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
     this.setComponentState("is_video_visible", false);
   }
   static getName(): string {
     return "Hero Section 21";
   }
+  hasMedia(media?: unknown) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
-    const card = this.castToObject<CardState>("card");
+    const card = {
+      logo: this.getPropValue("logo") as TypeMediaInputValue,
+      subtitle: this.getPropValue("subtitle"),
+      title: this.getPropValue("header_title"),
+      description: this.getPropValue("header_description"),
+    };
     const buttons = this.castToObject<Button[]>("buttons");
-    const rightBox = this.castToObject<any>("right-box");
+    const infoBox = this.castToObject<InfoBox>("infoBox");
+    const videoPlayer = this.castToObject<VideoPlayer>("videoPlayer");
+    const mainMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mainMedia");
+    const media = mainMedia?.media as TypeMediaInputValue;
+    const closeIcon = this.getPropValue("closeIcon") as TypeMediaInputValue;
+    const animationEnabled = this.getPropValue("animation");
 
     const titleExist = this.castToString(card.title);
     const subtitleExist = this.castToString(card.subtitle);
     const descExist = this.castToString(card.description);
-    const logoExist = card.logo;
+    const logoExist = this.hasMedia(card.logo);
+    const infoTitleExist = this.castToString(infoBox?.title);
+    const infoDescExist = this.castToString(infoBox?.description);
 
-    const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
-    const videoPlayer = this.castToObject<any>("video_player");
-    const videoValue = videoPlayer?.video as TypeMediaInputValue | undefined;
-    const iconValue = videoPlayer?.icon as TypeMediaInputValue | undefined;
-    const image = imageValue;
-    const video = videoValue;
+    const mediaExist = this.hasMedia(media);
+    const videoExist = this.hasMedia(videoPlayer?.video);
+    const playIconExist = this.hasMedia(videoPlayer?.icon) && videoExist;
+    const closeIconExist = this.hasMedia(closeIcon);
 
-    const cardExist = titleExist || subtitleExist || descExist || buttons?.length > 0;
+    const visibleButtons = buttons.filter(
+      (button: Button) => this.castToString(button.text) || this.hasMedia(button.icon)
+    );
+    const cardExist = logoExist || titleExist || subtitleExist || descExist || visibleButtons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {cardExist && (
-              <div className={`${this.decorateCSS("card")} ${!image && this.decorateCSS("card-no-image")}`}>
-                <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!image && this.decorateCSS("card-box-no-image")}`}>
-                  {logoExist && (
-                    <div className={this.decorateCSS("logo-wrapper")}>
-                      <Base.Media value={card.logo} className={this.decorateCSS("logo")} />
-                    </div>
-                  )}
+              <div className={`${this.decorateCSS("card")} ${!mediaExist ? this.decorateCSS("card-no-image") : ""}`}>
+                <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!mediaExist ? this.decorateCSS("card-box-no-image") : ""}`}>
+                  {logoExist && <Base.Media value={card.logo} className={this.decorateCSS("logo")} />}
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>}
                   {descExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>}
-                  {buttons.length > 0 && (
+                  {visibleButtons.length > 0 && (
                     <div className={this.decorateCSS("buttons")}>
-                      {buttons.map((button: Button, index: number) => {
-                        const buttonTextExist = this.castToString(button.text);                        
+                      {visibleButtons.map((button: Button, index: number) => {
+                        const buttonTextExist = this.castToString(button.text);
+                        const buttonIconExist = this.hasMedia(button.icon);
                         return (
-                          (buttonTextExist || button.icon) && (
-                            <ComposerLink path={button.url}>
-                              <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("card-button")}>
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                                {button.icon && <Base.Media value={button.icon as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
-                              </Base.Button>
-                            </ComposerLink>
-                          )
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                              {buttonIconExist && <Base.Media value={button.icon as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
+                            </Base.Button>
+                          </ComposerLink>
                         );
                       })}
                     </div>
@@ -201,42 +238,46 @@ class HeroSection21 extends BaseHeroSection {
                 </Base.VerticalContent>
               </div>
             )}
-            {image && (
-              <div className={`${this.decorateCSS("image-box")} ${!cardExist && this.decorateCSS("image-box-full")}`}>
-                {iconValue && <button
-                  className={this.decorateCSS("button")}
-                  onClick={() => {
-                    this.setComponentState("is_video_visible", true);
-                  }}
-                >
-                  <Base.Media value={iconValue} className={this.decorateCSS("btn-icon")} />
-                </button>}
-                {image && <Base.Media value={imageValue} className={this.decorateCSS("image")} />}
-                {rightBox && (rightBox.card_text || rightBox.card_description) && (
-                  <div className={this.decorateCSS("right-box")}> 
-                    {rightBox.card_text && <Base.P className={this.decorateCSS("right-box-text")}>{rightBox.card_text}</Base.P>}
-                    {rightBox.card_description && <Base.P className={this.decorateCSS("right-box-desc")}>{rightBox.card_description}</Base.P>}
+            {mediaExist && (
+              <div className={`${this.decorateCSS("image-box")} ${!cardExist ? this.decorateCSS("image-box-full") : ""}`}>
+                {playIconExist && (
+                  <div
+                    className={this.decorateCSS("button")}
+                    onClick={() => {
+                      this.setComponentState("is_video_visible", true);
+                    }}
+                  >
+                    <Base.Media
+                      value={videoPlayer.icon}
+                      className={`${this.decorateCSS("btn-icon")} ${animationEnabled ? this.decorateCSS("pulse") : ""}`}
+                    />
+                  </div>
+                )}
+                <Base.Media value={this.withVideoSettings(media)} className={this.decorateCSS("image")} />
+                {mainMedia?.overlay && <div className={this.decorateCSS("overlay")} />}
+                {(infoTitleExist || infoDescExist) && (
+                  <div className={this.decorateCSS("right-box")}>
+                    {infoTitleExist && <Base.P className={this.decorateCSS("right-box-text")}>{infoBox.title}</Base.P>}
+                    {infoDescExist && <Base.P className={this.decorateCSS("right-box-desc")}>{infoBox.description}</Base.P>}
                   </div>
                 )}
               </div>
             )}
           </div>
         </Base.MaxContent>
-        {this.getComponentState("is_video_visible") && video && image && (
+        {this.getComponentState("is_video_visible") && videoExist && (
           <Base.Overlay isVisible={true} className={this.decorateCSS("video")}
             onClick={() => this.setComponentState("is_video_visible", false)}>
             <div className={this.decorateCSS("player-container")} onClick={(event) => event.stopPropagation()}>
-              <button
-                className={this.decorateCSS("close-button")}
-                onClick={() => this.setComponentState("is_video_visible", false)}
-                aria-label="Close"
-              >
-                <Base.Media value={this.getPropValue("closeIcon")} className={this.decorateCSS("close-icon")} />
-              </button>
-              <Base.Media
-                value={video}
-                className={this.decorateCSS("player")}
-              />
+              {closeIconExist && (
+                <div
+                  className={this.decorateCSS("close-button")}
+                  onClick={() => this.setComponentState("is_video_visible", false)}
+                >
+                  <Base.Media value={closeIcon} className={this.decorateCSS("close-icon")} />
+                </div>
+              )}
+              <Base.Media value={videoPlayer.video} className={this.decorateCSS("player")} />
             </div>
           </Base.Overlay>
         )}

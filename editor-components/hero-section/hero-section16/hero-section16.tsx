@@ -6,12 +6,17 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type Arrows = {
+  prevIcon: TypeMediaInputValue;
+  nextIcon: TypeMediaInputValue;
+};
+
 type ISliderData = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   subtitle: React.JSX.Element;
-  button: INPUTS.CastedButton;
+  buttons: INPUTS.CastedButton[];
   overlay: boolean;
   logo: TypeMediaInputValue;
 };
@@ -21,7 +26,7 @@ class HeroSection16 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider",
+      displayer: "Sliders",
       key: "slider",
       value: [
         {
@@ -31,7 +36,7 @@ class HeroSection16 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -77,7 +82,12 @@ class HeroSection16 extends BaseHeroSection {
               displayer: "Overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White")],
+            },
           ],
         },
         {
@@ -87,7 +97,7 @@ class HeroSection16 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -133,7 +143,12 @@ class HeroSection16 extends BaseHeroSection {
               displayer: "Overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White")],
+            },
           ],
         },
         {
@@ -143,7 +158,7 @@ class HeroSection16 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -190,42 +205,49 @@ class HeroSection16 extends BaseHeroSection {
               value: false,
             },
 
-            INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White")],
+            },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true,
-    })
+
 
     this.addProp({
-      type: "media",
-      key: "prev-button-icon",
-      displayer: "Previous Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowBack",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "next-button-icon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowForward",
-      },
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowBack",
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowForward",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -234,6 +256,20 @@ class HeroSection16 extends BaseHeroSection {
       displayer: "Animation",
       value: true,
     })
+
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
@@ -244,17 +280,20 @@ class HeroSection16 extends BaseHeroSection {
     return "Hero Section 16";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const settings = {
-      dots: false,
-      arrows: false,
-      infinite: true,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       fade: true,
-      speed: 500,
-      autoplay: this.getPropValue("autoplay"),
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
@@ -264,8 +303,10 @@ class HeroSection16 extends BaseHeroSection {
 
     const slider = this.castToObject<ISliderData[]>("slider");
     const sliderRef = this.getComponentState("slider-ref");
-    const prevIcon = this.getPropValue("prev-button-icon") as TypeMediaInputValue | undefined;
-    const nextIcon = this.getPropValue("next-button-icon") as TypeMediaInputValue | undefined;
+    const arrows = this.castToObject<Arrows>("arrows");
+    const prevIcon = this.hasMedia(arrows?.prevIcon) ? arrows.prevIcon : undefined;
+    const nextIcon = this.hasMedia(arrows?.nextIcon) ? arrows.nextIcon : undefined;
+    const activeSlideHasMedia = this.hasMedia(slider[activeSlideIndex]?.media);
     const animation = this.getPropValue("animation");
 
     return (
@@ -276,7 +317,7 @@ class HeroSection16 extends BaseHeroSection {
               onClick={() => {
                 sliderRef.current.slickPrev();
               }}
-              className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
+              className={`${this.decorateCSS("slider-button-left")} ${!activeSlideHasMedia ? this.decorateCSS("slider-button-no-image") : ""}`}
             >
               <Base.Media value={prevIcon} className={this.decorateCSS("icon")} />
             </button>
@@ -287,23 +328,20 @@ class HeroSection16 extends BaseHeroSection {
               const subtitleExist = this.castToString(item.subtitle);
               const titleExist = this.castToString(item.title);
               const descriptonExist = this.castToString(item.description);
-              const buttonTextExist = this.castToString(item.button.text);
-              const imageExist = item.image;
-              const logoExist = item.logo;
+              const buttons = (item.buttons || []).filter((button: INPUTS.CastedButton) => this.castToString(button.text));
+              const buttonTextExist = buttons.length > 0;
+              const imageExist = this.hasMedia(item.media);
+              const logoExist = this.hasMedia(item.logo);
 
-              const contentExist = subtitleExist || titleExist || buttonTextExist;
+              const contentExist = logoExist || subtitleExist || titleExist || descriptonExist || buttonTextExist;
 
               return (
                 <div className={this.decorateCSS("item")} key={`slide-${index}-${activeSlideIndex}`}>
                   {imageExist && (
                     <div className={this.decorateCSS("image-container")} key={`image-${activeSlideIndex}-${index}`}>
-                      <Base.Media 
-                        value={item.image} 
-                        className={`${this.decorateCSS("image")} ${animation && this.decorateCSS("image-with-animation")}`} 
-                        autoPlay 
-                        muted 
-                        loop 
-                        playsInline 
+                      <Base.Media
+                        value={this.withVideoSettings(item.media)}
+                        className={`${this.decorateCSS("image")} ${animation && this.decorateCSS("image-with-animation")}`}
                       />
                       {item.overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
@@ -316,19 +354,21 @@ class HeroSection16 extends BaseHeroSection {
               ${activeSlideIndex === index ? this.decorateCSS(imageExist ? "active" : "active-no-image") : ""}`}
                     >
                       {logoExist && (
-                        <div className={this.decorateCSS("logo-wrapper")}>
-                          <Base.Media value={item.logo} className={this.decorateCSS("logo")} />
-                        </div>
+                        <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${!imageExist ? this.decorateCSS("logo-no-image") : ""}`} />
                       )}
-                      {subtitleExist && <Base.P className={`${this.decorateCSS("subtitle")} ${!imageExist && this.decorateCSS("subtitle-no-image")}`}>{item.subtitle}</Base.P>}
-                      {titleExist && <Base.P className={`${this.decorateCSS("title")} ${!imageExist && this.decorateCSS("title-no-image")}`}>{item.title}</Base.P>}
-                      {descriptonExist && <Base.P className={`${this.decorateCSS("description")} ${!imageExist && this.decorateCSS("description-no-image")}`}>{item.description}</Base.P>}
+                      {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!imageExist ? this.decorateCSS("subtitle-no-image") : ""}`}>{item.subtitle}</Base.SectionSubTitle>}
+                      {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!imageExist ? this.decorateCSS("title-no-image") : ""}`}>{item.title}</Base.SectionTitle>}
+                      {descriptonExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${!imageExist ? this.decorateCSS("description-no-image") : ""}`}>{item.description}</Base.SectionDescription>}
                       {buttonTextExist && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
+                        <div className={this.decorateCSS("button-container")}>
+                          {buttons.map((button: INPUTS.CastedButton, buttonIndex: number) => (
+                            <ComposerLink key={buttonIndex} path={button.url}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          ))}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   )}
@@ -339,7 +379,7 @@ class HeroSection16 extends BaseHeroSection {
 
           <div className={this.decorateCSS("numbers-container")}>
             {slider.map((_, index) => {
-              const imageExist = !slider[activeSlideIndex].image;
+              const imageExist = !activeSlideHasMedia;
 
               return (
                 <div key={index} className={`${`${this.decorateCSS("number-item")} ${!imageExist && this.decorateCSS("number-item-no-image")}`} ${activeSlideIndex === index ? this.decorateCSS("active") : ""}`}>
@@ -354,7 +394,7 @@ class HeroSection16 extends BaseHeroSection {
               onClick={() => {
                 sliderRef.current.slickNext();
               }}
-              className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
+              className={`${this.decorateCSS("slider-button-right")} ${!activeSlideHasMedia ? this.decorateCSS("slider-button-no-image") : ""}`}
             >
               <Base.Media value={nextIcon} className={this.decorateCSS("icon")} />
             </button>

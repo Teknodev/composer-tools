@@ -1,9 +1,16 @@
-
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Animations = {
+  titleAnimation: boolean;
+  secondTitleAnimation: boolean;
+  descriptionAnimation: boolean;
+  secondMediaAnimation: boolean;
+  buttonAnimation: boolean;
+};
 
 class HeroSection6 extends BaseHeroSection {
   constructor(props?: any) {
@@ -20,85 +27,33 @@ class HeroSection6 extends BaseHeroSection {
         name: "",
       },
     });
+
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Envision",
     });
-    this.addProp({
-      type: "boolean",
-      key: "titleAnimation",
-      displayer: "Title Animation",
-      value: true,
-    });
+
     this.addProp({
       type: "string",
-      key: "title2",
-      displayer: "Title2",
+      key: "secondTitle",
+      displayer: "Second Title",
       value: "Brand 2020",
     });
-    this.addProp({
-      type: "boolean",
-      key: "title2Animation",
-      displayer: "Title2 Animation",
-      value: true,
-    });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Carefully crafted with unique layouts you can easily create websites.",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "descriptionAnimation",
-      displayer: "Description Animation",
-      value: true,
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-    
-    this.addProp({
-      type: "media",
-      key: "image1",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "image2",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "image2Animation",
-      displayer: "Image Animation",
-      value: true,
     });
 
     this.addProp({
@@ -114,56 +69,133 @@ class HeroSection6 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "buttonAnimation",
-      displayer: "Button Animation",
-      value: true,
-    },)
+      type: "object",
+      key: "mainMedia",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "media",
+      key: "secondMedia",
+      displayer: "Second Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
+      },
+    });
+
+    this.addProp({
+      type: "object",
+      key: "animations",
+      displayer: "Animations",
+      value: [
+        {
+          type: "boolean",
+          key: "titleAnimation",
+          displayer: "Title Animation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "secondTitleAnimation",
+          displayer: "Second Title Animation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "descriptionAnimation",
+          displayer: "Description Animation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "secondMediaAnimation",
+          displayer: "Second Media Animation",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "buttonAnimation",
+          displayer: "Button Animation",
+          value: true,
+        },
+      ],
+    });
   }
 
   static getName(): string {
     return "Hero Section 6";
   }
+
+  withVideoSettings(media: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const title = this.getPropValue("title");
-    const title2 = this.getPropValue("title2");
+    const secondTitle = this.getPropValue("secondTitle");
     const description = this.getPropValue("description");
-    const titleAnimation = this.getPropValue("titleAnimation");
-    const title2Animation = this.getPropValue("title2Animation");
-    const descriptionAnimation = this.getPropValue("descriptionAnimation");
-    const image2 = this.getPropValue("image2");
-    const image2Animation = this.getPropValue("image2Animation");
+    const animations = this.castToObject<Animations>("animations");
+    const mainMedia = this.castToObject<{ media: any; overlay: boolean }>("mainMedia");
+    const media = mainMedia?.media;
+    const secondMedia = this.getPropValue("secondMedia");
     const logo = this.getPropValue("logo");
     const subtitle = this.getPropValue("subtitle");
-
     const isTitleExist = this.castToString(title);
-    const isTitle2Exist = this.castToString(title2);
+    const isSecondTitleExist = this.castToString(secondTitle);
     const isDescriptionExist = this.castToString(description);
     const isSubtitleExist = this.castToString(subtitle);
+    const hasLogo = !!(logo?.url || logo?.name);
+    const hasMedia = !!media?.url;
+    const hasSecondMedia = !!secondMedia?.url;
+    const hasButtons = buttons.some((item: INPUTS.CastedButton) => this.castToString(item.text));
 
     const showLeftContent =
-      logo?.type === "image" && logo?.url || logo?.type === "icon" && logo?.name ||
+      hasLogo ||
       isSubtitleExist ||
       isTitleExist ||
-      isTitle2Exist ||
+      isSecondTitleExist ||
       isDescriptionExist ||
-      buttons.length > 0
-
-    const showRightContent = this.getPropValue("image1") || image2;
+      hasButtons;
+    const hasImages = hasMedia || hasSecondMedia;
     const alignment = Base.getContentAlignment();
-    const hasImages = this.getPropValue("image1") || image2;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showLeftContent && (
             <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!hasImages ? this.decorateCSS("without-images") : ""}`}>
-              {logo && (
+              {hasLogo && (
                 <div className={this.decorateCSS("logo-container")}>
-                  <Base.Media 
-                    value={logo} 
-                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  <Base.Media
+                    value={logo}
+                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`}
                   />
                 </div>
               )}
@@ -172,65 +204,57 @@ class HeroSection6 extends BaseHeroSection {
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
-              {(isTitleExist || isTitle2Exist) && (
+              {(isTitleExist || isSecondTitleExist) && (
                 <div className={this.decorateCSS("title-container")}>
                   {isTitleExist && (
-                    <Base.H2 className={`${this.decorateCSS("title")} ${!titleAnimation && this.decorateCSS("noanimation")}`}>
+                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${!animations?.titleAnimation ? this.decorateCSS("noanimation") : ""}`}>
                       {title}
-                    </Base.H2>
+                    </Base.SectionTitle>
                   )}
-                  {isTitle2Exist && (
-                    <Base.H3 className={`${this.decorateCSS("title2")} ${!title2Animation && this.decorateCSS("noanimation")}`}>
-                      {title2}
+                  {isSecondTitleExist && (
+                    <Base.H3 className={`${this.decorateCSS("title2")} ${!animations?.secondTitleAnimation ? this.decorateCSS("noanimation") : ""}`}>
+                      {secondTitle}
                     </Base.H3>
                   )}
                 </div>
               )}
               {isDescriptionExist && (
-                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!descriptionAnimation && this.decorateCSS("noanimation")}`}>
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!animations?.descriptionAnimation ? this.decorateCSS("noanimation") : ""}`}>
                   {description}
                 </Base.SectionDescription>
               )}
-              {this.getPropValue("buttons").length > 0 && (
+              {hasButtons && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: INPUTS.CastedButton, indexButtons: number) => this.castToString(item.text) && (
                     <ComposerLink path={item.url} key={indexButtons}>
                       <Base.Button buttonType={item.type}
-                        className={`${this.decorateCSS("button")} ${!this.getPropValue("buttonAnimation") && this.decorateCSS("noanimation")}`}
+                        className={`${this.decorateCSS("button")} ${!animations?.buttonAnimation ? this.decorateCSS("noanimation") : ""}`}
                       >
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
-                  ))
-
-                  }
+                  ))}
                 </div>
               )}
             </Base.VerticalContent>
           )}
-
-          {showRightContent && (
+          {hasImages && (
             <div className={this.decorateCSS("right-content")}>
-              {this.getPropValue("image1") && (
+              {hasMedia && (
                 <div className={this.decorateCSS("image1-wrapper")}>
                   <Base.Media
-                    value={this.getPropValue("image1")}
+                    value={this.withVideoSettings(media)}
                     className={this.decorateCSS("image1")}
                   />
-                  {this.getPropValue("overlay") && this.getPropValue("image1") && this.getPropValue("image1").type === "image" && this.getPropValue("image1").url && (
+                  {mainMedia?.overlay && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               )}
-              {image2 && (
+              {hasSecondMedia && (
                 <Base.Media
-                  autoPlay
-                  loop
-                  muted
-                  value={image2}
-                  className={`${this.decorateCSS("image2")} 
-                  ${(!image2Animation) && this.decorateCSS("noanimation")}
-                  ${(!this.getPropValue("image1")) && this.decorateCSS("without-image1")}`}
+                  value={this.withVideoSettings(secondMedia)}
+                  className={`${this.decorateCSS("image2")} ${!animations?.secondMediaAnimation ? this.decorateCSS("noanimation") : ""} ${!hasMedia ? this.decorateCSS("without-image1") : ""}`}
                 />
               )}
             </div>
@@ -242,4 +266,3 @@ class HeroSection6 extends BaseHeroSection {
 }
 
 export default HeroSection6;
-
