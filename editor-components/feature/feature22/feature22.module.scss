@@ -32,17 +32,34 @@
     }
 
     .description {
-      margin-top: var(--composer-gap-xl) !important;
-      text-align: center;
+      margin: 0 auto !important;
+      margin-top: var(--composer-gap-md) !important;
+      text-align: center !important;
       width: 70%;
-      margin: 0 auto;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      .button {
+        .button-text, 
+        .button-icon {
+          content: "";
+        }
+      }
     }
 
     .box {
-      background: var(--composer-primary-color);
       border-radius: var(--composer-border-radius-lg);
       align-items: center;
       overflow: hidden;
+
+      // Primary-colored area behind the media, toggled by the Colored Background prop.
+      &.colored {
+        background: var(--composer-primary-color);
+      }
       
       .tab-buttons {
         display: flex;
@@ -113,13 +130,29 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
                 width: 100%;
                 opacity: 1;
                 transition: opacity 0.3s ease;
                 
                 .lottie {
+                  display: block;
                   width: 100%;
                   height: 100%;
+                  object-fit: cover;
+
+                  // Image and video keep the same ratio as the default Lottie area.
+                  &.media-fill {
+                    height: auto;
+                    aspect-ratio: 11 / 6;
+                  }
+                }
+
+                .media-overlay {
+                  position: absolute;
+                  inset: 0;
+                  background-color: var(--composer-overlay-color);
+                  pointer-events: none;
                 }
               }
             }

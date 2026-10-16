@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import styles from "./feature44.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
@@ -7,20 +7,20 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type ServiceCard = {
     media: TypeMediaInputValue;
-    service_subtitle: Element;
-    service_title: Element;
-    service_description: Element;
+    service_subtitle: React.JSX.Element;
+    service_title: React.JSX.Element;
+    service_description: React.JSX.Element;
     overlay: boolean;
     service_buttons: {
         type: TypeButton;
-        text: Element;
+        text: React.JSX.Element;
         url: string;
     }[];
 };
 
 type PrimaryButton = {
     type: TypeButton;
-    text: Element;
+    text: React.JSX.Element;
     url: string;
 }[];
 
@@ -52,12 +52,12 @@ class Feature44 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "services",
-            displayer: "Services",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -108,7 +108,7 @@ class Feature44 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -159,7 +159,7 @@ class Feature44 extends BaseFeature {
                 {
                     type: "object",
                     key: "service",
-                    displayer: "Service",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -271,7 +271,7 @@ class Feature44 extends BaseFeature {
                         className={this.decorateCSS("services-grid")}
                     >
                         {services?.map((service: ServiceCard, index: number) => (
-                            <Base.Card key={index} className={this.decorateCSS("card-shell")}>
+                            <div key={index} className={this.decorateCSS("card-shell")}>
                             <Base.VerticalContent className={this.decorateCSS("service-card")}>
                                 {this.castToString(service.service_subtitle) && (
                                     <Base.H6 className={this.decorateCSS("card-subtitle")}>
@@ -303,7 +303,7 @@ class Feature44 extends BaseFeature {
                                     </Base.P>
                                 )}
 
-                                {service.service_buttons && service.service_buttons.length > 0 && (
+                                {service.service_buttons && service.service_buttons.some((button) => this.castToString(button.text)) && (
                                     <div className={this.decorateCSS("card-buttons")}>
                                         {service.service_buttons.map((button, btnIndex) => (
                                             this.castToString(button.text) && (
@@ -323,7 +323,7 @@ class Feature44 extends BaseFeature {
                                     </div>
                                 )}
                             </Base.VerticalContent>
-                            </Base.Card>
+                            </div>
                         ))}
                     </Base.ListGrid>
 

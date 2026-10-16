@@ -11,10 +11,19 @@ type ButtonTypeObj = {
   type: TypeButton;
 }
 
+type CardButton = {
+  text: React.JSX.Element;
+  url: string;
+  icon: TypeMediaInputValue;
+  type: string;
+};
+
 type Card = {
   icon: TypeMediaInputValue;
+  card_subtitle: React.JSX.Element;
   card_title: React.JSX.Element;
   card_description: React.JSX.Element;
+  card_buttons: CardButton[];
 };
 
 class Feature32 extends BaseFeature {
@@ -52,12 +61,12 @@ class Feature32 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "Cards",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -73,6 +82,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "card_title",
               displayer: "Title",
               value: "Competitive rates"
@@ -82,13 +97,21 @@ class Feature32 extends BaseFeature {
               key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -104,6 +127,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "card_title",
               displayer: "Title",
               value: "No hidden fees"
@@ -113,13 +142,21 @@ class Feature32 extends BaseFeature {
               key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -135,6 +172,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "card_title",
               displayer: "Title",
               value: "Stable performance"
@@ -144,13 +187,21 @@ class Feature32 extends BaseFeature {
               key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -166,6 +217,12 @@ class Feature32 extends BaseFeature {
             },
             {
               type: "string",
+              key: "card_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "card_title",
               displayer: "Title",
               value: "Instant transfers"
@@ -175,7 +232,15 @@ class Feature32 extends BaseFeature {
               key: "card_description",
               displayer: "Description",
               value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
+            },
+            {
+              type: "array",
+              key: "card_buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ]
         },
       ]
@@ -248,28 +313,47 @@ class Feature32 extends BaseFeature {
                 gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
               >
                 {cards.map((card: Card, index: number) => {
+                  const cardSubtitleExist = this.castToString(card.card_subtitle);
                   const titleExist = !!this.castToString(card.card_title);
                   const descExist = !!this.castToString(card.card_description);
                   const isImage = card.icon?.type === "image";
+                  const cardButtons = card.card_buttons || [];
+                  const hasCardButton = cardButtons.some((btn: CardButton) => this.castToString(btn.text) || (btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url)));
 
-                  if (!titleExist && !descExist && !card.icon) return null;
+                  if (!cardSubtitleExist && !titleExist && !descExist && !card.icon && !hasCardButton) return null;
 
                   return (
                     <Base.Card
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {card.icon &&
-                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                          <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                        </div>
-                      }
-                      {(titleExist || descExist) &&
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                          {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H3>}
-                          {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
-                        </Base.VerticalContent>
-                      }
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {card.icon &&
+                          <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                            <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                          </div>
+                        }
+                        {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>}
+                        {titleExist && <Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>}
+                        {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
+                        {hasCardButton && (
+                          <div className={this.decorateCSS("card-button-container")}>
+                            {cardButtons.map((btn: CardButton, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && (btn.icon.type === "icon" ? btn.icon.name : btn.icon.url);
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={btnIndex} path={btn.url}>
+                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </Base.VerticalContent>
                     </Base.Card>
                   );
                 })}

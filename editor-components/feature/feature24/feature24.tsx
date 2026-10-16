@@ -43,7 +43,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -63,7 +63,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -83,7 +83,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -103,7 +103,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -123,7 +123,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -143,7 +143,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -163,7 +163,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -183,7 +183,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -203,7 +203,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -223,7 +223,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -243,7 +243,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -263,7 +263,7 @@ class Feature24 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -334,7 +334,7 @@ class Feature24 extends BaseFeature {
           {cards?.length > 0 && (
             <Base.ListGrid
               className={this.decorateCSS("features-content")}
-              gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
+              gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
             >
               {cards.map((card: Card, index: number) => {
                 const titleExist = this.castToString(card.card_title);
@@ -349,7 +349,7 @@ class Feature24 extends BaseFeature {
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                      {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>)}
+                      {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
                     </Base.VerticalContent>
                   </div>
                 );

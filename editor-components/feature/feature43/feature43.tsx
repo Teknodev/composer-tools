@@ -1,4 +1,4 @@
-import {
+﻿import {
   BaseFeature,
   TypeMediaInputValue,
 } from "../../EditorComponent";
@@ -55,12 +55,12 @@ class Feature43 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "Cards",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -125,7 +125,7 @@ class Feature43 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",
@@ -190,7 +190,7 @@ class Feature43 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Feature",
           value: [
             {
               type: "media",

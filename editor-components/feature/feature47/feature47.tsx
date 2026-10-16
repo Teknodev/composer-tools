@@ -8,8 +8,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
     card_title: string;
     icon: TypeMediaInputValue;
+    card_subtitle: React.JSX.Element;
     card_description: string;
-    button?: ButtonTypeObj
+    card_buttons?: ButtonTypeObj[]
 }
 type ButtonTypeObj = {
     text: string;
@@ -41,11 +42,11 @@ class Feature47 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [{
                 type: "object",
                 key: "card",
-                displayer: "Card",
+                displayer: "Feature",
                 value: [
                     {
                         type: "media",
@@ -61,6 +62,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "card_subtitle",
+                        displayer: "Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "card_title",
                         displayer: "Title",
                         value: "Web Development",
@@ -71,13 +78,20 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
                 type: "object",
                 key: "card",
-                displayer: "Card",
+                displayer: "Feature",
                 value: [
                     {
                         type: "media",
@@ -93,6 +107,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "card_subtitle",
+                        displayer: "Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "card_title",
                         displayer: "Title",
                         value: "Digital Marketing",
@@ -103,13 +123,20 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
                 type: "object",
                 key: "card",
-                displayer: "Card",
+                displayer: "Feature",
                 value: [
                     {
                         type: "media",
@@ -125,6 +152,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "card_subtitle",
+                        displayer: "Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "card_title",
                         displayer: "Title",
                         value: "Search Engine Optimization"
@@ -135,13 +168,20 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             },
             {
                 type: "object",
                 key: "card",
-                displayer: "Card",
+                displayer: "Feature",
                 value: [
                     {
                         type: "media",
@@ -157,6 +197,12 @@ class Feature47 extends BaseFeature {
                     },
                     {
                         type: "string",
+                        key: "card_subtitle",
+                        displayer: "Subtitle",
+                        value: "",
+                    },
+                    {
+                        type: "string",
                         key: "card_title",
                         displayer: "Title",
                         value: "Social Media Marketing"
@@ -167,7 +213,14 @@ class Feature47 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
                     },
-                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+                    {
+                        type: "array",
+                        key: "card_buttons",
+                        displayer: "Buttons",
+                        value: [
+                            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        ],
+                    }
                 ]
             }
             ],
@@ -237,13 +290,15 @@ class Feature47 extends BaseFeature {
                     {cards?.length > 0 && (
                         <Base.ListGrid className={this.decorateCSS("cards-container")} gridCount={{ pc: itemCount || 4, tablet: 2, phone: 1 }}>
                             {cards.map((card: Card, index: number) => {
+                                const cardSubtitleExist = this.castToString(card.card_subtitle);
                                 const titleExist = !!this.castToString(card.card_title);
                                 const descExist = !!this.castToString(card.card_description);
                                 const iconExist = !!card.icon;
                                 const iconBackground = this.getPropValue("iconBackground");
-                                const buttonExist = card.button && this.castToString(card.button.text);
-                                const onlyButton = !iconExist && !titleExist && !descExist && buttonExist;
-                                return (iconExist || titleExist || descExist || buttonExist) && (
+                                const cardButtons = (card.card_buttons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
+                                const buttonExist = cardButtons.length > 0;
+                                const onlyButton = !iconExist && !cardSubtitleExist && !titleExist && !descExist && buttonExist;
+                                return (iconExist || cardSubtitleExist || titleExist || descExist || buttonExist) && (
                                     <Base.Card key={index} className={this.decorateCSS("card-shell")}>
                                     <Base.VerticalContent className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
                                         {iconExist && (
@@ -251,6 +306,11 @@ class Feature47 extends BaseFeature {
                                                 <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
                                             </div>
                                         )}
+                                            {cardSubtitleExist && (
+                                                <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                                    {card.card_subtitle}
+                                                </Base.H6>
+                                            )}
                                             {titleExist && (
                                                 <Base.H4 className={this.decorateCSS("card-title")}>
                                                     {card.card_title}
@@ -261,12 +321,16 @@ class Feature47 extends BaseFeature {
                                                     {card.card_description}
                                                 </Base.P>
                                             )}
-                                        {card.button && this.castToString(card.button.text) && (
-                                            <ComposerLink path={card.button.url}>
-                                                <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
-                                                    <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
+                                        {buttonExist && (
+                                            <div className={this.decorateCSS("card-button-container")}>
+                                                {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                                                    <ComposerLink key={btnIndex} path={btn.url}>
+                                                        <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                            <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                ))}
+                                            </div>
                                         )}
                                     </Base.VerticalContent>
                                     </Base.Card>

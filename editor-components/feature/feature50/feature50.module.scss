@@ -19,11 +19,13 @@
 
     .cards-grid {
       width: 100%;
-      gap: var(--composer-gap-sm);
 
       .card-shell {
         display: flex;
         flex-direction: column;
+        background: var(--composer-primary-color);
+        border-radius: var(--composer-border-radius-sm);
+        padding: var(--composer-gap-xl);
         > * {
           flex: 1 1 auto;
         }
@@ -46,7 +48,7 @@
           .card-subtitle,
           .card-title, 
           .card-description {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-font-color-secondary);
             text-align: left;
           }
 
@@ -62,7 +64,7 @@
               content: "";
               .card-button-text {
                 content: "";
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
               }
             }
           }
@@ -78,7 +80,7 @@
             width: 128px;
             height: 128px;
             object-fit: contain;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-font-color-secondary);
           }
           .media-image {
             object-fit: cover;
@@ -125,7 +127,6 @@
       gap: var(--composer-gap-md);
 
       .cards-grid {
-        gap: var(--composer-gap-md);
 
         .card {
           min-height: 200px;
@@ -157,5 +158,17 @@
         }
       }
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-shell {
+    padding: var(--composer-gap-lg);
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .card-shell {
+    padding: var(--composer-gap-md);
   }
 }

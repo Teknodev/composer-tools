@@ -18,8 +18,8 @@ interface ListItem {
   cardTitle: React.JSX.Element;
   text1: React.JSX.Element;
   text2: React.JSX.Element;
-  image: TypeMediaInputValue;
-  button: ButtonTypeObj;
+  media: TypeMediaInputValue;
+  cardButtons: ButtonTypeObj[];
 }
 
 class Feature42 extends BaseFeature {
@@ -50,12 +50,12 @@ class Feature42 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Cards",
+      displayer: "Features",
       value: [
         {
           type: "object",
           key: "item",
-          displayer: "Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -65,7 +65,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -75,13 +75,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Tools and software for every business"
             },
             {
@@ -96,13 +96,20 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
           type: "object",
           key: "item",
-          displayer: "Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -112,7 +119,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -122,13 +129,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Smart data analytics dashboards"
             },
             {
@@ -143,13 +150,20 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
           type: "object",
           key: "item",
-          displayer: "Item",
+          displayer: "Feature",
           value: [
             {
               type: "string",
@@ -159,7 +173,7 @@ class Feature42 extends BaseFeature {
             },
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -169,13 +183,13 @@ class Feature42 extends BaseFeature {
             {
               type: "string",
               key: "cardSubTitle",
-              displayer: "Card Subtitle",
+              displayer: "Subtitle",
               value: ""
             },
             {
               type: "string",
               key: "cardTitle",
-              displayer: "Card Title",
+              displayer: "Heading",
               value: "Visual component of the project"
             },
             {
@@ -190,7 +204,14 @@ class Feature42 extends BaseFeature {
               displayer: "Text 2",
               value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
             },
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "cardButtons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -250,12 +271,12 @@ class Feature42 extends BaseFeature {
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitleExist || titleExist || descriptionExist;
     const hasRightContent = items.some((item: ListItem) =>
-      item.image ||
+      item.media ||
       this.castToString(item.cardTitle) ||
       this.castToString(item.text1) ||
       this.castToString(item.text2)
     );
-    const hasAnyImage = items.some((item: ListItem) => item.image);
+    const hasAnyImage = items.some((item: ListItem) => item.media);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -297,6 +318,7 @@ class Feature42 extends BaseFeature {
               const cardTitleExist = this.castToString(item.cardTitle);
               const text1Exist = this.castToString(item.text1);
               const text2Exist = this.castToString(item.text2);
+              const cardButtons = (item.cardButtons || []).filter((btn: ButtonTypeObj) => this.castToString(btn.text));
               return (
                 <div
                   key={index}
@@ -315,26 +337,30 @@ class Feature42 extends BaseFeature {
                       {mobileIcon && (<Base.Media value={mobileIcon} className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`} />)}
                     </div>
                   </div>
-                  {item.image && (
+                  {item.media && (
                     <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
-                      <Base.Media value={item.image} className={this.decorateCSS("itemImage")} />
+                      <Base.Media value={item.media} className={this.decorateCSS("itemImage")} />
                       {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                     </div>
                   )}
                   {(cardTitleExist || text1Exist || text2Exist) && (
-                    <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("sectionsWrapper")} ${!item.media && this.decorateCSS("no-image")}`}>
                       {cardSubTitleExist && (<Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>)}
                       {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
                       {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
                       {text2Exist && (<Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>)}
-                      {item.button && this.castToString(item.button.text) && (
-                        <ComposerLink path={item.button.url}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
-                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
+                      {cardButtons.length > 0 && (
+                        <div className={this.decorateCSS("card-button-container")}>
+                          {cardButtons.map((btn: ButtonTypeObj, btnIndex: number) => (
+                            <ComposerLink key={btnIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          ))}
+                        </div>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
                   {enableLine && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-bottom")}`}></div>}
                 </div>

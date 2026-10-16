@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
     media: TypeMediaInputValue;
+    card_subtitle: React.JSX.Element;
     card_title: React.JSX.Element;
     card_description: React.JSX.Element;
 };
@@ -44,7 +45,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -52,6 +53,12 @@ class Feature31 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: { type: "icon", name: "MdDesignServices" },
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -70,7 +77,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -78,6 +85,12 @@ class Feature31 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: { type: "icon", name: "FaCarRear" },
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -96,7 +109,7 @@ class Feature31 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -104,6 +117,12 @@ class Feature31 extends BaseFeature {
                             displayer: "Media",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: { type: "icon", name: "BiSolidLike" },
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: ""
                         },
                         {
                             type: "string",
@@ -158,8 +177,9 @@ class Feature31 extends BaseFeature {
         const description = this.getPropValue("description");
         const descriptionExist = this.castToString(description);
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasVisibleButton = buttonItem.some((buttonObj: INPUTS.CastedButton) => this.castToString(buttonObj.text));
         const enableIconBackground = this.getPropValue("iconBackground");
-        const hasContent = subtitleExist || titleExist || descriptionExist || (buttonItem && buttonItem.length > 0);
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasVisibleButton;
         const cards = this.castToObject<Card[]>("cards");
 
         return (
@@ -176,13 +196,14 @@ class Feature31 extends BaseFeature {
                         {cards?.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("features-content")}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}
+                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
+                                    const subtitleExist = this.castToString(card.card_subtitle);
                                     const titleExist = this.castToString(card.card_title);
                                     const descExist = this.castToString(card.card_description);
                                     const isImage = card.media?.type === "image";
-                                    if (!titleExist && !descExist && !card.media) return null;
+                                    if (!subtitleExist && !titleExist && !descExist && !card.media) return null;
 
                                     return (
                                         <Base.Card key={index} className={this.decorateCSS("card-container")}>
@@ -192,6 +213,7 @@ class Feature31 extends BaseFeature {
                                                 </div>
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                                {subtitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>)}
                                                 {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H5>)}
                                                 {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>)}
                                             </Base.VerticalContent>
@@ -200,7 +222,7 @@ class Feature31 extends BaseFeature {
                                 })}
                             </Base.ListGrid>
                         )}
-                        {buttonItem.length > 0 && (
+                        {hasVisibleButton && (
                             <Base.Row className={this.decorateCSS("button-container")}>
                                 {buttonItem.map(
                                     (buttonObj, index: number) => {

@@ -248,16 +248,18 @@ class Feature7 extends BaseFeature {
                     {(this.getPropValue("links").length > 0) && (
                       <Base.Row className={this.decorateCSS("linkList")}>
                         {links.map((item: INPUTS.CastedButton, index: number) => {
-                          const buttonExist = this.castToString(item.text) || item.icon;
+                          const icon = item.icon as unknown as TypeMediaInputValue;
+                          const iconExist = icon && (icon.type === "icon" ? icon.name : icon.url);
+                          const buttonExist = this.castToString(item.text) || iconExist;
 
                           return buttonExist && (
                             <div key={index} className={this.decorateCSS("linkContainer")}>
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
                                   {this.castToString(item.text) && <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>}
-                                  {item.icon && (
+                                  {iconExist && (
                                     <Base.Media
-                                      value={{ type: "icon", name: item.icon }}
+                                      value={icon}
                                       className={this.decorateCSS("iconLink")}
                                     />
                                   )}
