@@ -62,8 +62,8 @@ class Testimonials2Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "number",
@@ -114,8 +114,8 @@ class Testimonials2Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "number",
@@ -166,8 +166,8 @@ class Testimonials2Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "number",
@@ -218,8 +218,8 @@ class Testimonials2Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card4",
-          displayer: "Card 4",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "number",
@@ -270,8 +270,8 @@ class Testimonials2Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card5",
-          displayer: "Card 5",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "number",

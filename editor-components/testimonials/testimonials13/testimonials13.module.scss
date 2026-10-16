@@ -127,17 +127,17 @@
                   height: 120px;
                   border-radius: 50%;
                   overflow: hidden;
-                  img {
+                  font-size: 3rem;
+
+                  .img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                   }
-                  font-size: 3rem;
                 }
 
                 .item-description {
                   color: var(--composer-font-color-primary);
-                  font-size: 1.5rem;
                   text-align: center !important;
                   justify-content: center !important;
                   margin-left: auto !important;
@@ -155,7 +155,6 @@
 
                   .first-header {
                     color: var(--composer-font-color-primary);
-                    font-weight: 800;
                     text-align: center !important;
                     justify-content: center !important;
                     margin-left: auto !important;
@@ -228,7 +227,7 @@
           flex-direction: column;
           justify-content: center;
           border-radius: var(--composer-border-radius-sm);
-          padding: 60px;
+          padding: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
           .flexItem3-content {
             align-items: flex-start !important;
             .item_title_text {
@@ -249,20 +248,14 @@
               .containerBottom {
                 flex: 1;
 
-                .topWriting {
-                  font-size: 1.5rem;
-                  color: var(--composer-font-color-secondary);
-                }
-
-                .middleWriting {
-                  font-size: 4rem;
-                  font-weight: 800;
-                  color: var(--composer-font-color-secondary);
-                }
-
+                .topWriting,
+                .middleWriting,
                 .bottomWriting {
-                  font-size: 1.25rem;
                   color: var(--composer-font-color-secondary);
+                  text-align: left !important;
+                  justify-content: flex-start !important;
+                  margin-left: 0 !important;
+                  margin-right: 0 !important;
                 }
               }
             }
@@ -319,7 +312,7 @@
                 overflow: hidden;
                 .slider-inner-div {
                   .content-div {
-                    padding: 40px 20px;
+                    padding: var(--composer-gap-lg) var(--composer-gap-md);
                     .img-div {
                       width: 80px;
                       height: 80px;

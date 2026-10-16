@@ -74,8 +74,8 @@ class Testimonials9Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "slider1",
-          displayer: "Slider 1",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -106,8 +106,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider2",
-          displayer: "Slider 2",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -138,8 +138,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider3",
-          displayer: "Slider 3",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -170,8 +170,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider4",
-          displayer: "Slider 4",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -202,8 +202,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider5",
-          displayer: "Slider 5",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -234,8 +234,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider6",
-          displayer: "Slider 6",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -266,8 +266,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider7",
-          displayer: "Slider 7",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -298,8 +298,8 @@ class Testimonials9Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider8",
-          displayer: "Slider 8",
+          key: "slider object",
+          displayer: "Slider Object",
           value: [
             {
               type: "media",
@@ -437,10 +437,10 @@ class Testimonials9Page extends Testimonials {
                         {item.author && (item.author.name || item.author.subtitle) && (
                           <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
                             {item.author.name && (
-                              <Base.H5 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H5>
+                              <Base.H6 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H6>
                             )}
                             {item.author.position && (
-                              <Base.H5 className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.H5>
+                              <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
                             )}
                           </Base.VerticalContent>
                         )}

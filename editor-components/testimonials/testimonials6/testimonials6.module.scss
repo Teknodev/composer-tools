@@ -37,7 +37,6 @@
       .card {
         text-align: left;
         border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
-        border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-xl) var(--composer-gap-lg);
         display: flex;
         flex-direction: column;
@@ -75,12 +74,9 @@
               color: var(--composer-font-color-primary);
             }
             .person {
-              display: flex;
-              flex-direction: column;
               flex: 1;
               .item-name {
                 color: var(--composer-font-color-primary);
-                font-weight: 800;
                 text-align: left !important;
                 margin-left: 0 !important;
               }
@@ -100,13 +96,12 @@
             .icon {
               color: var(--composer-primary-color);
               font-size: 1.5rem;
-              width: 20px;
-              height: 20px;
+              width: 1.5rem;
+              height: 1.5rem;
               object-fit: contain;
             }
             .rating {
               color: var(--composer-primary-color);
-              font-weight: 800;
               text-align: right !important;
               justify-content: flex-end !important;
             }
@@ -147,16 +142,6 @@
       .card-container {
         .card {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
-
-          .bottom-container {
-            .author-info {
-              .person {
-                .item-subtitle {
-                  font-size: 0.875rem !important;
-                }
-              }
-            }
-          }
         }
       }
     }

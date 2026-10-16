@@ -87,8 +87,8 @@ class Testimonials11Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "item1",
-          displayer: "Item 1",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",
@@ -110,8 +110,8 @@ class Testimonials11Page extends Testimonials {
         },
         {
           type: "object",
-          key: "item2",
-          displayer: "Item 2",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",
@@ -133,8 +133,8 @@ class Testimonials11Page extends Testimonials {
         },
         {
           type: "object",
-          key: "item3",
-          displayer: "Item 3",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",
@@ -156,8 +156,8 @@ class Testimonials11Page extends Testimonials {
         },
         {
           type: "object",
-          key: "item4",
-          displayer: "Item 4",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",
@@ -179,8 +179,8 @@ class Testimonials11Page extends Testimonials {
         },
         {
           type: "object",
-          key: "item5",
-          displayer: "Item 5",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",
@@ -202,8 +202,8 @@ class Testimonials11Page extends Testimonials {
         },
         {
           type: "object",
-          key: "item6",
-          displayer: "Item 6",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "media",

@@ -43,7 +43,7 @@ class Testimonials5Page extends Testimonials {
           key: "componentBackground",
           displayer: "Background Media",
           additionalParams: { availableTypes: ["image", "video"] },
-          value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg" },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675828500655f8002ca53fbd?alt=media" },
         },
         {
           type: "boolean",
@@ -67,7 +67,7 @@ class Testimonials5Page extends Testimonials {
     });
     this.addProp({
       type: "string",
-      key: "description",
+      key: "header_description",
       displayer: "Description",
       value: "",
     });
@@ -115,15 +115,15 @@ class Testimonials5Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "slider1",
-          displayer: "Slider 1",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150" },
             },
             {
               type: "object",
@@ -167,15 +167,15 @@ class Testimonials5Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider2",
-          displayer: "Slider 2",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150" },
             },
             {
               type: "object",
@@ -219,15 +219,15 @@ class Testimonials5Page extends Testimonials {
         },
         {
           type: "object",
-          key: "slider3",
-          displayer: "Slider 3",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150" },
             },
             {
               type: "object",
@@ -316,7 +316,7 @@ class Testimonials5Page extends Testimonials {
     const alignmentValue = Base.getContentAlignment();
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const descriptionExist = this.castToString(this.getPropValue("header_description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
@@ -374,7 +374,7 @@ class Testimonials5Page extends Testimonials {
                   )}
                   {descriptionExist && (
                     <Base.SectionDescription className={this.decorateCSS("top-description")}>
-                      {this.getPropValue("description")}
+                      {this.getPropValue("header_description")}
                     </Base.SectionDescription>
                   )}
                   {hasValidButtons && (
@@ -429,9 +429,9 @@ class Testimonials5Page extends Testimonials {
                       {item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)) && (
                         <div className={this.decorateCSS("authorContainer")}>
                           {this.castToString(item.author.name) && (
-                            <Base.H6 className={this.decorateCSS("sliderTitle")}>
+                            <Base.H5 className={this.decorateCSS("sliderTitle")}>
                               {item.author.name}
-                            </Base.H6>
+                            </Base.H5>
                           )}
                           {this.castToString(item.author.position) && (
                             <Base.P className={this.decorateCSS("sliderPosition")}>
@@ -447,9 +447,9 @@ class Testimonials5Page extends Testimonials {
                       )}
                       <Base.VerticalContent className={this.decorateCSS("rightContainer")}>
                         {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("description")}>
+                          <Base.SectionDescription className={this.decorateCSS("description")}>
                             {item.description}
-                          </Base.P>
+                          </Base.SectionDescription>
                         )}
                         {itemIconExist && item.star > 0 && (
                           <div className={this.decorateCSS("stars")}>

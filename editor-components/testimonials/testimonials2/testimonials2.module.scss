@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  background: var(--composer-html-background);
+  background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   padding-left: 0 !important;
   padding-right: 0 !important;
 
@@ -113,7 +113,7 @@
 
     .card {
       border-radius: var(--composer-border-radius-sm);
-      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      background: var(--composer-html-background);
       padding: var(--composer-gap-xl) var(--composer-gap-lg);
       display: flex !important;
       flex-direction: column;
@@ -130,13 +130,13 @@
           text-align: left !important;
           justify-content: flex-start !important;
           .icon {
-            width: 18px !important;
-            height: 21px !important;
-            font-size: 18px !important;
+            width: 1.25rem !important;
+            height: 1.5rem !important;
+            font-size: 1.25rem !important;
             object-fit: contain;
             svg {
-              width: 18px !important;
-              height: 21px !important;
+              width: 1.25rem !important;
+              height: 1.5rem !important;
             }
           }
         }
@@ -162,13 +162,10 @@
 
         .item-name {
           color: var(--composer-font-color-primary);
-          font-size: 1rem;
-          font-weight: 800 !important;
           text-align: left !important;
         }
 
         .item-subtitle {
-          font-size: 1rem;
           color: var(--composer-tertiary-color);
           text-align: left !important;
         }

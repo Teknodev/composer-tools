@@ -399,18 +399,18 @@ class Testimonials4Page extends Testimonials {
                         <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       )}
                       {textExist && (
-                        <Base.P className={this.decorateCSS("item-text")}>
+                        <Base.SectionDescription className={this.decorateCSS("item-text")}>
                           {item.text}
-                        </Base.P>
+                        </Base.SectionDescription>
                       )}
                       {authorExist && (
                         <div className={this.decorateCSS("person-text")}>
-                          {item.author.name && (
-                            <Base.P className={this.decorateCSS("item-name")}>
+                          {this.castToString(item.author.name) && (
+                            <Base.H6 className={this.decorateCSS("item-name")}>
                               {item.author.name}
-                            </Base.P>
+                            </Base.H6>
                           )}
-                          {item.author.position && (
+                          {this.castToString(item.author.position) && (
                             <Base.P className={this.decorateCSS("item-subtitle")}>
                               {item.author.position}
                             </Base.P>

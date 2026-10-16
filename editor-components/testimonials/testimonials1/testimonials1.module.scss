@@ -199,7 +199,7 @@
                 &.active {
                   width: 45px;
                   height: 8px;
-                  border-radius: 4px;
+                  border-radius: var(--composer-border-radius-sm);
                   background: var(--composer-font-color-primary);
                   border-color: var(--composer-font-color-primary);
                 }
@@ -252,16 +252,13 @@
               }
 
               .description {
-                font-size: 1.75rem;
                 text-align: center;
                 color: #383632;
-                font-weight: 800;
                 text-transform: uppercase;
               }
 
               .name {
                 width: 100%;
-                font-size: 1.5rem;
                 text-align: center;
                 color: #d39121;
               }
@@ -305,17 +302,6 @@
             .side-image-left,
             .side-image-right {
               display: none;
-            }
-
-            .content {
-              .items {
-                .description {
-                  font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-                }
-                .name {
-                  font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-                }
-              }
             }
 
             .content {
@@ -374,14 +360,6 @@
                   right: -10px;
                   width: 40px;
                   height: 40px;
-                }
-              }
-              .items {
-                .description {
-                  font-size: calc(1.375 * var(--composer-font-size-md)) !important;
-                }
-                .name {
-                  font-size: calc(1.125 * var(--composer-font-size-md)) !important;
                 }
               }
               .images {

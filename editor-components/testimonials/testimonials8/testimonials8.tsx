@@ -78,8 +78,8 @@ class Testimonials8Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -133,8 +133,8 @@ class Testimonials8Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -188,8 +188,8 @@ class Testimonials8Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -381,7 +381,7 @@ class Testimonials8Page extends Testimonials {
                         {item.author && (item.author.name || item.author.position) && (
                           <div className={this.decorateCSS("personal")}>
                             {item.author.name && (
-                              <Base.P className={this.decorateCSS("item-name")}>{item.author.name}</Base.P>
+                              <Base.H6 className={this.decorateCSS("item-name")}>{item.author.name}</Base.H6>
                             )}
                             {item.author.position && (
                               <Base.P className={this.decorateCSS("item-subtitle")}>{item.author.position}</Base.P>
@@ -402,7 +402,7 @@ class Testimonials8Page extends Testimonials {
                         )}
                         {this.getPropValue("lineActive") && <div className={this.decorateCSS("line")}></div>}
                         {item.starNumber > 0 && this.getPropValue("numberIsActive") && (
-                          <div className={this.decorateCSS("starNumber")}>{Number(item.starNumber).toFixed(1)}</div>
+                          <Base.P className={this.decorateCSS("starNumber")}>{Number(item.starNumber).toFixed(1)}</Base.P>
                         )}
                       </Base.Row>
                     </Base.VerticalContent>

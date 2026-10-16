@@ -5,7 +5,6 @@
 }
 
 .container {
-  // No background here: Base.Container's html-background applies, and a background set from the design tab wins over it.
   position: relative;
 
   .max-content {
@@ -139,7 +138,7 @@
             width: 45%;
             // Transparent: the ring around the card is cut out of the image (.has-notch), so the container's own background shows in it.
             background-color: transparent;
-            padding: 15px 15px 0 0;
+            padding: calc(var(--composer-gap-sm) + var(--composer-gap-xs)) calc(var(--composer-gap-sm) + var(--composer-gap-xs)) 0 0;
             border-top-right-radius: var(--composer-border-radius-lg);
 
             .experience-card {
@@ -156,7 +155,6 @@
 
               .experience-header {
                 .experience-title {
-                  font-size: 1.5rem;
                   color: var(--composer-primary-color);
                   text-align: left !important;
                 }
@@ -169,8 +167,6 @@
                 .experience-number {
                   display: flex;
                   align-items: center;
-                  font-size: 4rem;
-                  font-weight: bold;
                   color: var(--composer-font-color-primary);
                   margin: 0;
                   text-align: left !important;
@@ -186,7 +182,6 @@
                 }
 
                 .experience-subtitle {
-                  font-size: 1.25rem;
                   color: var(--composer-tertiary-color);
                   text-align: left !important;
                 }
@@ -312,8 +307,8 @@
           align-self: initial;
           justify-content: space-between;
           gap: 0;
-          border-radius: var(--composer-border-width-lg);
-          padding: 30px;
+          border-radius: var(--composer-border-radius-md);
+          padding: calc(var(--composer-gap-md) + var(--composer-gap-sm));
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
           .content-wrapper {
@@ -324,25 +319,20 @@
             width: fit-content;
             margin-left: 0 !important;
             text-align: left !important;
+            text-transform: uppercase;
 
             &.line {
               position: relative;
             }
 
-            .header-text {
-              font-size: 1rem;
-              text-transform: uppercase;
-              text-align: left !important;
-            }
+
           }
 
           .main-title {
-            font-size: 3.5rem;
             text-align: left !important;
           }
 
           .description {
-            font-size: 1.5rem;
             color: var(--composer-font-color-secondary);
             text-align: left !important;
           }
@@ -393,7 +383,6 @@
 
             .quote-text {
               color: var(--composer-font-color-secondary);
-              font-size: 1.25rem;
               margin: 0 !important;
               flex: 1;
               text-align: left !important;
@@ -411,14 +400,11 @@
 
                 .author-name {
                   color: var(--composer-font-color-secondary);
-                  font-weight: bold;
-                  font-size: 1.25rem;
                   text-align: left !important;
                 }
 
                 .author-subtitle {
                   color: var(--composer-font-color-secondary);
-                  font-size: 1rem;
                   text-align: left !important;
                 }
               }
@@ -439,7 +425,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: var(--composer-border-width-lg);
+          border-radius: var(--composer-border-radius-md);
           padding: 0;
 
           .video-container {
@@ -576,13 +562,6 @@
           order: 1;
           .top-right-content {
             padding: var(--composer-gap-lg);
-
-            .main-content {
-              .main-title {
-                font-size: 3rem;
-                margin: var(--composer-gap-sm) 0 !important;
-              }
-            }
           }
 
           &.right-section-full {
@@ -617,9 +596,10 @@
             height: 300px;
             min-height: 300px;
 
+            // Fills the 300px area so the notch (measured from the image's own bottom) sits on the visible edge.
             .main-image {
               width: 100%;
-              height: auto;
+              height: 100%;
               object-fit: cover;
               display: block;
             }
@@ -628,25 +608,14 @@
               width: 60%;
               .experience-card {
                 padding: var(--composer-gap-md);
-                .experience-header {
-                  .experience-title {
-                    font-size: 1rem;
-                  }
-                }
-
                 .experience-content {
                   .experience-number {
-                    font-size: 3rem;
                     margin-top: var(--composer-gap-md);
                     margin-bottom: var(--composer-gap-sm);
 
                     .number-icon {
                       font-size: 2rem;
                     }
-                  }
-
-                  .experience-subtitle {
-                    font-size: 1rem;
                   }
                 }
               }
@@ -678,14 +647,6 @@
           .top-right-content {
             min-height: auto;
             padding: var(--composer-gap-md);
-
-            .main-content {
-              .main-title {
-                font-size: 2rem;
-                margin-bottom: 2rem !important;
-                letter-spacing: normal;
-              }
-            }
           }
 
           &.right-section-full {
@@ -715,20 +676,7 @@
                     height: 16px;
                   }
 
-                  .quote-text {
-                    font-size: 1rem;
-                  }
                   .author-info {
-                    .author-details {
-                      .author-name {
-                        font-size: 1rem;
-                      }
-
-                      .author-subtitle {
-                        font-size: 0.875rem;
-                      }
-                    }
-
                     .quote-icon {
                       font-size: 4rem;
                       width: 64px;

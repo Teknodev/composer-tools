@@ -52,13 +52,13 @@ class Testimonials15Page extends Testimonials {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
+      key: "header_subtitle",
       displayer: "Subtitle",
       value: "Get to know us",
     });
     this.addProp({
       type: "string",
-      key: "title",
+      key: "header_title",
       displayer: "Title",
       value: "Empowering Businesses with Innovation, Expertise, and for <span style='color: var(--composer-primary-color)'>Success.</span>",
     });
@@ -91,7 +91,7 @@ class Testimonials15Page extends Testimonials {
           },
           value: {
             type: "image",
-            url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-1.webp",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
           },
         },
         {
@@ -279,7 +279,7 @@ class Testimonials15Page extends Testimonials {
               },
               value: {
                 type: "image",
-                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/about-2.webp",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
               },
             },
             {
@@ -354,8 +354,8 @@ class Testimonials15Page extends Testimonials {
   }
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("header_subtitle"));
+    const titleExist = this.castToString(this.getPropValue("header_title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const bottomLeftBox = this.castToObject<any>("bottomLeftBox");
@@ -411,13 +411,15 @@ class Testimonials15Page extends Testimonials {
                   {bottomLeftBox.visibility && (
                     <div className={this.decorateCSS("box-area")} ref={this.setBoxRef}>
                       <div className={this.decorateCSS("experience-card")}>
-                        <div className={this.decorateCSS("experience-header")}>
-                          <div className={this.decorateCSS("experience-title")}>
-                            {bottomLeftBox.title}
+                        {this.castToString(bottomLeftBox.title) && (
+                          <div className={this.decorateCSS("experience-header")}>
+                            <Base.H6 className={this.decorateCSS("experience-title")}>
+                              {bottomLeftBox.title}
+                            </Base.H6>
                           </div>
-                        </div>
+                        )}
                         <div className={this.decorateCSS("experience-content")}>
-                          <div className={this.decorateCSS("experience-number")}>
+                          <Base.H1 className={this.decorateCSS("experience-number")}>
                             {bottomLeftBox.number}
                             {numberIconExist && (
                               <Base.Media
@@ -425,10 +427,12 @@ class Testimonials15Page extends Testimonials {
                                 className={this.decorateCSS("number-icon")}
                               />
                             )}
-                          </div>
-                          <div className={this.decorateCSS("experience-subtitle")}>
-                            {bottomLeftBox.subtitle}
-                          </div>
+                          </Base.H1>
+                          {this.castToString(bottomLeftBox.subtitle) && (
+                            <Base.P className={this.decorateCSS("experience-subtitle")}>
+                              {bottomLeftBox.subtitle}
+                            </Base.P>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -442,14 +446,12 @@ class Testimonials15Page extends Testimonials {
                       <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
                         {subtitleExist && (
                           <Base.SectionSubTitle className={`${this.decorateCSS("content-header")} ${this.decorateCSS("line")}`}>
-                            <span className={this.decorateCSS("header-text")}>
-                              {this.getPropValue("subtitle")}
-                            </span>
+                            {this.getPropValue("header_subtitle")}
                           </Base.SectionSubTitle>
                         )}
                         {titleExist && (
                           <Base.SectionTitle className={this.decorateCSS("main-title")}>
-                            {this.getPropValue("title")}
+                            {this.getPropValue("header_title")}
                           </Base.SectionTitle>
                         )}
                         {descriptionExist && (
@@ -501,22 +503,22 @@ class Testimonials15Page extends Testimonials {
                               </div>
                             )}
                             {this.castToString(bottomRightBox.quoteText) && (
-                              <p className={this.decorateCSS("quote-text")}>
+                              <Base.P className={this.decorateCSS("quote-text")}>
                                 {bottomRightBox.quoteText}
-                              </p>
+                              </Base.P>
                             )}
                             <div className={this.decorateCSS("author-info")}>
                               {bottomRightBox.author && (this.castToString(bottomRightBox.author.name) || this.castToString(bottomRightBox.author.position)) && (
                                 <div className={this.decorateCSS("author-details")}>
                                   {this.castToString(bottomRightBox.author.name) && (
-                                    <span className={this.decorateCSS("author-name")}>
+                                    <Base.P className={this.decorateCSS("author-name")}>
                                       {bottomRightBox.author.name}
-                                    </span>
+                                    </Base.P>
                                   )}
                                   {this.castToString(bottomRightBox.author.position) && (
-                                    <span className={this.decorateCSS("author-subtitle")}>
+                                    <Base.P className={this.decorateCSS("author-subtitle")}>
                                       {bottomRightBox.author.position}
-                                    </span>
+                                    </Base.P>
                                   )}
                                 </div>
                               )}

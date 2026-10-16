@@ -92,7 +92,7 @@ class Testimonials3Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
+          key: "card",
           displayer: "Card",
           value: [
             {
@@ -137,7 +137,7 @@ class Testimonials3Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
+          key: "card",
           displayer: "Card",
           value: [
             {
@@ -182,7 +182,7 @@ class Testimonials3Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
+          key: "card",
           displayer: "Card",
           value: [
             {

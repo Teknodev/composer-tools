@@ -5,7 +5,6 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 40%;
     height: 80%;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     width: 100%;
@@ -22,8 +21,6 @@
           height: 100%;
           flex-grow: 1;
           .top-content {
-            display: flex;
-            flex-direction: column;
             align-items: flex-start !important;
 
             .subtitle,
@@ -86,8 +83,8 @@
 
               .previcon,
               .nexticon {
-                width: 20px;
-                height: 20px;
+                width: 1.5rem;
+                height: 1.5rem;
                 object-fit: contain;
               }
             }
@@ -111,7 +108,7 @@
 
               &.dot-active {
                 width: 24px;
-                border-radius: 4px;
+                border-radius: var(--composer-border-radius-sm);
                 background: var(--composer-html-background);
               }
             }
@@ -228,8 +225,6 @@
 
                         .item-name {
                           color: var(--composer-font-color-primary);
-                          font-size: 1.5rem;
-                          font-weight: 800;
                           margin-bottom: 0;
                           text-align: left !important;
                           justify-content: flex-start !important;
@@ -237,8 +232,6 @@
                         }
                         .item-subtitle {
                           color: var(--composer-primary-color);
-                          font-size: 1rem;
-                          font-weight: 800;
                           text-align: left !important;
                           justify-content: flex-start !important;
                           margin-left: 0 !important;
@@ -266,14 +259,16 @@
       }
     }
   }
+  // Very large decorative text (Base has no size this big), so it keeps its own font-size.
   .hiliteTitle {
     font-size: 6rem;
     color: var(--composer-font-color-secondary);
     position: absolute;
     z-index: 10;
-    right: -60px;
+    right: calc(-1 * (var(--composer-gap-xl) + var(--composer-gap-sm)));
     bottom: var(--composer-gap-md);
     line-height: 0.8;
+    width: auto;
     pointer-events: none;
     user-select: none;
     white-space: nowrap;
@@ -295,7 +290,6 @@
       padding: 0;
       .container2 {
         .testimonials10 {
-          gap: var(--composer-gap-md);
           .left-content {
             max-width: 40%;
             flex-basis: 40%;
@@ -320,7 +314,6 @@
                       }
                       .iconquote {
                         font-size: 4rem;
-                        left: var(--composer-gap-xl);
                         .quoteicon {
                           width: 3rem;
                           height: 3rem;
@@ -336,8 +329,8 @@
       }
     }
     .hiliteTitle {
-      font-size: 5rem;
-      right: -50px;
+      font-size: 5rem !important;
+      right: calc(-1 * var(--composer-gap-xl));
       bottom: 0;
     }
   }
@@ -349,29 +342,6 @@
       .container2 {
         .testimonials10 {
           flex-direction: column;
-          .right-content {
-            margin-right: 0;
-            padding-right: 0;
-
-            &::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              left: 50%;
-              transform: translateX(-50%);
-              width: 100vw;
-              border-radius: 0;
-              z-index: -1;
-              background: var(--composer-primary-color);
-            }
-            flex-basis: auto;
-            max-width: 100%;
-            .slider-style {
-              padding-left: 0;
-              width: 100%;
-            }
-          }
           .left-content {
             max-width: 100%;
             flex-basis: auto;
@@ -389,14 +359,24 @@
             }
           }
           .right-content {
+            margin-right: 0;
+            padding-right: 0;
             padding-bottom: 0;
+            flex-basis: auto;
+            max-width: 100%;
+
+            &::after {
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100vw;
+              border-radius: 0;
+            }
+
             .slider-icons {
-              position: absolute;
               left: auto;
               bottom: auto;
               top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
               right: var(--composer-gap-lg);
-              padding: 0;
               justify-content: flex-end;
               z-index: 5;
               .icon-btn {
@@ -409,6 +389,7 @@
             }
             .slider-style {
               padding-left: 0;
+              width: 100%;
               .slider-inner-div {
                 padding: 0;
                 .slider-card {
@@ -437,13 +418,6 @@
                         .quoteicon {
                           width: 2rem;
                           height: 2rem;
-                        }
-                      }
-                      .card {
-                        .bottom-container {
-                          .item-name {
-                            font-size: 1.5rem !important;
-                          }
                         }
                       }
                     }

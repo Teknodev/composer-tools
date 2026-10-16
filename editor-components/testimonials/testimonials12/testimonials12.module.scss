@@ -92,7 +92,7 @@
           }
         }
         .card {
-          border-radius: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           display: flex !important;
@@ -110,7 +110,6 @@
           }
           .card-description {
             color: var(--composer-font-color-primary);
-            font-size: 1.25rem;
             text-align: left !important;
             justify-content: flex-start !important;
           }
@@ -131,13 +130,11 @@
             .below-right-content {
               justify-content: center;
               .item-name {
-                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 text-align: left !important;
                 justify-content: flex-start !important;
               }
               .item-subtitle {
-                font-size: 1rem;
                 color: var(--composer-tertiary-color);
                 text-align: left !important;
                 justify-content: flex-start !important;
@@ -170,37 +167,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .page {
-        .slider-style {
-          > div {
-            > div {
-              gap: var(--composer-gap-md);
-            }
-          }
-          .card {
-            .card-description {
-              font-size: 1.25rem !important;
-            }
-            .below-content {
-              .below-right-content {
-                .item-name {
-                  font-size: 1.25rem !important;
-                }
-                .item-subtitle {
-                  font-size: 1rem !important;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -217,22 +183,9 @@
             }
           }
           .card {
-            .card-description {
-              font-size: 1.125rem !important;
-            }
             .span-image {
               width: 40px;
               height: 40px;
-            }
-            .below-content {
-              .below-right-content {
-                .item-name {
-                  font-size: 1.25rem !important;
-                }
-                .item-subtitle {
-                  font-size: 1rem !important;
-                }
-              }
             }
           }
         }

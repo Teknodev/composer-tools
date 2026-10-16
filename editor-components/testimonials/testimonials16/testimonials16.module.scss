@@ -453,7 +453,6 @@
 
   .quote {
     color: var(--composer-font-color-primary) !important;
-    font-weight: 800;
   }
 
   .quote-row {
@@ -479,7 +478,6 @@
     text-align: left !important;
     justify-content: flex-start !important;
     align-self: flex-start !important;
-    font-weight: bold;
   }
 
   .author-block {
@@ -488,7 +486,6 @@
     text-align: left !important;
     align-self: flex-start !important;
     width: fit-content !important;
-    line-height: 1;
   }
 
   .author-divider {
@@ -554,7 +551,7 @@
   justify-content: center;
   min-height: 55px;
   min-width: 220px;
-  padding: 0 40px;
+  padding: 0 var(--composer-gap-lg);
   background: color-mix(in srgb, var(--composer-font-color-primary), transparent 90%);
   border-radius: 90px;
   position: relative;
@@ -770,7 +767,6 @@
 
               .role {
                 display: block;
-                font-size: calc(0.875 * var(--composer-font-size-md)) !important;
               }
             }
 

@@ -72,8 +72,8 @@ class Testimonials6Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
@@ -126,8 +126,8 @@ class Testimonials6Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
@@ -180,8 +180,8 @@ class Testimonials6Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
@@ -234,8 +234,8 @@ class Testimonials6Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card4",
-          displayer: "Card 4",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
@@ -288,8 +288,8 @@ class Testimonials6Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card5",
-          displayer: "Card 5",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
@@ -342,8 +342,8 @@ class Testimonials6Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card6",
-          displayer: "Card 6",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "boolean",

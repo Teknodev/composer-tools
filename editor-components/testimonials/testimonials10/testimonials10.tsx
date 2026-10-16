@@ -59,15 +59,15 @@ class Testimonials10Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841" },
             },
             {
               type: "string",
@@ -88,15 +88,15 @@ class Testimonials10Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841" },
             },
             {
               type: "string",
@@ -117,15 +117,15 @@ class Testimonials10Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841" },
             },
             {
               type: "string",
@@ -146,15 +146,15 @@ class Testimonials10Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card4",
-          displayer: "Card 4",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841" },
             },
             {
               type: "string",
@@ -175,15 +175,15 @@ class Testimonials10Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card5",
-          displayer: "Card 5",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Media",
               additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "image", url: "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg" },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841" },
             },
             {
               type: "string",
@@ -409,7 +409,7 @@ class Testimonials10Page extends Testimonials {
                     </div>
                   )}
                   {hiliteTitle && (
-                    <div className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</div>
+                    <Base.P className={this.decorateCSS("hiliteTitle")}>{this.getPropValue("hiliteTitle")}</Base.P>
                   )}
                 </div>
               )}

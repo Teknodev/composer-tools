@@ -74,10 +74,6 @@
             padding: 0;
             border: none;
             color: white;
-
-            &::before {
-              display: none !important;
-            }
           }
         }
 
@@ -154,7 +150,7 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: calc(100% + 120px);
+          width: calc(100% + 2 * (var(--composer-gap-xl) + var(--composer-gap-sm)));
           height: auto;
           overflow: visible;
           pointer-events: none;
@@ -163,7 +159,7 @@
 
           .background-text-value {
             font-family: inherit;
-            font-size: 120px;
+            font-size: 8.5rem;
             font-weight: 800;
             text-transform: uppercase;
             fill: color-mix(in srgb, var(--composer-font-color-primary), transparent 93%);
@@ -215,16 +211,14 @@
 
             .card-image {
               border-radius: 50%;
-              width: 70px;
-              height: 70px;
+              width: 5rem;
+              height: 5rem;
               object-fit: cover;
               font-size: 3rem;
               flex-shrink: 0;
             }
 
             .card-top-right {
-              display: flex;
-              flex-direction: column;
               align-items: flex-start;
               justify-content: center;
 
@@ -246,9 +240,9 @@
                 gap: var(--composer-gap-xs);
 
                 .star-icon {
-                  width: 16px;
-                  height: 16px;
-                  font-size: 16px;
+                  width: 1.125rem;
+                  height: 1.125rem;
+                  font-size: 1.125rem;
                   object-fit: contain;
                   color: #f5a623;
                 }
@@ -276,7 +270,7 @@
       .wrapper {
         .content {
           .background-text {
-            width: calc(100% + 100px);
+            width: calc(100% + 2 * var(--composer-gap-xl));
             margin-left: 0;
             margin-right: 0;
           }

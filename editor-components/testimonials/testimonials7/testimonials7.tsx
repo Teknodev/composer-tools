@@ -65,7 +65,7 @@ class Testimonials7Page extends Testimonials {
     });
     this.addProp({
       type: "string",
-      key: "description",
+      key: "header_description",
       displayer: "Description",
       value: "",
     });
@@ -231,7 +231,7 @@ class Testimonials7Page extends Testimonials {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const descriptionExist = this.castToString(this.getPropValue("header_description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const hasValidButtons = buttons.some((btn: Button) => {
       const buttonText = this.castToString(btn.text);
@@ -284,7 +284,7 @@ class Testimonials7Page extends Testimonials {
               )}
               {descriptionExist && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
+                  {this.getPropValue("header_description")}
                 </Base.SectionDescription>
               )}
               {hasValidButtons && (
@@ -334,7 +334,7 @@ class Testimonials7Page extends Testimonials {
                     {(this.castToString(item.description) || item.profileImage || this.castToString(item.name) || this.castToString(item.nameId)) && (
                       <Base.VerticalContent className={this.decorateCSS("item-content")}>
                         {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>
+                          <Base.H6 className={this.decorateCSS("item-description")}>{item.description}</Base.H6>
                         )}
                         {(item.profileImage || this.castToString(item.name) || this.castToString(item.nameId)) && (
                           <div className={this.decorateCSS("profile")}>

@@ -79,8 +79,8 @@ class Testimonials12Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -111,8 +111,8 @@ class Testimonials12Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -143,8 +143,8 @@ class Testimonials12Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -175,8 +175,8 @@ class Testimonials12Page extends Testimonials {
         },
         {
           type: "object",
-          key: "card4",
-          displayer: "Card 4",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -368,7 +368,7 @@ class Testimonials12Page extends Testimonials {
                         <Base.Media value={icon} className={this.decorateCSS("span-image")} />
                       )}
                       {textExist && (
-                        <Base.P className={this.decorateCSS("card-description")}>{card.text}</Base.P>
+                        <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.text}</Base.SectionDescription>
                       )}
                       {(imageExist || nameExist || subtitleCardExist) && (
                         <div className={this.decorateCSS("below-content")}>
@@ -378,10 +378,10 @@ class Testimonials12Page extends Testimonials {
                           {card.author && (nameExist || subtitleCardExist) && (
                             <Base.VerticalContent className={this.decorateCSS("below-right-content")}>
                               {nameExist && (
-                                <Base.H4 className={this.decorateCSS("item-name")}>{card.author.name}</Base.H4>
+                                <Base.H5 className={this.decorateCSS("item-name")}>{card.author.name}</Base.H5>
                               )}
                               {subtitleCardExist && (
-                                <Base.H5 className={this.decorateCSS("item-subtitle")}>{card.author.position}</Base.H5>
+                                <Base.P className={this.decorateCSS("item-subtitle")}>{card.author.position}</Base.P>
                               )}
                             </Base.VerticalContent>
                           )}

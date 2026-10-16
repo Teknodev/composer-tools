@@ -72,8 +72,8 @@ class Testimonials14 extends Testimonials {
       value: [
         {
           type: "object",
-          key: "card1",
-          displayer: "Card 1",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -128,8 +128,8 @@ class Testimonials14 extends Testimonials {
         },
         {
           type: "object",
-          key: "card2",
-          displayer: "Card 2",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -184,8 +184,8 @@ class Testimonials14 extends Testimonials {
         },
         {
           type: "object",
-          key: "card3",
-          displayer: "Card 3",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -240,8 +240,8 @@ class Testimonials14 extends Testimonials {
         },
         {
           type: "object",
-          key: "card4",
-          displayer: "Card 4",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -524,9 +524,9 @@ class Testimonials14 extends Testimonials {
                         />
                       )}
                       {activeItem.author && this.castToString(activeItem.author.name) && (
-                        <Base.SectionTitle className={this.decorateCSS("author-name")}>
+                        <Base.H5 className={this.decorateCSS("author-name")}>
                           {activeItem.author.name}
-                        </Base.SectionTitle>
+                        </Base.H5>
                       )}
                     </div>
                     {activeItem.author && this.castToString(activeItem.author.position) && (

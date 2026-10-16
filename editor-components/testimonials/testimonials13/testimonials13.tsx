@@ -91,8 +91,8 @@ class Testimonials13Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "profile1",
-          displayer: "Profile 1",
+          key: "profile",
+          displayer: "Profile",
           value: [
             {
               type: "media",
@@ -124,8 +124,8 @@ class Testimonials13Page extends Testimonials {
         },
         {
           type: "object",
-          key: "profile2",
-          displayer: "Profile 2",
+          key: "profile",
+          displayer: "Profile",
           value: [
             {
               type: "media",
@@ -157,8 +157,8 @@ class Testimonials13Page extends Testimonials {
         },
         {
           type: "object",
-          key: "profile3",
-          displayer: "Profile 3",
+          key: "profile",
+          displayer: "Profile",
           value: [
             {
               type: "media",
@@ -231,8 +231,8 @@ class Testimonials13Page extends Testimonials {
           value: [
             {
               type: "object",
-              key: "rightBox1",
-              displayer: "Right Box 1",
+              key: "rightBox",
+              displayer: "Right Box",
               value: [
                 {
                   type: "string",
@@ -256,8 +256,8 @@ class Testimonials13Page extends Testimonials {
             },
             {
               type: "object",
-              key: "rightBox2",
-              displayer: "Right Box 2",
+              key: "rightBox",
+              displayer: "Right Box",
               value: [
                 {
                   type: "string",
@@ -426,7 +426,7 @@ class Testimonials13Page extends Testimonials {
                               </div>
                             )}
                             {this.castToString(item.text) && (
-                              <Base.P className={this.decorateCSS("item-description")}>{item.text}</Base.P>
+                              <Base.SectionDescription className={this.decorateCSS("item-description")}>{item.text}</Base.SectionDescription>
                             )}
                             {(sliderIconExist || (item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)))) && (
                               <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
@@ -480,13 +480,13 @@ class Testimonials13Page extends Testimonials {
                           {box.map((item: Box, index: number) => (
                             <div key={index} className={this.decorateCSS("containerBottom")}>
                               {this.castToString(item.topText) && (
-                                <div className={this.decorateCSS("topWriting")}>{item.topText}</div>
+                                <Base.H6 className={this.decorateCSS("topWriting")}>{item.topText}</Base.H6>
                               )}
                               {item.number && (
-                                <div className={this.decorateCSS("middleWriting")}>{item.number}</div>
+                                <Base.H1 className={this.decorateCSS("middleWriting")}>{item.number}</Base.H1>
                               )}
                               {this.castToString(item.bottomText) && (
-                                <div className={this.decorateCSS("bottomWriting")}>{item.bottomText}</div>
+                                <Base.P className={this.decorateCSS("bottomWriting")}>{item.bottomText}</Base.P>
                               )}
                             </div>
                           ))}
