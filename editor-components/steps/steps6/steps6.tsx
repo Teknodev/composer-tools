@@ -259,7 +259,7 @@ class Steps6 extends BaseSteps {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}

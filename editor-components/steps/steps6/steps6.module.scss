@@ -6,19 +6,34 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    // The header stays centered whatever the theme alignment is.
     .header {
       width: 100%;
+      align-items: center !important;
 
       .subtitle,
       .title,
       .description {
-        content: "";
+        align-self: center;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+      }
+
+      // Line type draws its line only for left alignment (Base); centered, it looks like the center alignment.
+      .subtitle {
+        transform: none !important;
+
+        &::before {
+          content: none !important;
+        }
       }
 
       // Buttons sit right below the description
       .button-container {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: var(--composer-gap-sm);
       }
     }
@@ -44,7 +59,7 @@
       .tab-list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         gap: var(--composer-gap-xs);
 
         .tab {
@@ -102,7 +117,7 @@
         width: 100%;
         box-sizing: border-box;
         padding: calc(var(--composer-gap-xl) * 1.2) calc(var(--composer-gap-xl) * 1.9);
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         background-color: rgba(var(--composer-font-color-primary-rgb), 0.05);
 
         .card-content {
@@ -178,12 +193,6 @@
         }
       }
     }
-
-    &.center {
-      .steps .tab-list {
-        justify-content: center;
-      }
-    }
   }
 }
 
@@ -231,7 +240,7 @@
             .section-header {
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              justify-content: center;
               gap: var(--composer-gap-sm);
               padding: calc(var(--composer-gap-md) * 0.85) 0;
               cursor: pointer;
@@ -292,10 +301,6 @@
             }
           }
         }
-      }
-
-      &.center .steps .sections .section .section-header {
-        justify-content: center;
       }
     }
   }
