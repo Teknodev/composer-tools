@@ -229,24 +229,29 @@ class Steps6 extends BaseSteps {
 
       return (
         hasCard && (
-          <div className={this.decorateCSS("card")}>
-            <Base.VerticalContent className={this.decorateCSS("card-content")}>
-              {stepSubtitleExist && <Base.H6 className={this.decorateCSS("step-subtitle")}>{step.step_subtitle}</Base.H6>}
-              {stepTitleExist && <Base.H3 className={this.decorateCSS("step-title")}>{step.step_title}</Base.H3>}
-              {stepDescriptionExist && <Base.P className={this.decorateCSS("step-description")}>{step.step_description}</Base.P>}
-              {step.list_items.length > 0 && (
-                <div className={this.decorateCSS("list")}>
-                  {step.list_items.map((text: React.JSX.Element, listIndex: number) => (
-                    <div key={listIndex} className={this.decorateCSS("list-item")}>
-                      {this.mediaExist(listIcon) && <Base.Media value={listIcon} className={this.decorateCSS("list-icon")} />}
-                      <Base.P className={this.decorateCSS("list-text")}>{text}</Base.P>
+          // card-body/card-body-inner carry the phone accordion's expand/collapse animation.
+          <div className={this.decorateCSS("card-body")}>
+            <div className={this.decorateCSS("card-body-inner")}>
+              <div className={this.decorateCSS("card")}>
+                <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                  {stepSubtitleExist && <Base.H6 className={this.decorateCSS("step-subtitle")}>{step.step_subtitle}</Base.H6>}
+                  {stepTitleExist && <Base.H3 className={this.decorateCSS("step-title")}>{step.step_title}</Base.H3>}
+                  {stepDescriptionExist && <Base.P className={this.decorateCSS("step-description")}>{step.step_description}</Base.P>}
+                  {step.list_items.length > 0 && (
+                    <div className={this.decorateCSS("list")}>
+                      {step.list_items.map((text: React.JSX.Element, listIndex: number) => (
+                        <div key={listIndex} className={this.decorateCSS("list-item")}>
+                          {this.mediaExist(listIcon) && <Base.Media value={listIcon} className={this.decorateCSS("list-icon")} />}
+                          <Base.P className={this.decorateCSS("list-text")}>{text}</Base.P>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              )}
-              {bottomDescriptionExist && <Base.P className={this.decorateCSS("step-bottom-description")}>{step.step_bottom_description}</Base.P>}
-              {step.step_buttons.length > 0 && this.renderButtons(step.step_buttons, "card-button-container")}
-            </Base.VerticalContent>
+                  )}
+                  {bottomDescriptionExist && <Base.P className={this.decorateCSS("step-bottom-description")}>{step.step_bottom_description}</Base.P>}
+                  {step.step_buttons.length > 0 && this.renderButtons(step.step_buttons, "card-button-container")}
+                </Base.VerticalContent>
+              </div>
+            </div>
           </div>
         )
       );

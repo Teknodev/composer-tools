@@ -23,8 +23,10 @@
       }
     }
 
+    // Base.Button brings its own margin-top; the containers' gap handles the spacing.
     .button {
       max-width: 100%;
+      margin-top: 0;
 
       .button-text,
       .button-icon {
@@ -86,6 +88,11 @@
           // The accordion header only shows on phones.
           .section-header {
             display: none;
+          }
+
+          .card-body,
+          .card-body-inner {
+            content: "";
           }
         }
       }
@@ -167,10 +174,6 @@
             align-self: flex-start;
             width: 100%;
             gap: var(--composer-gap-sm);
-
-            .button {
-              margin-top: 0;
-            }
           }
         }
       }
@@ -251,10 +254,24 @@
               }
             }
 
+            // 0fr -> 1fr animates to the card's own height, so nothing has to measure it;
+            // the inner wrapper is what collapses and clips.
+            .card-body {
+              display: grid;
+              grid-template-rows: 0fr;
+              transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+              .card-body-inner {
+                overflow: hidden;
+                min-height: 0;
+              }
+            }
+
             .card {
-              display: none;
               margin-bottom: var(--composer-gap-md);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
+              opacity: 0;
+              transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             &.open {
@@ -265,8 +282,12 @@
                 }
               }
 
+              .card-body {
+                grid-template-rows: 1fr;
+              }
+
               .card {
-                display: block;
+                opacity: 1;
               }
             }
           }
