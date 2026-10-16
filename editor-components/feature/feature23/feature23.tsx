@@ -373,17 +373,15 @@ class Feature23 extends BaseFeature {
             return this.castToString(card.cardLabel) || itemTitle || itemSubtitle || itemDescription || hasMedia || hasAnyCardButton;
         });
 
-        const viewType = Base.getViewType();
-        const subtitleType = Base.getSectionSubTitleType();
         const hasAnyCardLabel = filteredCards.some((card: ICard) => this.castToString(card.cardLabel));
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)}`}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(subtitle || title || description || hasHeadingButtons) && (
                         <Base.VerticalContent className={`${this.decorateCSS("heading")} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
                             {subtitle && (
-                                <Base.SectionSubTitle className={subtitleType === "badge" ? this.decorateCSS("subtitle-badge") : this.decorateCSS("subtitle")}>
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}

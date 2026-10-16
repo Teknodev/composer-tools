@@ -76,6 +76,13 @@ class Feature22 extends BaseFeature{
         };
 
         this.addProp({
+            type: "boolean",
+            key: "coloredBackground",
+            displayer: "Colored Background",
+            value: true,
+        });
+
+        this.addProp({
             type: "string",
             key:"subtitle",
             displayer: "Subtitle",
@@ -107,13 +114,6 @@ class Feature22 extends BaseFeature{
                     "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/Inventory_LOTTIE_v3.json",
                 ),
             ],
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "coloredBackground",
-            displayer: "Colored Background",
-            value: true,
         });
 
         this.addProp({

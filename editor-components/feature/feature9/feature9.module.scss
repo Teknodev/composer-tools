@@ -142,9 +142,11 @@
       .wrapper{
         flex-direction: column;
         gap: var(--composer-gap-md);
+        // Same inset as the cards below so the header text lines up with the card text.
         .header {
           position: static;
           width: 100%;
+          padding: var(--composer-gap-md);
         }
         .title-container {
           padding: var(--composer-gap-sm);

@@ -65,7 +65,7 @@ class Feature19 extends BaseFeature {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ],
     });

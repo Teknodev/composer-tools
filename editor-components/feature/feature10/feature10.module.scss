@@ -86,6 +86,10 @@
                         transform: scale(1);
                         transition: var(--composer-transition-duration-slow);
                         height: 100%;
+                        // Slides stretch to the tallest card; the text area grows to fill the rest,
+                        // otherwise the card's own background shows as a strip under it.
+                        display: flex;
+                        flex-direction: column;
                         &.fit-content{
                             height: fit-content;
                         }
@@ -117,6 +121,7 @@
                             }
                         }
                         .bottom{
+                            flex-grow: 1;
                             padding: var(--composer-gap-md);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: 0 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm);
