@@ -139,7 +139,7 @@
             // Transparent: the ring around the card is cut out of the image (.has-notch), so the container's own background shows in it.
             background-color: transparent;
             padding: calc(var(--composer-gap-sm) + var(--composer-gap-xs)) calc(var(--composer-gap-sm) + var(--composer-gap-xs)) 0 0;
-            border-top-right-radius: var(--composer-border-radius-lg);
+            border-top-right-radius: var(--composer-border-radius-sm);
 
             .experience-card {
               height: 100%;
@@ -147,7 +147,7 @@
               bottom: 0;
               left: 0;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
               padding: calc(1.5 * var(--composer-gap-md));
               display: flex;
               flex-direction: column;
@@ -309,7 +309,7 @@
           align-self: initial;
           justify-content: space-between;
           gap: 0;
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           padding: calc(var(--composer-gap-md) + var(--composer-gap-sm));
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
@@ -361,7 +361,7 @@
           display: flex;
           padding: 0;
           background-color: var(--composer-primary-color);
-          border-radius: var(--composer-border-radius-lg);
+          border-radius: var(--composer-border-radius-sm);
 
           .quote-container {
             height: 100%;
@@ -432,7 +432,7 @@
 
           .video-container {
             position: relative;
-            border-radius: var(--composer-border-radius-lg);
+            border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
             cursor: pointer;
             height: 100%;
@@ -730,11 +730,12 @@
 
 // The bottom-left box and its ring are cut out of the image and its overlay, so the ring always shows the
 // container's real background (theme, design-tab color, image or video). --notch-width/--notch-height are
-// the box size measured in the component; the top-right corner of the cut-out keeps the lg radius.
+// the box size measured in the component; the top-right corner of the cut-out keeps the sm radius to match
+// the experience card's own border-radius.
 .main-image-container.has-notch {
   .main-image,
   .media-overlay {
-    $radius: var(--composer-border-radius-lg);
+    $radius: var(--composer-border-radius-sm);
     $mask: linear-gradient(#000 0 0) left top / 100% calc(100% - var(--notch-height, 0px)) no-repeat,
       linear-gradient(#000 0 0) right bottom / calc(100% - var(--notch-width, 0px)) var(--notch-height, 0px) no-repeat,
       radial-gradient(circle at 0 100%, #0000 calc(#{$radius} - 0.5px), #000 #{$radius}) left calc(var(--notch-width, 0px) - #{$radius}) bottom calc(var(--notch-height, 0px) - #{$radius}) / #{$radius} #{$radius} no-repeat;
