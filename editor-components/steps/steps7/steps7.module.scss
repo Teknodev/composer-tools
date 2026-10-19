@@ -124,12 +124,11 @@
   }
 }
 
-// Tablet: the steps stack in a single column and the image moves below them.
+// Tablet keeps the desktop layout (steps grid on the left, image on the right), only the gaps get smaller.
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .content {
-        grid-template-columns: minmax(0, 1fr);
         gap: var(--composer-gap-lg);
 
         .steps {
@@ -140,11 +139,32 @@
   }
 }
 
+// Phone: the steps stack in a single column and the image moves below them.
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .content {
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--composer-gap-md);
+      }
+
+      // With center alignment, the step texts and buttons are centered too.
+      &.center .content .steps .step {
+        align-items: center;
+
+        .step-number,
+        .step-subtitle,
+        .step-title,
+        .step-description {
+          text-align: center !important;
+          justify-content: center !important;
+          align-self: center;
+        }
+
+        .step-button-container {
+          justify-content: center;
+          align-self: center;
+        }
       }
     }
   }

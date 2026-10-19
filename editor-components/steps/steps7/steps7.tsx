@@ -197,7 +197,7 @@ class Steps7 extends BaseSteps {
           {(steps.length > 0 || imageExist) && (
             <div className={this.decorateCSS("content")}>
               {steps.length > 0 && (
-                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("steps")}>
+                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("steps")}>
                   {steps.map((step: Step, index: number) => (
                     <Base.VerticalContent key={index} className={this.decorateCSS("step")}>
                       {this.castToString(step.step_number) && <Base.H1 className={this.decorateCSS("step-number")}>{step.step_number}</Base.H1>}
