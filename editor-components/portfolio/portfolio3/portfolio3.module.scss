@@ -35,11 +35,6 @@
           margin-right: 0;
           text-align: left;
         }
-
-        // Line subtitle starts at the same left edge as the title; the line sits in the side padding on its left
-        .subtitle {
-          transform: none;
-        }
       }
 
       .button-container {
@@ -303,12 +298,6 @@
 
     .header {
       --header-side-padding: 30px;
-
-      // Shorter line so it fits in the 30px side padding
-      .header-content .subtitle::before {
-        left: -1.5rem;
-        width: 1rem;
-      }
     }
 
     .slider-wrapper {
