@@ -6,13 +6,17 @@
     flex-direction: column;
     gap: var(--composer-gap-xl);
 
+    // Everything stays left-aligned on every view, whatever the content alignment setting.
     .header {
       width: 100%;
+      align-items: flex-start;
 
       .subtitle,
       .title,
       .description {
-        content: "";
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
       }
     }
 
