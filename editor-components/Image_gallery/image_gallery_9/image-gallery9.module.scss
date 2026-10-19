@@ -36,8 +36,15 @@
         flex-direction: column;
         gap: var(--composer-gap-lg);
 
+        // The gallery is full width with no container padding; the header takes Base.Container's top and side
+        // padding and the theme content width, so it lines up with non-full components.
         .heading {
+            --heading-side-padding: 60px;
             width: 100%;
+            max-width: calc(var(--composer-content-width) + 2 * var(--heading-side-padding));
+            margin: 0 auto;
+            padding: 120px var(--heading-side-padding) 0;
+            box-sizing: border-box;
 
             .subtitle-heading,
             .heading-title,
@@ -214,6 +221,11 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
+            .heading {
+                --heading-side-padding: 50px;
+                padding-top: 100px;
+            }
+
             .gallery-container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -225,6 +237,11 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            .heading {
+                --heading-side-padding: 30px;
+                padding-top: 50px;
+            }
+
             .gallery-container {
                 display: grid;
                 grid-template-columns: repeat(1, 1fr);

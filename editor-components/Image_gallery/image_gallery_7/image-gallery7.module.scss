@@ -3,7 +3,9 @@
 .container {
   overflow-y: scroll;
   height: 100vh;
-  padding: 0px var(--composer-gap-xl) !important;
+  // Base.Container's side padding (60/50/30) so the header text lines up with other components;
+  // the top padding sits on the heading, so without a header the images stay at the top
+  padding: 0 60px !important;
 
   .maxContent {
     display: flex;
@@ -12,6 +14,7 @@
 
     .heading {
       width: 100%;
+      padding-top: 120px;
       position: relative;
       z-index: 1;
 
@@ -133,6 +136,16 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: 0 50px !important;
+
+    .maxContent .heading {
+      padding-top: 100px;
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 0px var(--composer-gap-lg) !important;
@@ -147,9 +160,14 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: 100%;
-    padding: 0px var(--composer-gap-md) !important;
+    padding: 0 30px !important;
 
     .maxContent {
+      .heading {
+        padding-top: 50px;
+      }
+
+
       .gridContainer {
         display: flex;
         flex-direction: column;
