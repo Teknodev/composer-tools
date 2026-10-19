@@ -120,7 +120,8 @@
                 justify-content: center;
                 align-items: center;
                 background-color: var(--composer-html-backgrounds);
-                padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+                // Original card: 100px top/bottom, 55px sides
+                padding: calc(var(--composer-gap-xl) * 2) calc(var(--composer-gap-xl) + var(--composer-gap-xs));
                 gap: var(--composer-gap-xl);
                 .img-div {
                   width: 120px;
@@ -273,6 +274,18 @@
         flex-direction: row !important;
         .grid-cell {
           width: 50% !important;
+          .flexItem1 {
+            .carousel-wrapper {
+              .carousel {
+                .slider-inner-div {
+                  // Original tablet card: 70px top/bottom, 30px sides
+                  .content-div {
+                    padding: calc(var(--composer-gap-xl) + var(--composer-gap-md)) calc(var(--composer-gap-md) + var(--composer-gap-sm));
+                  }
+                }
+              }
+            }
+          }
         }
         .container3 {
           width: 50% !important;
@@ -312,7 +325,12 @@
                 overflow: hidden;
                 .slider-inner-div {
                   .content-div {
-                    padding: var(--composer-gap-lg) var(--composer-gap-md);
+                    // Original mobile card: 40px top/bottom, 25px sides, ~20px between items
+                    padding: var(--composer-gap-lg) calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                    gap: var(--composer-gap-md);
+                    .item-description {
+                      margin-bottom: 0;
+                    }
                     .img-div {
                       width: 80px;
                       height: 80px;

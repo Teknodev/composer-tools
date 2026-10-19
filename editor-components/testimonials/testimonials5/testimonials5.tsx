@@ -12,7 +12,10 @@ type LeftItem = {
 };
 
 type SliderItem = {
-  image: TypeMediaInputValue;
+  itemMedia: {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+  };
   author: {
     name: React.JSX.Element;
     position: React.JSX.Element;
@@ -119,11 +122,24 @@ class Testimonials5Page extends Testimonials {
           displayer: "Slider",
           value: [
             {
-              type: "media",
-              key: "image",
+              type: "object",
+              key: "itemMedia",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150" },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon", "video"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150" },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "object",
@@ -171,11 +187,24 @@ class Testimonials5Page extends Testimonials {
           displayer: "Slider",
           value: [
             {
-              type: "media",
-              key: "image",
+              type: "object",
+              key: "itemMedia",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150" },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon", "video"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150" },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "object",
@@ -223,11 +252,24 @@ class Testimonials5Page extends Testimonials {
           displayer: "Slider",
           value: [
             {
-              type: "media",
-              key: "image",
+              type: "object",
+              key: "itemMedia",
               displayer: "Media",
-              additionalParams: { availableTypes: ["image", "icon", "video"] },
-              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150" },
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: { availableTypes: ["image", "icon", "video"] },
+                  value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150" },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
             },
             {
               type: "object",
@@ -418,12 +460,16 @@ class Testimonials5Page extends Testimonials {
 
             <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("slider")} ${!hasLeftContent ? this.decorateCSS("fullSlider") : ""}`}>
               {sliderItem.map((item: SliderItem, index: number) => {
-                const imageExist = item.image && item.image.url;
+                const itemMedia = item.itemMedia?.media;
+                const imageExist = itemMedia && (itemMedia.type === "icon" ? itemMedia.name : itemMedia.url);
                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                 return (
                   <div key={index}>
                     {imageExist && (
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                      <div className={this.decorateCSS("media-container")}>
+                        <Base.Media value={itemMedia} className={this.decorateCSS("image")} />
+                        {item.itemMedia.overlay && <div className={this.decorateCSS("media-overlay")} />}
+                      </div>
                     )}
                     <div className={this.decorateCSS("rightWrapper")}>
                       {item.author && (this.castToString(item.author.name) || this.castToString(item.author.position)) && (

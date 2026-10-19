@@ -153,6 +153,8 @@
             display: flex;
             gap: var(--composer-gap-sm);
             justify-content: flex-start;
+            // Stars, line and rating stay vertically centered for every theme alignment.
+            align-items: center;
             .star {
               display: flex;
               gap: var(--composer-gap-xs);
@@ -175,6 +177,10 @@
               align-items: center;
               width: auto;
               flex: none;
+              // Stays next to the stars when the theme alignment is center (Base gives auto margins).
+              margin-left: 0;
+              margin-right: 0;
+              justify-content: flex-start;
             }
           }
         }

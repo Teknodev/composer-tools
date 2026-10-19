@@ -167,6 +167,8 @@
                 .experience-number {
                   display: flex;
                   align-items: center;
+                  // Stays left-aligned even when the theme alignment is center (Base centers flex text rows).
+                  justify-content: flex-start !important;
                   color: var(--composer-font-color-primary);
                   margin: 0;
                   text-align: left !important;
