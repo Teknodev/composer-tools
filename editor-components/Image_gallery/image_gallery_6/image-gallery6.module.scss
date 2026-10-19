@@ -42,7 +42,7 @@
             }
         }
 
-        // Original: 14px tab labels, ~20px apart
+        // Original: tab labels ~20px apart
         .section-container {
             gap: var(--composer-gap-md);
             flex-wrap: wrap;
@@ -54,7 +54,6 @@
                 width: fit-content;
                 margin: 0;
                 padding: var(--composer-gap-xs) var(--composer-gap-sm);
-                font-size: calc(0.875 * var(--composer-font-size-md)) !important;
                 color: var(--composer-font-color-primary);
                 cursor: pointer;
 

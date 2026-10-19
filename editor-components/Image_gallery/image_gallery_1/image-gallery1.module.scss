@@ -96,7 +96,6 @@
         justify-content: center;
         .title{
           color: var(--composer-font-color-primary);
-          font-size: var(--composer-font-size-md);
           max-width: 40%;
           width: fit-content;
           margin: 0;
@@ -145,27 +144,9 @@
 @container (max-width: #{$composer-tablet-width}){
   .container{
     .max-content{
-      // Like the original, tab labels and card subtitles keep their desktop size (Base.P shrinks them below desktop).
-      .tab-container{
-        .tab{
-          font-size: var(--composer-font-size-md) !important;
-        }
-      }
-      .card-container{
-        .text-container{
-          .section{
-            font-size: var(--composer-font-size-md) !important;
-          }
-        }
-      }
       .card-container{
         .image-container{
           height: 250px;
-        }
-        .text-container{
-          .title{
-            font-size: var(--composer-font-size-md) !important;
-          }
         }
       }
     }

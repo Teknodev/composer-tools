@@ -207,7 +207,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/2.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb949ba6bbe002b6458c8?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -274,7 +274,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/3.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -363,7 +363,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/5.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -430,7 +430,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/6.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -497,7 +497,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/8.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -564,7 +564,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/7.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -651,7 +651,7 @@ class ImageGallery6 extends BaseImageGallery {
                                             displayer: "Media",
                                             value: {
                                                 type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/4.jpg",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
                                             },
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
@@ -819,23 +819,23 @@ class ImageGallery6 extends BaseImageGallery {
                 {categoryLine && <div className={this.decorateCSS("category-line")} />}
                 <Base.Row className={this.decorateCSS("section-container")}>
                 {this.getAllCategory().showAll && this.castToString(this.getAllCategory().allText) && (
-                    <Base.H6
+                    <Base.P
                                 className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getAllCategory().allText) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
                                 {this.getAllCategory().allText}
-                            </Base.H6>
+                            </Base.P>
                         )}
                         {galleries.map((element: any, index: number) => this.castToString(element.sectionTitle) && (
-                            <Base.H6
+                            <Base.P
                                 key={index}
                                 className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === selectedSection ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(element)}
                             >
                                 {element.getPropValue("sectionTitle")}
-                            </Base.H6>
+                            </Base.P>
                         ))}
                     </Base.Row>
                 {categoryLine && <div className={this.decorateCSS("category-line")} />}

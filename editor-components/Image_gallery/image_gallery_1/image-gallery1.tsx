@@ -140,7 +140,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media"
                       }
                     },
                     {
@@ -183,7 +183,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150"
                       }
                     },
                     {
@@ -226,7 +226,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518e9e506a40002c318fef?alt=media"
                       }
                     },
                     {
@@ -291,7 +291,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150"
                       }
                     },
                     {
@@ -334,7 +334,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150"
                       }
                     },
                     {
@@ -377,7 +377,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518e9e506a40002c318fef?alt=media"
                       }
                     },
                     {
@@ -440,7 +440,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media"
                       }
 
                     },
@@ -484,7 +484,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150"
                       }
 
                     },
@@ -528,7 +528,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150"
                       }
 
                     },
@@ -572,7 +572,7 @@ class ImageGallery1 extends BaseImageGallery {
                       },
                       value: {
                         type: "image",
-                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518e9e506a40002c318fef?alt=media"
                       }
 
                     },

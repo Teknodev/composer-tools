@@ -199,19 +199,16 @@
           color: white;
           width: 100%;
           padding: var(--composer-gap-xs) 0px;
-    
-          // Original lightbox: 12px title and counter on every screen size
+
           .image-title {
             text-align: left;
             width: 50%;
             overflow-wrap: break-word;
-            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
-    
+
           .image-count {
             text-align: end;
             width: 50%;
-            font-size: calc(0.75 * var(--composer-font-size-md)) !important;
           }
         }
     }
