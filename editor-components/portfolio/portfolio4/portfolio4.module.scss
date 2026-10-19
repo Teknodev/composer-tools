@@ -13,7 +13,6 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--composer-gap-md);
       width: 100%;
       max-width: calc(var(--composer-content-width) + 2 * var(--header-side-padding));
       margin: 0 auto;
@@ -140,7 +139,8 @@
               z-index: 2;
               width: 100%;
               box-sizing: border-box;
-              padding: var(--composer-gap-md) 0;
+              // Same side padding as the cards with media, so text keeps its distance from the neighbouring item
+              padding: var(--composer-gap-md) calc(var(--composer-gap-md) * 1.5);
               pointer-events: none;
 
               .content-inner {
@@ -160,6 +160,8 @@
                 align-self: flex-start;
                 overflow-wrap: anywhere;
                 color: var(--composer-font-color-primary);
+                // The content layer ignores clicks so the card link works; the texts take them back for the inline editor
+                pointer-events: auto;
               }
 
               .item-button-container {

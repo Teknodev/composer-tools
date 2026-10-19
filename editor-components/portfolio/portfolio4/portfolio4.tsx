@@ -297,8 +297,7 @@ class Portfolio4 extends BasePortfolio {
     const visibleButtons = this.getItemButtons(this.getPropValue("buttons")).filter(
       (button: ButtonData) => this.castToString(button.text) || this.hasMedia(button.icon)
     );
-    const hasHeaderText = subtitleExist || titleExist || descriptionExist;
-    const hasHeader = hasHeaderText || visibleButtons.length > 0;
+    const hasHeader = subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0;
 
     const items = this.castToObject<Item[]>("items").filter(
       (item: Item) =>
@@ -351,14 +350,12 @@ class Portfolio4 extends BasePortfolio {
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
           {hasHeader && (
             <div className={this.decorateCSS("header")}>
-              {hasHeaderText && (
-                <Base.VerticalContent className={this.decorateCSS("header-content")}>
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                </Base.VerticalContent>
-              )}
-              {visibleButtons.length > 0 && this.renderButtons(visibleButtons, "button-container")}
+              <Base.VerticalContent className={this.decorateCSS("header-content")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {visibleButtons.length > 0 && this.renderButtons(visibleButtons, "button-container")}
+              </Base.VerticalContent>
             </div>
           )}
           {items.length > 0 && (
