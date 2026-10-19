@@ -318,7 +318,7 @@ class Stats28 extends BaseStats {
                             </Base.VerticalContent>
                         )}
                         {stats.length > 0 && (
-                            <div className={this.decorateCSS("right-column")}>
+                            <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                                 {stats.map((stat: StatItem, index: number) => (
                                     <AnimatedStat
                                         key={`stat28-${index}`}

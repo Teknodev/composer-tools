@@ -152,6 +152,8 @@
                 .left-column,
                 .right-column {
                     flex: auto;
+                    // Full row width so centered text centers in the row, not in a content-sized column
+                    width: 100%;
                 }
 
                 .left-column {
@@ -181,6 +183,26 @@
                             .stat-value {
                                 font-size: 4rem;
                               }
+                        }
+                    }
+
+                    &.alignment-center {
+                        .stat-item {
+                            .stat-row {
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 0;
+
+                                .stat-info {
+                                    align-items: center;
+
+                                    .stat-title,
+                                    .stat-subtitle,
+                                    .stat-description {
+                                        text-align: center;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

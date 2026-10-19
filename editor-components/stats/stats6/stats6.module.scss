@@ -12,7 +12,6 @@
 
       .subtitle {
         text-align: center;
-        color: var(--composer-font-color-primary);
         transform: none !important;
         background: transparent;
         padding: 0;
@@ -24,7 +23,6 @@
 
       .title {
         text-align: center;
-        color: var(--composer-font-color-primary);
       }
 
       .description {
@@ -118,6 +116,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: calc(var(--composer-gap-xl));
+
       .stats6-page {
         gap: var(--composer-gap-lg) !important;
 
