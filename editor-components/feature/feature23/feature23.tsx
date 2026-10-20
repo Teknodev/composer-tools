@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
-import styles from "./feature53.module.scss";
+import styles from "./feature23.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -17,7 +17,7 @@ type ICard = {
     cardButtons: INPUTS.CastedButton[];
 };
 
-class Feature53 extends BaseFeature {
+class Feature23 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
@@ -52,12 +52,12 @@ class Feature53 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -120,7 +120,7 @@ class Feature53 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -182,7 +182,7 @@ class Feature53 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -244,7 +244,7 @@ class Feature53 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "string",
@@ -339,7 +339,7 @@ class Feature53 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 53";
+        return "Feature 23";
     }
 
     render() {
@@ -373,17 +373,15 @@ class Feature53 extends BaseFeature {
             return this.castToString(card.cardLabel) || itemTitle || itemSubtitle || itemDescription || hasMedia || hasAnyCardButton;
         });
 
-        const viewType = Base.getViewType();
-        const subtitleType = Base.getSectionSubTitleType();
         const hasAnyCardLabel = filteredCards.some((card: ICard) => this.castToString(card.cardLabel));
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(viewType)}`}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(subtitle || title || description || hasHeadingButtons) && (
                         <Base.VerticalContent className={`${this.decorateCSS("heading")} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
                             {subtitle && (
-                                <Base.SectionSubTitle className={subtitleType === "badge" ? this.decorateCSS("subtitle-badge") : this.decorateCSS("subtitle")}>
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
@@ -399,7 +397,7 @@ class Feature53 extends BaseFeature {
                                         const buttonTextExist = this.castToString(button.text);
                                         return (
                                             buttonTextExist && (
-                                                <ComposerLink key={`feature53-heading-btn-${btnIndex}`} path={button.url}>
+                                                <ComposerLink key={`feature23-heading-btn-${btnIndex}`} path={button.url}>
                                                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                                                         <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                                     </Base.Button>
@@ -419,7 +417,7 @@ class Feature53 extends BaseFeature {
                                         const cardLabelExist = this.castToString(card.cardLabel);
                                         return cardLabelExist && (
                                             <Base.H5
-                                                key={`feature53-tab-btn-${index}`}
+                                                key={`feature23-tab-btn-${index}`}
                                                 className={`${this.decorateCSS("tab-button")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                                                 onClick={() => this.setDesktopCard(index)}
                                             >
@@ -448,7 +446,7 @@ class Feature53 extends BaseFeature {
                                     const mediaOnly = !hasAnyContent && hasMedia;
 
                                     return (
-                                        <div key={`feature53-tab-${index}`} className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""}`} >
+                                        <div key={`feature23-tab-${index}`} className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""} ${mediaOnly ? this.decorateCSS("media-only") : ""}`} >
                                             {(cardLabelExist || mobileIconExist) && (
                                                 <Base.H5 className={`${this.decorateCSS("tab-header")} ${activeCard === index ? this.decorateCSS("active") : ""}`} onClick={() => this.setActiveCard(index)} >
                                                     {cardLabelExist && (
@@ -481,7 +479,7 @@ class Feature53 extends BaseFeature {
                                                                         const buttonTextExist = this.castToString(button.text);
                                                                         return (
                                                                             buttonTextExist && (
-                                                                                <ComposerLink key={`feature53-btn-${index}-${btnIndex}`} path={button.url}>
+                                                                                <ComposerLink key={`feature23-btn-${index}-${btnIndex}`} path={button.url}>
                                                                                     <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
                                                                                         <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
                                                                                     </Base.Button>
@@ -513,4 +511,4 @@ class Feature53 extends BaseFeature {
     }
 }
 
-export default Feature53;
+export default Feature23;

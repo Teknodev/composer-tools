@@ -1,8 +1,13 @@
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature26.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type MediaCard = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class FeatureComponent26 extends BaseFeature {
   constructor(props?: any) {
@@ -11,13 +16,38 @@ class FeatureComponent26 extends BaseFeature {
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "Expert Solutions" });
     this.addProp({ type: "string", key: "title", displayer: "Title", value: "Get solutions from real experts" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." });
-
     this.addProp({
       type: "media",
-      key: "image",
+      key: "icon",
+      displayer: "Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaQuoteLeft",
+      },
+    });
+
+    this.addProp({
+      type: "object",
+      key: "mediaCard",
       displayer: "Media",
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media", },
-      additionalParams: { availableTypes: ["image","video"] }
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media" },
+          additionalParams: { availableTypes: ["image", "video"] },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -37,21 +67,6 @@ class FeatureComponent26 extends BaseFeature {
       value: ["animate1"],
       additionalParams: { selectItems: ["animate1"] }
     });
-
-    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
-
-    this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaQuoteLeft",
-      },
-    });
   }
 
   static getName(): string { return "Feature 26"; }
@@ -60,11 +75,12 @@ class FeatureComponent26 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const image = this.getPropValue("image");
-    const hasImage = !!(image && (image.url));
+    const mediaCard = this.castToObject<MediaCard>("mediaCard");
+    const media = mediaCard.media;
+    const hasMedia = !!(media && media.url);
+    const imageOverlay = !!mediaCard.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hoverAnimation = this.getPropValue("hoverAnimation");
-    const imageOverlay = !!this.getPropValue("imageOverlay");
     const alignment = Base.getContentAlignment();
     const icon = this.getPropValue("icon");
 
@@ -72,9 +88,9 @@ class FeatureComponent26 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("wrapper")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
-              {hasImage && (
+              {hasMedia && (
                 <div className={this.decorateCSS("image-container")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
-                  <Base.Media value={image} className={this.decorateCSS("image")} />
+                  <Base.Media value={media} className={this.decorateCSS("image")} />
                   {imageOverlay && (<div className={`${this.decorateCSS("overlay")} ${this.decorateCSS("apply-overlay")}`}></div>)}
                 </div>
               )}
@@ -92,9 +108,8 @@ class FeatureComponent26 extends BaseFeature {
                 const hasAnyContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
                 if (!hasAnyContent) return null;
                 return (
-                  <Base.VerticalContent 
-                    className={this.decorateCSS("content")} 
-                    data-alignment={alignment}
+                  <Base.VerticalContent
+                    className={`${this.decorateCSS("content")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")} ${!hasMedia ? this.decorateCSS("no-media") : ""}`}
                     data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}
                   >
                     {this.castToString(subtitle) && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}

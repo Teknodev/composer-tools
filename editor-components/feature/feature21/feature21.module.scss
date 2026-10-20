@@ -1,7 +1,44 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
+    border-radius: var(--composer-border-radius-sm);
+}
+
 .container {
     .max-content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .top-content {
+            width: 100%;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                .button {
+                    .button-text,
+                    .button-icon {
+                        content: "";
+                    }
+                }
+            }
+        }
+
         .grid-container{
             display: flex;
             .card {
@@ -12,7 +49,7 @@
                 &:hover {
                     .text-content {
                         height: auto;
-                        padding: var(--composer-gap-md) var(--composer-gap-md) 0;
+                        padding: 0 var(--composer-gap-md);
                     }
                     
                     .card-description,
@@ -34,7 +71,7 @@
                     width: 100%;
                     height: 600px;
                     overflow: hidden;
-                    border-radius: var(--composer-border-radius-md);
+                    border-radius: var(--composer-border-radius-sm);
 
                     .card-image {
                         width: 100%;
@@ -53,32 +90,23 @@
                     }
                 }
 
+                // No background of its own: it sits on the section, which may carry the alternate section background.
+                // Full card width: the card's vertical content aligns its children to the start, so without it the box grew
+                // to the one-line title and its overflow clip / fade did not stop the text at the card edge (it ran over the next card).
                 .text-content {
+                    width: 100%;
+                    min-width: 0;
                     position: relative;
-                    background-color: var(--composer-html-background);
                     bottom: 0;
                     height: 100px;
-                    padding: var(--composer-gap-md) var(--composer-gap-md) 0;
+                    padding: 0 var(--composer-gap-md);
                     transform: translateY(0);
                     transition: all 0.4s ease;
                     display: flex;
                     flex-direction: row;
-                    gap: var(--composer-gap-md);
+                    flex-wrap: wrap;
+                    align-items: center;
                     overflow: hidden;
-                    
-                    &::after{
-                        content: "";
-                        position: absolute;
-                        width: 72px;
-                        height: 100%;
-                        right: 0;
-                        top: 0;
-                        z-index: 10;
-                        background: linear-gradient(270deg, var(--composer-html-background) 10%, rgba(22, 17, 17, 0) 100%);
-                        transition: opacity 0.4s ease;
-                        opacity: 0;
-                        pointer-events: none;
-                    }
                 }
 
                 .left-side {
@@ -86,20 +114,30 @@
                     display: flex;
                     flex-direction: column;
                     align-items: baseline;
-                    gap: calc(1.5*(var(--composer-gap-sm)));
                 }
 
                 .right-side {
                     flex-shrink: 0;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
+                    .button-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-sm);
+                    }
+                }
+
+                .card-subtitle {
+                    color: var(--composer-font-color-primary);
+                    opacity: 1;
+                    transition: all 0.3s ease 0.5s;
+                    text-align: left;
                 }
 
                 .card-title {
-                    margin-top: var(--composer-gap-md);
-                    margin-bottom: 0;
                     white-space: nowrap;
                     color: var(--composer-font-color-primary);
+                    font-weight: 800;
                     opacity: 1;
                     transition: all 0.3s ease 0.5s;
                     text-align: left;
@@ -109,7 +147,6 @@
                     color: var(--composer-font-color-primary);
                     opacity: 0;
                     transition: all 0.3s ease 0.6s;
-                    margin: 0;
                     text-align: left;
                 }
 
@@ -120,8 +157,13 @@
                     white-space: nowrap;
 
                     .button-text {
+                        content: "";
                         color: var(--composer-font-color-primary);
                         white-space: nowrap;
+                    }
+
+                    .button-icon {
+                        content: "";
                     }
 
                     &:hover {
@@ -137,6 +179,12 @@
 .card.cardDefault {
     flex: 1;
     min-width: 200px;
+
+    // Same fade as the collapsed cards for a title longer than the card, instead of a hard cut.
+    .text-content {
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+    }
 }
 
 .card.cardExpanded {
@@ -144,17 +192,20 @@
     min-width: 300px;
 
     .text-content {
-        height: 150px !important;
-        padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
-        
-        &::after {
-            opacity: 0 !important;
-        }
+        height: auto !important;
+        min-height: 150px;
+        padding: 0 var(--composer-gap-md) var(--composer-gap-md);
     }
 
     .card-description, .card-button{
         opacity: 1 !important;
         transform: translateY(0) !important;
+    }
+
+    // The opened card shows its whole title; it wraps when the card is narrower than it (tablet).
+    // !important: the base rule sits deeper in the nesting.
+    .card-title {
+        white-space: normal !important;
     }
 }
 
@@ -162,10 +213,10 @@
     flex: 0.6;
     min-width: 150px;
     
+    // Fades the clipped title out on the right; a mask needs no background colour to blend into.
     .text-content {
-        &::after {
-            opacity: 1 !important;
-        }
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
     }
 }
 
@@ -178,7 +229,6 @@
                 height: 0 !important;
                 padding: 0 !important;
                 flex-direction: column !important;
-                gap: var(--composer-gap-sm);
                 transition: height 0.6s ease, padding 0.6s ease !important;
                 
             }
@@ -187,7 +237,7 @@
                 .text-content {
                     height: auto !important;
                     min-height: auto !important;
-                    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+                    padding: 0 var(--composer-gap-md) var(--composer-gap-md) !important;
                     transition: height 0.6s ease, padding 0.6s ease !important;
                 }
             }
@@ -214,7 +264,6 @@
     .grid-container {
         flex-direction: column;
         height: auto !important;
-        gap: var(--composer-gap-lg);
 
         .card {
             height: auto;
@@ -252,7 +301,8 @@
             .text-content {
                 height: 100% !important;
                 padding: 0 !important;
-                
+                -webkit-mask-image: none;
+                mask-image: none;
             }
 
             .card-title {

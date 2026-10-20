@@ -1,6 +1,17 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--composer-overlay-color);
+  pointer-events: none;
+  border-radius: var(--composer-border-radius-sm);
+}
+
 .container {
   position: relative;
 
@@ -8,7 +19,8 @@
     .tabs-wrapper {
       display: flex;
       gap: var(--composer-gap-xl);
-      height: 600px;
+      // Scroll area height: tallest tab content (~455px incl. padding) plus a little room.
+      height: 500px;
       align-items: center;
 
       .tabs {
@@ -61,13 +73,14 @@
           scroll-snap-stop: always;
           scroll-snap-align: start;
           padding: var(--composer-gap-md);
+          box-sizing: border-box;
 
           &.no-text {
             .image-wrapper {
               width: 100% !important;
 
               .image {
-                height: 600px !important;
+                height: 500px !important;
                 width: 100% !important;
                 object-fit: cover;
               }
@@ -75,6 +88,7 @@
           }
 
           .image-wrapper {
+            position: relative;
             width: 35%;
             flex-shrink: 0;
             border-radius: var(--composer-border-radius-md);
@@ -89,6 +103,7 @@
 
           .text-content {
             flex: 1;
+            min-width: 0;
             align-items: flex-start;
 
             .subtitle {
@@ -109,10 +124,14 @@
               text-overflow: ellipsis;
             }
 
-            .button-wrapper {
-              align-self: flex-start;
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
               .button {
-                .button-text {
+                .button-text,
+                .button-icon {
                   content: "";
                 }
               }
@@ -128,37 +147,14 @@
   .container {
     .max-content {
       .tabs-wrapper {
-        gap: 0 !important;
-
-        .tab-content {
-          justify-content: flex-start !important;
-          margin-top: 5rem;
-        }
-
         .vertical-content {
-          .text-content {
-            flex: 1 !important;
+          .tab-content {
+            gap: var(--composer-gap-lg);
 
-            .description {
-              -webkit-line-clamp: 9;
+            .image-wrapper {
+              width: 50%;
             }
           }
-        }
-
-        .image-wrapper {
-          width: 50% !important;
-        }
-
-        .tab-text {
-          display: none !important;
-        }
-
-        .tab {
-          padding: 1rem !important;
-        }
-
-        .tabs {
-          height: 100%;
         }
       }
     }
@@ -170,6 +166,7 @@
     .max-content {
       .tabs-wrapper {
         gap: 0 !important;
+        height: 600px;
 
         .tab-content {
           flex-direction: column-reverse;
@@ -177,16 +174,15 @@
           align-items: flex-start !important;
           height: auto !important;
           padding: 0 !important;
+          margin-top: 5rem;
 
-          .button-wrapper {
-            .button {
-              margin-top: 0px !important;
-            }
-          }
+
         }
 
         .vertical-content {
           .text-content {
+            flex: 1 !important;
+
             .description {
               -webkit-line-clamp: 3 !important;
             }

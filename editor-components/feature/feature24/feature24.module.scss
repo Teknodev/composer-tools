@@ -16,7 +16,6 @@
     }
 
     .features-content {
-      gap: var(--composer-gap-lg);
 
       .card-container {
         display: flex;
@@ -82,7 +81,6 @@
   .container {
     .max-content {
       .features-content {
-        gap: var(--composer-gap-md);
 
         .card-container {
           .icon-box {
@@ -109,8 +107,6 @@
       gap: var(--composer-gap-md);
 
       .features-content {
-        gap: var(--composer-gap-sm);
-        row-gap: var(--composer-gap-md);
 
         .card-container {
           gap: var(--composer-gap-sm);

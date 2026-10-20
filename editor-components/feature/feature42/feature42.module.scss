@@ -110,11 +110,13 @@
         opacity: 1;
       }
 
+      // The image bleeds over Base.Container's side padding (120px 60px / tablet 50px / phone 30px)
+      // so it reaches the container edge, as in Feature 7.
       .image-wrapper {
         position: relative;
         border-top-right-radius: var(--composer-border-radius-sm);
         border-bottom-right-radius: var(--composer-border-radius-sm);
-        margin-left: calc(-1 * var(--composer-gap-xl));
+        margin-left: -60px;
         overflow: hidden;
         width: 100%;
         min-height: 500px;
@@ -122,7 +124,7 @@
         flex: 0.5;
 
         &.full-width {
-          margin-right: calc(-1 * var(--composer-gap-xl));
+          margin-right: -60px;
           border-radius: 0;
           flex: 1;
         }
@@ -142,15 +144,15 @@
         }
       }
 
+      // The text stops where the content width ends, so on wide screens it lines up with the header above.
       .sectionsWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
         align-items: flex-start;
         flex: 0.5;
+        padding-right: max(0px, calc(50% - var(--composer-content-width) / 2));
 
         &.no-image {
           flex: 1;
+          padding-left: max(0px, calc(50% - var(--composer-content-width) / 2));
           align-items: var(--composer-content-alignment);
 
           .cardSubTitle,
@@ -167,6 +169,12 @@
         .sectionText2 {
           text-align: left;
           color: var(--composer-font-color-primary);
+        }
+
+        .card-button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
         }
 
         .card-button {
@@ -192,49 +200,16 @@
   }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    gap: var(--composer-gap-lg);
-
-    .wrapper {
-      .max-content {
-        .vertical-content {
-          .subtitle {
-            padding-right: var(--composer-gap-xl);
-          }
-        }
-      }
-    }
-
     .card-wrapper {
       .card-content {
-        flex-direction: column;
-
-        .mobile-title-wrapper {
-          display: none;
-        }
-
         .image-wrapper {
-          order: 2;
-          border-radius: 0;
-          min-height: 350px;
-          margin-left: calc(-1 * var(--composer-gap-lg));
-          width: calc(100% + 2 * var(--composer-gap-lg));
+          margin-left: -50px;
 
           &.full-width {
-            margin-right: 0;
-          }
-        }
-
-        .sectionsWrapper {
-          order: 1;
-          flex: unset;
-
-          .cardSubTitle,
-          .cardTitle,
-          .sectionText1,
-          .sectionText2 {
-            text-align: var(--composer-content-alignment);
+            margin-right: -50px;
           }
         }
       }
@@ -249,6 +224,14 @@
     .wrapper {
       &.no-content {
         display: none;
+      }
+
+      .max-content {
+        .vertical-content {
+          .subtitle {
+            padding-right: var(--composer-gap-xl);
+          }
+        }
       }
 
       .items-wrapper {
@@ -272,6 +255,7 @@
 
       .card-content {
         display: flex;
+        flex-direction: column;
         position: relative;
         opacity: 1;
         height: auto;
@@ -337,12 +321,16 @@
 
         .image-wrapper {
           order: 3;
-          margin-left: calc(-1 * var(--composer-gap-md));
+          margin-left: -30px;
           margin-bottom: var(--composer-gap-md);
-          width: calc(100% + 2 * var(--composer-gap-md));
+          width: calc(100% + 60px);
           min-height: 240px;
           border-radius: 0;
           display: none;
+
+          &.full-width {
+            margin-right: 0;
+          }
         }
 
         &:last-child {
@@ -354,6 +342,14 @@
         .sectionsWrapper {
           order: 2;
           display: none;
+          flex: unset;
+
+          .cardSubTitle,
+          .cardTitle,
+          .sectionText1,
+          .sectionText2 {
+            text-align: var(--composer-content-alignment);
+          }
         }
 
         &.active-item {

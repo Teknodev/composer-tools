@@ -15,16 +15,6 @@
                 content: "";
             }
 
-            .subtitle {
-                &::before {
-                    background: var(--composer-html-background) !important;
-                }
-            }
-
-            .subtitle-badge {
-                background: var(--composer-primary-color) !important;
-            }
-
             .button-container {
                 display: flex;
                 flex-wrap: wrap;
@@ -80,6 +70,8 @@
                 .tab {
                     grid-area: 1 / 1;
                     pointer-events: none;
+                    // Tabs are stacked in one cell; Vertical Content's item margin would only add space below the section.
+                    margin-bottom: 0;
 
                     .tab-header {
                         display: none;
@@ -179,34 +171,6 @@
             }
         }
     }
-
-    &.monochrome {
-        .max-content {
-            .heading {
-
-                .subtitle-badge {
-                    background: transparent !important;
-                    padding: 0 !important;
-                }
-            }
-        }
-    }
-
-    &.colorful {
-        .max-content {
-            .heading {
-                .subtitle {
-                    &::before {
-                        background: var(--composer-primary-color) !important;
-                    }
-                }
-
-                .subtitle-badge {
-                    background: var(--composer-font-color-secondary) !important;
-                }
-            }
-        }
-    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -261,7 +225,7 @@
                             width: 100%;
                             padding: var(--composer-gap-md) 0;
                             cursor: pointer;
-                            color: var(--composer-html-background);
+                            color: var(--composer-font-color-primary);
 
                             .tab-header-title {
                                 flex: 1;

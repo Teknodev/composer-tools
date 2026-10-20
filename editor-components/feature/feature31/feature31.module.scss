@@ -19,7 +19,6 @@
 
             .features-content {
                 flex: 1.5;
-                gap: var(--composer-gap-lg);
 
                 .card-container {
                     display: flex;
@@ -60,6 +59,7 @@
                         flex: 1;
 
                         .card-description,
+                        .card-subtitle,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left !important;
@@ -89,7 +89,6 @@
                 flex-direction: column;
 
                 .features-content {
-                    gap: var(--composer-gap-md);
 
                     .card-container {
                         .icon-box {
@@ -128,4 +127,10 @@
             }
         }
     }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card-container {
+    padding: var(--composer-gap-md);
+  }
 }

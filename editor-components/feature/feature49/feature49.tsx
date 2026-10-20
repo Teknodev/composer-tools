@@ -3,7 +3,7 @@ import {
     BaseFeature,
     TypeMediaInputValue,
 } from "composer-tools/editor-components/EditorComponent";
-import styles from "./feature51.module.scss";
+import styles from "./feature49.module.scss";
 import {
     Base,
     TypeButton,
@@ -18,7 +18,7 @@ type Item = {
     itemIconClosed?: TypeMediaInputValue;
 };
 
-class Feature51 extends BaseFeature {
+class Feature49 extends BaseFeature {
     private containerRef = React.createRef<HTMLDivElement>();
 
     constructor(props?: any) {
@@ -52,12 +52,12 @@ class Feature51 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "items",
-            displayer: "Items",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "item",
-                    displayer: "Item",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -86,13 +86,13 @@ class Feature51 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Strategy Planning",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. \n\nDistinctively exploit optimal alignments for intuitive bandwidth. Quickly coordinate e-business applications through revolutionary catalysts.",
                         },
@@ -101,7 +101,7 @@ class Feature51 extends BaseFeature {
                 {
                     type: "object",
                     key: "item",
-                    displayer: "Item",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -130,13 +130,13 @@ class Feature51 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Technology Consluting",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },
@@ -145,7 +145,7 @@ class Feature51 extends BaseFeature {
                 {
                     type: "object",
                     key: "item",
-                    displayer: "Item",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -174,13 +174,13 @@ class Feature51 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Design & Development",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },
@@ -189,7 +189,7 @@ class Feature51 extends BaseFeature {
                 {
                     type: "object",
                     key: "item",
-                    displayer: "Item",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -218,13 +218,13 @@ class Feature51 extends BaseFeature {
                         {
                             type: "string",
                             key: "itemTitle",
-                            displayer: "Item Title",
+                            displayer: "Title",
                             value: "Performance Audit",
                         },
                         {
                             type: "string",
                             key: "itemDescription",
-                            displayer: "Item Description",
+                            displayer: "Description",
                             value:
                                 "I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
                         },
@@ -263,7 +263,7 @@ class Feature51 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 51";
+        return "Feature 49";
     }
 
     onComponentDidMount() {
@@ -514,4 +514,4 @@ class Feature51 extends BaseFeature {
     }
 }
 
-export default Feature51;
+export default Feature49;

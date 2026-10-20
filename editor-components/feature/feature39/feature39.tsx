@@ -13,6 +13,7 @@ type ButtonTypeObj = {
 
 type Card = {
     icon: TypeMediaInputValue;
+    card_subtitle: React.JSX.Element;
     card_title: React.JSX.Element;
     card_description: React.JSX.Element;
 };
@@ -22,21 +23,27 @@ class Feature39 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "componentBackground",
-            displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        })
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
+            type: "object",
+            key: "media",
+            displayer: "Background Media",
+            value: [
+                {
+                    type: "media",
+                    key: "componentBackground",
+                    displayer: "Background Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
@@ -70,12 +77,12 @@ class Feature39 extends BaseFeature {
         this.addProp({
             type: "array",
             key: "cards",
-            displayer: "Cards",
+            displayer: "Features",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -88,6 +95,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "HiMiniPencilSquare"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -106,7 +119,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -119,6 +132,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "AiFillLike"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -137,7 +156,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -150,6 +169,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "GoDeviceDesktop"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -168,7 +193,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -181,6 +206,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "MdOutlineHeadsetMic"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -199,7 +230,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -212,6 +243,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "FaThLarge"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -230,7 +267,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -243,6 +280,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "IoMdSettings"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -261,7 +304,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -274,6 +317,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "RiStarSFill"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -292,7 +341,7 @@ class Feature39 extends BaseFeature {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Feature",
                     value: [
                         {
                             type: "media",
@@ -305,6 +354,12 @@ class Feature39 extends BaseFeature {
                                 type: "icon",
                                 name: "FaEarthAmericas"
                             }
+                        },
+                        {
+                            type: "string",
+                            key: "card_subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -343,9 +398,10 @@ class Feature39 extends BaseFeature {
     }
 
     render() {
-        const coverImage = this.getPropValue("componentBackground");
+        const mediaGroup = this.castToObject<{ componentBackground: TypeMediaInputValue; overlay: boolean }>("media");
+        const coverImage = mediaGroup?.componentBackground;
         const hasMedia = !!coverImage?.url;
-        const enableOverlay = hasMedia && this.getPropValue("overlay");
+        const enableOverlay = hasMedia && mediaGroup?.overlay;
         const cards = this.castToObject<Card[]>("cards");
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
@@ -380,23 +436,23 @@ class Feature39 extends BaseFeature {
                             gridCount={{ pc: this.getPropValue("itemCount") || 4, tablet: 2, phone: 1 }}
                         >
                             {cards.map((card: Card, index: number) => {
+                                const cardSubtitleExist = this.castToString(card.card_subtitle);
                                 const titleExist = !!this.castToString(card.card_title);
                                 const descExist = !!this.castToString(card.card_description);
                                 const isImage = card.icon?.type === "image";
 
-                                return (!titleExist && !descExist && !card.icon) || (
+                                return (!cardSubtitleExist && !titleExist && !descExist && !card.icon) || (
                                     <Base.Card key={index} className={this.decorateCSS("card-wrapper")}>
-                                        {card.icon &&
-                                            <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                                                <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                            </div>
-                                        }
-                                        {(titleExist || descExist) &&
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
-                                            </Base.VerticalContent>
-                                        }
+                                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                            {card.icon &&
+                                                <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                                                    <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                </div>
+                                            }
+                                            {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.card_subtitle}</Base.H6>}
+                                            {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.card_title}</Base.H4>}
+                                            {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.card_description}</Base.P>}
+                                        </Base.VerticalContent>
                                     </Base.Card>
                                 );
                             })}

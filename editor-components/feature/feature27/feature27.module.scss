@@ -42,6 +42,30 @@
         }
       }
 
+      &.no-media.alignment-center {
+        justify-content: center;
+
+        .left-container {
+          align-items: center;
+          width: 100%;
+
+          .subtitle {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .title,
+          .description {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+      }
+
       .right-container {
         width: 100%;
         max-width: 50%;
@@ -83,6 +107,10 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
+        .left-container .button-container {
+          gap: var(--composer-gap-sm);
+        }
+
         &.alignment-center {
           align-items: center;
           text-align: center;
@@ -104,8 +132,9 @@
             }
 
             .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
+              // Side by side while they fit, wrapping to the next line otherwise.
+              flex-direction: row;
+              flex-wrap: wrap;
               justify-content: center;
             }
           }
@@ -120,8 +149,8 @@
             text-align: left;
 
             .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
+              flex-direction: row;
+              flex-wrap: wrap;
               justify-content: flex-start;
             }
           }
