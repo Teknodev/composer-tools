@@ -72,32 +72,17 @@ export namespace Base {
     setStyleValue("--composer-view-type", viewType);
   }
 
-  // Text-only projects (AI-generated without images) render a theme-colored
-  // layer over every image instead of the placeholder image itself. Stored as
-  // a CSS variable so it is available in both the editor and preview/published
-  // render paths without threading project state through every component.
+  // Text-only projects (AI-generated without images) show the component's own
+  // images — the same as an AI-built page without image generation looks in
+  // the assistant's build (BUG-001 consistency, 20.10.2026). They used to get a
+  // theme-coloured layer over every image. The flag stays a CSS variable for
+  // anything that wants to know, but no longer changes how an image renders.
   export function getTextOnly() {
     return getStyleValue("--composer-text-only") === "true";
   }
 
   export function setTextOnly(value: boolean) {
     setStyleValue("--composer-text-only", value ? "true" : "false");
-  }
-
-  // Text-only placeholder layers are tinted toward one of the theme's brand
-  // colors (primary / secondary / tertiary) or a neutral font tone, so the
-  // covered images don't all read as a single flat colour. The variant is a
-  // deterministic hash of the image URL — the same image always gets the same
-  // colour (stable across re-renders), while different images spread across
-  // the palette. Returns 0..3 → maps to the .themeCoverLayer{0..3} classes.
-  const THEME_COVER_VARIANTS = 7;
-  export function themeCoverVariant(seed: string | undefined): number {
-    const s = seed || "";
-    let h = 0;
-    for (let i = 0; i < s.length; i++) {
-      h = (h * 31 + s.charCodeAt(i)) | 0;
-    }
-    return Math.abs(h) % THEME_COVER_VARIANTS;
   }
 
   export function setFontSize(size: string) {
@@ -712,20 +697,6 @@ export namespace Base {
           </span>
         );
       case "image":
-        // Text-only projects cover placeholder images with a theme-gradient
-        // layer. The wrapper takes the image's layout slot (gets `className`)
-        // and the image fills it, so sizing/border-radius are preserved.
-        if (getTextOnly()) {
-          return (
-            <span className={`${styles.themeCover} ${className ?? ""}`} {...props}>
-              <img className={styles.themeCoverImage} src={value.url} alt="" />
-              <span
-                className={`${styles.themeCoverLayer} ${styles[`themeCoverLayer${themeCoverVariant(value.url)}`]}`}
-                aria-hidden="true"
-              />
-            </span>
-          );
-        }
         return (
           <img
             className={className}
