@@ -120,11 +120,13 @@
       }
     }
 
+    // Same space below the button as above it in every view: the column gap (gap-lg) plus
+    // Base.Button's own top margin (0.5em of its md font size).
     .button-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-bottom: var(--composer-gap-xl);
+      padding-bottom: calc(var(--composer-gap-lg) + 0.5 * var(--composer-font-size-md));
 
       .button {
         .button-text {
@@ -137,9 +139,13 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
+  // Base.Container's tablet/phone padding is !important too; the repeated class wins over it (as in Image Gallery 9),
+  // so no extra space is added above the images or below the button.
+  .container.container.container {
     padding: 0 50px !important;
+  }
 
+  .container {
     .maxContent .heading {
       padding-top: 100px;
     }
@@ -147,20 +153,12 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0px var(--composer-gap-lg) !important;
-    .maxContent {
-      .button-wrapper {
-        padding-bottom: var(--composer-gap-lg);
-      }
-    }
-  } 
-}
+  .container.container.container {
+    padding: 0 30px !important;
+  }
 
-@container (max-width: #{$composer-phone-width}) {
   .container {
     height: 100%;
-    padding: 0 30px !important;
 
     .maxContent {
       .heading {
@@ -186,9 +184,6 @@
           margin-top: 0px;
           transform: none !important;
         }
-      }
-      .button-wrapper {
-        padding-bottom: var(--composer-gap-md);
       }
     }
   }
