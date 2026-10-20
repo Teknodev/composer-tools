@@ -11,6 +11,11 @@ type Background = {
 };
 
 class HeroSection30 extends BaseHeroSection {
+  titleWithImageRef = React.createRef<HTMLDivElement>();
+  inkObserver?: ResizeObserver;
+  inkRoot?: HTMLElement;
+  inkCanvas?: HTMLCanvasElement;
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -120,6 +125,65 @@ class HeroSection30 extends BaseHeroSection {
     return "Hero Section 30";
   }
 
+  componentDidMount() {
+    super.componentDidMount?.();
+    this.observeTitles();
+    document.fonts?.ready.then(() => this.fitTitlesToInk());
+  }
+
+  componentDidUpdate(prevProps: any, prevState: any, snapshot?: any) {
+    super.componentDidUpdate?.(prevProps, prevState, snapshot);
+    this.observeTitles();
+    this.fitTitlesToInk();
+  }
+
+  // The font size follows the container width, so the titles are measured again whenever their wrapper resizes.
+  observeTitles() {
+    const root = this.titleWithImageRef.current;
+    if (!root || root === this.inkRoot) return;
+    this.inkObserver?.disconnect();
+    this.inkObserver = new ResizeObserver(() => this.fitTitlesToInk());
+    this.inkObserver.observe(root);
+    this.inkRoot = root;
+  }
+
+  componentWillUnmount() {
+    super.componentWillUnmount?.();
+    this.inkObserver?.disconnect();
+  }
+
+  // A title next to an image gives the image its letters' height. The title's line box is taller than its letters
+  // (line-height space above the tallest letter and below the baseline) and how much depends on the theme font,
+  // so it is measured on a canvas: the space is set as --ink-top / --ink-bottom (negative margins in the SCSS) and,
+  // when a tall font reaches past the line box, the overflow as --ink-pad-top / --ink-pad-bottom (padding).
+  // The title box always holds all of its letters, so round letters (S, C, O) are never clipped.
+  fitTitlesToInk() {
+    const root = this.titleWithImageRef.current;
+    const context = (this.inkCanvas ||= document.createElement("canvas")).getContext("2d");
+    if (!root || !context) return;
+    root.querySelectorAll<HTMLElement>("[data-fit-ink]").forEach((title) => {
+      const style = getComputedStyle(title);
+      const lineHeight = parseFloat(style.lineHeight);
+      const text = (title.textContent || "").trim();
+      if (!text || !lineHeight) return;
+      context.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const metrics = context.measureText(style.textTransform === "uppercase" ? text.toUpperCase() : text);
+      const halfLeading = (lineHeight - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2;
+      const baseline = halfLeading + metrics.fontBoundingBoxAscent;
+      const top = baseline - metrics.actualBoundingBoxAscent;
+      const bottom = lineHeight - baseline - metrics.actualBoundingBoxDescent;
+      this.setInkVariable(title, "--ink-top", Math.max(top, 0));
+      this.setInkVariable(title, "--ink-pad-top", Math.max(-top, 0));
+      this.setInkVariable(title, "--ink-bottom", Math.max(bottom, 0));
+      this.setInkVariable(title, "--ink-pad-bottom", Math.max(-bottom, 0));
+    });
+  }
+
+  setInkVariable(element: HTMLElement, name: string, value: number) {
+    const px = `${value.toFixed(2)}px`;
+    if (element.style.getPropertyValue(name) !== px) element.style.setProperty(name, px);
+  }
+
   hasMedia(media?: TypeMediaInputValue) {
     return !!(media && ((media as any).url || (media as any).name));
   }
@@ -185,7 +249,7 @@ class HeroSection30 extends BaseHeroSection {
             )}
 
             {(hasImage || this.castToString(this.getPropValue("secondTitle"))) && (
-              <div className={this.decorateCSS("title-with-image")}>
+              <div className={this.decorateCSS("title-with-image")} ref={this.titleWithImageRef}>
                 {hasImage && (
                   <div className={this.decorateCSS("title-image-wrapper")}>
                     <Base.Media
@@ -201,6 +265,7 @@ class HeroSection30 extends BaseHeroSection {
                 {this.castToString(this.getPropValue("secondTitle")) && (
                   <Base.H1
                     className={`${this.decorateCSS("titles")} ${this.decorateCSS("second-title")} ${!hasImage ? this.decorateCSS("withoutImage") : ""}`}
+                    data-fit-ink
                   >
                     {this.getPropValue("secondTitle")}
                   </Base.H1>

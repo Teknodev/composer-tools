@@ -156,6 +156,13 @@ class HeroSection6 extends BaseHeroSection {
       : media;
   }
 
+  // The Colorful View Type is turned off for this component: the subtitle, its badge and the title keep the Monochrome colors.
+  monochromeTextClass(isSubtitle = false) {
+    if (Base.getViewType() !== "colorful") return "";
+    const isBadge = isSubtitle && Base.getSectionSubTitleType() === "badge";
+    return `${this.decorateCSS("monochrome-text")} ${isBadge ? this.decorateCSS("monochrome-badge") : ""}`;
+  }
+
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const title = this.getPropValue("title");
@@ -200,14 +207,14 @@ class HeroSection6 extends BaseHeroSection {
                 </div>
               )}
               {isSubtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.monochromeTextClass(true)}`}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
               {(isTitleExist || isSecondTitleExist) && (
                 <div className={this.decorateCSS("title-container")}>
                   {isTitleExist && (
-                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${!animations?.titleAnimation ? this.decorateCSS("noanimation") : ""}`}>
+                    <Base.SectionTitle className={`${this.decorateCSS("title")} ${!animations?.titleAnimation ? this.decorateCSS("noanimation") : ""} ${this.monochromeTextClass()}`}>
                       {title}
                     </Base.SectionTitle>
                   )}

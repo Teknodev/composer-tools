@@ -100,7 +100,7 @@
         }
       }
       .title-container {
-        // The title color comes from the View Type (Base: Colorful primary, Monochrome font color).
+        // The title keeps the Monochrome font color (Colorful is turned off, see .monochrome-text).
         .title {
           @include textEllipsis(2);
           font-size: 8rem;
@@ -328,4 +328,19 @@
       }
     }
   }
+}
+
+// Same values as Base's Monochrome title/subtitle/badge (base.module.scss). A single class: it beats Base's :where() theme rules
+// but not the Design tab's classes.
+.monochrome-text {
+  color: var(--composer-font-color-primary);
+}
+
+.monochrome-badge {
+  background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color, so it is not primary under Colorful either.
+.subtitle::before {
+  background-color: currentColor !important;
 }

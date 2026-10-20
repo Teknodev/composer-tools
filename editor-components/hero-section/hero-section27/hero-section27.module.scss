@@ -133,6 +133,7 @@
           .upperDiv {
             width: 100%;
             @include flexCenter;
+            margin-bottom: var(--composer-gap-md);
 
             .uppderDiv-content {
               width: 100%;
@@ -231,8 +232,9 @@
                 align-items: center;
                 max-width: 80%;
 
+                // Letters as tall as the images on their left.
                 .middleTitle {
-                  font-size: 13rem;
+                  font-size: 16rem;
                   margin: 0;
                   padding: 0;
                   color: var(--composer-font-color-primary);
@@ -284,7 +286,6 @@
 
                     .active-slide {
                       color: var(--composer-font-color-primary);
-                      font-size: 4rem;
                       padding-right: var(--composer-gap-sm);
                     }
 
@@ -295,12 +296,10 @@
                       color: var(--composer-font-color-primary);
 
                       .divider {
-                        font-size: 3rem;
                         color: var(--composer-font-color-primary);
                       }
 
                       .slide-count {
-                        font-size: 2rem;
                         color: var(--composer-font-color-primary);
                       }
                     }
@@ -321,7 +320,6 @@
 
                 .leftDescription,
                 .rightDescription {
-                  font-size: 1rem;
                   text-align: justify !important;
                   flex: 1;
                   overflow: hidden;
@@ -350,7 +348,6 @@
                     text-overflow: ellipsis;
 
                     .itemsNo {
-                      font-size: 2rem;
                       color: var(--composer-font-color-primary);
                       padding: 0;
                       margin: 0;
@@ -359,7 +356,6 @@
                     .itemDesc {
                       padding: 0;
                       margin: 0;
-                      font-size: 1rem;
                       color: var(--composer-font-color-primary);
                     }
                   }
@@ -401,7 +397,7 @@
 
                 .upTitle-container {
                   .upTitle {
-                    font-size: 6rem !important;
+                    font-size: 7.5rem !important;
                   }
                 }
 
@@ -437,7 +433,7 @@
 
                 .middleTitle-container {
                   .middleTitle {
-                    font-size: 6rem !important;
+                    font-size: 7.5rem !important;
                   }
                 }
               }
@@ -451,11 +447,9 @@
                   .count {
                     .count-items {
                       .itemsNo {
-                        font-size: 2rem !important;
                       }
 
                       .itemDesc {
-                        font-size: 1rem !important;
                       }
                     }
                   }
@@ -465,17 +459,14 @@
               .figure {
                 .pagination {
                   .active-slide {
-                    font-size: 2.5rem !important;
                     padding-right: var(--composer-gap-xs) !important;
                   }
 
                   .slide-count-power {
                     .divider {
-                      font-size: 1.5rem !important;
                     }
 
                     .slide-count {
-                      font-size: 1.25rem !important;
                       padding-left: var(--composer-gap-xs);
                     }
                   }
@@ -483,6 +474,60 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// An image next to a title (desktop and tablet): the image takes the title's height instead of its own vw height,
+// so both sides of the row are the same height. The space above and below the letters (--ink-top / --ink-bottom,
+// measured in fitTitlesToInk) is taken back with negative margins, so the row is exactly as tall as the letters.
+.container .content .slider-parent .carousel .max-content {
+  .upperDiv .uppderDiv-content.media-with-text {
+    align-items: stretch;
+
+    .upTitle-container .upTitle {
+      margin-top: calc(-1 * var(--ink-top, 0px));
+      margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+      padding-top: var(--ink-pad-top, 0px);
+      padding-bottom: var(--ink-pad-bottom, 0px);
+    }
+
+    .upImage-container {
+      align-self: stretch;
+
+      .upImage {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        min-height: 0;
+        max-height: none;
+      }
+    }
+  }
+
+  .middleDiv .middleDiv-content.media-with-text {
+    align-items: stretch;
+
+    .middleTitle-container .middleTitle {
+      margin-top: calc(-1 * var(--ink-top, 0px));
+      margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+      padding-top: var(--ink-pad-top, 0px);
+      padding-bottom: var(--ink-pad-bottom, 0px);
+    }
+
+    .middleImages-container {
+      align-items: stretch;
+
+      .image-wrapper {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+
+        .middleImages {
+          position: absolute;
+          inset: 0;
         }
       }
     }
@@ -570,7 +615,6 @@
                       align-items: center;
 
                       .active-slide {
-                        font-size: 2rem !important;
                       }
 
                       .slide-count-power {
@@ -578,11 +622,9 @@
                         align-items: baseline;
 
                         .divider {
-                          font-size: 1.5rem !important;
                         }
 
                         .slide-count {
-                          font-size: 1.5rem !important;
                         }
                       }
                     }
@@ -599,7 +641,6 @@
 
                   .leftDescription,
                   .rightDescription {
-                    font-size: 1rem;
                     max-width: 100%;
                   }
 
@@ -612,12 +653,10 @@
                       text-align: start;
 
                       .itemsNo {
-                        font-size: 2rem !important;
                         text-align: start;
                       }
 
                       .itemDesc {
-                        font-size: 1rem !important;
                       }
                     }
                   }
@@ -625,6 +664,50 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// Phone: title and images are stacked, so the images keep their own phone height (as before).
+@container (max-width : #{$composer-phone-width}) {
+  .container .content .slider-parent .carousel .max-content {
+    .upperDiv .uppderDiv-content.media-with-text {
+      align-items: start;
+
+      .upTitle-container .upTitle {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .upImage-container .upImage {
+        position: relative;
+        inset: auto;
+        max-height: 80px;
+      }
+    }
+
+    .middleDiv .middleDiv-content.media-with-text {
+      align-items: end;
+
+      .middleTitle-container .middleTitle {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .middleImages-container .image-wrapper {
+        height: 10vw;
+        min-height: 80px;
+        max-height: 5vw;
+
+        .middleImages {
+          position: relative;
+          inset: auto;
         }
       }
     }

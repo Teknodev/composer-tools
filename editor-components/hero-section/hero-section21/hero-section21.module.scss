@@ -35,6 +35,11 @@
           .card-subtitle{
             margin-left: 0;
             width: fit-content;
+            // Badge is turned off over the image (overMediaTextClass): plain text like the None subtitle type.
+            &.no-badge {
+              padding: 0;
+              background: transparent;
+            }
           }
 
           &.card-box-no-image {
@@ -291,12 +296,13 @@
   }
 }
 
-// Same values as Base's Monochrome title/subtitle/badge (base.module.scss). A single class: it beats Base's :where() theme rules
+// Same value as Base's Monochrome title/subtitle (base.module.scss). A single class: it beats Base's :where() theme rules
 // but not the Design tab's classes.
 .monochrome-text {
   color: var(--composer-font-color-primary);
 }
 
-.monochrome-badge {
-  background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+// The Line subtitle type draws its line in the subtitle's own text color, so over the image it is not primary either.
+.card-subtitle::before {
+  background-color: currentColor !important;
 }

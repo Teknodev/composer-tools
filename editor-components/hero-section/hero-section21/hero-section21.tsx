@@ -176,11 +176,12 @@ class HeroSection21 extends BaseHeroSection {
       : media;
   }
 
-  // Badge + Colorful: on phone the card sits over the image, where a primary-colored title and badge become hard to read,
-  // so the Colorful colors are not applied to the subtitle and title; they keep the Monochrome colors.
-  monochromeTextClass(isBadge = false) {
-    if (Base.getSectionSubTitleType() !== "badge" || Base.getViewType() !== "colorful") return "";
-    return `${this.decorateCSS("monochrome-text")} ${isBadge ? this.decorateCSS("monochrome-badge") : ""}`;
+  // The card sits over the image (fully on phone), so while the image exists the Badge subtitle type and the Colorful View Type
+  // are turned off: the subtitle is plain text and the subtitle/title keep the Monochrome colors. Without the image Base applies them.
+  overMediaTextClass(mediaExist: boolean, isSubtitle = false) {
+    if (!mediaExist) return "";
+    const noBadge = isSubtitle && Base.getSectionSubTitleType() === "badge" ? this.decorateCSS("no-badge") : "";
+    return `${Base.getViewType() === "colorful" ? this.decorateCSS("monochrome-text") : ""} ${noBadge}`;
   }
 
   render() {
@@ -223,8 +224,8 @@ class HeroSection21 extends BaseHeroSection {
               <div className={`${this.decorateCSS("card")} ${!mediaExist ? this.decorateCSS("card-no-image") : ""}`}>
                 <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!mediaExist ? this.decorateCSS("card-box-no-image") : ""}`}>
                   {logoExist && <Base.Media value={card.logo} className={this.decorateCSS("logo")} />}
-                  {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${this.monochromeTextClass(true)}`}>{card.subtitle}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("card-title")} ${this.monochromeTextClass()}`}>{card.title}</Base.SectionTitle>}
+                  {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${this.overMediaTextClass(mediaExist, true)}`}>{card.subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("card-title")} ${this.overMediaTextClass(mediaExist)}`}>{card.title}</Base.SectionTitle>}
                   {descExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>}
                   {visibleButtons.length > 0 && (
                     <div className={this.decorateCSS("buttons")}>

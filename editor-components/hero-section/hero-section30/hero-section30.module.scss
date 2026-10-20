@@ -190,22 +190,40 @@
   .container {
     .max-content {
       .content {
+        // Original tablet title: 100px.
         .titles {
-          font-size: 6rem !important;
+          font-size: 7rem !important;
         }
 
         .second-title {
           white-space: unset;
         }
 
+        // Next to the image the space above and below the letters (--ink-top / --ink-bottom, measured in
+        // fitTitlesToInk) is taken back with negative margins, so the image gets exactly the letters' height.
+        .second-title:not(.withoutImage) {
+          margin-top: calc(-1 * var(--ink-top, 0px));
+          margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+          padding-top: var(--ink-pad-top, 0px);
+          padding-bottom: var(--ink-pad-bottom, 0px);
+        }
+
+        // Like the original tablet view: the image sits next to the second title, as tall as the text.
         .title-with-image {
-          align-items: flex-start;
+          align-items: stretch;
+
+          .title-image-wrapper {
+            flex: none;
+            width: 340px;
+            max-width: 45%;
+          }
 
           .title-image {
-            width: 340px !important;
-            max-width: 340px !important;
-            aspect-ratio: 3 / 1 !important;
-            height: auto !important;
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
             object-fit: cover;
           }
         }
@@ -218,8 +236,16 @@
   .container {
     .max-content {
       .content {
+        // Original phone title: 68px.
         .titles {
-          font-size: 4rem !important;
+          font-size: 4.875rem !important;
+        }
+
+        .second-title:not(.withoutImage) {
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: 0;
+          padding-bottom: 0;
         }
 
         .title-with-image {
@@ -228,9 +254,18 @@
           width: 100%;
           gap: var(--composer-gap-sm);
 
+          // Stacked under the first title: the image keeps its own 3:1 size instead of the text height.
+          .title-image-wrapper {
+            width: auto;
+            max-width: 100%;
+          }
+
           .title-image {
-              width: 300px !important;
-              max-width: 300px !important;
+            position: static;
+            width: 300px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 3 / 1;
           }
         }
       }

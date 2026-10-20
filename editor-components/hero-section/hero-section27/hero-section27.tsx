@@ -210,6 +210,11 @@ const slide = (content: SlideContent): TypeUsableComponentProps => ({
 });
 
 class HeroSection27 extends BaseHeroSection {
+  contentRef = React.createRef<HTMLDivElement>();
+  inkObserver?: ResizeObserver;
+  inkRoot?: HTMLElement;
+  inkCanvas?: HTMLCanvasElement;
+
   static getName(): string {
     return "Hero Section 27";
   }
@@ -280,6 +285,65 @@ class HeroSection27 extends BaseHeroSection {
     this.setComponentState("slider-ref", React.createRef());
   }
 
+  componentDidMount() {
+    super.componentDidMount?.();
+    this.observeTitles();
+    document.fonts?.ready.then(() => this.fitTitlesToInk());
+  }
+
+  componentDidUpdate(prevProps: any, prevState: any, snapshot?: any) {
+    super.componentDidUpdate?.(prevProps, prevState, snapshot);
+    this.observeTitles();
+    this.fitTitlesToInk();
+  }
+
+  // The font size follows the container width, so the titles are measured again whenever their wrapper resizes.
+  observeTitles() {
+    const root = this.contentRef.current;
+    if (!root || root === this.inkRoot) return;
+    this.inkObserver?.disconnect();
+    this.inkObserver = new ResizeObserver(() => this.fitTitlesToInk());
+    this.inkObserver.observe(root);
+    this.inkRoot = root;
+  }
+
+  componentWillUnmount() {
+    super.componentWillUnmount?.();
+    this.inkObserver?.disconnect();
+  }
+
+  // A title next to an image gives the image its letters' height. The title's line box is taller than its letters
+  // (line-height space above the tallest letter and below the baseline) and how much depends on the theme font,
+  // so it is measured on a canvas: the space is set as --ink-top / --ink-bottom (negative margins in the SCSS) and,
+  // when a tall font reaches past the line box, the overflow as --ink-pad-top / --ink-pad-bottom (padding).
+  // The title box always holds all of its letters, so round letters (S, C, O) are never clipped.
+  fitTitlesToInk() {
+    const root = this.contentRef.current;
+    const context = (this.inkCanvas ||= document.createElement("canvas")).getContext("2d");
+    if (!root || !context) return;
+    root.querySelectorAll<HTMLElement>("[data-fit-ink]").forEach((title) => {
+      const style = getComputedStyle(title);
+      const lineHeight = parseFloat(style.lineHeight);
+      const text = (title.textContent || "").trim();
+      if (!text || !lineHeight) return;
+      context.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const metrics = context.measureText(style.textTransform === "uppercase" ? text.toUpperCase() : text);
+      const halfLeading = (lineHeight - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2;
+      const baseline = halfLeading + metrics.fontBoundingBoxAscent;
+      const top = baseline - metrics.actualBoundingBoxAscent;
+      const bottom = lineHeight - baseline - metrics.actualBoundingBoxDescent;
+      this.setInkVariable(title, "--ink-top", Math.max(top, 0));
+      this.setInkVariable(title, "--ink-pad-top", Math.max(-top, 0));
+      this.setInkVariable(title, "--ink-bottom", Math.max(bottom, 0));
+      this.setInkVariable(title, "--ink-pad-bottom", Math.max(-bottom, 0));
+    });
+  }
+
+  setInkVariable(element: HTMLElement, name: string, value: number) {
+    const px = `${value.toFixed(2)}px`;
+    if (element.style.getPropertyValue(name) !== px) element.style.setProperty(name, px);
+  }
+
   hasMedia(media?: TypeMediaInputValue) {
     return !!(media && ((media as any).url || (media as any).name));
   }
@@ -345,7 +409,7 @@ class HeroSection27 extends BaseHeroSection {
         {hasActiveBackground && activeSlide?.background?.overlay && (
           <div className={this.decorateCSS("background-overlay")} />
         )}
-        <div className={this.decorateCSS("content")}>
+        <div className={this.decorateCSS("content")} ref={this.contentRef}>
           <div
             className={this.decorateCSS("slider-parent")}
             style={{
@@ -393,10 +457,10 @@ class HeroSection27 extends BaseHeroSection {
                     )}
                     {(isTitleExist || hasMedia) && (
                       <div className={this.decorateCSS("upperDiv")}>
-                        <div className={this.decorateCSS("uppderDiv-content")}>
+                        <div className={`${this.decorateCSS("uppderDiv-content")} ${isTitleExist && hasMedia ? this.decorateCSS("media-with-text") : ""}`}>
                           {isTitleExist && (
                             <div className={this.decorateCSS("upTitle-container")}>
-                              <Base.SectionTitle className={this.decorateCSS("upTitle")}>
+                              <Base.SectionTitle className={this.decorateCSS("upTitle")} data-fit-ink>
                                 {item.title}
                               </Base.SectionTitle>
                             </div>
@@ -418,7 +482,7 @@ class HeroSection27 extends BaseHeroSection {
 
                     {(medias.length > 0 || isSecondTitleExist) && (
                       <div className={this.decorateCSS("middleDiv")}>
-                        <div className={this.decorateCSS("middleDiv-content")}>
+                        <div className={`${this.decorateCSS("middleDiv-content")} ${medias.length > 0 && isSecondTitleExist ? this.decorateCSS("media-with-text") : ""}`}>
                           {medias.length > 0 && (
                             <div className={this.decorateCSS("middleImages-container")}>
                               {medias.map((mediaItem: MediaItem, imageIndex: number) => (
@@ -442,7 +506,7 @@ class HeroSection27 extends BaseHeroSection {
                           )}
                           {isSecondTitleExist && (
                             <div className={this.decorateCSS("middleTitle-container")}>
-                              <Base.H1 className={this.decorateCSS("middleTitle")}>
+                              <Base.H1 className={this.decorateCSS("middleTitle")} data-fit-ink>
                                 {item.secondTitle}
                               </Base.H1>
                             </div>
@@ -474,14 +538,14 @@ class HeroSection27 extends BaseHeroSection {
                             {showPageNumber && (
                               <div className={this.decorateCSS("figure")}>
                                 <div className={this.decorateCSS("pagination")}>
-                                  <Base.P className={this.decorateCSS("active-slide")}>
+                                  <Base.H1 className={this.decorateCSS("active-slide")}>
                                     {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                                  </Base.P>
+                                  </Base.H1>
                                   <div className={this.decorateCSS("slide-count-power")}>
-                                    <Base.P className={this.decorateCSS("divider")}>/</Base.P>
-                                    <Base.P className={this.decorateCSS("slide-count")}>
+                                    <Base.H2 className={this.decorateCSS("divider")}>/</Base.H2>
+                                    <Base.H3 className={this.decorateCSS("slide-count")}>
                                       {sliderCount.toString().padStart(2, "0")}
-                                    </Base.P>
+                                    </Base.H3>
                                   </div>
                                 </div>
                               </div>
@@ -507,7 +571,7 @@ class HeroSection27 extends BaseHeroSection {
                                     )}
                                     <div className={this.decorateCSS("count-items")}>
                                       {this.castToString(stat.value) && (
-                                        <Base.P className={this.decorateCSS("itemsNo")}>{stat.value}</Base.P>
+                                        <Base.H3 className={this.decorateCSS("itemsNo")}>{stat.value}</Base.H3>
                                       )}
                                       {this.castToString(stat.label) && (
                                         <Base.P className={this.decorateCSS("itemDesc")}>{stat.label}</Base.P>
