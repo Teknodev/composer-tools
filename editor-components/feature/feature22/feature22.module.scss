@@ -192,13 +192,8 @@
         }
       }
       
-      .content-wrapper {
-        flex-direction: column;
-      }
-
+      // The description stays below the media (as on desktop and tablet), with the same spacing above it.
       .description {
-        margin: var(--composer-gap-md);
-        margin-top: 0 !important;
         width: 90%;
       }
       

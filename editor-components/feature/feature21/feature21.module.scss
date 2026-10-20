@@ -91,7 +91,11 @@
                 }
 
                 // No background of its own: it sits on the section, which may carry the alternate section background.
+                // Full card width: the card's vertical content aligns its children to the start, so without it the box grew
+                // to the one-line title and its overflow clip / fade did not stop the text at the card edge (it ran over the next card).
                 .text-content {
+                    width: 100%;
+                    min-width: 0;
                     position: relative;
                     bottom: 0;
                     height: 100px;
@@ -175,6 +179,12 @@
 .card.cardDefault {
     flex: 1;
     min-width: 200px;
+
+    // Same fade as the collapsed cards for a title longer than the card, instead of a hard cut.
+    .text-content {
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+    }
 }
 
 .card.cardExpanded {
@@ -190,6 +200,12 @@
     .card-description, .card-button{
         opacity: 1 !important;
         transform: translateY(0) !important;
+    }
+
+    // The opened card shows its whole title; it wraps when the card is narrower than it (tablet).
+    // !important: the base rule sits deeper in the nesting.
+    .card-title {
+        white-space: normal !important;
     }
 }
 

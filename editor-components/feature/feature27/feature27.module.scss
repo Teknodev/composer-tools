@@ -107,6 +107,10 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
+        .left-container .button-container {
+          gap: var(--composer-gap-sm);
+        }
+
         &.alignment-center {
           align-items: center;
           text-align: center;
@@ -128,8 +132,9 @@
             }
 
             .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
+              // Side by side while they fit, wrapping to the next line otherwise.
+              flex-direction: row;
+              flex-wrap: wrap;
               justify-content: center;
             }
           }
@@ -144,8 +149,8 @@
             text-align: left;
 
             .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
+              flex-direction: row;
+              flex-wrap: wrap;
               justify-content: flex-start;
             }
           }

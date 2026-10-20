@@ -208,9 +208,9 @@
               align-items: center;
             }
           }
+          // Side by side while they fit, wrapping to the next line otherwise (flex-wrap from the base rule).
           .buttons-container {
             gap: var(--composer-gap-sm);
-            flex-direction: column;
           }
         }
       }
