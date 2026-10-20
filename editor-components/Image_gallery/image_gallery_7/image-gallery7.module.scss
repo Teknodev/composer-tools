@@ -3,24 +3,55 @@
 .container {
   overflow-y: scroll;
   height: 100vh;
-  padding: 0px var(--composer-gap-xl) !important;
+  // Base.Container's side padding (60/50/30) so the header text lines up with other components;
+  // the top padding sits on the heading, so without a header the images stay at the top
+  padding: 0 60px !important;
 
   .maxContent {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    .heading {
+      width: 100%;
+      padding-top: 120px;
+      position: relative;
+      z-index: 1;
+
+      .subtitle,
+      .heading-title,
+      .heading-description {
+        content: "";
+      }
+
+      .header-button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .header-button {
+          .header-button-text {
+            content: "";
+          }
+        }
+      }
+    }
+
     .gridContainer {
+      overflow: hidden;
+
       .column {
         height: 100%;
         overflow: hidden;
 
         .wrapper {
           .card {
-            height: 425px;
+            position: relative;
+            min-height: 425px;
             width: 100%;
             cursor: pointer;
             overflow: hidden;
+            border-radius: var(--composer-border-radius-sm);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -38,18 +69,24 @@
             }
 
             .image {
-              height: 80%;
+              height: 340px;
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .full-image {
               height: 100%;
+              border-radius: var(--composer-border-radius-sm)
+                var(--composer-border-radius-sm) 0 0;
             }
 
             .textContainer {
               display: flex;
               flex-direction: column;
               width: 100%;
-              height: 20%;
+              min-height: 85px;
+              box-sizing: border-box;
+              padding: var(--composer-gap-sm);
               align-items: center;
               justify-content: center;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -64,7 +101,8 @@
                 }
               }
 
-              .subtitle {
+              .subtitle,
+              .description {
                 color: var(--composer-font-color-primary);
                 text-align: center;
               }
@@ -82,11 +120,13 @@
       }
     }
 
+    // Same space below the button as above it in every view: the column gap (gap-lg) plus
+    // Base.Button's own top margin (0.5em of its md font size).
     .button-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-bottom: var(--composer-gap-xl);
+      padding-bottom: calc(var(--composer-gap-lg) + 0.5 * var(--composer-font-size-md));
 
       .button {
         .button-text {
@@ -98,23 +138,34 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}) {
+@container (max-width: #{$composer-tablet-width}) {
+  // Base.Container's tablet/phone padding is !important too; the repeated class wins over it (as in Image Gallery 9),
+  // so no extra space is added above the images or below the button.
+  .container.container.container {
+    padding: 0 50px !important;
+  }
+
   .container {
-    padding: 0px var(--composer-gap-lg) !important;
-    .maxContent {
-      .button-wrapper {
-        padding-bottom: var(--composer-gap-lg);
-      }
+    .maxContent .heading {
+      padding-top: 100px;
     }
-  } 
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .container.container.container {
+    padding: 0 30px !important;
+  }
+
   .container {
     height: 100%;
-    padding: 0px var(--composer-gap-md) !important;
 
     .maxContent {
+      .heading {
+        padding-top: 50px;
+      }
+
+
       .gridContainer {
         display: flex;
         flex-direction: column;
@@ -134,9 +185,18 @@
           transform: none !important;
         }
       }
-      .button-wrapper {
-        padding-bottom: var(--composer-gap-md);
-      }
     }
   }
+}
+
+// Optional overlay over a gallery media item (Overlay prop); covers only the 340px image, not the text below it
+.media-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 340px;
+  background-color: var(--composer-overlay-color);
+  border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
+  pointer-events: none;
 }

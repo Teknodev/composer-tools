@@ -4,10 +4,33 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
+
+        .heading {
+            width: 100%;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .header-button {
+                    .header-button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
 
         .images {
             .image-container {
+                position: relative;
                 overflow: hidden;
                 cursor: pointer;
                 border-radius: var(--composer-border-radius-sm);
@@ -71,7 +94,7 @@
                         height: 100%;
                         aspect-ratio: 4 / 3;
                         overflow: hidden;
-                        border-radius: var(--composer-border-radius-xs);
+                        border-radius: var(--composer-border-radius-sm);
 
                         .modal-image {
                             object-fit: cover;
@@ -184,12 +207,19 @@
     .container {
         .max-content {
             .overlay {
-                .modal-content {
-                    .close {
-                        font-size: 1.5rem;
-                        padding: var(--composer-gap-xs);
-                    }
+                // Close icon: same size and corner spacing as the other gallery lightboxes on phones
+                .modal-wrapper .modal-content .close {
+                    top: calc(var(--composer-gap-sm) * 1.5);
+                    right: calc(var(--composer-gap-sm) * 1.5);
 
+                    .icon {
+                        width: 1.25rem;
+                        height: 1.25rem;
+                        font-size: 1.25rem;
+                    }
+                }
+
+                .modal-content {
                     .image-container {
                         .modal-image {
                             max-height: 250px !important;
@@ -213,4 +243,13 @@
             }
         }
     }
+}
+
+// Optional overlay over a gallery media item (Overlay prop)
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--composer-overlay-color);
+  border-radius: inherit;
+  pointer-events: none;
 }
