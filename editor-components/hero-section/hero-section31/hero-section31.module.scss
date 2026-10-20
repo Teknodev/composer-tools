@@ -248,6 +248,24 @@
                                 background: white !important;
                             }
                         }
+                        // Line subtitle (Left only, like Base). The text is pushed right with padding, not
+                        // Base's translateX: the editor's animation engine writes its own transform, which moved the line left of the title.
+                        &.subtitle-line {
+                            position: relative;
+                            transform: none !important;
+                            padding-left: 3rem !important;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                left: 0 !important;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                width: 2rem;
+                                height: 2px;
+                                background-color: currentColor;
+                            }
+                        }
                     }
 
                     .title {

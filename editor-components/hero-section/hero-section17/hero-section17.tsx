@@ -72,6 +72,24 @@ class HeroSection17 extends BaseHeroSection {
           value: [
             {
               type: "media",
+              displayer: "Background Media",
+              key: "media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
+            {
+              type: "media",
               key: "logo",
               displayer: "Logo",
               additionalParams: {
@@ -100,6 +118,14 @@ class HeroSection17 extends BaseHeroSection {
               key: "description",
               value: "Scandinavian Style House",
             },
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
             {
               type: "media",
               displayer: "Background Media",
@@ -109,7 +135,7 @@ class HeroSection17 extends BaseHeroSection {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
               },
             },
             {
@@ -118,14 +144,6 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
             {
               type: "media",
               key: "logo",
@@ -156,6 +174,14 @@ class HeroSection17 extends BaseHeroSection {
               key: "description",
               value: "Contemporary Style House",
             },
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
+          ],
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
             {
               type: "media",
               displayer: "Background Media",
@@ -165,7 +191,7 @@ class HeroSection17 extends BaseHeroSection {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
               },
             },
             {
@@ -174,14 +200,6 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
-          ],
-        },
-        {
-          type: "object",
-          displayer: "Item",
-          key: "item",
-          value: [
             {
               type: "media",
               key: "logo",
@@ -211,24 +229,6 @@ class HeroSection17 extends BaseHeroSection {
               displayer: "Description",
               key: "description",
               value: "Metal Facade Coatings",
-            },
-            {
-              type: "media",
-              displayer: "Background Media",
-              key: "media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
-              },
-            },
-            {
-              type: "boolean",
-              displayer: "Overlay",
-              key: "overlay",
-              value: false,
             },
             INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],

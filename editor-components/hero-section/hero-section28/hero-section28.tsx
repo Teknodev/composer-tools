@@ -253,6 +253,15 @@ class HeroSection28 extends BaseHeroSection {
               (button: INPUTS.CastedButton) => this.castToString(button.text) || this.hasMedia(button.icon as any)
             );
             const imageClass = hasImage ? this.decorateCSS("withImage") : this.decorateCSS("noImage");
+            // A Badge subtitle has its own rounded shape, so its line is a separate element below it instead of the badge's bottom border.
+            const hasBadgeLine = isLineActive && !!this.subtitleBadgeClass(hasImage);
+            const subtitleElement = (
+              <Base.SectionSubTitle
+                className={`${this.decorateCSS("tag")} ${imageClass} ${isLineActive && !hasBadgeLine ? this.decorateCSS("hasLine") : ""} ${this.subtitleBadgeClass(hasImage)} ${this.subtitleLineClass()} ${this.colorfulTextClass(hasImage)}`}
+              >
+                {item.subtitle}
+              </Base.SectionSubTitle>
+            );
             const openVideo = hasVideo ? () => this.setComponentState("play-video", true) : () => { };
 
             return (
@@ -288,13 +297,12 @@ class HeroSection28 extends BaseHeroSection {
                         value={item.logo}
                       />
                     )}
-                    {isSubtitleExist && (
-                      <Base.SectionSubTitle
-                        className={`${this.decorateCSS("tag")} ${imageClass} ${isLineActive ? this.decorateCSS("hasLine") : ""} ${this.subtitleBadgeClass(hasImage)} ${this.subtitleLineClass()} ${this.colorfulTextClass(hasImage)}`}
-                      >
-                        {item.subtitle}
-                      </Base.SectionSubTitle>
-                    )}
+                    {isSubtitleExist && (hasBadgeLine ? (
+                      <div className={this.decorateCSS("tag-box")}>
+                        {subtitleElement}
+                        <div className={this.decorateCSS("tag-line")} />
+                      </div>
+                    ) : subtitleElement)}
                     {isTitleExist && (
                       <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageClass} ${this.colorfulTextClass(hasImage)}`}>
                         {item.title}

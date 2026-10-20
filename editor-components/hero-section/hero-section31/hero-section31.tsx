@@ -760,6 +760,13 @@ class HeroSection31 extends BaseHeroSection {
       this.setComponentState(animationState, startingAnimation);
     }
   };
+  // Line subtitle, Left alignment only (like Base). Drawn here so the line keeps starting where the title starts
+  // even when the editor's animation engine writes its own transform (see .subtitle-line).
+  subtitleLineClass() {
+    if (Base.getSectionSubTitleType() !== "line" || Base.getContentAlignment() !== "left") return "";
+    return this.decorateCSS("subtitle-line");
+  }
+
   render() {
     const slider = this.castToObject<ISliderData[]>("slider");
     const conditionalInfinite = slider.length > 2;
@@ -907,7 +914,7 @@ class HeroSection31 extends BaseHeroSection {
                       <Base.SectionSubTitle
                         className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                           "subtitleAnimationClass"
-                        )}` : ""} ${activeHasMedia ? this.decorateCSS("subtitle-transparent") : ""} ${activeHasMedia ? this.decorateCSS("subtitle-with-image") : ""}`}
+                        )}` : ""} ${activeHasMedia ? this.decorateCSS("subtitle-transparent") : ""} ${activeHasMedia ? this.decorateCSS("subtitle-with-image") : ""} ${this.subtitleLineClass()}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",

@@ -176,6 +176,13 @@ class HeroSection21 extends BaseHeroSection {
       : media;
   }
 
+  // Badge + Colorful: on phone the card sits over the image, where a primary-colored title and badge become hard to read,
+  // so the Colorful colors are not applied to the subtitle and title; they keep the Monochrome colors.
+  monochromeTextClass(isBadge = false) {
+    if (Base.getSectionSubTitleType() !== "badge" || Base.getViewType() !== "colorful") return "";
+    return `${this.decorateCSS("monochrome-text")} ${isBadge ? this.decorateCSS("monochrome-badge") : ""}`;
+  }
+
   render() {
     const card = {
       logo: this.getPropValue("logo") as TypeMediaInputValue,
@@ -216,8 +223,8 @@ class HeroSection21 extends BaseHeroSection {
               <div className={`${this.decorateCSS("card")} ${!mediaExist ? this.decorateCSS("card-no-image") : ""}`}>
                 <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!mediaExist ? this.decorateCSS("card-box-no-image") : ""}`}>
                   {logoExist && <Base.Media value={card.logo} className={this.decorateCSS("logo")} />}
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>}
+                  {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${this.monochromeTextClass(true)}`}>{card.subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("card-title")} ${this.monochromeTextClass()}`}>{card.title}</Base.SectionTitle>}
                   {descExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>}
                   {visibleButtons.length > 0 && (
                     <div className={this.decorateCSS("buttons")}>

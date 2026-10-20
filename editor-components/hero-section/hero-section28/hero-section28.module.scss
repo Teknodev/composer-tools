@@ -243,6 +243,24 @@
           }
         }
 
+        // Badge + Line: the line sits below the badge, as wide as the badge.
+        .tag-box {
+          display: flex;
+          flex-direction: column;
+          width: fit-content;
+          gap: var(--composer-gap-xs);
+
+          .tag {
+            margin-bottom: 0 !important;
+          }
+
+          .tag-line {
+            width: 100%;
+            height: 3px;
+            background-color: var(--composer-primary-color);
+          }
+        }
+
         &.visible {
           opacity: 1;
           margin-top: 0;
@@ -299,6 +317,13 @@
           .sub_title {
             font-size: calc(1.875 * var(--composer-font-size-md)) !important;
           }
+
+          // Base shrinks the tag and the small description to 13.6px on tablet; the original keeps them at 16px there
+          // (BPI-92 checklist). Base has no larger subtitle level, so the size is set here.
+          .tag,
+          .description {
+            font-size: calc(1 * var(--composer-font-size-md)) !important;
+          }
         }
       }
     }
@@ -328,6 +353,15 @@
 
           .sub_title {
             font-size: calc(1.5625 * var(--composer-font-size-md)) !important;
+          }
+
+          // Original phone sizes: tag 13px, small description 14px.
+          .tag {
+            font-size: calc(0.8125 * var(--composer-font-size-md)) !important;
+          }
+
+          .description {
+            font-size: calc(0.875 * var(--composer-font-size-md)) !important;
           }
         }
       }
