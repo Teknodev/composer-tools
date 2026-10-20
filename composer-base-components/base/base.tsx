@@ -353,6 +353,7 @@ export namespace Base {
       hamburgerNavActive = false,
       setIsScrolled = (scrolled: boolean) => { },
       setIsBigScreen = (bigScreen: boolean) => { },
+      setHasContentBelow,
       screenSize,
       ...props
     }: {
@@ -362,6 +363,7 @@ export namespace Base {
       hamburgerNavActive?: boolean;
       setIsScrolled?: (scrolled: boolean) => void;
       setIsBigScreen?: (bigScreen: boolean) => void;
+      setHasContentBelow?: (hasContentBelow: boolean) => void;
       [key: string]: any;
       screenSize?: number
     }) {
@@ -371,7 +373,45 @@ export namespace Base {
         .join("");
 
       const resizeObserverRef = useRef<ResizeObserver | null>(null);
+      const containerRef = useRef<HTMLDivElement | null>(null);
       const mediaSize = screenSize ? screenSize : 1025;
+
+      // Absolute / Sticky Transparent navbars overlay the component below them (transparent, white texts).
+      // The navbar is told whether anything is rendered under it, so with nothing below it can draw itself
+      // as Default instead of becoming invisible on the page (e.g. after the component below is deleted).
+      useEffect(() => {
+        if (!setHasContentBelow || typeof window === "undefined") return;
+        let lastValue: boolean | undefined;
+        let frame = 0;
+        const check = () => {
+          frame = 0;
+          const root = document.getElementById("playground") || document.body;
+          let found = false;
+          for (let element: HTMLElement | null = containerRef.current; element && element !== root && !found; element = element.parentElement) {
+            for (let sibling = element.nextElementSibling as HTMLElement | null; sibling; sibling = sibling.nextElementSibling as HTMLElement | null) {
+              const siblingPosition = getComputedStyle(sibling).position;
+              if (sibling.offsetHeight > 0 && siblingPosition !== "absolute" && siblingPosition !== "fixed") {
+                found = true;
+                break;
+              }
+            }
+          }
+          if (found !== lastValue) {
+            lastValue = found;
+            setHasContentBelow(found);
+          }
+        };
+        const scheduleCheck = () => {
+          if (!frame) frame = requestAnimationFrame(check);
+        };
+        check();
+        const observer = new MutationObserver(scheduleCheck);
+        observer.observe(document.getElementById("playground") || document.body, { childList: true, subtree: true });
+        return () => {
+          observer.disconnect();
+          if (frame) cancelAnimationFrame(frame);
+        };
+      }, []);
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
         const handleScroll = () => {
@@ -454,6 +494,7 @@ export namespace Base {
 
       return (
         <div
+          ref={containerRef}
           className={`${styles.navbarContainer} ${className} ${styles[positionClass]}`}
           {...props}
         >

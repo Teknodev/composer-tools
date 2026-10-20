@@ -1328,6 +1328,15 @@ export abstract class Component
 
 export abstract class BaseNavigator extends Component {
   static category = CATEGORIES.NAVIGATOR;
+
+  // Absolute and Sticky Transparent navbars sit over the component below them. With nothing below (e.g. that
+  // component was deleted) they would be invisible on the page, so they are drawn as Default until one is added.
+  // "hasContentBelow" is reported by Base.Navigator.Container (setHasContentBelow).
+  getNavbarPosition(): string {
+    const position = this.getPropValue("position");
+    const overlaysContent = position === "Absolute" || position === "Sticky Transparent";
+    return overlaysContent && this.getComponentState("hasContentBelow") === false ? "Default" : position;
+  }
 }
 
 export abstract class Testimonials extends Component {

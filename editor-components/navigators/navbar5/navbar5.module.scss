@@ -144,7 +144,8 @@
   transition: all 0.3s ease;
 
   &.active {
-    height: calc(100vh - 125px) !important;
+    // --panel-viewport-height: visible screen height, measured by the component (see setDropdownRef).
+    height: calc(var(--panel-viewport-height, 100vh) - 125px) !important;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -159,30 +160,47 @@
   .up {
     display: flex;
     align-items: center;
-    gap: var(--composer-gap-md);
-    justify-content: center;
+    gap: calc(var(--composer-gap-xl) * 2);
+    justify-content: space-between;
     margin: 0 calc(var(--composer-gap-xl) * 2);
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
 
     .leftPage {
+      flex: 8 1 0;
+      min-width: 0;
+
+      // Scales with the panel width and the screen height, so the title stays inside its own area above the line.
+      // Upper limit (the original's 200px); the component shrinks it further when the text would not fit (fitMenuTexts).
+      // Like the original, it is a narrow stacked headline ("UK based / branding / agency."): a width of about
+      // 10 characters keeps it on 3 lines at any size, and ch follows the theme font (em did not: narrow fonts gave 2 lines).
       .title {
-        font-size: 7rem;
-        letter-spacing: var(--composer-gap-xs);
+        overflow-wrap: normal;
+        max-width: 10ch;
+        font-size: min(calc(12.5 * var(--composer-font-size-md)), 11cqw, calc((var(--panel-viewport-height, 100vh) - 330px) / 3.6));
         color: var(--composer-tertiary-color);
         line-height: normal;
+        text-align: left;
       }
     }
 
     .rightPage {
+      flex: 3 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
 
       .items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        // Kept on one line (no mid-word breaks); the component shrinks the size when an item would not fit.
         .item-title {
+          white-space: nowrap;
           color: var(--composer-font-color-primary);
           opacity: 0;
           transform: translateY(-100px);
@@ -190,7 +208,8 @@
           transition: color 0.3s;
           cursor: pointer;
           line-height: normal;
-          font-size: 3.5rem;
+          font-size: 5rem;
+          text-align: left;
           &.animation1{
             &:hover {
               color: var(--composer-tertiary-color);
@@ -200,10 +219,6 @@
       }
     }
 
-    .leftPage,
-    .rightPage {
-      flex: 1 1;
-    }
   }
 
   .line {
@@ -225,12 +240,15 @@
     .text {
       color: var(--composer-font-color-primary);
       flex: 0 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 1.375rem;
     }
 
     .divider {
       flex-shrink: 0;
       flex-grow: 0;
-      width: 100px;
+      width: 70px;
       height: 1px;
       border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
     }
@@ -339,29 +357,33 @@
 
   }
   .dropdownMenu {
-    justify-content: center;
     .up {
       gap: var(--composer-gap-xl);
       margin: 0 var(--composer-gap-lg);
 
+      .leftPage,
+      .rightPage {
+        flex: 1 1 0;
+      }
+
       .leftPage {
         .title {
-          font-size: 5rem !important;
-          line-height: normal !important;
+          font-size: min(9.375rem, 8cqw, calc((var(--panel-viewport-height, 100vh) - 330px) / 4.8)) !important;
         }
       }
 
       .rightPage {
-        width: 100%;
-        text-align: left;
-
         .items {
           .item-title {
-            text-align: left !important;
-            font-size: 2.5rem !important;
-            line-height: normal !important;
+            font-size: 3.75rem !important;
           }
         }
+      }
+    }
+
+    .down {
+      .text {
+        font-size: 1.125rem;
       }
     }
   }
@@ -384,7 +406,7 @@
   }
   .dropdownMenu {
     &.active {
-      height: 75vh;
+      height: calc(var(--panel-viewport-height, 100vh) * 0.75);
     }
 
     .up {
@@ -393,16 +415,19 @@
       }
 
       .rightPage {
+        align-items: center;
+
         .items {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
 
           .item-title {
             margin: 0;
-            font-size: 2rem !important;
+            text-align: center;
+            font-size: 3.125rem !important;
           }
         }
       }
@@ -414,6 +439,34 @@
 
     .down {
       display: none;
+    }
+  }
+}
+
+// Logo as icon or video: Base.Media puts the logo class on a span (an icon, sized by font-size) or on a video.
+// Both keep the height of the image logo instead of the image-only width rules above.
+.logoImage {
+  &:is(span) {
+    font-size: 2.75rem;
+  }
+
+  &:is(video) {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    height: 2.75rem !important;
+    object-fit: contain;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .logoImage {
+    &:is(span) {
+      font-size: 2.5rem;
+    }
+
+    &:is(video) {
+      height: 2.5rem !important;
     }
   }
 }
