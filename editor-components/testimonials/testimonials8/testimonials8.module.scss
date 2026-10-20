@@ -1,4 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .maxContent {
     display: flex;
@@ -7,10 +8,40 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
-      .title {
+
+      .top-content {
         width: 100%;
-        margin: 0px;
+        align-items: center;
+
+        .subtitle {
+          text-align: center;
+          transform: none !important;
+          &::before {
+            display: none !important;
+            transform: none !important;
+          }
+        }
+
+        .title,
+        .description {
+          text-align: center;
+        }
+
+        .button-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: center;
+
+          .button,
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
       }
+
       .content {
         width: 100%;
         display: flex;
@@ -22,7 +53,7 @@
               height: 100%;
               align-items: stretch;
               > div {
-                padding: 0px var(--composer-gap-xs);
+                padding: 0 var(--composer-gap-xs);
                 height: auto;
                 > div {
                   height: 100%;
@@ -35,19 +66,28 @@
         .prevArrow,
         .nextArrow {
           position: absolute;
-          top: calc(50% - var(--composer-gap-md));
+          top: 50%;
           transform: translateY(-50%);
           display: flex;
           align-items: center;
+          justify-content: center;
           z-index: 1;
           background-color: transparent;
-          border: none;
-          width: var(--composer-gap-lg);
-          height: var(--composer-gap-lg);
           border: 1px solid var(--composer-font-color-primary);
           border-radius: 50%;
-          justify-content: center;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
           color: var(--composer-font-color-primary);
+          cursor: pointer;
+          padding: 0;
+
+          .arrow {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
         .prevArrow {
           left: 0;
@@ -55,87 +95,126 @@
         .nextArrow {
           right: 0;
         }
+
         > div {
           width: 100%;
-          > div {
-            padding-bottom: var(--composer-gap-lg);
-          }
-          > ul {
-            left: 0px;
-            bottom: 0px;
-            > li {
-              > button {
-                &::before {
-                  color: var(--composer-font-color-primary);
-                }
-              }
-            }
-          }
         }
+
         .card {
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-xl);
-          display: flex;
-          flex-direction: column;
+          align-items: flex-start;
           gap: var(--composer-gap-md);
-          margin-bottom: var(--composer-gap-md);
           height: 100%;
+          text-align: left;
+
           .topContainer {
             display: flex;
             gap: var(--composer-gap-sm);
             align-items: center;
+            justify-content: flex-start;
             .image {
-              width: var(--composer-gap-xl);
-              height: var(--composer-gap-xl);
+              width: 50px;
+              height: 50px;
               border-radius: 50%;
               object-fit: cover;
+              font-size: 3rem;
             }
             .personal {
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-sm);
-              .name {
+              .item-name {
                 color: var(--composer-font-color-primary);
+                text-align: left;
+                margin-left: 0;
+                margin-right: 0;
+                justify-content: flex-start;
               }
-              .personTitle {
+              .item-subtitle {
                 color: var(--composer-tertiary-color);
+                text-align: left;
+                margin-left: 0;
+                margin-right: 0;
+                justify-content: flex-start;
               }
             }
           }
-          .description {
+
+          .item-text {
             color: var(--composer-font-color-primary);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+            justify-content: flex-start;
           }
+
           .bottomContainer {
             display: flex;
             gap: var(--composer-gap-sm);
+            justify-content: flex-start;
+            // Stars, line and rating stay vertically centered for every theme alignment.
+            align-items: center;
             .star {
               display: flex;
               gap: var(--composer-gap-xs);
-
               .icon {
                 color: var(--composer-primary-color);
                 font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
+                object-fit: contain;
               }
             }
             .line {
               width: 1px;
+              height: var(--composer-gap-md);
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
             .starNumber {
               color: var(--composer-secondary-color);
               display: flex;
               align-items: center;
+              width: auto;
+              flex: none;
+              // Stays next to the stars when the theme alignment is center (Base gives auto margins).
+              margin-left: 0;
+              margin-right: 0;
+              justify-content: flex-start;
             }
           }
         }
       }
+
       .contentPaddingLeft {
         padding-left: calc(var(--composer-gap-xl) * 3);
       }
-
       .contentPaddingRight {
         padding-right: calc(var(--composer-gap-xl) * 3);
+      }
+
+      .dot-panel {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-xs);
+        padding-top: var(--composer-gap-md);
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 25%);
+          transition: all 0.25s ease;
+
+          &.dot-active {
+            width: 24px;
+            border-radius: var(--composer-border-radius-sm);
+            background: var(--composer-primary-color);
+          }
+        }
       }
     }
   }
@@ -147,21 +226,13 @@
       .testimonials8 {
         gap: var(--composer-gap-md);
         .content {
-          padding: 0px;
+          padding: 0;
           .prevArrow,
           .nextArrow {
             display: none;
           }
           > div {
-            padding: 0px;
-            > div {
-              padding-bottom: var(--composer-gap-sm);
-              > div {
-                > div {
-                  padding: var(--composer-gap-sm);
-                }
-              }
-            }
+            padding: 0;
           }
           .card {
             padding: var(--composer-gap-lg);
@@ -171,6 +242,7 @@
     }
   }
 }
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .maxContent {
@@ -178,11 +250,11 @@
         .content {
           .prevArrow,
           .nextArrow {
-            width: 30px;
-            height: 30px;
+            width: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
+            height: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
           }
           .card {
-            padding: var(--composer-gap-sm);
+            padding: calc(var(--composer-gap-md) + var(--composer-gap-sm));
             .topContainer {
               .image {
                 width: var(--composer-gap-lg);
