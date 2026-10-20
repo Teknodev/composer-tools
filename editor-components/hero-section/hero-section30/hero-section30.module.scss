@@ -6,12 +6,24 @@
   overflow: hidden;
   color: white;
 
+  // The first title (Section Title) takes the white only over the background media.
+  &:not(.withoutVideoContainer) .first-title {
+    color: inherit;
+  }
+
   &.withoutVideoContainer {
     color: var(--composer-font-color-primary);
 
     .second-title {
       -webkit-text-stroke-color: var(--composer-font-color-primary) !important;
       stroke: var(--composer-font-color-primary) !important;
+    }
+
+    // Second Title takes the View Type color on both its fill and stroke, like Section Title.
+    &.colorful-text .second-title {
+      color: var(--composer-primary-color) !important;
+      -webkit-text-stroke-color: var(--composer-primary-color) !important;
+      stroke: var(--composer-primary-color) !important;
     }
   }
 
@@ -36,16 +48,31 @@
     width: 100%;
     height: 100%;
 
+    // Texts stay left-aligned whatever the theme alignment is.
     .content {
       width: 100%;
       height: 100%;
       min-height: 900px;
       justify-content: center;
-      align-items: start;
+      align-items: start !important;
+      .subtitle,
+      .titles,
+      .description {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+      .title-with-image {
+        justify-content: flex-start !important;
+      }
       animation: content-move 1s forwards cubic-bezier(0.38, 0.005, 0.215, 1);
       z-index: 99;
       flex-wrap: wrap;
       margin: auto 0;
+
+      &.no-animation {
+        animation: none;
+      }
 
       
         .logo {
@@ -61,27 +88,26 @@
           }
         }
 
-        .up-text {
-          display: flex;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-          .subtitle {
-            color: white;
-            width: fit-content;
-          }
-          .subtitle-transparent {
-            background: transparent !important;
-            padding: 0;
-          }
-          .subtitle-transparent::before {
-            background: white !important;
-          }
+        // White only over the background media; without it the View Type (Base) colors the subtitle and first title.
+        .subtitle {
+          width: fit-content;
+        }
+        .subtitle-transparent {
+          color: white;
+          background: transparent !important;
+          padding: 0;
+        }
+        .subtitle-transparent::before {
+          background: white !important;
         }
 
       .titles {
         font-size: 12.5rem;
-        font-weight: bolder;
         margin: 0;
+
+        &:not(.first-title) {
+          color: inherit;
+        }
       }
 
       .first-title {
@@ -95,7 +121,6 @@
         stroke-width: 2px;
         -webkit-text-stroke-color: #fff;
         stroke: #fff;
-        font-weight: 400;
         white-space: nowrap;
         overflow: hidden;
 
@@ -117,7 +142,7 @@
             max-width: 370px;
             width: 370px;
             height: 180px;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
             object-fit: cover;
             display: block;
@@ -128,13 +153,14 @@
             inset: 0;
             background: var(--composer-overlay-color);
             pointer-events: none;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             z-index: 2;
           }
         }
       }
 
       .description {
+        color: inherit;
         max-width: 640px;
         text-align: left;
         margin-left: 0;
@@ -144,7 +170,6 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
-        margin-top: var(--composer-gap-md);
 
         .button {
           .button-text {
@@ -165,28 +190,42 @@
   .container {
     .max-content {
       .content {
+        // Original tablet title: 100px.
         .titles {
-          font-size: 6rem;
+          font-size: 7rem !important;
         }
 
         .second-title {
           white-space: unset;
         }
 
-        .title-with-image {
-          align-items: flex-start;
-
-          .title-image {
-            width: 340px !important;
-            max-width: 340px !important;
-            aspect-ratio: 3 / 1 !important;
-            height: auto !important;
-            object-fit: cover;
-          }
+        // Next to the image the space above and below the letters (--ink-top / --ink-bottom, measured in
+        // fitTitlesToInk) is taken back with negative margins, so the image gets exactly the letters' height.
+        .second-title:not(.withoutImage) {
+          margin-top: calc(-1 * var(--ink-top, 0px));
+          margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+          padding-top: var(--ink-pad-top, 0px);
+          padding-bottom: var(--ink-pad-bottom, 0px);
         }
 
-        .buttons {
-          margin-top: var(--composer-gap-sm);
+        // Like the original tablet view: the image sits next to the second title, as tall as the text.
+        .title-with-image {
+          align-items: stretch;
+
+          .title-image-wrapper {
+            flex: none;
+            width: 340px;
+            max-width: 45%;
+          }
+
+          .title-image {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+          }
         }
       }
     }
@@ -197,12 +236,16 @@
   .container {
     .max-content {
       .content {
+        // Original phone title: 68px.
         .titles {
-          font-size: 4rem;
+          font-size: 4.875rem !important;
         }
 
-        .first-title {
-          margin-bottom: var(--composer-gap-sm);
+        .second-title:not(.withoutImage) {
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: 0;
+          padding-bottom: 0;
         }
 
         .title-with-image {
@@ -211,9 +254,18 @@
           width: 100%;
           gap: var(--composer-gap-sm);
 
+          // Stacked under the first title: the image keeps its own 3:1 size instead of the text height.
+          .title-image-wrapper {
+            width: auto;
+            max-width: 100%;
+          }
+
           .title-image {
-              width: 300px !important;
-              max-width: 300px !important;
+            position: static;
+            width: 300px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 3 / 1;
           }
         }
       }

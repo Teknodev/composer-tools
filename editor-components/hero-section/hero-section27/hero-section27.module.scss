@@ -94,8 +94,8 @@
               .leftDescription,
               .upTitle,
               .middleTitle,
-              .customerDesc,
-              .customerNo,
+              .subtitle,
+              .logo,
               .active-slide,
               .divider,
               .slide-count,
@@ -111,9 +111,29 @@
             }
           }
 
+          .header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--composer-gap-sm);
+            margin-bottom: var(--composer-gap-md);
+
+            .logo {
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+              max-width: 150px;
+            }
+
+            .subtitle {
+              content: "";
+            }
+          }
+
           .upperDiv {
             width: 100%;
             @include flexCenter;
+            margin-bottom: var(--composer-gap-md);
 
             .uppderDiv-content {
               width: 100%;
@@ -125,14 +145,15 @@
                 align-items: center;
                 max-width: 80%;
 
+                // No color here: on plain background the View Type (Base) decides; over the image it is black (above).
                 .upTitle {
                   font-size: 13vw;
-                  font-weight: bold;
-                  color: var(--composer-font-color-primary);
                   margin: 0;
                   padding: 0;
-                  letter-spacing: 10px;
                   overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
 
                   > * {
                     height: 100%;
@@ -152,7 +173,7 @@
                 .upImage {
                   width: 100%;
                   max-height: 10vw;
-                  border-radius: 100px;
+                  border-radius: var(--composer-border-radius-sm);
                   object-fit: cover;
                   height: 100%;
                   position: relative;
@@ -160,7 +181,7 @@
                 }
 
                 .image-overlay {
-                  border-radius: 100px;
+                  border-radius: var(--composer-border-radius-sm);
                 }
               }
             }
@@ -192,7 +213,7 @@
                   min-height: 80px;
 
                   .middleImages {
-                    border-radius: 90px;
+                    border-radius: var(--composer-border-radius-sm);
                     object-fit: cover;
                     height: 100%;
                     width: 100%;
@@ -201,7 +222,7 @@
                   }
 
                   .image-overlay {
-                    border-radius: 90px;
+                    border-radius: var(--composer-border-radius-sm);
                   }
                 }
               }
@@ -211,13 +232,16 @@
                 align-items: center;
                 max-width: 80%;
 
+                // Letters as tall as the images on their left.
                 .middleTitle {
-                  font-size: 13rem;
-                  font-weight: bold;
+                  font-size: 16rem;
                   margin: 0;
                   padding: 0;
-                  letter-spacing: 10px;
                   color: var(--composer-font-color-primary);
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
                 }
               }
             }
@@ -256,26 +280,27 @@
                   @include flexCenter;
 
                   .pagination {
-                    font-size: 1.5rem;
                     width: 100%;
+                    display: flex;
+                    align-items: flex-start;
 
                     .active-slide {
                       color: var(--composer-font-color-primary);
-                      font-size: 4rem;
                       padding-right: var(--composer-gap-sm);
                     }
 
                     .slide-count-power {
+                      display: flex;
+                      align-items: center;
+                      gap: var(--composer-gap-xs);
                       color: var(--composer-font-color-primary);
 
                       .divider {
-                        font-size: 3rem;
-                        margin-right: -10px;
+                        color: var(--composer-font-color-primary);
                       }
 
                       .slide-count {
-                        font-size: 2rem;
-                        height: 100%;
+                        color: var(--composer-font-color-primary);
                       }
                     }
                   }
@@ -295,7 +320,6 @@
 
                 .leftDescription,
                 .rightDescription {
-                  font-size: 1rem;
                   text-align: justify !important;
                   flex: 1;
                   overflow: hidden;
@@ -305,9 +329,9 @@
                 }
 
                 .count {
-                  display: grid;
-                  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+                  display: flex;
                   align-items: center;
+                  justify-content: center;
                   gap: var(--composer-gap-md);
                   word-break: break-word;
                   flex: 1;
@@ -315,19 +339,15 @@
                   .count-items {
                     display: flex;
                     flex-direction: column;
-                    justify-self: end;
                     width: auto;
                     max-width: 100%;
                     min-width: 80px;
-                    padding-right: var(--composer-gap-sm);
                     gap: var(--composer-gap-sm);
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
 
                     .itemsNo {
-                      font-size: 2rem;
-                      font-weight: bold;
                       color: var(--composer-font-color-primary);
                       padding: 0;
                       margin: 0;
@@ -336,47 +356,18 @@
                     .itemDesc {
                       padding: 0;
                       margin: 0;
-                      font-size: 1rem;
                       color: var(--composer-font-color-primary);
                     }
                   }
 
                   .line {
-                    grid-column: 2 / 3;
-                    justify-self: center;
-                    align-self: center;
+                    align-self: stretch;
                     opacity: 0.4;
                     width: 1px;
+                    min-width: 1px;
                     background: var(--composer-font-color-primary);
-                    height: 60%;
+                    margin: var(--composer-gap-sm) 0;
                     pointer-events: none;
-                  }
-
-                  .customers {
-                    display: flex;
-                    flex-direction: column;
-                    justify-self: start;
-                    width: auto;
-                    max-width: 100%;
-                    min-width: 80px;
-                    gap: var(--composer-gap-sm);
-                    text-align: start;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-
-                    .customerNo {
-                      margin: 0;
-                      padding: 0;
-                      font-size: 2rem;
-                      font-weight: bold;
-                      color: var(--composer-font-color-primary);
-                    }
-
-                    .customerDesc {
-                      font-size: 1rem;
-                      color: var(--composer-font-color-primary);
-                    }
                   }
                 }
               }
@@ -406,7 +397,7 @@
 
                 .upTitle-container {
                   .upTitle {
-                    font-size: 6rem;
+                    font-size: 7.5rem !important;
                   }
                 }
 
@@ -442,7 +433,7 @@
 
                 .middleTitle-container {
                   .middleTitle {
-                    font-size: 6rem;
+                    font-size: 7.5rem !important;
                   }
                 }
               }
@@ -456,21 +447,9 @@
                   .count {
                     .count-items {
                       .itemsNo {
-                        font-size: 2rem;
                       }
 
                       .itemDesc {
-                        font-size: 1rem;
-                      }
-                    }
-
-                    .customers {
-                      .customerNo {
-                        font-size: 2rem;
-                      }
-
-                      .customerDesc {
-                        font-size: 1rem;
                       }
                     }
                   }
@@ -480,17 +459,14 @@
               .figure {
                 .pagination {
                   .active-slide {
-                    font-size: 2.5rem !important;
                     padding-right: var(--composer-gap-xs) !important;
                   }
 
                   .slide-count-power {
                     .divider {
-                      font-size: 1.5rem !important;
                     }
 
                     .slide-count {
-                      font-size: 1.25rem !important;
                       padding-left: var(--composer-gap-xs);
                     }
                   }
@@ -498,6 +474,60 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// An image next to a title (desktop and tablet): the image takes the title's height instead of its own vw height,
+// so both sides of the row are the same height. The space above and below the letters (--ink-top / --ink-bottom,
+// measured in fitTitlesToInk) is taken back with negative margins, so the row is exactly as tall as the letters.
+.container .content .slider-parent .carousel .max-content {
+  .upperDiv .uppderDiv-content.media-with-text {
+    align-items: stretch;
+
+    .upTitle-container .upTitle {
+      margin-top: calc(-1 * var(--ink-top, 0px));
+      margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+      padding-top: var(--ink-pad-top, 0px);
+      padding-bottom: var(--ink-pad-bottom, 0px);
+    }
+
+    .upImage-container {
+      align-self: stretch;
+
+      .upImage {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        min-height: 0;
+        max-height: none;
+      }
+    }
+  }
+
+  .middleDiv .middleDiv-content.media-with-text {
+    align-items: stretch;
+
+    .middleTitle-container .middleTitle {
+      margin-top: calc(-1 * var(--ink-top, 0px));
+      margin-bottom: calc(-1 * var(--ink-bottom, 0px));
+      padding-top: var(--ink-pad-top, 0px);
+      padding-bottom: var(--ink-pad-bottom, 0px);
+    }
+
+    .middleImages-container {
+      align-items: stretch;
+
+      .image-wrapper {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+
+        .middleImages {
+          position: absolute;
+          inset: 0;
         }
       }
     }
@@ -524,7 +554,7 @@
                   max-width: 100%;
 
                   .upTitle {
-                    font-size: 4rem;
+                    font-size: 4rem !important;
                   }
                 }
 
@@ -552,7 +582,7 @@
                     
                     .middleImages {
                       max-height: 80px;
-                      border-radius: 90px;
+                      border-radius: var(--composer-border-radius-sm);
                     }
                   }
                 }
@@ -561,7 +591,7 @@
                   max-width: 100%;
 
                   .middleTitle {
-                    font-size: 4rem;
+                    font-size: 4rem !important;
                   }
                 }
               }
@@ -582,24 +612,19 @@
 
                   .figure {
                     .pagination {
-                      font-size: 1rem;
+                      align-items: center;
 
                       .active-slide {
-                        font-size: 2rem;
                       }
 
                       .slide-count-power {
-                        display: inline-flex;
-                        gap: var(--composer-gap-sm);
-                        align-items: center;
-                        vertical-align: text-bottom;
+                        gap: var(--composer-gap-xs);
+                        align-items: baseline;
 
                         .divider {
-                          font-size: 1.5rem;
                         }
 
                         .slide-count {
-                          font-size: 1.5rem;
                         }
                       }
                     }
@@ -616,62 +641,24 @@
 
                   .leftDescription,
                   .rightDescription {
-                    font-size: 1rem;
                     max-width: 100%;
                   }
 
                   .count {
                     gap: var(--composer-gap-sm);
-                    justify-content: space-between;
+                    justify-content: center;
 
                     .count-items {
                       gap: var(--composer-gap-xs);
                       text-align: start;
 
                       .itemsNo {
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: var(--composer-font-color-primary);
-                        padding: 0;
-                        margin: 0;
                         text-align: start;
                       }
 
                       .itemDesc {
-                        padding: 0;
-                        margin: 0;
-                        font-size: 1rem;
-                        color: var(--composer-font-color-primary);
                       }
                     }
-
-                    .line {
-                      width: 1px;
-                      align-self: stretch;
-                      height: auto;
-                    }
-
-                      .customers {
-                        padding-left: 0;
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--composer-gap-xs);
-                        width: auto;
-                        text-align: start;
-
-                        .customerNo {
-                          margin: 0;
-                          padding: 0;
-                          font-size: 2rem;
-                          font-weight: bold;
-                          color: var(--composer-font-color-primary);
-                          text-align: start;
-                        }
-
-                        .customerDesc {
-                          color: var(--composer-font-color-primary)
-                        }
-                      }
                   }
                 }
               }
@@ -681,4 +668,60 @@
       }
     }
   }
+}
+
+// Phone: title and images are stacked, so the images keep their own phone height (as before).
+@container (max-width : #{$composer-phone-width}) {
+  .container .content .slider-parent .carousel .max-content {
+    .upperDiv .uppderDiv-content.media-with-text {
+      align-items: start;
+
+      .upTitle-container .upTitle {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .upImage-container .upImage {
+        position: relative;
+        inset: auto;
+        max-height: 80px;
+      }
+    }
+
+    .middleDiv .middleDiv-content.media-with-text {
+      align-items: end;
+
+      .middleTitle-container .middleTitle {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .middleImages-container .image-wrapper {
+        height: 10vw;
+        min-height: 80px;
+        max-height: 5vw;
+
+        .middleImages {
+          position: relative;
+          inset: auto;
+        }
+      }
+    }
+  }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
+}
+
+// Over the background media the subtitle is plain text; the Badge look only applies without media.
+.withBackgroundImage .subtitle {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
 }

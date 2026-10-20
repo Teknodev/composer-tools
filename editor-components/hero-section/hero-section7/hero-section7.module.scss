@@ -34,6 +34,17 @@
         }
       }
 
+      &.no-animation {
+        .items {
+          .text {
+            transition: none;
+            &::before {
+              transition: none;
+            }
+          }
+        }
+      }
+
       .items {
         position: relative;
         z-index: 2;
@@ -42,10 +53,21 @@
         flex-direction: column;
         justify-content: center;
         padding: 0 10%;
+        .header {
+          width: 100%;
+          margin-bottom: var(--composer-gap-md);
+          .logo {
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+          }
+          // Subtitle and title colors come from the View Type (Base); over the image they keep the Monochrome color (.monochrome-text).
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+        }
         .text {
           color: black;
           width: fit-content;
-          font-size: 2.5rem;
           margin: var(--composer-gap-sm) 0;
           cursor: pointer;
           position: relative;
@@ -110,8 +132,20 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width}){
-  .text {
-    font-size: 1.5rem !important;
-  }
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
+}
+
+// Over the background media the subtitle is plain text; the Badge look only applies without media.
+.content:not(.without-image) .header .subtitle {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+// Same value as Base's Monochrome title/subtitle (base.module.scss). A single class: it beats Base's :where() theme rules
+// but not the Design tab's classes.
+.monochrome-text {
+  color: var(--composer-font-color-primary);
 }

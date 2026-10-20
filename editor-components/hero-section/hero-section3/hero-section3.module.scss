@@ -6,6 +6,17 @@
 
 .wrapper.type-3 {
   .text-container {
+    // Slide type 3 is laid out centered, so its subtitle is centered too and the Line subtitle's line is not drawn.
+    .subtitle {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+      transform: none !important;
+
+      &::before {
+        display: none !important;
+      }
+    }
     .description-with-line {
       flex-direction: column !important;
       width: 100% !important;
@@ -107,7 +118,6 @@
             }
         margin: 0 var(--composer-gap-xs);
         color: var(--composer-tertiary-color);
-        font-size: 1.5rem;
 
         &.active,
         &:hover {
@@ -238,7 +248,7 @@
           top: 50%;
           transform: translateY(-50%);
           width: calc(100% - 6vw);
-          height: 30vw;
+          height: 88.2%;
           left: -100%;
           border-radius: var(--composer-border-radius-md);
           background-color: color-mix(
@@ -264,6 +274,16 @@
             object-fit: cover;
             display: block;
           }
+
+          .slide-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+          }
         }
 
         .slide-bg-image-animated {
@@ -279,7 +299,7 @@
 
         .content {
           width: 100%;
-          height: 34vw;
+          min-height: 34vw;
           display: flex;
           gap: var(--composer-gap-xl);
         }
@@ -288,8 +308,8 @@
           z-index: 1;
           flex: 1;
           @include flexCenter;
-          margin-left: var(--composer-gap-xl);
-          margin: 10%;
+          margin: var(--composer-gap-xl) 10%;
+          align-self: center;
           align-items: baseline;
 
           .logo-container {
@@ -372,6 +392,9 @@
 
           .button-container {
             @include transitionOpacity;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
             width: 100%;
             position: relative;
             bottom: calc(-1 * 20vw);
@@ -387,6 +410,8 @@
 
         .image-container {
           flex: 1;
+          height: 34vw;
+          align-self: center;
           opacity: 0;
           right: -100%;
 
@@ -467,7 +492,7 @@
 
           .content-bg {
             right: 60% !important;
-            height: 27vw;
+            height: 79.4%;
           }
 
           .content .text-container {
@@ -517,6 +542,10 @@
       }
     }
   }
+}
+
+.slider:not(.with-animation) .wrapper .image-container .image {
+  animation: none !important;
 }
 
 @keyframes bounceAnimation {
@@ -574,7 +603,7 @@
           
           &.type-3 {
             .content-bg {
-              height: 23vw;
+              height: 67.6%;
             }
             .content .text-container {
               width: 100%;
@@ -662,10 +691,14 @@
             }
           }
 
-          &.has-image {
+          // On phone the text sits over the image or the slide background: the subtitle is plain text there,
+          // the Badge look only applies without them.
+          &.has-image,
+          &.has-background {
             .text-container {
               .subtitle {
                 background: transparent !important;
+                padding: 0 !important;
               }
             }
           }
@@ -711,14 +744,20 @@
               color: #fff;
             }
 
+            // Everything is centered on phone, so the Line subtitle's line is not drawn.
             .subtitle {
               position: relative !important;
               top: 0 !important;
               opacity: 1 !important;
               text-align: center;
               color: #fff;
-              margin-left: 0 !important;
-            
+              margin-left: auto !important;
+              margin-right: auto !important;
+              transform: none !important;
+
+              &::before {
+                display: none !important;
+              }
             }
 
             .description {

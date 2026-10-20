@@ -35,6 +35,11 @@
           .card-subtitle{
             margin-left: 0;
             width: fit-content;
+            // Badge is turned off over the image (overMediaTextClass): plain text like the None subtitle type.
+            &.no-badge {
+              padding: 0;
+              background: transparent;
+            }
           }
 
           &.card-box-no-image {
@@ -42,18 +47,14 @@
             padding: 0;
           }
 
-          .logo-wrapper {
+          .logo {
             width: auto;
             max-width: 200px;
-
-            .logo {
-              width: 100%;
-              height: auto;
-              display: block;
-              object-fit: contain;
-              font-size: 2rem;
-              color: var(--composer-font-color-primary);
-            }
+            height: auto;
+            display: block;
+            object-fit: contain;
+            font-size: 2rem;
+            color: var(--composer-font-color-primary);
           }
 
           .buttons {
@@ -118,7 +119,9 @@
           transition: transform 0.3s ease-in-out;
           position: relative;
           border-radius: 50%;
-          animation: pulse 1.5s infinite;
+          &.pulse {
+            animation: pulse 1.5s infinite;
+          }
           padding: var(--composer-gap-md);
           max-width: 70px;
           max-height: 70px;
@@ -142,6 +145,15 @@
           border-radius: var(--composer-border-radius-md);
           object-fit: cover;
         }
+        .overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          border-radius: var(--composer-border-radius-md);
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
+        }
+
         .right-box {
           position: absolute;
           right: var(--composer-gap-md);
@@ -201,23 +213,31 @@
     align-items: center;
     .max-content {
       gap: var(--composer-gap-xs);
+      // Like the original mobile view: the image fills the block, the text sits on its upper part
+      // and the info box / play button sit on the lower part.
       .content {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: var(--composer-gap-sm);
+        display: grid;
         position: relative;
-        align-items: center;
         width: 100%;
+        .card,
+        .image-box {
+          grid-area: 1 / 1;
+        }
         .card {
-          position: unset;
-          flex: 1;
-          z-index: 1;
+          position: relative;
+          z-index: 3;
+          align-self: start;
           margin-right: 0%;
           width: 100%;
+          &:not(.card-no-image) {
+            margin-bottom: calc(var(--composer-gap-xl) * 3);
+          }
           .card-box {
-            padding: 0;
+            padding: var(--composer-gap-lg);
             position: relative;
             max-width: 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
 
             .buttons {
               flex-direction: column;
@@ -227,27 +247,40 @@
           }
         }
         .image-box {
-          flex: 1;
           position: relative;
+          align-self: stretch;
           max-width: 100%;
+          min-height: 300px;
+          // Original mobile block proportion (360x465); it still grows with longer card text.
+          aspect-ratio: 360 / 465;
           margin-top: 0;
           .button {
             position: absolute;
-            transform: translate(-50%, -50%);
+            margin: 0;
+            top: auto;
+            left: auto;
+            right: var(--composer-gap-md);
+            bottom: var(--composer-gap-md);
+            transform: none;
             border: none;
             background: none;
             cursor: pointer;
-            z-index: 2;
+            z-index: 4;
             .btn-icon {
               font-size: 1.5rem;
             }
           }
           .image {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            height: auto;
-            min-height: 300px;
+            height: 100%;
+            object-fit: cover;
           }
           .right-box {
+            right: auto;
+            left: var(--composer-gap-md);
+            bottom: var(--composer-gap-md);
             padding: var(--composer-gap-sm);
             max-width: 60%;
           }
@@ -261,4 +294,15 @@
       }
     }
   }
+}
+
+// Same value as Base's Monochrome title/subtitle (base.module.scss). A single class: it beats Base's :where() theme rules
+// but not the Design tab's classes.
+.monochrome-text {
+  color: var(--composer-font-color-primary);
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color, so over the image it is not primary either.
+.card-subtitle::before {
+  background-color: currentColor !important;
 }

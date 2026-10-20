@@ -9,42 +9,65 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 interface InputItem {
   placeholder: React.JSX.Element;
 }
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class HeroSection15 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "background-image",
+      type: "object",
+      key: "background",
       displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1ef875e15002c5eb402?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1ef875e15002c5eb402?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mainMedia",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -124,44 +147,48 @@ class HeroSection15 extends BaseHeroSection {
     return "Hero Section 15";
   }
 
+  hasMedia(media?: TypeMediaInputValue) {
+    return !!(media && ((media as any).url || (media as any).name));
+  }
+
+  withVideoSettings(media?: TypeMediaInputValue) {
+    return media?.type === "video"
+      ? { ...media, settings: { autoplay: true, loop: true, muted: true, controls: false } }
+      : media;
+  }
+
   render() {
     const inputs = this.castToObject<InputItem[]>("inputs");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const backgroundImageValue = this.getPropValue("background-image") as TypeMediaInputValue | undefined;
-    const backgroundImageExist = backgroundImageValue;
-    const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
+    const background = this.castToObject<Background>("background");
+    const backgroundImageValue = background?.media;
+    const backgroundImageExist = this.hasMedia(backgroundImageValue);
+    const mainMedia = this.castToObject<{ media: TypeMediaInputValue; overlay: boolean }>("mainMedia");
+    const imageValue = mainMedia?.media as TypeMediaInputValue | undefined;
+    const imageExist = this.hasMedia(imageValue);
     const logoValue = this.getPropValue("logo") as TypeMediaInputValue | undefined;
+    const logoExist = this.hasMedia(logoValue);
 
     function getInitialValue() {
       let value: any = {};
       inputs.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
       return value;
     }
-    const imagesExist = !!(backgroundImageValue || imageValue);
+    const imagesExist = backgroundImageExist || imageExist;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!imagesExist ? this.decorateCSS("no-image") : ""}`}>
-        {backgroundImageValue && (
-          <Base.Media
-            value={backgroundImageValue}
-            className={this.decorateCSS("background-image")}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+        {backgroundImageExist && (
+          <Base.Media value={this.withVideoSettings(backgroundImageValue)} className={this.decorateCSS("background-image")} />
         )}
-        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
-        <div className={this.decorateCSS("max-content")}>
-          <Base.MaxContent className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
+        {backgroundImageExist && background.overlay && <div className={this.decorateCSS("overlay")}></div>}
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
             <div className={`${this.decorateCSS("left")} ${!backgroundImageExist && this.decorateCSS("left-no-image")}`}>
               <div className={this.decorateCSS("content-wrapper")}>
                 <Base.VerticalContent className={this.decorateCSS("content")}>
-                  {logoValue && (
-                    <div className={this.decorateCSS("logo-wrapper")}>
-                      <Base.Media value={logoValue} className={`${this.decorateCSS("logo")} ${backgroundImageExist && this.decorateCSS("logo-with-image")}`} />
-                    </div>
+                  {logoExist && (
+                    <Base.Media value={logoValue} className={`${this.decorateCSS("logo")} ${backgroundImageExist ? this.decorateCSS("logo-with-image") : ""}`} />
                   )}
                   {this.castToString(this.getPropValue("subtitle")) && (() => {
                     const subtitleAlignment = Base.getSectionSubTitleType();
@@ -229,22 +256,13 @@ class HeroSection15 extends BaseHeroSection {
                 </Base.VerticalContent>
               </div>
             </div>
-            {imageValue && (
+            {imageExist && (
               <div className={this.decorateCSS("right")}>
-                    <div className={this.decorateCSS("image-wrapper")}>
-                      <Base.Media
-                        value={imageValue}
-                        className={this.decorateCSS("image")}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                      />
-                    </div>
+                <Base.Media value={this.withVideoSettings(imageValue)} className={this.decorateCSS("image")} />
+                {mainMedia?.overlay && <div className={this.decorateCSS("media-overlay")} />}
               </div>
             )}
           </Base.MaxContent>
-        </div>
       </Base.Container>
     );
   }

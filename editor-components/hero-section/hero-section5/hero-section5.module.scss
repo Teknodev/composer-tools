@@ -19,8 +19,8 @@
       }
 
       &.with-image {
-        border-bottom-left-radius: var(--composer-border-radius-sm);
-        border-bottom-right-radius: var(--composer-border-radius-sm);
+        border-bottom-left-radius: var(--composer-border-radius-md);
+        border-bottom-right-radius: var(--composer-border-radius-md);
         overflow: hidden;
 
         .subtitle,
@@ -31,8 +31,10 @@
           color: white;
         }
 
+        // Over the background media the subtitle is plain text; the Badge look only applies without it.
         .subtitle{
           background: transparent;
+          padding: 0;
         }
 
         .content {
@@ -94,17 +96,11 @@
       }
 
       .subtitle {
-        letter-spacing: 5px;
+        content: "";
       }
 
       .title {
         font-size: 5rem;
-        letter-spacing: var(--composer-gap-xs);
-      }
-
-      .description {
-        font-size: 1.5rem;
-        letter-spacing: var(--composer-gap-xs);
       }
 
       .button-container {
@@ -164,15 +160,19 @@
       .content {
         padding: var(--composer-gap-md);
 
-        .subtitle,
-        .description {
-          font-size: 1rem;
-        }
-
         .title {
           font-size: 2.5rem;
         }
       }
     }
+  }
+}
+
+// This layout keeps its own alignment, so the Line subtitle type neither draws a line nor shifts the text.
+.subtitle {
+  transform: none !important;
+
+  &::before {
+    content: none !important;
   }
 }

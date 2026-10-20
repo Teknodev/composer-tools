@@ -81,6 +81,46 @@
         max-height: 100%;
         margin: 0;
         text-align: left;
+        align-items: flex-start;
+
+        .logo {
+          font-size: 2rem;
+          max-width: 6rem;
+          max-height: 3rem;
+          object-fit: contain;
+          color: var(--color-white);
+        }
+
+        .subtitle,
+        .description {
+          text-align: left;
+          margin: 0;
+        }
+
+        .description,
+        .subtitle.on-media {
+          color: white;
+        }
+
+        // Over the media the subtitle is plain text; the Badge look only applies without media.
+        .subtitle.on-media {
+          padding: 0;
+          background: transparent;
+        }
+
+        .description {
+          width: 100%;
+        }
+
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+        }
+
+        .button-text {
+          content: "";
+        }
 
         &.visible {
           opacity: 1;
@@ -95,6 +135,10 @@
         width: 100%;
         text-align: center;
         margin: 0 auto;
+
+        :global(.slick-track) {
+          display: flex;
+        }
 
         :global(.slick-prev),
         :global(.slick-next) {
@@ -207,23 +251,26 @@
           }
 
           .number {
-            font-size: 1rem;
             color: var(--color-white);
             align-self: flex-start;
             margin: 0;
             margin-top: var(--composer-gap-xs);
-            font-weight: 100;
           }
 
           .title-text {
             white-space: nowrap;
             flex-shrink: 0;
             width: max-content;
-            font-weight: 500;
             font-size: 6rem;
+            margin: 0;
+            text-transform: inherit;
 
-            &.active {
-              color: var(--color-white);
+            &:not(.active) {
+              color: inherit;
+            }
+
+            &.active.on-media {
+              color: white;
             }
           }
         }
@@ -246,6 +293,13 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
+
+        .current,
+        .total {
+          margin: 0;
+          color: var(--color-white);
+          width: fit-content;
+        }
 
         .separator {
           width: var(--composer-gap-lg);
@@ -365,7 +419,7 @@
             font-size: 3rem;
 
             .title-text {
-              font-size: 4.5rem;
+              font-size: 4.5rem !important;
             }
           }
         }
@@ -440,7 +494,7 @@
             margin-right: var(--composer-gap-xl) !important;
 
             .title-text {
-              font-size: 2.5rem;
+              font-size: 2.5rem !important;
             }
           }
         }
@@ -460,4 +514,9 @@
       }
     }
   }
+}
+
+// The Line subtitle type draws its line in the subtitle's own text color.
+.subtitle::before {
+  background-color: currentColor !important;
 }
