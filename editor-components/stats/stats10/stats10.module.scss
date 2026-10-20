@@ -340,6 +340,15 @@
       .page {
         flex-direction: row !important;
         flex-wrap: nowrap;
+
+        // Like desktop, the images take the left half of the section and run to its left edge. Measured from the row,
+        // not 50vw (the editor's tablet preview is narrower than the window): half the row + Base.Container's
+        // tablet side padding (50px, base.module.scss .container).
+        .left-page {
+          flex: 0 0 calc(50% + 50px);
+          width: calc(50% + 50px);
+          margin-left: -50px;
+        }
       }
     }
   }
@@ -538,15 +547,6 @@
                 margin-right: auto !important;
               }
             }
-          }
-          .subtitle{
-            font-size:1.3rem ;
-          }
-          .title {
-            font-size: 2rem;
-          }
-          .description{
-            font-size: 1.3rem
           }
           .progress-container {
             width: 100% !important;

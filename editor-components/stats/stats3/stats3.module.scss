@@ -154,12 +154,7 @@
                 }
               }
 
-              .stat-subtitle {
-                font-size: 0.9rem;
-              }
-
               .stat-title {
-                font-size: 1.4rem;
                 font-weight: 800;
               }
 
@@ -204,12 +199,11 @@
         flex-direction: row !important;
         flex-wrap: nowrap;
 
-        // The narrower card keeps its three stats on one line: full-width card, smaller icon and value, no wrapping.
-        .right-container .card-container {
-          width: 100%;
-        }
-
+        // Like desktop, the card (92%) starts outside the image's left edge and ends inside its right edge.
+        // The narrower card keeps its three stats on one line: smaller icon, tighter spacing, no wrapping.
         .right-container .card-container .card .content {
+          column-gap: var(--composer-gap-xs);
+          padding: var(--composer-gap-sm) 0;
 
           .icon {
             width: calc(1.5 * var(--composer-font-size-md));
@@ -221,11 +215,6 @@
           .number {
             flex-wrap: nowrap;
             white-space: nowrap;
-            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-          }
-
-          .right-text {
-            font-size: calc(0.85 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -261,10 +250,6 @@
                 .number {
                   flex-wrap: nowrap;
                   white-space: nowrap;
-                }
-
-                .right-text {
-                  font-size: var(--composer-font-size-md) !important;
                 }
               }
             }
@@ -360,18 +345,6 @@
                   justify-content: center;
                   margin-left: auto !important;
                   margin-right: auto !important;
-                }
-
-                .stat-title {
-                  font-size: 1.2rem !important;
-                }
-
-                .stat-subtitle {
-                  font-size: 0.85rem !important;
-                }
-
-                .right-text {
-                  font-size: var(--composer-font-size-md) !important;
                 }
               }
             }
