@@ -86,7 +86,7 @@ class Navbar4 extends BaseNavigator {
           key: "defaultLogo_image",
           displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -112,7 +112,7 @@ class Navbar4 extends BaseNavigator {
           key: "absoluteLogo_image",
           displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -883,7 +883,7 @@ class Navbar4 extends BaseNavigator {
 
   render(): ReactNode {
     const icons = this.castToObject<any[]>("icons");
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const information = this.castToObject<Information>("information");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
@@ -1004,6 +1004,7 @@ class Navbar4 extends BaseNavigator {
         </div>
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           positionContainer={`${this.decorateCSS("pcNavbarPosition")} ${
             backgroundChange ? this.decorateCSS("activeBackground") : ""
           } ${isHamburgerActive ? this.decorateCSS("hamburgerActive") : ""}`}

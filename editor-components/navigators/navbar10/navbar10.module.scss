@@ -1064,3 +1064,31 @@
     }
   }
 }
+
+// Logo as icon or video: Base.Media puts the logo class on a span (an icon, sized by font-size) or on a video.
+// Both keep the height of the image logo instead of the image-only width rules above.
+.logoImage {
+  &:is(span) {
+    font-size: 2.75rem;
+  }
+
+  &:is(video) {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    height: 2.75rem !important;
+    object-fit: contain;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .logoImage {
+    &:is(span) {
+      font-size: 2.5rem;
+    }
+
+    &:is(video) {
+      height: 2.5rem !important;
+    }
+  }
+}

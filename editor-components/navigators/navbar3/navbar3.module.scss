@@ -224,11 +224,13 @@
         }
       }
 
+      // Original caret: 8x4px, in a muted color, centered on the title.
       .dropdownIcon {
-        font-size: calc(1.5 * var(--composer-font-size-md));
-        color: var(--composer-font-color-primary);
-        width: 20px;
-        height: 20px;
+        display: flex;
+        font-size: calc(1.25 * var(--composer-font-size-md));
+        color: var(--composer-tertiary-color);
+        width: 1em;
+        height: 1em;
         object-fit: cover;
       }
 
@@ -304,7 +306,7 @@
         .megaMenuColumnHeader {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-xs);
+          gap: var(--composer-gap-sm);
         }
 
         .megaMenuColumnTitle {
@@ -326,7 +328,7 @@
         .megaMenuLink {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-xs);
+          gap: var(--composer-gap-sm);
         }
 
         .megaMenuLinkTitle {
@@ -373,7 +375,7 @@
             .dropdownItemContent {
               display: flex;
               align-items: center;
-              gap: var(--composer-gap-xs);
+              gap: var(--composer-gap-sm);
 
               .dropdownItemTitle {
                 margin: 0;
@@ -403,12 +405,14 @@
           &.animation2:hover > .dropdownItem .dropdownItemTitle::after {
             width: 100%;
           }
+          // Original arrow: 8px tall.
           .rightIcon {
-            font-size: calc(1.5 * var(--composer-font-size-md));
+            display: flex;
+            font-size: calc(1 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
-            width: 20px;
-            height: 20px;
+            width: 1em;
+            height: 1em;
             object-fit: cover;
           }
 
@@ -614,7 +618,7 @@
                 justify-content: space-between;
 
                 .badge {
-                  margin-left: var(--composer-gap-xs);
+                  margin-left: var(--composer-gap-sm);
                   margin-right: auto;
                 }
                 padding: var(--composer-gap-xs) 0;
@@ -654,7 +658,7 @@
                   padding: var(--composer-gap-xs) 0;
                   display: flex;
                   align-items: center;
-                  gap: var(--composer-gap-xs);
+                  gap: var(--composer-gap-sm);
 
                   .hamburgerSubSubmenuItemTitle {
                     margin: 0;
@@ -769,7 +773,7 @@
 .subdropdownItemContent {
   display: flex;
   align-items: center;
-  gap: var(--composer-gap-xs);
+  gap: var(--composer-gap-sm);
 }
 
 // Hover underline of dropdown items: only as wide as the title text, like the original.
@@ -783,7 +787,7 @@
     bottom: -2px;
     width: 0;
     height: 1px;
-    background-color: var(--composer-primary-color);
+    background-color: var(--composer-font-color-primary);
     transition: width 0.3s ease;
   }
 }
@@ -832,6 +836,34 @@
     .hamburgerSubSubmenuItemTitle {
       font-size: calc(0.75 * var(--composer-font-size-md)) !important;
       text-transform: none;
+    }
+  }
+}
+
+// Logo as icon or video: Base.Media puts the logo class on a span (an icon, sized by font-size) or on a video.
+// Both keep the height of the image logo instead of the image-only width rules above.
+.logoImage {
+  &:is(span) {
+    font-size: 2.75rem;
+  }
+
+  &:is(video) {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    height: 2.75rem !important;
+    object-fit: contain;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .logoImage {
+    &:is(span) {
+      font-size: 2.5rem;
+    }
+
+    &:is(video) {
+      height: 2.5rem !important;
     }
   }
 }

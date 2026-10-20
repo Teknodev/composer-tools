@@ -120,9 +120,9 @@ class Navbar3 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -146,9 +146,9 @@ class Navbar3 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -2279,7 +2279,7 @@ class Navbar3 extends BaseNavigator {
 
   render() {
     const lane = this.castToObject<Lane>("lane");
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
 
     const menuItems = this.castToObject<Item[]>("menuItems");
     const icons = this.castToObject<any[]>("icons");
@@ -2354,6 +2354,7 @@ class Navbar3 extends BaseNavigator {
 
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           className={this.decorateCSS("pcNavbarContainer")}
           positionContainer={`${this.decorateCSS("pcNavbarPositionContainer")} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}
           setIsBigScreen={(value: boolean) =>
@@ -2591,6 +2592,7 @@ class Navbar3 extends BaseNavigator {
 
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           className={`${this.decorateCSS(
             "smallDeviceNavbarContainer"
           )} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}

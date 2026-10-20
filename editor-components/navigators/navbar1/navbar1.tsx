@@ -45,9 +45,9 @@ class Navbar1 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -71,9 +71,9 @@ class Navbar1 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -1260,7 +1260,7 @@ class Navbar1 extends BaseNavigator {
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const isScrolled = this.getComponentState("isScrolled");
@@ -1296,6 +1296,7 @@ class Navbar1 extends BaseNavigator {
       <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           hamburgerNavActive={hamburgerNavActive}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""
             } ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}

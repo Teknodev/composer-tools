@@ -53,9 +53,9 @@ class Navbar7 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -79,9 +79,9 @@ class Navbar7 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -4497,7 +4497,7 @@ class Navbar7 extends BaseNavigator {
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
     const isScrolled = this.getComponentState("isScrolled");
     const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
@@ -4531,6 +4531,7 @@ class Navbar7 extends BaseNavigator {
       <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
@@ -4781,6 +4782,7 @@ class Navbar7 extends BaseNavigator {
 
         <Base.Navigator.Container
           position={position}
+          setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
           positionContainer={`${this.decorateCSS(
             "smallDeviceNavbar"
           )} ${

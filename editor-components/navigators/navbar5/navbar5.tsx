@@ -70,7 +70,8 @@ class Navbar5 extends BaseNavigator {
     const leftPage = up.querySelector<HTMLElement>(`.${first("leftPage")}`);
     const title = leftPage?.querySelector<HTMLElement>(`.${first("title")}`);
     if (leftPage && title && leftPage.clientWidth > 0) {
-      this.fitFontSize([title], () => title.scrollWidth <= title.clientWidth + 1 && title.getBoundingClientRect().height <= up.clientHeight);
+      // Measured against its area, not its own narrow box: a single long word may pass the box but must stay in the area.
+      this.fitFontSize([title], () => title.scrollWidth <= leftPage.clientWidth + 1 && title.getBoundingClientRect().height <= up.clientHeight);
     }
     const rightPage = up.querySelector<HTMLElement>(`.${first("rightPage")}`);
     const items = rightPage?.querySelector<HTMLElement>(`.${first("items")}`);
@@ -83,6 +84,7 @@ class Navbar5 extends BaseNavigator {
   componentWillUnmount() {
     this.upObserver?.disconnect();
     this.upObserver = null;
+    if (typeof window !== "undefined") window.removeEventListener("resize", this.updatePanelViewportHeight);
   }
 
   constructor(props?: any) {
@@ -206,9 +208,9 @@ class Navbar5 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -232,9 +234,9 @@ class Navbar5 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -488,11 +490,34 @@ class Navbar5 extends BaseNavigator {
     );
   }
 
+  dropdownElement: HTMLDivElement | null = null;
+
+  // The open panel fills the visible screen below the navbar. In the editor the page sits in the playground, which is
+  // shorter than the browser window (and scaled down on desktop), so 100vh pushed the bottom texts and the title out of view.
+  setDropdownRef = (el: HTMLDivElement | null) => {
+    if (typeof window === "undefined") return;
+    window.removeEventListener("resize", this.updatePanelViewportHeight);
+    this.dropdownElement = el;
+    if (!el) return;
+    window.addEventListener("resize", this.updatePanelViewportHeight);
+    this.updatePanelViewportHeight();
+  };
+
+  updatePanelViewportHeight = () => {
+    const el = this.dropdownElement;
+    if (!el) return;
+    const playground = document.getElementById("playground");
+    const scale = el.offsetWidth ? el.getBoundingClientRect().width / el.offsetWidth : 1;
+    const visibleHeight = playground ? Math.min(playground.clientHeight, window.innerHeight) : window.innerHeight;
+    el.style.setProperty("--panel-viewport-height", `${visibleHeight / (scale || 1)}px`);
+  };
+
   static getName(): string {
     return "Navbar 5";
   }
 
   openNav() {
+    this.updatePanelViewportHeight();
     Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("navActive", true);
     setTimeout(() => {
@@ -532,7 +557,7 @@ class Navbar5 extends BaseNavigator {
 
   render() {
     const isScrolled = this.getComponentState("isScrolled");
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
 
     const navActive = this.getComponentState("navActive");
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
@@ -578,6 +603,7 @@ class Navbar5 extends BaseNavigator {
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
+        setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${navActive ? this.decorateCSS("filledBackground") : ""} ${navActive ? this.decorateCSS("hamburgerActive") : ""}`}
         hamburgerNavActive={navActive}
         setIsBigScreen={(value: boolean) => {
@@ -658,7 +684,7 @@ class Navbar5 extends BaseNavigator {
           )}
         </Base.MaxContent>
 
-        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
+        <div ref={this.setDropdownRef} className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
           {upExist && (
             <div className={this.decorateCSS("up")} ref={this.setUpRef}>
               {titleExist && (

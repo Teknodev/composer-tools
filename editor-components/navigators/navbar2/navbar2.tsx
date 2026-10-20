@@ -442,9 +442,9 @@ class Navbar2 extends BaseNavigator {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -468,9 +468,9 @@ class Navbar2 extends BaseNavigator {
         {
           type: "media",
           key: "absoluteLogo_image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video", "icon"],
           },
           value: {
             type: "image",
@@ -644,7 +644,7 @@ class Navbar2 extends BaseNavigator {
   }
 
   render() {
-    const position = this.getPropValue("position");
+    const position = this.getNavbarPosition();
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const isScrolled = this.getComponentState("isScrolled");
@@ -677,6 +677,7 @@ class Navbar2 extends BaseNavigator {
       <div className={this.decorateCSS("navbar-root")}>
        <Base.Navigator.Container
         position={position}
+        setHasContentBelow={(value: boolean) => this.setComponentState("hasContentBelow", value)}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
