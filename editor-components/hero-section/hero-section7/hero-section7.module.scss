@@ -60,7 +60,7 @@
             font-size: 3rem;
             color: var(--composer-font-color-primary);
           }
-          // Subtitle and title colors come from the View Type (Base: Colorful primary, Monochrome font color).
+          // Subtitle and title colors come from the View Type (Base); over the image they keep the Monochrome color (.monochrome-text).
           .description {
             color: var(--composer-font-color-primary);
           }
@@ -68,7 +68,6 @@
         .text {
           color: black;
           width: fit-content;
-          font-size: 2.5rem;
           margin: var(--composer-gap-sm) 0;
           cursor: pointer;
           position: relative;
@@ -133,13 +132,6 @@
   }
 }
 
-// Like the original, the page titles keep their desktop size on phone.
-@container (max-width : #{$composer-phone-width}){
-  .text {
-    font-size: 2.5rem !important;
-  }
-}
-
 // The Line subtitle type draws its line in the subtitle's own text color.
 .subtitle::before {
   background-color: currentColor !important;
@@ -150,4 +142,10 @@
   background: transparent !important;
   padding: 0 !important;
   border-radius: 0 !important;
+}
+
+// Same value as Base's Monochrome title/subtitle (base.module.scss). A single class: it beats Base's :where() theme rules
+// but not the Design tab's classes.
+.monochrome-text {
+  color: var(--composer-font-color-primary);
 }

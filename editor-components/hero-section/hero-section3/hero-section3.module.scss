@@ -118,7 +118,6 @@
             }
         margin: 0 var(--composer-gap-xs);
         color: var(--composer-tertiary-color);
-        font-size: 1.5rem;
 
         &.active,
         &:hover {
@@ -692,10 +691,14 @@
             }
           }
 
-          &.has-image {
+          // On phone the text sits over the image or the slide background: the subtitle is plain text there,
+          // the Badge look only applies without them.
+          &.has-image,
+          &.has-background {
             .text-container {
               .subtitle {
                 background: transparent !important;
+                padding: 0 !important;
               }
             }
           }

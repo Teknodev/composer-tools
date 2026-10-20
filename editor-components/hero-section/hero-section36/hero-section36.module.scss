@@ -131,9 +131,10 @@
               .description {
                 color: white;
               }
+              // Over the image the subtitle is plain text; the Badge look only applies without it.
               .subtitle {
                 background: transparent;
-
+                padding: 0;
               }
             }
           }

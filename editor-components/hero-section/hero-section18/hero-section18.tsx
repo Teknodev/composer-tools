@@ -583,6 +583,9 @@ class HeroSection18 extends BaseHeroSection {
 
                 const descTitleExist = this.castToString(item.description_title);
                 const descExist = this.castToString(item.description);
+                // The text sits over the slide image too (desktop/tablet), so the plain over-image look (no Badge,
+                // no Colorful) applies when there is a background image or a slide image.
+                const textOverMedia = cover || this.hasMedia(item.media);
 
                 return (
                   <div className={this.decorateCSS("slide")} key={index}>
@@ -592,8 +595,8 @@ class HeroSection18 extends BaseHeroSection {
                           {(logoExist || titleExist || subtitleExist) && (
                             <Base.VerticalContent className={this.decorateCSS("heading")}>
                               {logoExist && <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${!cover ? this.decorateCSS("logo-no-image") : ""}`} />}
-                              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!cover ? this.decorateCSS("subtitle-no-image") : ""}`}>{item.subtitle}</Base.SectionSubTitle>}
-                              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!cover ? this.decorateCSS("title-no-image") : ""}`}>{item.title}</Base.SectionTitle>}
+                              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!textOverMedia ? this.decorateCSS("subtitle-no-image") : ""}`}>{item.subtitle}</Base.SectionSubTitle>}
+                              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!textOverMedia ? this.decorateCSS("title-no-image") : ""}`}>{item.title}</Base.SectionTitle>}
                             </Base.VerticalContent>
                           )}
                           {showPagination && slides.length > 1 && (
@@ -615,7 +618,7 @@ class HeroSection18 extends BaseHeroSection {
                       )}
                       {(descTitleExist || descExist) && (
                         <div className={`${this.decorateCSS("description-div")} ${!cover && this.decorateCSS("description-div-no-image")}`}>
-                          {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
+                          {descTitleExist && <Base.H6 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H6>}
                           {descExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                         </div>
                       )}

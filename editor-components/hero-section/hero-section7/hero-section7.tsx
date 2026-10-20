@@ -257,6 +257,13 @@ class HeroSection7 extends BaseHeroSection {
   static getName(): string {
     return "Hero Section 7";
   }
+
+  // The page image fills the background behind the header, so while it exists the Colorful View Type is turned off:
+  // the subtitle and title keep the Monochrome color (the Badge look is removed in the SCSS). Without an image Base applies it.
+  overMediaTextClass(hasImage: boolean) {
+    return hasImage && Base.getViewType() === "colorful" ? this.decorateCSS("monochrome-text") : "";
+  }
+
   render() {
     const handleMouseOver = (image: TypeMediaInputValue) => {
       this.setComponentState("active_image", image);
@@ -295,8 +302,8 @@ class HeroSection7 extends BaseHeroSection {
               {hasHeader && (
                 <Base.VerticalContent className={this.decorateCSS("header")}>
                   {hasLogo && <Base.Media value={logo} className={this.decorateCSS("logo")} />}
-                  {isSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                  {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {isSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.overMediaTextClass(!!image)}`}>{subtitle}</Base.SectionSubTitle>}
+                  {isTitleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.overMediaTextClass(!!image)}`}>{title}</Base.SectionTitle>}
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
                 </Base.VerticalContent>
               )}

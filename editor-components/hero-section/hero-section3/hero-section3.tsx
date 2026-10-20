@@ -421,6 +421,7 @@ class HeroSection3 extends BaseHeroSection {
                   ${!hasImage ? this.decorateCSS("full-text-container") : ""}
                   ${!showContent ? this.decorateCSS("full-image") : ""}
                   ${hasImage ? this.decorateCSS("has-image") : ""}
+                  ${hasSlideBg ? this.decorateCSS("has-background") : ""}
                   `}
                 >
                   {hasSlideBg && (

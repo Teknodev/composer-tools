@@ -194,6 +194,12 @@ class HeroSection1 extends BaseHeroSection {
       : media;
   }
 
+  // Without the background media the title still sits over the slide's media, where the Colorful View Type (primary)
+  // is turned off: the title keeps the Monochrome color. Over the background media it is white (see the SCSS).
+  overMediaTextClass(overItemMedia: boolean) {
+    return overItemMedia && Base.getViewType() === "colorful" ? this.decorateCSS("monochrome-text") : "";
+  }
+
   render() {
     const background = this.castToObject<Background>("background");
     const backgroundMedia = background?.media;
@@ -290,7 +296,11 @@ class HeroSection1 extends BaseHeroSection {
                           {hasItemMedia && item.overlay && <div className={this.decorateCSS("media-overlay")} />}
                           {(isTitleExist || isDescriptionExist) && (
                             <Base.VerticalContent className={`${this.decorateCSS("text-block")} ${textColorClass} ${textBlockColorClass}`}>
-                              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                              {isTitleExist && (
+                                <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.overMediaTextClass(!hasBackground && hasItemMedia)}`}>
+                                  {item.title}
+                                </Base.SectionTitle>
+                              )}
                               {isDescriptionExist && (
                                 <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
                               )}

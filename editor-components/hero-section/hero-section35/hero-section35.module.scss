@@ -56,7 +56,6 @@
                         .subtitle{
                             text-align: left;
                             text-transform: uppercase;
-                            font-size: 1.5rem;
                             color: var(--composer-font-color-secondary);
                             width: fit-content;
                             margin-left: 0;
@@ -66,8 +65,9 @@
                                 background: transparent !important;
                                 padding: 0 !important;
                                 border-radius: 0 !important;
+                                // The Line subtitle type draws its line in the subtitle's own text color.
                                 &::before{
-                                    background: white !important;
+                                    background: currentColor !important;
                                 }
                             }
                         }
@@ -181,7 +181,6 @@
                     
                     .scroll-text{
                         color: var(--composer-font-color-secondary);
-                        font-size: 1.25rem;
                         margin: 0;
                     }
                     .scroll-icon-container{
@@ -385,7 +384,6 @@
                                 }
 
                                 .customer-desc {
-                                    font-size: 1rem;
                                     color: var(--composer-font-color-primary);
                                 }
                             }

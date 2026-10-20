@@ -102,9 +102,14 @@
           color: white;
         }
 
+        // Over the media the subtitle is plain text; the Badge look only applies without media.
+        .subtitle.on-media {
+          padding: 0;
+          background: transparent;
+        }
+
         .description {
           width: 100%;
-          font-size: 0.75rem !important;
         }
 
         .button-container {
@@ -246,7 +251,6 @@
           }
 
           .number {
-            font-size: 1rem;
             color: var(--color-white);
             align-self: flex-start;
             margin: 0;
@@ -292,7 +296,6 @@
 
         .current,
         .total {
-          font-size: 0.75rem !important;
           margin: 0;
           color: var(--color-white);
           width: fit-content;
@@ -320,7 +323,7 @@
         gap: var(--composer-gap-md);
 
         .follow-text {
-          font-size: 0.75rem !important;
+          content: "";
         }
 
         .social-icons {

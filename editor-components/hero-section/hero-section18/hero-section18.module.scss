@@ -102,14 +102,13 @@
                 }
               }
 
-              // Without a background image the subtitle and title colors come from Base (View Type).
+              // Without a background or slide image behind them the subtitle and title colors come from Base (View Type).
               .subtitle {
                 margin: 0;
-                font-size: 1rem;
                 z-index: 10;
                 text-align: left;
 
-                // Over the background image the subtitle is plain text; the Badge look only applies without an image.
+                // Over an image the subtitle is plain text; the Badge look only applies without an image.
                 &:not(.subtitle-no-image) {
                   color: black;
                   background: transparent !important;
@@ -198,7 +197,6 @@
 
             .description-title {
               margin: 0;
-              font-size: 1rem;
               text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 2;
@@ -209,7 +207,6 @@
 
             .item-description {
               margin: 0;
-              font-size: 1rem;
               text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 4;

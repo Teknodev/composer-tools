@@ -280,7 +280,6 @@
                 background: white;
               }
               .number {
-                font-size: 1rem;
                 color: white;
               }
               &.dark {
@@ -586,4 +585,10 @@
 // The Line subtitle type draws its line in the subtitle's own text color.
 .subtitle::before {
   background-color: currentColor !important;
+}
+
+// Same value as Base's Monochrome title (base.module.scss). A single class: it beats Base's :where() theme rules
+// but not the Design tab's classes.
+.monochrome-text {
+  color: var(--composer-font-color-primary);
 }
