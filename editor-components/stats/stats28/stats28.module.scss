@@ -1,0 +1,206 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            
+            gap: var(--composer-gap-xl);
+            align-items: flex-start;
+
+            .left-column {
+                flex: 1;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                }
+
+                .subtitle {
+                    margin-left: 0;
+                    padding: 0;
+                    background: transparent;
+
+                    // The Line subtitle type's line follows the subtitle text color
+                    &::before {
+                        background-color: currentColor;
+                    }
+                }
+
+
+
+                .button-container {
+                    margin: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-sm);
+                    width: 100%;
+
+                    .button {
+                      content: "";
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .right-column {
+                flex: 1.5;
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                .stat-item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0;
+
+                    .stat-row {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-end;
+                        justify-content: space-between;
+                        gap: var(--composer-gap-lg);
+
+                        .stat-info {
+                            align-items: flex-start;
+                            justify-content: flex-end;
+                            flex: 1;
+
+                            .stat-title,
+                            .stat-subtitle,
+                            .stat-description {
+                                text-align: left;
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-description {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-title {
+                                color: var(--composer-font-color-primary);
+                            }
+                            .stat-subtitle {
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+
+                        .stat-value {
+                            color: var(--composer-font-color-primary);
+                            opacity: 0.7;
+                            display: flex;
+                            align-items: flex-end;
+                            font-size: 6.75rem;
+                            line-height: 1;
+
+
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                color: inherit;
+                                font-size: inherit;
+                              }
+                        }
+                    }
+
+                    .divider {
+                        width: 100%;
+                        height: 5px;
+                        background-color: var(--composer-font-color-primary);
+                        margin-top: var(--composer-gap-sm);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                .right-column {
+                    .stat-item {
+                        .stat-row {
+                            .stat-value {
+                                font-size: 5rem;
+                              }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                .left-column,
+                .right-column {
+                    flex: auto;
+                    // Full row width so centered text centers in the row, not in a content-sized column
+                    width: 100%;
+                }
+
+                .left-column {
+                    &.alignment-center {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .right-column {
+                    .stat-item {
+                        .stat-row {
+                            .stat-value {
+                                font-size: 4rem;
+                              }
+                        }
+                    }
+
+                    &.alignment-center {
+                        .stat-item {
+                            .stat-row {
+                                flex-direction: column;
+                                align-items: center;
+                                gap: 0;
+
+                                .stat-info {
+                                    align-items: center;
+
+                                    .stat-title,
+                                    .stat-subtitle,
+                                    .stat-description {
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
