@@ -1,0 +1,154 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .header {
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      // Buttons sit right below the description
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+      }
+    }
+
+    .button {
+      max-width: 100%;
+
+      .button-text,
+      .button-icon {
+        content: "";
+      }
+    }
+
+    // Steps grid on the left, round image on the right.
+    .content {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: center;
+      gap: var(--composer-gap-xl);
+      width: 100%;
+
+      // Without an image or without steps, the remaining part takes the full width.
+      > :only-child {
+        grid-column: 1 / -1;
+      }
+
+      // Columns come from Base.ListGrid (Item Count in a Row on desktop, one column below).
+      .steps {
+        gap: var(--composer-gap-xl);
+
+        // Step texts stay left-aligned whatever the theme alignment is.
+        .step {
+          width: 100%;
+          min-width: 0;
+          align-items: flex-start;
+
+          .step-number,
+          .step-subtitle,
+          .step-title,
+          .step-description {
+            width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+            align-self: flex-start;
+            overflow-wrap: anywhere;
+          }
+
+          // Base.H1 is the largest heading level, the number is drawn a bit larger to match the original design.
+          .step-number {
+            font-size: 4rem;
+            color: var(--composer-primary-color);
+          }
+
+          .step-subtitle {
+            color: var(--composer-font-color-primary);
+          }
+
+          .step-title {
+            color: var(--composer-font-color-primary);
+          }
+
+          .step-description {
+            color: var(--composer-font-color-primary);
+          }
+
+          .step-button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-self: flex-start;
+            width: 100%;
+            gap: var(--composer-gap-sm);
+
+            .button {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+
+      .image-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: var(--composer-border-radius-full);
+        overflow: hidden;
+
+        .image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .media-overlay {
+          position: absolute;
+          inset: 0;
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+// Tablet keeps the desktop layout (steps grid on the left, image on the right), only the gaps get smaller.
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        gap: var(--composer-gap-lg);
+
+        .steps {
+          gap: var(--composer-gap-lg);
+        }
+      }
+    }
+  }
+}
+
+// Phone: the steps stack in a single column and the image moves below them.
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+}
