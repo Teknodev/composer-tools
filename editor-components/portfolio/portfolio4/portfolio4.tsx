@@ -88,7 +88,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a38f506a40002c2f7b2d?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no8.jpg",
                   },
                 },
                 {
@@ -150,7 +150,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no1.jpg",
                   },
                 },
                 {
@@ -212,7 +212,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no2.jpg",
                   },
                 },
                 {
@@ -274,7 +274,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no3.jpg",
                   },
                 },
                 {
@@ -336,7 +336,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no4.jpg",
                   },
                 },
                 {
@@ -398,7 +398,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no5.jpg",
                   },
                 },
                 {
@@ -460,7 +460,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a782631ba002c0080a5?alt=media",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no6.jpg",
                   },
                 },
                 {
@@ -522,7 +522,7 @@ class Portfolio4 extends BasePortfolio {
                   },
                   value: {
                     type: "image",
-                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/portfolio4-no7.jpg",
                   },
                 },
                 {
