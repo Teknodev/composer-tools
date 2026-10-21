@@ -36,7 +36,7 @@ class Steps7 extends BaseSteps {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
+            url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/steps7-no1.jpg",
           },
         },
         {
