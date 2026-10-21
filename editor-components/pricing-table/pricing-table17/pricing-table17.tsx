@@ -304,6 +304,7 @@ class PricingTable17 extends BasePricingTable {
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${isOnlyHeader && this.decorateCSS("header-only")}`}>
+        <div className={this.decorateCSS("background-top")}></div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showHeader && (
             <Base.VerticalContent className={this.decorateCSS("header")}>

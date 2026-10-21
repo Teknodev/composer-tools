@@ -131,11 +131,11 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1 * var(--composer-font-size-md)) !important;
+        font-size: calc(0.85 * var(--composer-font-size-md)) !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1 * var(--composer-font-size-md)) !important;
+        font-size: calc(0.85 * var(--composer-font-size-md)) !important;
     }
 }
 

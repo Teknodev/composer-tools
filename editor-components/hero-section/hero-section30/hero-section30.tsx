@@ -109,23 +109,22 @@ class HeroSection30 extends BaseHeroSection {
         className={`${this.decorateCSS("container")} ${!video && this.decorateCSS("withoutVideoContainer")
           }`}
       >
+        {video && (
+          <>
+            <Base.Media
+              value={video}
+              autoPlay
+              loop
+              muted
+              controls={false}
+              className={this.decorateCSS("video-section")}
+            />
+            {this.getPropValue("bg-overlay") && (
+              <div className={this.decorateCSS("video-overlay")} />
+            )}
+          </>
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {video && (
-            <>
-              <Base.Media
-                value={video}
-                autoPlay
-                loop
-                muted
-                controls={false}
-                className={this.decorateCSS("video-section")}
-              />
-              {this.getPropValue("bg-overlay") && (
-                <div className={this.decorateCSS("video-overlay")} />
-              )}
-            </>
-          )}
-
           <Base.VerticalContent className={this.decorateCSS("content")}>
              {this.getPropValue("logo") && (
                 <Base.Media

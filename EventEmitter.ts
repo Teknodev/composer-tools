@@ -19,7 +19,7 @@ export enum EVENTS {
   HOVER_THEME_ELEMENT = "hoverThemeElement",
   HOVER_TREE_ELEMENT = "hoverTreeElement",
   MODALS_INITIALIZED = "modalsInitialized"
-}
+} 
 
 class EventQ {
   public events: Events;

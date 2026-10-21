@@ -337,7 +337,7 @@ class HeroSection2 extends BaseHeroSection {
                                 <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
                               )}
                               {isTitleExist && (
-                                <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
+                                <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>
                               )}
                               {(isAuthorExist || isDateExist) && (
                                 <div className={this.decorateCSS("date-author")}>

@@ -5,8 +5,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
 class CallToAction18 extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -54,7 +52,7 @@ class CallToAction18 extends BaseCallToAction {
   }
 
   render() {
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -84,7 +82,7 @@ class CallToAction18 extends BaseCallToAction {
           )}
           {buttons.length > 0 && (
             <div className={this.decorateCSS("buttons")}>
-              {buttons.map((button: Button, index: number) => (
+              {buttons.map((button: INPUTS.CastedButton, index: number) => (
                 <ComposerLink path={button.url} key={index}>
                   {this.castToString(button.text) && (
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
