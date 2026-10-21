@@ -32,12 +32,19 @@
       }
     }
 
-    // Steps are stacked rows separated by thin lines.
+    // Steps are stacked rows, separated by thin lines when the Line prop is on.
     .steps {
       display: flex;
       flex-direction: column;
       width: 100%;
-      border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+      &.with-line {
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+
+        .step {
+          border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
+        }
+      }
 
       // Each row: texts on the left (bottom-aligned with the media), media on the right.
       .step {
@@ -46,7 +53,6 @@
         align-items: end;
         gap: var(--composer-gap-lg);
         padding: calc(var(--composer-gap-sm) * 1.5) 0;
-        border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
 
         // Without media or without texts, the remaining part takes the full row.
         > :only-child {
@@ -78,10 +84,7 @@
             color: rgba(var(--composer-font-color-primary-rgb), 0.1);
           }
 
-          .step-subtitle {
-            color: var(--composer-tertiary-color);
-          }
-
+          .step-subtitle,
           .step-title,
           .step-description {
             color: var(--composer-font-color-primary);
@@ -153,25 +156,6 @@
 
         .step-content .step-number {
           font-size: 4.5rem !important;
-        }
-      }
-
-      // With center alignment, the step texts and buttons are centered too.
-      &.center .steps .step .step-content {
-        align-items: center;
-
-        .step-number,
-        .step-subtitle,
-        .step-title,
-        .step-description {
-          text-align: center !important;
-          justify-content: center !important;
-          align-self: center;
-        }
-
-        .step-button-container {
-          justify-content: center;
-          align-self: center;
         }
       }
     }

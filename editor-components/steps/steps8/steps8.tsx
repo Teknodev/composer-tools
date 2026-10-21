@@ -56,72 +56,205 @@ class Steps8 extends BaseSteps {
       key: "steps",
       displayer: "Steps",
       value: [
-        this.createStep(
-          "01",
-          "Years of Development",
-          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794"
-        ),
-        this.createStep(
-          "02",
-          "Professional Managers",
-          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media"
-        ),
-        this.createStep(
-          "03",
-          "High Visual Quality",
-          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578"
-        ),
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "object",
+              key: "step_media",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/steps8-no1.jpg",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "01",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Years of Development",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "object",
+              key: "step_media",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/steps8-no2.jpg",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "02",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Professional Managers",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "object",
+              key: "step_media",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://hq-blinkpage-dev-1b2e6.s3.eu-central-1.amazonaws.com/user_content/6a8d513ace843e1cc08fe836/6ab3e368c883d8c204c28d30/library/steps8-no3.jpg",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "03",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "High Visual Quality",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
   }
 
   static getName(): string {
     return "Steps 8";
-  }
-
-  private createStep(number: string, title: string, image: string): TypeUsableComponentProps {
-    return {
-      type: "object",
-      key: "step",
-      displayer: "Step",
-      value: [
-        { type: "string", key: "step_number", displayer: "Number", value: number },
-        { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
-        { type: "string", key: "step_title", displayer: "Title", value: title },
-        { type: "string", key: "step_description", displayer: "Description", value: "" },
-        {
-          type: "array",
-          key: "step_buttons",
-          displayer: "Buttons",
-          value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        },
-        {
-          type: "object",
-          key: "step_media",
-          displayer: "Media",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: image,
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-      ],
-    };
   }
 
   mediaExist(media?: TypeMediaInputValue) {
@@ -157,6 +290,7 @@ class Steps8 extends BaseSteps {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const visibleButtons = this.getVisibleButtons(this.castToObject<INPUTS.CastedButton[]>("buttons"));
+    const line = this.getPropValue("line");
 
     // Buttons are an array inside each step object, so the steps are read through getPropValue (castToObject leaves nested arrays raw).
     const steps: Step[] = (this.getPropValue("steps") || [])
@@ -204,7 +338,7 @@ class Steps8 extends BaseSteps {
           )}
 
           {steps.length > 0 && (
-            <div className={this.decorateCSS("steps")}>
+            <div className={`${this.decorateCSS("steps")} ${line ? this.decorateCSS("with-line") : ""}`}>
               {steps.map((step: Step, index: number) => {
                 const hasText =
                   this.castToString(step.step_number) ||
