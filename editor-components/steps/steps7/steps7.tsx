@@ -23,6 +23,32 @@ class Steps7 extends BaseSteps {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "image",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -55,10 +81,154 @@ class Steps7 extends BaseSteps {
       key: "steps",
       displayer: "Steps",
       value: [
-        this.createStep("01", "Contact Us", "Leverage agile frameworks to provide a robust synopsis for high level overviews"),
-        this.createStep("02", "Conversation", "Iterative approaches to corporate strategy foster collaborative thinking"),
-        this.createStep("03", "Contract", "Bring to the table win-win survival strategies to ensure proactive domination"),
-        this.createStep("04", "Work!", "Capitalize on low hanging fruit to identify a ballpark value added activity"),
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "01",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Contact Us",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "Leverage agile frameworks to provide a robust synopsis for high level overviews",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "02",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Conversation",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "Iterative approaches to corporate strategy foster collaborative thinking",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "03",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Contract",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "Bring to the table win-win survival strategies to ensure proactive domination",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "step_number",
+              displayer: "Number",
+              value: "04",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Work!",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value: "Capitalize on low hanging fruit to identify a ballpark value added activity",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
       ],
     });
 
@@ -68,56 +238,10 @@ class Steps7 extends BaseSteps {
       displayer: "Item Count in a Row",
       value: 2,
     });
-
-    this.addProp({
-      type: "object",
-      key: "image",
-      displayer: "Media",
-      value: [
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
   }
 
   static getName(): string {
     return "Steps 7";
-  }
-
-  private createStep(number: string, title: string, description: string): TypeUsableComponentProps {
-    return {
-      type: "object",
-      key: "step",
-      displayer: "Step",
-      value: [
-        { type: "string", key: "step_number", displayer: "Number", value: number },
-        { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
-        { type: "string", key: "step_title", displayer: "Title", value: title },
-        { type: "string", key: "step_description", displayer: "Description", value: description },
-        {
-          type: "array",
-          key: "step_buttons",
-          displayer: "Buttons",
-          value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        },
-      ],
-    };
   }
 
   mediaExist(media?: TypeMediaInputValue) {

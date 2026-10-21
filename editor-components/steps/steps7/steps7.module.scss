@@ -68,12 +68,14 @@
             overflow-wrap: anywhere;
           }
 
+          // Base.H1 is the largest heading level, the number is drawn a bit larger to match the original design.
           .step-number {
+            font-size: 4rem;
             color: var(--composer-primary-color);
           }
 
           .step-subtitle {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
           }
 
           .step-title {
@@ -146,25 +148,6 @@
       .content {
         grid-template-columns: minmax(0, 1fr);
         gap: var(--composer-gap-md);
-      }
-
-      // With center alignment, the step texts and buttons are centered too.
-      &.center .content .steps .step {
-        align-items: center;
-
-        .step-number,
-        .step-subtitle,
-        .step-title,
-        .step-description {
-          text-align: center !important;
-          justify-content: center !important;
-          align-self: center;
-        }
-
-        .step-button-container {
-          justify-content: center;
-          align-self: center;
-        }
       }
     }
   }
