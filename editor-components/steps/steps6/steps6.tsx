@@ -15,19 +15,6 @@ type Step = {
   step_buttons: INPUTS.CastedButton[];
 };
 
-const LIST_ITEMS = [
-  "Egestas aliquet ullamcorper nunc sed pellentesque",
-  "Lorem ipsum dolor sit amet",
-  "Faucibus dolor mauris nascetur ut feugia",
-  "Egestas aliquet ullamcorper nunc sed pellentesque",
-];
-
-const DESCRIPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames tristique rutrum porta at eu tempus. Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.";
-
-const BOTTOM_DESCRIPTION =
-  "Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.";
-
 class Steps6 extends BaseSteps {
   constructor(props?: any) {
     super(props, styles);
@@ -65,10 +52,368 @@ class Steps6 extends BaseSteps {
       key: "steps",
       displayer: "Steps",
       value: [
-        this.createStep("First Step", "Audit and Analysis of Competitors", DESCRIPTION, LIST_ITEMS, BOTTOM_DESCRIPTION),
-        this.createStep("Second Step", "Implementation of the first changes", DESCRIPTION, [], BOTTOM_DESCRIPTION),
-        this.createStep("Third Step", "Integrated development", BOTTOM_DESCRIPTION, LIST_ITEMS, ""),
-        this.createStep("Fourth Step", "First results", DESCRIPTION, LIST_ITEMS, BOTTOM_DESCRIPTION),
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "tab_title",
+              displayer: "Tab Title",
+              value: "First Step",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Audit and Analysis of Competitors",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames tristique rutrum porta at eu tempus. Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "list_items",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Lorem ipsum dolor sit amet",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Faucibus dolor mauris nascetur ut feugia",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_bottom_description",
+              displayer: "Bottom Description",
+              value:
+                "Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "tab_title",
+              displayer: "Tab Title",
+              value: "Second Step",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Implementation of the first changes",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames tristique rutrum porta at eu tempus. Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "list_items",
+              displayer: "List Items",
+              value: [],
+            },
+            {
+              type: "string",
+              key: "step_bottom_description",
+              displayer: "Bottom Description",
+              value:
+                "Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "tab_title",
+              displayer: "Tab Title",
+              value: "Third Step",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "Integrated development",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value:
+                "Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "list_items",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Lorem ipsum dolor sit amet",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Faucibus dolor mauris nascetur ut feugia",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_bottom_description",
+              displayer: "Bottom Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "step",
+          displayer: "Step",
+          value: [
+            {
+              type: "string",
+              key: "tab_title",
+              displayer: "Tab Title",
+              value: "Fourth Step",
+            },
+            {
+              type: "string",
+              key: "step_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "step_title",
+              displayer: "Title",
+              value: "First results",
+            },
+            {
+              type: "string",
+              key: "step_description",
+              displayer: "Description",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames tristique rutrum porta at eu tempus. Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "list_items",
+              displayer: "List Items",
+              value: [
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Lorem ipsum dolor sit amet",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Faucibus dolor mauris nascetur ut feugia",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "list_item",
+                  displayer: "List Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Egestas aliquet ullamcorper nunc sed pellentesque",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "step_bottom_description",
+              displayer: "Bottom Description",
+              value:
+                "Egestas aliquet ullamcorper nunc sed pellentesque. Faucibus dolor mauris nascetur ut feugiat hac rutrum tempor congue. Egestas eget adipiscing scelerisque.",
+            },
+            {
+              type: "array",
+              key: "step_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+          ],
+        },
       ],
     });
 
@@ -109,38 +454,6 @@ class Steps6 extends BaseSteps {
 
   static getName(): string {
     return "Steps 6";
-  }
-
-  private createStep(tabTitle: string, title: string, description: string, listItems: string[], bottomDescription: string): TypeUsableComponentProps {
-    return {
-      type: "object",
-      key: "step",
-      displayer: "Step",
-      value: [
-        { type: "string", key: "tab_title", displayer: "Tab Title", value: tabTitle },
-        { type: "string", key: "step_subtitle", displayer: "Subtitle", value: "" },
-        { type: "string", key: "step_title", displayer: "Title", value: title },
-        { type: "string", key: "step_description", displayer: "Description", value: description },
-        {
-          type: "array",
-          key: "list_items",
-          displayer: "List Items",
-          value: listItems.map((text: string) => ({
-            type: "object",
-            key: "list_item",
-            displayer: "List Item",
-            value: [{ type: "string", key: "text", displayer: "Text", value: text }],
-          })),
-        },
-        { type: "string", key: "step_bottom_description", displayer: "Bottom Description", value: bottomDescription },
-        {
-          type: "array",
-          key: "step_buttons",
-          displayer: "Buttons",
-          value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        },
-      ],
-    };
   }
 
   toggleAccordion(index: number) {
