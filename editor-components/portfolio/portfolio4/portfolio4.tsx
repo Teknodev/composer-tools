@@ -69,46 +69,502 @@ class Portfolio4 extends BasePortfolio {
       key: "items",
       displayer: "Items",
       value: [
-        this.createItem(
-          "Colorfill Web Design",
-          "Branding",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/windows-JW-T2BH5k5E-unsplash-1070x713.jpg"
-        ),
-        this.createItem(
-          "Glasses Mobile Project",
-          "Mobile Apps",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/jeremy-bezanger-WuFjNk7hu7g-unsplash-1070x713.jpg"
-        ),
-        this.createItem(
-          "Blue Teal Orange",
-          "Web Design",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/jesse-smith-R0cJIcBpE70-unsplash-1070x1070.jpg"
-        ),
-        this.createItem(
-          "Another Breath App",
-          "Web Design",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/oinam-fGkBx7hX9Ms-unsplash-1070x713.jpg"
-        ),
-        this.createItem(
-          "Desktop App Design",
-          "Web Design",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg"
-        ),
-        this.createItem(
-          "Amster Mobile App",
-          "Mobile Apps",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/dell-7Bmk9mAXP2I-unsplash-1070x712.jpg"
-        ),
-        this.createItem(
-          "Red Border App",
-          "Mobile Apps",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/william-hook-9e9PD9blAto-unsplash-1070x713.jpg"
-        ),
-        this.createItem(
-          "Green Leaves Magazine",
-          "Branding",
-          "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/avel-chuklanov-DUmFLtMeAbQ-unsplash-1070x713.jpg"
-        ),
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a38f506a40002c2f7b2d?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Colorfill Web Design",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Branding",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Glasses Mobile Project",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Mobile Apps",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Blue Teal Orange",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Web Design",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Another Breath App",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Web Design",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Desktop App Design",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Web Design",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Amster Mobile App",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Mobile Apps",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a782631ba002c0080a5?alt=media",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Red Border App",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Mobile Apps",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "object",
+              key: "itemMedia",
+              displayer: "Media",
+              value: [
+                {
+                  type: "media",
+                  key: "media",
+                  displayer: "Media",
+                  additionalParams: {
+                    availableTypes: ["image", "video"],
+                  },
+                  value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+                  },
+                },
+                {
+                  type: "boolean",
+                  key: "overlay",
+                  displayer: "Overlay",
+                  value: false,
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "item_subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "item_title",
+              displayer: "Title",
+              value: "Green Leaves Magazine",
+            },
+            {
+              type: "string",
+              key: "item_description",
+              displayer: "Description",
+              value: "Branding",
+            },
+            {
+              type: "array",
+              key: "item_buttons",
+              displayer: "Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
       ],
     });
 
@@ -180,71 +636,6 @@ class Portfolio4 extends BasePortfolio {
 
   static getName(): string {
     return "Portfolio 4";
-  }
-
-  private createItem(title: string, description: string, image: string): TypeUsableComponentProps {
-    return {
-      type: "object",
-      key: "item",
-      displayer: "Item",
-      value: [
-        {
-          type: "object",
-          key: "itemMedia",
-          displayer: "Media",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: image,
-              },
-            },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            },
-          ],
-        },
-        {
-          type: "string",
-          key: "item_subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "item_title",
-          displayer: "Title",
-          value: title,
-        },
-        {
-          type: "string",
-          key: "item_description",
-          displayer: "Description",
-          value: description,
-        },
-        {
-          type: "array",
-          key: "item_buttons",
-          displayer: "Buttons",
-          value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-      ],
-    };
   }
 
   transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
