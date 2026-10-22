@@ -1,4 +1,5 @@
 import { TrackEventActionConfig } from "../../types/interaction";
+import { ConversionTrackingService } from "./ConversionTrackingService";
 
 // Global interfaces for window
 declare global {
@@ -9,7 +10,7 @@ declare global {
 }
 
 export class TrackEventActionHandler {
-  static execute(config: TrackEventActionConfig): void {
+  static execute(config: TrackEventActionConfig, interaction?: { id?: string; isConversion?: boolean }): void {
     console.log(`[TrackEventActionHandler] Executing ${config.platform} event: ${config.eventName}`);
 
     const payloadObj = config.payload.reduce((acc, curr) => {
@@ -37,23 +38,11 @@ export class TrackEventActionHandler {
         break;
 
       case "conversion":
-        const publicUrl = (import.meta as any).env.VITE_API_URL || "https://api.blinkpage.com";
-        fetch(`${publicUrl}/fn-execute/conversion`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event_name: config.eventName,
-            payload: payloadObj,
-            timestamp: new Date().toISOString()
-          })
-        })
-        .then((res) => {
-          if(!res.ok) throw new Error("Network response was not ok");
-          console.log(`[TrackEventActionHandler] Successfully saved Native Conversion: ${config.eventName}`);
-        })
-        .catch((err) => {
-          console.log(`[TrackEventActionHandler] Failed to save Native Conversion: ${err.message}`);
-        });
+        // An interaction marked as the conversion goal is recorded once, by
+        // InteractionManager, under this same event name.
+        if (!interaction?.isConversion) {
+          ConversionTrackingService.track(interaction?.id, config.eventName, payloadObj);
+        }
         break;
 
       default:

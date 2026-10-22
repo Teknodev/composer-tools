@@ -1,5 +1,5 @@
 import { Map, Marker, useMap } from "@vis.gl/react-google-maps";
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { createContext, memo, useContext, useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
 
 type Coordinate = {
@@ -26,7 +26,40 @@ interface ComposerMapProps {
   customSelectedMarker?: any;
 }
 
-const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles, customSelectedMarker }: ComposerMapProps) => {
+/**
+ * How maps render. The editor (and a published site whose owner entered their own
+ * Google Maps key) gets the interactive map; a published site without a key gets
+ * Google's keyless embed, so no platform key has to sit unrestricted in every
+ * customer's page source. Default: interactive.
+ */
+export const ComposerMapsContext = createContext<{ embedOnly: boolean }>({ embedOnly: false });
+
+/** Google's keyless embedded map, centred on the markers. No custom icons or cards. */
+const EmbedMap = ({ markers, className, defaultZoom }: ComposerMapProps) => {
+  if (!markers || markers.length === 0) return null;
+  const lats = markers.map((m) => m.lat);
+  const lngs = markers.map((m) => m.lng);
+  const lat = (Math.max(...lats) + Math.min(...lats)) / 2;
+  const lng = (Math.max(...lngs) + Math.min(...lngs)) / 2;
+  const zoom = defaultZoom ?? (markers.length > 1 ? 10 : 14);
+  return (
+    <iframe
+      className={className}
+      title="Map"
+      src={`https://maps.google.com/maps?q=${lat},${lng}&z=${zoom}&output=embed`}
+      style={{ border: 0, width: "100%", height: "100%" }}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    />
+  );
+};
+
+const ComposerMap = memo((props: ComposerMapProps) => {
+  const { embedOnly } = useContext(ComposerMapsContext);
+  return embedOnly ? <EmbedMap {...props} /> : <InteractiveMap {...props} />;
+});
+
+const InteractiveMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles, customSelectedMarker }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
@@ -255,7 +288,11 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
           title="Location"
           icon={{
             url: marker.icon.url || defaultMarker,
-            scaledSize: new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32),
+            // Rendered before the Maps script is there (and on the server, where it never is).
+            scaledSize:
+              typeof google !== "undefined" && typeof google.maps?.Size === "function"
+                ? new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32)
+                : undefined,
           }}
           onClick={() => handleMarkerClick(marker)}
         />
