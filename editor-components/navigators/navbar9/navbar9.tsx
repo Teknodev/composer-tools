@@ -18,7 +18,7 @@ interface Logo {
 interface MenuItems {
   title: React.JSX.Element;
   navigate_to: string;
-  sub_item_menuType: string;
+  menuType: string;
   sub_items: MenuItems[];
 }
 interface Language {
@@ -127,7 +127,7 @@ class Navbar9 extends BaseNavigator {
         {
           type: "boolean",
           key: "showLanguage",
-          displayer: "Show Language",
+          displayer: "Language",
           value: true,
         },
         {
@@ -182,232 +182,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "Fashion Home",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Winery Home",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "New Arrivals",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Men & Women",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Trend Collection",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Creative",
                     },
                     {
                       type: "page",
@@ -485,7 +260,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "SUB ITEM1",
+                      value: "",
                     },
                     {
                       type: "page",
@@ -563,232 +338,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "ABOUT US",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "LOOKBOOK",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "TYPOGRAPHY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "SHORTCODES",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "COMING SOON",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "PAGE 404",
                     },
                     {
                       type: "page",
@@ -866,65 +416,13 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Title",
-                      value: "BLOG POSTS",
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "navigate_to",
                       displayer: "Navigate To",
                       value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate To",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "MASONARY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                    {
-                      type: "select",
-                      key: "sub_item_menuType",
-                      displayer: "Type",
-                      value: "Normal",
-                      additionalParams: { selectItems: ["Dropdown", "Normal"] },
                     },
                     {
                       type: "array",
@@ -1210,6 +708,8 @@ class Navbar9 extends BaseNavigator {
         : { image: defaultLogo.image, navigateTo: defaultLogo.navigateTo };
 
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
+    const hasSubItems = (item: MenuItems) =>
+      item.sub_items?.some((subItem: MenuItems) => this.castToString(subItem.title));
     const overlay = this.getPropValue("overlay");
     const language = this.castToObject<Language>("language");
     const icons = this.castToObject<Icons[]>("icons");
@@ -1278,7 +778,7 @@ class Navbar9 extends BaseNavigator {
                           >
                             {item.title}
                           </Base.P>
-                          {item.menuType === "Dropdown" && (
+                          {item.menuType === "Dropdown" && hasSubItems(item) && (
                             <Base.Media
                               value={navigationIcons?.dropdownIcon}
                               className={this.decorateCSS("dropdownIcon")}
@@ -1286,7 +786,7 @@ class Navbar9 extends BaseNavigator {
                           )}
                         </div>
                       </ComposerLink>
-                      {item.menuType === "Dropdown" && (
+                      {item.menuType === "Dropdown" && hasSubItems(item) && (
                         <div className={this.decorateCSS("dropdown")}>
                           {item.sub_items?.map(
                             (subItem: any, subIndex: number) => (
@@ -1457,7 +957,7 @@ class Navbar9 extends BaseNavigator {
                               {item.title}
                             </Base.P>
                           </ComposerLink>
-                          {item.sub_item_menuType === "Dropdown" && (
+                          {item.menuType === "Dropdown" && hasSubItems(item) && (
                             <Base.Media
                               value={navigationIcons?.dropdownIcon}
                               className={`${this.decorateCSS("dropdownIcon")} ${
@@ -1468,7 +968,7 @@ class Navbar9 extends BaseNavigator {
                             />
                           )}
                         </div>
-                        {item.sub_item_menuType === "Dropdown" && (
+                        {item.menuType === "Dropdown" && hasSubItems(item) && (
                           <div
                             className={`${this.decorateCSS(
                               "hamburgerSubmenu"

@@ -26,8 +26,8 @@
       gap: var(--composer-gap-sm);
 
       .informationImageContainer {
-        width: 65px;
-        height: 65px;
+        width: 56px;
+        height: 56px;
         border-radius: var(--composer-border-radius-xs);
         overflow: hidden;
 
@@ -39,17 +39,16 @@
       }
 
       .informationTextContainer {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-xs);
         .informationTitle {
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-size: calc(0.875 * var(--composer-font-size-md));
         }
         .informationDescription {
           max-width: 200px;
           color: var(--composer-font-color-primary);
           text-align: left;
+          font-size: calc(0.875 * var(--composer-font-size-md));
         }
       }
     }
@@ -58,7 +57,7 @@
       gap: var(--composer-gap-sm);
 
       .icon {
-        font-size: calc(1.5 * var(--composer-font-size-md));
+        font-size: calc(1.25 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
@@ -150,6 +149,7 @@
 
         .menuItemTitle {
           margin:0;
+          font-size: 1rem !important;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -410,6 +410,7 @@
   
               .hamburgerMenuItemTitle {
                 margin: 0;
+                font-size: 1rem !important;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -527,10 +528,6 @@
     height: 24px;
     object-fit: cover;
   }
-  .hamburgerMenuTitle {
-    margin: 0;
-    color: var(--composer-font-color-primary);
-  }
 }
 
 
@@ -576,9 +573,6 @@
   .hamburgerIconContainer {
     .hamburgerIcon,
     .closeIcon {
-      color: white;
-    }
-    .hamburgerMenuTitle {
       color: white;
     }
   }
@@ -651,10 +645,6 @@
         .closeIcon {
           color: var(--composer-font-color-primary) !important;
         }
-        .hamburgerMenuTitle {
-        
-          color: var(--composer-font-color-primary) !important;
-        }
         transition: all 0.2s linear;
       }
     }
@@ -683,6 +673,10 @@
   .smallDevicelogo {
     display: flex;
     padding: var(--composer-gap-md) 0;
+    .smallDeviceLogoImg {
+      width: 160px;
+      max-width: 100%;
+    }
     border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
     border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
   }
