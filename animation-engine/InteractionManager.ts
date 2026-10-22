@@ -787,7 +787,7 @@ export class InteractionManager {
                     }
                   }
                   if (interaction.isConversion) {
-                    ConversionTrackingService.track();
+                    ConversionTrackingService.track(interaction.id);
                   }
                 };
 
@@ -963,7 +963,7 @@ export class InteractionManager {
         NavigateActionHandler.execute(interaction.action);
         break;
       case "track-event":
-        TrackEventActionHandler.execute(interaction.action);
+        TrackEventActionHandler.execute(interaction.action, interaction);
         break;
       default:
         console.warn(
@@ -971,7 +971,10 @@ export class InteractionManager {
         );
     }
     if (interaction.isConversion) {
-      ConversionTrackingService.track();
+      // A native-conversion event keeps its own name on the row it records.
+      const action: any = interaction.action;
+      const eventName = action?.type === "track-event" && action.platform === "conversion" && action.eventName ? action.eventName : undefined;
+      ConversionTrackingService.track(interaction.id, eventName);
     }
   }
 

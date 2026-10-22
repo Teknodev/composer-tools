@@ -26,6 +26,8 @@ export {
 } from "./AnimationPriorityManager";
 export type { PriorityAnimationController } from "./AnimationPriorityManager";
 export { InteractionManager } from "./InteractionManager";
+export { ConversionTrackingService } from "./ConversionTrackingService";
+export type { ConversionContext } from "./ConversionTrackingService";
 export { AnimationPreview } from "./AnimationPreview";
 export type { PreviewHandle } from "./AnimationPreview";
 export {

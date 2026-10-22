@@ -430,7 +430,8 @@ class Location1 extends Location {
             lng,
             icon: {
               url: iconUrl || defaultMarkerIcon,
-              scaledSize: new google.maps.Size(width, height),
+              // Plain size: ComposerMap builds the google.maps.Size, and `google` does not exist while the page renders on the server.
+              scaledSize: { width, height } as google.maps.Size,
               width,
               height,
             },
